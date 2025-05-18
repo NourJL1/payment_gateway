@@ -1,0 +1,248 @@
+package com.controller;
+
+import com.model.WALLET;
+import com.model.WALLET_BALANCE_HISTORY;
+import com.service.WalletService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import com.model.*;
+import com.repository.*;
+import com.service.*;
+import com.servicesImp.*;
+
+import java.sql.Date;
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/api/wallets")
+@RequiredArgsConstructor
+public class WalletController {
+    
+    @Autowired
+    private WalletService walletService;
+
+    @Autowired 
+    private CustomerRepository customerRepository;
+    
+  @Autowired
+  private WalletStatusRepository walletStatusRepository ;
+  
+  @Autowired
+  private WalletTypeRepository walletTypeRepository;
+  
+  @Autowired 
+  private WalletCategoryRepository walletCategoryRepository;
+  
+  @Autowired 
+  private CardListRepository cardListRepository;
+  
+  @Autowired 
+  private WalletBalanceHistoryRepository walletBalanceHistoryRepository;
+  
+  
+  
+    
+    
+    
+    
+    // 🔹 Récupérer tous les wallets
+    @GetMapping
+    public ResponseEntity<List<WALLET>> getAllWallets() {
+        List<WALLET> wallets = walletService.getAllWallets();
+        return ResponseEntity.ok(wallets);
+    }
+
+    // 🔹 Récupérer un wallet par ID
+    @GetMapping("/{id}")
+    public ResponseEntity<WALLET> getWalletById(@PathVariable Integer id) {
+        Optional<WALLET> wallet = walletService.getWalletById(id);
+        return wallet.map(ResponseEntity::ok)
+                     .orElse(ResponseEntity.notFound().build());
+    }
+
+    // 🔹 Créer un nouveau wallet
+   /* @PostMapping
+    public ResponseEntity<WALLET> createWallet(@Valid @RequestBody WALLET wallet) {
+        // Vérification et récupération des entités liées avant de créer le wallet
+        Optional<CUSTOMER> customerOpt = customerRepository.findById(wallet.getCustomer().getCusCode());
+        Optional<WALLET_STATUS> walletStatusOpt = walletStatusRepository.findById(wallet.getWalletStatus().getWstCode());
+        Optional<WALLET_TYPE> walletTypeOpt = walletTypeRepository.findById(wallet.getWalletType().getWtyCode());
+        Optional<WALLET_CATEGORY> walletCategoryOpt = walletCategoryRepository.findById(wallet.getWalletCategory().getWcaCode());
+        Optional<CARD_LIST> cardListOpt = cardListRepository.findById(wallet.getCardList() != null ? wallet.getCardList().getCliCode() : null);
+
+        Optional<WALLET_BALANCE_HISTORY> lastBalanceHistoryOpt = Optional.empty();
+
+        if (wallet.getLastBalanceHistory() != null && wallet.getLastBalanceHistory().getWbhCode() != null) {
+            lastBalanceHistoryOpt = walletBalanceHistoryRepository.findById(
+                wallet.getLastBalanceHistory().getWbhCode()
+            );
+        }
+
+        // Ici tu ajoutes ce bloc :
+        if (lastBalanceHistoryOpt.isPresent()) {
+            wallet.setLastBalanceHistory(lastBalanceHistoryOpt.get());
+        } else {
+            wallet.setLastBalanceHistory(null); // ou ne rien faire si tu veux garder l'ancien comportement
+        }
+
+        // Si une entité liée est introuvable, renvoyer une erreur
+        if (customerOpt.isEmpty() || walletStatusOpt.isEmpty() || walletTypeOpt.isEmpty() || walletCategoryOpt.isEmpty()) {
+            return ResponseEntity.badRequest().body(null);
+        }
+
+        // Associer les entités liées au wallet
+        wallet.setCustomer(customerOpt.get());
+        wallet.setWalletStatus(walletStatusOpt.get());
+        wallet.setWalletType(walletTypeOpt.get());
+        wallet.setWalletCategory(walletCategoryOpt.get());
+        
+        // Associer le cardList si présent
+        if (cardListOpt.isPresent()) {
+            wallet.setCardList(cardListOpt.get());
+        }
+        
+        // Associer le dernier solde historique si présent
+        if (lastBalanceHistoryOpt.isPresent()) {
+            wallet.setLastBalanceHistory(lastBalanceHistoryOpt.get());
+        }
+
+        // Créer le wallet avec toutes les relations associées
+        WALLET newWallet = walletService.createWallet(wallet);
+
+        // Si le solde historique est absent, en créer un nouveau
+        if (wallet.getLastBalanceHistory() == null) {
+            WALLET_BALANCE_HISTORY walletBalanceHistory = new WALLET_BALANCE_HISTORY();
+            walletBalanceHistory.setWallet(newWallet);
+            walletBalanceHistory.setWbhAmount(newWallet.getWalEffBal()); // Utiliser le solde actuel
+            walletBalanceHistory.setWbhLastUpdated(new java.sql.Date(System.currentTimeMillis())); // Date actuelle ou selon besoin
+            walletBalanceHistoryRepository.save(walletBalanceHistory); // Enregistrer l'historique
+        }
+
+        // Retourner la réponse
+        return ResponseEntity.status(HttpStatus.CREATED).body(newWallet);
+    }*/
+    
+ // Créer un nouveau wallet
+    @PostMapping
+    public ResponseEntity<WALLET> createWallet(@Valid @RequestBody WALLET wallet) {
+        // Vérification et récupération des entités liées avant de créer le wallet
+        Optional<CUSTOMER> customerOpt = customerRepository.findById(wallet.getCustomer().getCusCode());
+        Optional<WALLET_STATUS> walletStatusOpt = walletStatusRepository.findById(wallet.getWalletStatus().getWstCode());
+        Optional<WALLET_TYPE> walletTypeOpt = walletTypeRepository.findById(wallet.getWalletType().getWtyCode());
+        Optional<WALLET_CATEGORY> walletCategoryOpt = walletCategoryRepository.findById(wallet.getWalletCategory().getWcaCode());
+        Optional<CARD_LIST> cardListOpt = wallet.getCardList() != null ?
+            cardListRepository.findById(wallet.getCardList().getCliCode()) : Optional.empty();
+
+        // Vérification des dépendances
+        if (customerOpt.isEmpty() || walletStatusOpt.isEmpty() || walletTypeOpt.isEmpty() || walletCategoryOpt.isEmpty()) {
+            return ResponseEntity.badRequest().body(null);
+        }
+
+        // Association des entités liées
+        wallet.setCustomer(customerOpt.get());
+        wallet.setWalletStatus(walletStatusOpt.get());
+        wallet.setWalletType(walletTypeOpt.get());
+        wallet.setWalletCategory(walletCategoryOpt.get());
+        cardListOpt.ifPresent(wallet::setCardList);
+
+        // Étape 1 : création initiale du wallet
+        WALLET savedWallet = walletService.createWallet(wallet);
+
+        // Étape 2 : création de l'entrée historique
+        WALLET_BALANCE_HISTORY walletBalanceHistory = new WALLET_BALANCE_HISTORY();
+        walletBalanceHistory.setWallet(savedWallet);
+        walletBalanceHistory.setWbhEffBal(savedWallet.getWalEffBal());
+        walletBalanceHistory.setWbhLogicBalance(savedWallet.getWalLogicBalance());
+        walletBalanceHistory.setWbhSpecificBalance(savedWallet.getWalSpecificBalance());
+        walletBalanceHistory.setWbhLastUpdated(new java.util.Date());
+        walletBalanceHistory.setWbhIden(0); // ou générer dynamiquement
+
+        walletBalanceHistoryRepository.save(walletBalanceHistory);
+
+        // Étape 3 : mise à jour du wallet avec référence vers l'historique
+        savedWallet.setLastBalanceHistory(walletBalanceHistory);
+        WALLET updatedWallet = walletService.createWallet(savedWallet);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(updatedWallet);
+    }
+
+
+    // 🔹 Mettre à jour un wallet existant
+    @PutMapping("/{id}")
+    public ResponseEntity<WALLET> updateWallet(@PathVariable Integer id, @Valid @RequestBody WALLET walletDetails) {
+        Optional<WALLET> optionalWallet = walletService.getWalletById(id);
+        if (optionalWallet.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        WALLET existingWallet = optionalWallet.get();
+
+        // Mettre à jour les champs du wallet (à adapter selon les besoins)
+        existingWallet.setWalEffBal(walletDetails.getWalEffBal());
+        existingWallet.setWalLogicBalance(walletDetails.getWalLogicBalance());
+        existingWallet.setWalSpecificBalance(walletDetails.getWalSpecificBalance());
+        existingWallet.setWalletStatus(walletDetails.getWalletStatus());
+        existingWallet.setWalletType(walletDetails.getWalletType());
+        existingWallet.setWalletCategory(walletDetails.getWalletCategory());
+
+        WALLET updatedWallet = walletService.createWallet(existingWallet);
+
+        // Mettre à jour l'historique du solde
+        WALLET_BALANCE_HISTORY balanceHistory = updatedWallet.getLastBalanceHistory();
+        if (balanceHistory != null) {
+            balanceHistory.setWbhEffBal(updatedWallet.getWalEffBal());
+            balanceHistory.setWbhLogicBalance(updatedWallet.getWalLogicBalance());
+            balanceHistory.setWbhSpecificBalance(updatedWallet.getWalSpecificBalance());
+            balanceHistory.setWbhLastUpdated(new java.util.Date());
+            walletBalanceHistoryRepository.save(balanceHistory);
+        }
+
+        return ResponseEntity.ok(updatedWallet);
+    }
+
+    // 🔹 Supprimer un wallet
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteWallet(@PathVariable Integer id) {
+        if (walletService.getWalletById(id).isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        walletService.deleteWallet(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    // 🔹 Récupérer les wallets d’un client donné
+    /*@GetMapping("/customer/{customerCode}")
+    public ResponseEntity<List<WALLET>> getWalletsByCustomerCode(@PathVariable String customerCode) {
+        List<WALLET> wallets = walletService.getWalletsByCustomerCode(customerCode);
+        return wallets.isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(wallets);
+    }*/
+
+    // 🔹 Récupérer les wallets par statut
+   /* @GetMapping("/status/{status}")
+    public ResponseEntity<List<WALLET>> getWalletsByStatus(@PathVariable String status) {
+        List<WALLET> wallets = walletService.getWalletsByStatus(status);
+        return wallets.isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(wallets);
+    }*/
+    
+    @GetMapping("/by-customer-code/{code}")
+    public List<WALLET> getWalletsByCustomerCode(@PathVariable Integer code) {
+        return walletService.searchByCustomerCusCode(code);
+    }
+
+    @GetMapping("/by-customer-iden/{iden}")
+    public List<WALLET> getWalletsByCustomerIden(@PathVariable String iden) {
+        return walletService.searchByCustomerCusIden(iden);
+    }
+
+    @GetMapping("/by-customer-mail/{mail}")
+    public List<WALLET> getWalletsByCustomerMail(@PathVariable String mail) {
+        return walletService.searchByCustomerCusMailAddress(mail);
+    }
+
+   
+}
