@@ -1,24 +1,49 @@
 package com.model;
 
+
+
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "roles")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Role {
-    
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
-    private String name;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "name", nullable = false)
+    private RoleName name;
+    
+    public enum RoleName {
+        CUSTOMER,
+        INTERNE,
+        MERCHANT,
+        ADMIN,
+    }
 
-    @Column
-    private String description;
-} 
+    // Getters and Setters
+    
+    public Long getId() {
+		return id;
+	}
+    public Role() {}
+	public Role(Long id, RoleName name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public RoleName getName() {
+		return name;
+	}
+
+	public void setName(RoleName name) {
+		this.name = name;
+	}
+}
+
+

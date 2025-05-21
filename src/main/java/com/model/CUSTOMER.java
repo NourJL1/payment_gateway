@@ -35,8 +35,9 @@ public class CUSTOMER {
     private String cusFirstName;
     private String cusMidName;
     private String cusLastName;
+    private String username;
     private String cusMailAddress;
-    private String cusPassword;
+    @JsonProperty("Password")
     private String cusMotDePasse;
     private String cusPhoneNbr;
     private String cusAddress;
@@ -247,15 +248,7 @@ public class CUSTOMER {
 		this.walletOperations = walletOperations;
 	}
 
-	public CUSTOMER() {}
-
-    public String getCusPassword() {
-		return cusPassword;
-	}
-
-	public void setCusPassword(String cusPassword) {
-		this.cusPassword = cusPassword;
-	}
+	
 
 	// Add role relationship
     @ManyToMany(fetch = FetchType.EAGER)
@@ -272,6 +265,30 @@ public class CUSTOMER {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	@JsonProperty("fullName")
+	public String getFullName() {
+	    StringBuilder fullName = new StringBuilder();
+
+	    if (cusFirstName != null) fullName.append(cusFirstName).append(" ");
+	    if (cusMidName != null) fullName.append(cusMidName).append(" ");
+	    if (cusLastName != null) fullName.append(cusLastName);
+
+	    return fullName.toString().trim();
+	}
+
+  public String getName() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getName'");
+  }
+
 }
 	
 	

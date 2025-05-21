@@ -1,6 +1,8 @@
 package com.repository;
 import com.model.CUSTOMER;
 
+
+
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +15,11 @@ public interface CustomerRepository extends JpaRepository<CUSTOMER, Integer>{
 	Optional<CUSTOMER> findByCusMailAddress(String email);
 
     Optional<CUSTOMER> findByCusPhoneNbr(String phone);
+    
+    static Optional<CUSTOMER> findByUsername(String username) {
+      // TODO Auto-generated method stub
+      throw new UnsupportedOperationException("Unimplemented method 'findByUsername'");
+    }
 
     List<CUSTOMER> findByCity_CtyCode(Integer cityCode);
 
@@ -34,5 +41,7 @@ public interface CustomerRepository extends JpaRepository<CUSTOMER, Integer>{
                                    @Param("phone") String phone,
                                    @Param("cityCode") Integer cityCode,
                                    @Param("countryCode") Integer countryCode);
+
+    Optional<CUSTOMER> findByEmail(String email);
 }
 

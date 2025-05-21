@@ -40,7 +40,7 @@ public class CustomerController {
 	    
 	    
 
-	    @PostMapping
+	    @PostMapping ("/register")
 	    public ResponseEntity<?> createCustomer(@Valid @RequestBody CUSTOMER customer) {
 	        // Vérifier si la ville est définie
 	        if (customer.getCity() == null || customer.getCity().getCtyCode() == null) {
