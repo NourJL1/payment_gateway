@@ -1,6 +1,6 @@
 package com.security;
 
-import api.uib.customers.entities.User;
+import com.model.CUSTOMER;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,26 +9,25 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 public class CustomCustomerDetails implements UserDetails {
-    private final User user;
-    public CustomCustomerDetails(User user) {
-        this.user = user;
+    private final CUSTOMER customer;
+    public CustomCustomerDetails(CUSTOMER customer) {
+        this.customer = customer;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return user.getRoles().stream()
-            .map(role -> new SimpleGrantedAuthority(role.getName().name()))
+        return customer.getRoles().stream()
+            .map(role -> new SimpleGrantedAuthority(role.getName()))
             .collect(Collectors.toList());
     }
 
-    @Override
-    public String getPassword() {
-        return user.getPassword();
+    public String getCusMotDePasse() {
+        return customer.getCusMotDePasse();
     }
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return customer.getUsername();
     }
 
     @Override
@@ -49,6 +48,12 @@ public class CustomCustomerDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public String getPassword() {
+      // TODO Auto-generated method stub
+      throw new UnsupportedOperationException("Unimplemented method 'getPassword'");
     }
 }
 

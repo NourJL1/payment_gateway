@@ -19,7 +19,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import api.uib.customers.security.RoleHeaderFilter;
+import com.security.RoleHeaderFilter;
 
 @Configuration
 public class SecurityConfig {
