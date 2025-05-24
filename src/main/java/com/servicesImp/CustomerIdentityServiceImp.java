@@ -1,5 +1,4 @@
 package com.servicesImp;
-import com.model.CITY;
 import com.model.CUSTOMER_IDENTITY;
 import com.model.CUSTOMER_IDENTITY_TYPE;
 import com.repository.CustomerIdentityRepository;

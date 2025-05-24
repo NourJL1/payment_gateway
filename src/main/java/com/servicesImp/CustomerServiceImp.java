@@ -1,10 +1,6 @@
 package com.servicesImp;
-import com.model.CITY;
-import com.model.COUNTRY;
 import com.model.CUSTOMER;
 import com.model.CUSTOMER_STATUS;
-import com.repository.CityRepository;
-import com.repository.CountryRepository;
 import com.repository.CustomerRepository;
 import com.repository.CustomerStatusRepository;
 import com.service.CustomerService;
@@ -20,10 +16,7 @@ import java.util.Optional;
 public class CustomerServiceImp implements CustomerService {
 	 @Autowired
 	    private CustomerRepository customerRepository;
-	 @Autowired
-	 private CityRepository cityRepository;
-	 @Autowired
-	 private CountryRepository countryRepository;
+	
 	 
 	 @Autowired
 	 private CustomerStatusRepository customerStatusRepository;
@@ -37,19 +30,7 @@ public class CustomerServiceImp implements CustomerService {
 	         throw new IllegalArgumentException("Le client ne peut pas être nul !");
 	     }
 
-	     // Gestion de la ville (CITY)
-	     if (customer.getCity() != null) {
-	         CITY existingCity = cityRepository.findById(customer.getCity().getCtyCode())
-	                                           .orElseGet(() -> cityRepository.save(customer.getCity()));
-	         customer.setCity(existingCity);
-	     }
-
-	     // Gestion du pays (COUNTRY)
-	     if (customer.getCountry() != null) {
-	         COUNTRY existingCountry = countryRepository.findById(customer.getCountry().getCtrCode())
-	                                                    .orElseGet(() -> countryRepository.save(customer.getCountry()));
-	         customer.setCountry(existingCountry);
-	     }
+	     
 
 	     // Gestion du statut du client (CUSTOMER_STATUS)
 	     if (customer.getStatus() != null) {
@@ -89,7 +70,6 @@ public class CustomerServiceImp implements CustomerService {
             customer.setCusAddress(customerDetails.getCusAddress());
             customer.setStatus(customerDetails.getStatus());
             customer.setIdentity(customerDetails.getIdentity());
-            customer.setCity(customerDetails.getCity());
             customer.setCusIden(customerDetails.getCusIden());
 
             return customerRepository.save(customer);
@@ -124,17 +104,9 @@ public class CustomerServiceImp implements CustomerService {
 
 	}
 
-	@Override
-	public List<CUSTOMER> getCustomersByCity(Integer cityCode) {
-        return customerRepository.findByCity_CtyCode(cityCode);
+	
 
-	}
-
-	@Override
-	public List<CUSTOMER> getCustomersByCountry(Integer countryCode) {
-        return customerRepository.findByCity_CtyCode(countryCode);
-
-	}
+	
 
 	@Override
 	public List<CUSTOMER> getCustomersWithWallets() {
@@ -148,11 +120,31 @@ public class CustomerServiceImp implements CustomerService {
 
 	}
 
+	public List<CUSTOMER> searchCustomers(String name, String email, String phone) {
+        return customerRepository.searchCustomers(name, email, phone);
+
+	}
+
+
+	@Override
+	public List<CUSTOMER> getCustomersByCity(Integer cityCode) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<CUSTOMER> getCustomersByCountry(Integer countryCode) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 	@Override
 	public List<CUSTOMER> searchCustomers(String name, String email, String phone, Integer cityCode,
 			Integer countryCode) {
-        return customerRepository.searchCustomers(name, email, phone, cityCode, countryCode);
-
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

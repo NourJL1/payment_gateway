@@ -1,14 +1,21 @@
 package com.model;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import com.model.IdentificationType;
+
+import com.model.Role;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -40,7 +47,15 @@ public class CUSTOMER {
     @JsonProperty("Password")
     private String cusMotDePasse;
     private String cusPhoneNbr;
-    private String cusAddress;
+    public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
+
+
+
+
+	private String cusAddress;
     private String cusIden ;
     private Integer cusFinId;
     
@@ -59,20 +74,53 @@ public class CUSTOMER {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CUS_CID_CODE",nullable = false,referencedColumnName = "CID_CODE")
     private CUSTOMER_IDENTITY identity;
-
-    // Relation *..1 avec CITY
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "CUS_CTY_CODE", referencedColumnName = "CTY_CODE")
-    private CITY city;
     
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "user_roles",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles = new HashSet<>();
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "country")
+    private String country;
     
+    @Enumerated(EnumType.STRING)
+    private IdentificationType identificationType;
 
-    // Relation *..1 avec COUNTRY (corrigée)
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "CUS_CTR_CODE", referencedColumnName = "CTR_CODE")
-    private COUNTRY country;
+    public String getCity() {
+		return city;
+	}
 
-    // Relation 1..* avec WALLET
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public IdentificationType getIdentificationType() {
+		return identificationType;
+	}
+
+	public void setIdentificationType(IdentificationType identificationType) {
+		this.identificationType = identificationType;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	
+
+
+
+	// Relation 1..* avec WALLET
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @ToString.Exclude
 
@@ -188,21 +236,7 @@ public class CUSTOMER {
 		this.identity = identity;
 	}
 
-	public CITY getCity() {
-		return city;
-	}
-
-	public void setCity(CITY city) {
-		this.city = city;
-	}
-
-	public COUNTRY getCountry() {
-		return country;
-	}
-
-	public void setCountry(COUNTRY country) {
-		this.country = country;
-	}
+	
 
 	public List<WALLET> getWallets() {
 		return wallets;
@@ -226,8 +260,8 @@ public class CUSTOMER {
 	
 	public CUSTOMER(Integer cusCode, String cusFirstName, String cusMidName, String cusLastName, String cusMailAddress,
 			String cusMotDePasse, String cusPhoneNbr, String cusAddress, String cusIden, Integer cusFinId,
-			List<CUSTOMER_CONTACTS> contacts, CUSTOMER_STATUS status, CUSTOMER_IDENTITY identity, CITY city,
-			COUNTRY country, List<WALLET> wallets, List<WALLET_OPERATIONS> walletOperations) {
+			List<CUSTOMER_CONTACTS> contacts, CUSTOMER_STATUS status, CUSTOMER_IDENTITY identity, String city,
+			String country, List<WALLET> wallets, List<WALLET_OPERATIONS> walletOperations) {
 		super();
 		this.cusCode = cusCode;
 		this.cusFirstName = cusFirstName;
@@ -250,14 +284,7 @@ public class CUSTOMER {
 
 	
 
-	// Add role relationship
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-        name = "customer_roles",
-        joinColumns = @JoinColumn(name = "cus_code"),
-        inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private List<Role> roles;
+	
 
 
 
@@ -283,6 +310,8 @@ public class CUSTOMER {
 
 	    return fullName.toString().trim();
 	}
+	
+	 
 
   public String getName() {
     // TODO Auto-generated method stub

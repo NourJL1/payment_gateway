@@ -21,9 +21,8 @@ public interface CustomerRepository extends JpaRepository<CUSTOMER, Integer>{
       throw new UnsupportedOperationException("Unimplemented method 'findByUsername'");
     }
 
-    List<CUSTOMER> findByCity_CtyCode(Integer cityCode);
 
-    List<CUSTOMER> findByCity_Country_CtrCode(Integer countryCode);
+
 
     List<CUSTOMER> findByWalletsIsNotEmpty();
 
@@ -38,10 +37,8 @@ public interface CustomerRepository extends JpaRepository<CUSTOMER, Integer>{
             "AND (:countryCode IS NULL OR c.city.country.ctrCode = :countryCode)")
     List<CUSTOMER> searchCustomers(@Param("name") String name,
                                    @Param("email") String email,
-                                   @Param("phone") String phone,
-                                   @Param("cityCode") Integer cityCode,
-                                   @Param("countryCode") Integer countryCode);
+                                   @Param("phone") String phone);
 
-    Optional<CUSTOMER> findByEmail(String email);
+   
 }
 

@@ -1,10 +1,14 @@
 package com.controller;
 import com.model.CUSTOMER;
-import com.repository.CityRepository;
 import com.repository.CustomerIdentityRepository;
 import com.repository.CustomerRepository;
 import com.repository.CustomerStatusRepository;
 import com.service.CustomerService;
+
+
+import com.model.IdentificationType;
+import com.model.Role;
+
 import com.model.*;
 
 import jakarta.validation.Valid;
@@ -12,11 +16,17 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/customers")
@@ -28,9 +38,7 @@ public class CustomerController {
 	    
 	    @Autowired 
 	    private CustomerRepository customerRepository;
-	    
-	    @Autowired 
-	    private CityRepository cityRepository;
+	  
 	    
 	    @Autowired 
 	    private CustomerStatusRepository customerStatusRepository;
@@ -38,18 +46,12 @@ public class CustomerController {
 	    @Autowired
 	    private CustomerIdentityRepository customerIdentityRepository;
 	    
-	    
+	    @Autowired
+	    private AuthenticationManager authenticationManager;
 
 	    @PostMapping ("/register")
 	    public ResponseEntity<?> createCustomer(@Valid @RequestBody CUSTOMER customer) {
-	        // Vérifier si la ville est définie
-	        if (customer.getCity() == null || customer.getCity().getCtyCode() == null) {
-	            return ResponseEntity.badRequest().body("City information is required.");
-	        }
-
-	        // Vérifier si la ville existe en base de données
-	        CITY city = cityRepository.findById(customer.getCity().getCtyCode())
-	                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "City not found"));
+	        
 
 	        // Vérifier si le statut du client est défini
 	        if (customer.getStatus() == null || customer.getStatus().getCtsCode() == null) {
@@ -179,6 +181,156 @@ public class CustomerController {
 
 	        List<CUSTOMER> customers = customerService.searchCustomers(name, email, phone, cityCode, countryCode);
 	        return ResponseEntity.ok(customers);
+	    }
+	    
+	    @PostMapping("/login")
+	    public ResponseEntity<?> loginCustomer(@RequestBody LoginRequest loginRequest) {
+	        try {
+	            Authentication authentication = authenticationManager.authenticate(
+	                    new UsernamePasswordAuthenticationToken(
+	                            loginRequest.getUsername(),
+	                            loginRequest.getCusMotDePasse()
+	                    )
+	            );
+
+	            SecurityContextHolder.getContext().setAuthentication(authentication);
+
+	            Optional<CUSTOMER> userOpt = CustomerRepository.findByUsername(loginRequest.getUsername());
+
+	            if (userOpt.isPresent()) {
+	                CUSTOMER customer = userOpt.get();
+	                return ResponseEntity.ok(new ResponseDTO(
+	                        "Login successful",
+	                        customer.getCusCode().toString(),
+	                        customer.getUsername(),
+	                        customer.getFullName(),
+	                        customer.getRoles(),
+	                        customer.getCusMailAddress(),
+	                        customer.getIdentificationType(),
+	                        customer.getCusPhoneNbr()
+	                ));
+	            } else {
+	                return ResponseEntity.status(404).body(new ResponseDTO("User not found", null, null, null, null, null, null, null));
+	            }
+
+	        } catch (BadCredentialsException e) {
+	            return ResponseEntity.status(401).body(new ResponseDTO("Invalid credentials", null, null, null, null, null, null, null));
+	        } catch (Exception e) {
+	            return ResponseEntity.status(500).body(new ResponseDTO("An error occurred during login", null, null, null, null, null, null,null));
+	        }
+	    }
+	    
+	 // DTO class for login
+	    public static class LoginRequest {
+	        private String username;
+	        private String cusMotDePasse;
+
+	        // Getters and setters
+	        public String getUsername() {
+	            return username;
+	        }
+
+	        public void setUsername(String username) {
+	            this.username = username;
+	        }
+
+	        public String getCusMotDePasse() {
+	            return cusMotDePasse;
+	        }
+
+	        public void setCusMotDePasse(String cusMotDePasse) {
+	            this.cusMotDePasse = cusMotDePasse;
+	        }
+	    }
+	    
+	    
+	    // DTO de réponse
+	    public static class ResponseDTO {
+	        private String message;
+	        private String cusCode;
+	        private String username;
+	        private String fullname;
+	        private String cusPhoneNbr;
+	        private String cusMailAddress;
+	        private IdentificationType identificationType;
+	        private Set<Role> role;
+
+	        public ResponseDTO(String message, String cusCode, String username, String fullname, Set<Role> role, String cusMailAddress, IdentificationType identificationType, String cusPhoneNbr) {
+	            this.message = message;
+	            this.cusCode = cusCode;
+	            this.username = username;
+	            this.fullname = fullname;
+	            this.role = role;
+	            this.cusMailAddress = cusMailAddress;
+	            this.cusPhoneNbr = cusPhoneNbr;
+	            this.setIdentificationType(identificationType);
+	        }
+
+	       
+
+	        public String getMessage() {
+	        	return message;
+	        }
+	        public void setMessage(String message) {
+	        	this.message = message;
+	        }
+
+
+			public String getCusCode() {
+	            return cusCode;
+	        }
+
+	        public void setCusCode(String cusCode) {
+	            this.cusCode = cusCode;
+	        }
+
+	        public String getUsername() {
+	            return username;
+	        }
+
+	        public void setUsername(String username) {
+	            this.username = username;
+	        }
+
+	        public String getFullname() {
+	            return fullname;
+	        }
+
+	        public void setFullname(String fullname) {
+	            this.fullname = fullname;
+	        }
+
+	        public String getCusPhoneNbr() {
+	            return cusPhoneNbr;
+	        }
+
+	        public void setCusPhoneNbr(String cusPhoneNbr) {
+	            this.cusPhoneNbr = cusPhoneNbr;
+	        }
+
+	        public String getCusMailAddress() {
+	            return cusMailAddress;
+	        }
+
+	        public void setCusMailAddress(String cusMailAddress) {
+	            this.cusMailAddress = cusMailAddress;
+	        }
+
+	        public Set<Role> getRole() {
+	            return role;
+	        }
+
+	        public void setRole(Set<Role> role) {
+	            this.role = role;
+	        }
+
+			public IdentificationType getIdentificationType() {
+				return identificationType;
+			}
+
+			public void setIdentificationType(IdentificationType identificationType) {
+				this.identificationType = identificationType;
+			}
 	    }
 
 }
