@@ -30,7 +30,7 @@ public class CustomCustomerDetailsService implements UserDetailsService {
             .withUsername(customer.getUsername())
             .password(customer.getCusMotDePasse())
             .authorities(customer.getRoles().stream()
-                            .map(role -> new SimpleGrantedAuthority(role.getName())) // Convert RoleName to SimpleGrantedAuthority
+                            .map(role -> new SimpleGrantedAuthority(role.getName().name())) // Convert RoleName enum to String for SimpleGrantedAuthority
                             .collect(Collectors.toList()))
             .build();
     }

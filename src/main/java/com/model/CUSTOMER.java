@@ -288,7 +288,7 @@ public class CUSTOMER {
 
 
 
-	public Optional<CUSTOMER> getRoles() {
+	public Set<Role> getRoles() {
 		// TODO Auto-generated method stub
 		return null;
 	}

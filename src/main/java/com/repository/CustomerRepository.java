@@ -32,9 +32,7 @@ public interface CustomerRepository extends JpaRepository<CUSTOMER, Integer>{
     @Query("SELECT c FROM CUSTOMER c WHERE " +
             "(:name IS NULL OR c.cusFirstName LIKE %:name% OR c.cusLastName LIKE %:name%) " +
             "AND (:email IS NULL OR c.cusMailAddress LIKE %:email%) " +
-            "AND (:phone IS NULL OR c.cusPhoneNbr LIKE %:phone%) " +
-            "AND (:cityCode IS NULL OR c.city.ctyCode = :cityCode) " +
-            "AND (:countryCode IS NULL OR c.city.country.ctrCode = :countryCode)")
+            "AND (:phone IS NULL OR c.cusPhoneNbr LIKE %:phone%) " )
     List<CUSTOMER> searchCustomers(@Param("name") String name,
                                    @Param("email") String email,
                                    @Param("phone") String phone);
