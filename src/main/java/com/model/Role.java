@@ -28,7 +28,7 @@ public class Role {
         CUSTOMER,
         INTERNE,
         MERCHANT,
-        ADMIN,
+        ADMIN
     }
 
     // Getters and Setters
