@@ -28,11 +28,21 @@ import jakarta.persistence.UniqueConstraint;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.JoinTable;
 import lombok.Data;
+<<<<<<< HEAD
 import lombok.ToString;
 
 @Entity
 @Table(name = "customers", uniqueConstraints = {@UniqueConstraint(columnNames = "CUS_CODE")})
 @Data // Utilisation de Lombok pour générer les getters et setters
+=======
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Entity
+@Table(name = "customers", uniqueConstraints = {@UniqueConstraint(columnNames = "CUS_CODE"), @UniqueConstraint(columnNames = "username")})
+@Data // Utilisation de Lombok pour générer les getters et setters
+@NoArgsConstructor
+>>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
 public class CUSTOMER {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,6 +57,7 @@ public class CUSTOMER {
     @JsonProperty("Password")
     private String cusMotDePasse;
     private String cusPhoneNbr;
+<<<<<<< HEAD
     public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
@@ -55,6 +66,8 @@ public class CUSTOMER {
 
 
 
+=======
+>>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
 	private String cusAddress;
     private String cusIden ;
     private Integer cusFinId;
@@ -75,13 +88,23 @@ public class CUSTOMER {
     @JoinColumn(name = "CUS_CID_CODE",nullable = false,referencedColumnName = "CID_CODE")
     private CUSTOMER_IDENTITY identity;
     
+<<<<<<< HEAD
     @ManyToMany(fetch = FetchType.EAGER)
+=======
+    /* @ManyToMany(fetch = FetchType.EAGER)
+>>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
     @JoinTable(
         name = "user_roles",
         joinColumns = @JoinColumn(name = "user_id"),
         inverseJoinColumns = @JoinColumn(name = "role_id")
     )
+<<<<<<< HEAD
     private Set<Role> roles = new HashSet<>();
+=======
+    private Set<Role> roles = new HashSet<>(); */
+	@ManyToOne
+	private Role role;
+>>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
 
     @Column(name = "city")
     private String city;
@@ -168,6 +191,13 @@ public class CUSTOMER {
 		return cusMailAddress;
 	}
 
+<<<<<<< HEAD
+=======
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+>>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
 	public void setCusMailAddress(String cusMailAddress) {
 		this.cusMailAddress = cusMailAddress;
 	}
@@ -288,9 +318,14 @@ public class CUSTOMER {
 
 
 
+<<<<<<< HEAD
 	public Set<Role> getRoles() {
 		// TODO Auto-generated method stub
 		return null;
+=======
+	public Role getRole() {
+		return this.role;
+>>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
 	}
 
 	public String getUsername() {

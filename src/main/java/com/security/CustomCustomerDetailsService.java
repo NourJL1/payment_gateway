@@ -16,22 +16,40 @@ import java.util.stream.Collectors;
 @Service
 public class CustomCustomerDetailsService implements UserDetailsService {
 
+<<<<<<< HEAD
     private final CustomerRepository customeruserRepository;
 
     public CustomCustomerDetailsService(CustomerRepository customeruserRepository) {
         this.customeruserRepository = customeruserRepository;
+=======
+    private final CustomerRepository customerRepository;
+
+    public CustomCustomerDetailsService(CustomerRepository customeruserRepository) {
+        this.customerRepository = customeruserRepository;
+>>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+<<<<<<< HEAD
         CUSTOMER customer = CustomerRepository.findByUsername(username)
+=======
+        CUSTOMER customer = customerRepository.findByUsername(username)
+>>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
             .orElseThrow(() -> new UsernameNotFoundException("User not found"));
         return org.springframework.security.core.userdetails.User
             .withUsername(customer.getUsername())
             .password(customer.getCusMotDePasse())
+<<<<<<< HEAD
             .authorities(customer.getRoles().stream()
                             .map(role -> new SimpleGrantedAuthority(role.getName().name())) // Convert RoleName enum to String for SimpleGrantedAuthority
                             .collect(Collectors.toList()))
+=======
+            .authorities(new SimpleGrantedAuthority("ROLE_" + customer.getRole().getName()))
+            /* .authorities(customer.getRoles().stream()
+                            .map(role -> new SimpleGrantedAuthority(role.getName().name())) // Convert RoleName to SimpleGrantedAuthority
+                            .collect(Collectors.toList())) */
+>>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
             .build();
     }
   }
