@@ -42,6 +42,8 @@ public interface CustomerService {
 
     // 🔹 Recherche avancée avec filtres dynamiques
     List<CUSTOMER> searchCustomers(String name, String email, String phone, Integer cityCode, Integer countryCode);
+
+	boolean comapreTOTP(String cusMailAdress, String totp);
 	
 
 }

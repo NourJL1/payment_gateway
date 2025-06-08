@@ -28,21 +28,13 @@ import jakarta.persistence.UniqueConstraint;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.JoinTable;
 import lombok.Data;
-<<<<<<< HEAD
-import lombok.ToString;
-
-@Entity
-@Table(name = "customers", uniqueConstraints = {@UniqueConstraint(columnNames = "CUS_CODE")})
-@Data // Utilisation de Lombok pour générer les getters et setters
-=======
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
 @Table(name = "customers", uniqueConstraints = {@UniqueConstraint(columnNames = "CUS_CODE"), @UniqueConstraint(columnNames = "username")})
 @Data // Utilisation de Lombok pour générer les getters et setters
-@NoArgsConstructor
->>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
+
 public class CUSTOMER {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,17 +49,6 @@ public class CUSTOMER {
     @JsonProperty("Password")
     private String cusMotDePasse;
     private String cusPhoneNbr;
-<<<<<<< HEAD
-    public void setRoles(Set<Role> roles) {
-		this.roles = roles;
-	}
-
-
-
-
-
-=======
->>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
 	private String cusAddress;
     private String cusIden ;
     private Integer cusFinId;
@@ -88,40 +69,32 @@ public class CUSTOMER {
     @JoinColumn(name = "CUS_CID_CODE",nullable = false,referencedColumnName = "CID_CODE")
     private CUSTOMER_IDENTITY identity;
     
-<<<<<<< HEAD
-    @ManyToMany(fetch = FetchType.EAGER)
-=======
     /* @ManyToMany(fetch = FetchType.EAGER)
->>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
     @JoinTable(
         name = "user_roles",
         joinColumns = @JoinColumn(name = "user_id"),
         inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-<<<<<<< HEAD
-    private Set<Role> roles = new HashSet<>();
-=======
     private Set<Role> roles = new HashSet<>(); */
 	@ManyToOne
 	private Role role;
->>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
 
-    @Column(name = "city")
-    private String city;
+	// Relation *..1 avec CITY
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "CUS_CTY_CODE", referencedColumnName = "CTY_CODE")
+    private CITY city;
+    
+    
 
-    @Column(name = "country")
-    private String country;
+    // Relation *..1 avec COUNTRY (corrigée)
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "CUS_CTR_CODE", referencedColumnName = "CTR_CODE")
+    private COUNTRY country;
     
     @Enumerated(EnumType.STRING)
     private IdentificationType identificationType;
 
-    public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
+    
 
 	public IdentificationType getIdentificationType() {
 		return identificationType;
@@ -131,13 +104,7 @@ public class CUSTOMER {
 		this.identificationType = identificationType;
 	}
 
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
+	
 
 	
 
@@ -191,13 +158,10 @@ public class CUSTOMER {
 		return cusMailAddress;
 	}
 
-<<<<<<< HEAD
-=======
 	public void setRole(Role role) {
 		this.role = role;
 	}
 
->>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
 	public void setCusMailAddress(String cusMailAddress) {
 		this.cusMailAddress = cusMailAddress;
 	}
@@ -290,8 +254,8 @@ public class CUSTOMER {
 	
 	public CUSTOMER(Integer cusCode, String cusFirstName, String cusMidName, String cusLastName, String cusMailAddress,
 			String cusMotDePasse, String cusPhoneNbr, String cusAddress, String cusIden, Integer cusFinId,
-			List<CUSTOMER_CONTACTS> contacts, CUSTOMER_STATUS status, CUSTOMER_IDENTITY identity, String city,
-			String country, List<WALLET> wallets, List<WALLET_OPERATIONS> walletOperations) {
+			List<CUSTOMER_CONTACTS> contacts, CUSTOMER_STATUS status, CUSTOMER_IDENTITY identity, CITY city,
+			COUNTRY country, List<WALLET> wallets, List<WALLET_OPERATIONS> walletOperations) {
 		super();
 		this.cusCode = cusCode;
 		this.cusFirstName = cusFirstName;
@@ -312,20 +276,30 @@ public class CUSTOMER {
 		this.walletOperations = walletOperations;
 	}
 
-	
+	public CUSTOMER() {}
 
 	
 
 
 
-<<<<<<< HEAD
-	public Set<Role> getRoles() {
-		// TODO Auto-generated method stub
-		return null;
-=======
+	public CITY getCity() {
+		return city;
+	}
+
+	public void setCity(CITY city) {
+		this.city = city;
+	}
+
+	public COUNTRY getCountry() {
+		return country;
+	}
+
+	public void setCountry(COUNTRY country) {
+		this.country = country;
+	}
+
 	public Role getRole() {
 		return this.role;
->>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
 	}
 
 	public String getUsername() {

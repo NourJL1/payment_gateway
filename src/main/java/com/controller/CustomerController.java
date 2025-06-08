@@ -1,20 +1,12 @@
 package com.controller;
-<<<<<<< HEAD
-import com.model.CUSTOMER;
-=======
->>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
+import com.repository.CityRepository;
 import com.repository.CustomerIdentityRepository;
 import com.repository.CustomerRepository;
 import com.repository.CustomerStatusRepository;
 import com.service.CustomerService;
-<<<<<<< HEAD
-
-
-import com.model.IdentificationType;
-import com.model.Role;
-
-=======
->>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
+import com.service.TOTPService;
+import com.servicesImp.CustomerServiceImp;
+import com.servicesImp.TOTPServiceImp;
 import com.model.*;
 
 import jakarta.validation.Valid;
@@ -27,14 +19,12 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-<<<<<<< HEAD
-=======
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
->>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -46,8 +36,14 @@ public class CustomerController {
 	    @Autowired
 	    private CustomerService customerService;
 	    
+	    @Autowired
+	    private TOTPServiceImp totpServiceImp;
+	    
 	    @Autowired 
 	    private CustomerRepository customerRepository;
+	    
+	    @Autowired 
+	    private CityRepository cityRepository;
 	  
 	    
 	    @Autowired 
@@ -61,6 +57,16 @@ public class CustomerController {
 
 	    @PostMapping ("/register")
 	    public ResponseEntity<?> createCustomer(@Valid @RequestBody CUSTOMER customer) {
+	    	
+	    	
+	    	// Vérifier si la ville est définie
+	        if (customer.getCity() == null || customer.getCity().getCtyCode() == null) {
+	            return ResponseEntity.badRequest().body("City information is required.");
+	        }
+
+	        // Vérifier si la ville existe en base de données
+	        CITY city = cityRepository.findById(customer.getCity().getCtyCode())
+	                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "City not found"));
 	        
 
 	        // Vérifier si le statut du client est défini
@@ -90,18 +96,41 @@ public class CustomerController {
 	        // Réinitialiser l'ID pour éviter une mise à jour involontaire
 	        customer.setCusCode(null);
 
-<<<<<<< HEAD
-=======
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 			customer.setCusMotDePasse(encoder.encode(customer.getCusMotDePasse()));
 
->>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
 	        // Sauvegarder le client
 	        CUSTOMER savedCustomer = customerRepository.save(customer);
 
 	        return ResponseEntity.status(HttpStatus.CREATED).body(savedCustomer);
 	    }
+	    
+	    @PostMapping("/TOTP")
+	    public boolean emailTOTP(@RequestBody otpDTO otp) {
+	        return customerService.comapreTOTP(otp.cusMailAdress, otp.totp);
+	    }
+	    public static class otpDTO{
+	    	private String cusMailAdress;
+	    	private String totp;
+	    	
+			public String getCusMailAdress() {
+				return cusMailAdress;
+			}
+			public void setCusMailAdress(String cusMailAdress) {
+				this.cusMailAdress = cusMailAdress;
+			}
+			public String getTotp() {
+				return totp;
+			}
+			public void setTotp(String totp) {
+				this.totp = totp;
+			}
+	    	
+	    	
+	    }
+	  
 
+	    
 
 
 
@@ -201,13 +230,6 @@ public class CustomerController {
 	    
 	    @PostMapping("/login")
 	    public ResponseEntity<?> loginCustomer(@RequestBody LoginRequest loginRequest) {
-<<<<<<< HEAD
-	        try {
-	            Authentication authentication = authenticationManager.authenticate(
-	                    new UsernamePasswordAuthenticationToken(
-	                            loginRequest.getUsername(),
-	                            loginRequest.getCusMotDePasse()
-=======
 			//BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 			//boolean isMatch = encoder.matches(loginRequest.getCusMotDePasse(), "$2a$10$N9qo8uLOickgx2ZMRZoMy.Mrq7J4WY0lKj7fBvE3nQJ5XU1qjY1zK");
 			//System.out.println("--------------------------------------------"+isMatch);
@@ -219,17 +241,12 @@ public class CustomerController {
 	                    new UsernamePasswordAuthenticationToken(
 	                            loginRequest.getUsername(),
 	                            loginRequest.getPassword()
->>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
 	                    )
 	            );
 
 	            SecurityContextHolder.getContext().setAuthentication(authentication);
 
-<<<<<<< HEAD
-	            Optional<CUSTOMER> userOpt = CustomerRepository.findByUsername(loginRequest.getUsername());
-=======
 	            Optional<CUSTOMER> userOpt = customerRepository.findByUsername(loginRequest.getUsername());
->>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
 
 	            if (userOpt.isPresent()) {
 	                CUSTOMER customer = userOpt.get();
@@ -238,11 +255,7 @@ public class CustomerController {
 	                        customer.getCusCode().toString(),
 	                        customer.getUsername(),
 	                        customer.getFullName(),
-<<<<<<< HEAD
-	                        customer.getRoles(),
-=======
 	                        customer.getRole(),
->>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
 	                        customer.getCusMailAddress(),
 	                        customer.getIdentificationType(),
 	                        customer.getCusPhoneNbr()
@@ -254,22 +267,14 @@ public class CustomerController {
 	        } catch (BadCredentialsException e) {
 	            return ResponseEntity.status(401).body(new ResponseDTO("Invalid credentials", null, null, null, null, null, null, null));
 	        } catch (Exception e) {
-<<<<<<< HEAD
-	            return ResponseEntity.status(500).body(new ResponseDTO("An error occurred during login", null, null, null, null, null, null,null));
-=======
 	            return ResponseEntity.status(500).body(new ResponseDTO(e.getMessage(), null, null, null, null, null, null,null));
->>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
 	        }
 	    }
 	    
 	 // DTO class for login
 	    public static class LoginRequest {
 	        private String username;
-<<<<<<< HEAD
-	        private String cusMotDePasse;
-=======
 	        private String password;
->>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
 
 	        // Getters and setters
 	        public String getUsername() {
@@ -280,21 +285,12 @@ public class CustomerController {
 	            this.username = username;
 	        }
 
-<<<<<<< HEAD
-	        public String getCusMotDePasse() {
-	            return cusMotDePasse;
-	        }
-
-	        public void setCusMotDePasse(String cusMotDePasse) {
-	            this.cusMotDePasse = cusMotDePasse;
-=======
 	        public String getPassword() {
 	            return password;
 	        }
 
 	        public void setPassword(String cusMotDePasse) {
 	            this.password = cusMotDePasse;
->>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
 	        }
 	    }
 	    
@@ -308,15 +304,9 @@ public class CustomerController {
 	        private String cusPhoneNbr;
 	        private String cusMailAddress;
 	        private IdentificationType identificationType;
-<<<<<<< HEAD
-	        private Set<Role> role;
-
-	        public ResponseDTO(String message, String cusCode, String username, String fullname, Set<Role> role, String cusMailAddress, IdentificationType identificationType, String cusPhoneNbr) {
-=======
 	        private Role role;
 
 	        public ResponseDTO(String message, String cusCode, String username, String fullname, Role role, String cusMailAddress, IdentificationType identificationType, String cusPhoneNbr) {
->>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
 	            this.message = message;
 	            this.cusCode = cusCode;
 	            this.username = username;
@@ -377,19 +367,11 @@ public class CustomerController {
 	            this.cusMailAddress = cusMailAddress;
 	        }
 
-<<<<<<< HEAD
-	        public Set<Role> getRole() {
-	            return role;
-	        }
-
-	        public void setRole(Set<Role> role) {
-=======
 	        public Role getRole() {
 	            return role;
 	        }
 
 	        public void setRole(Role role) {
->>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
 	            this.role = role;
 	        }
 

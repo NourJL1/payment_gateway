@@ -21,7 +21,7 @@ public class CustomerServiceImp implements CustomerService {
 	 @Autowired
 	 private CustomerStatusRepository customerStatusRepository;
 
-
+	 private TOTPServiceImp totpServiceImp = new TOTPServiceImp();
 
 	 @Override
 	 @Transactional
@@ -44,6 +44,11 @@ public class CustomerServiceImp implements CustomerService {
 	     // Sauvegarde du customer avec les entités bien gérées
 	     return customerRepository.save(customer);
 	 }
+	 @Override
+	 public boolean comapreTOTP(String cusMailAdress, String code)
+	    {
+	        return totpServiceImp.verifyTOTP(cusMailAdress, code);
+	    }
 
 
 	@Override

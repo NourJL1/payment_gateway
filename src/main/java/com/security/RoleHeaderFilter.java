@@ -69,12 +69,8 @@ public class RoleHeaderFilter extends OncePerRequestFilter {
 
     private boolean isPublicEndpoint(HttpServletRequest request) {
         String path = request.getRequestURI();
-<<<<<<< HEAD
-        return path.startsWith("/login") || 
-=======
         return path.startsWith("/api/customers/login") || 
->>>>>>> 8d7b492c1726db82471bfb1dc6e77da1e903039d
-               path.startsWith("/register") ||
+               path.startsWith("/api/customers/register") ||
                path.startsWith("/users/login") ||
                path.startsWith("/users/register") ||
                path.startsWith("/api/wallet") ||
