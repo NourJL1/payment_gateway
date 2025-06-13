@@ -50,4 +50,10 @@ public class AccountController {
         accountService.deleteAccount(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<ACCOUNT>> searchAccounts(@RequestParam("word") String searchWord) {
+        List<ACCOUNT> accounts = accountService.searchAccounts(searchWord);
+        return ResponseEntity.ok(accounts);
+    }
 }

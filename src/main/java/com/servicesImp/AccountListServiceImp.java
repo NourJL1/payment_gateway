@@ -50,4 +50,11 @@ public class AccountListServiceImp implements AccountListService {
     public List<ACCOUNT_LIST> getAll() {
         return accountListRepository.findAll();
     }
+    @Override
+    public List<ACCOUNT_LIST> searchAccountLists(String searchWord) {
+        if (searchWord == null || searchWord.trim().isEmpty()) {
+            return accountListRepository.findAll();
+        }
+        return accountListRepository.searchAccountLists(searchWord);
+    }
 }

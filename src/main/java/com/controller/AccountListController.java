@@ -42,4 +42,9 @@ public class AccountListController {
     public ResponseEntity<List<ACCOUNT_LIST>> getAllAccountLists() {
         return ResponseEntity.ok(accountListService.getAll());
     }
+      @GetMapping("/search")
+    public ResponseEntity<List<ACCOUNT_LIST>> searchAccountLists(@RequestParam("word") String searchWord) {
+        List<ACCOUNT_LIST> accountLists = accountListService.searchAccountLists(searchWord);
+        return ResponseEntity.ok(accountLists);
+    }
 }

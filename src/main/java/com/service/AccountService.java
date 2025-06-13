@@ -8,5 +8,6 @@ public interface AccountService {
     List<ACCOUNT> getAllAccounts();
     ACCOUNT updateAccount(Integer id, ACCOUNT account);
     void deleteAccount(Integer id);
+    List<ACCOUNT> searchAccounts(String searchWord);
 
 }

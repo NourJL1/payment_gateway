@@ -1,10 +1,8 @@
 package com.servicesImp;
 
 
-import com.model.ACCOUNT;
 import com.model.*;
 import com.repository.*;
-import com.repository.AccountRepository;
 import com.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -98,5 +96,13 @@ public class AccountServiceImp implements AccountService {
     @Override
     public void deleteAccount(Integer id) {
         accountRepository.deleteById(id);
+    }
+
+    @Override
+    public List<ACCOUNT> searchAccounts(String searchWord) {
+        if (searchWord == null || searchWord.trim().isEmpty()) {
+            return accountRepository.findAll();
+        }
+        return accountRepository.searchAccounts(searchWord);
     }
 }
