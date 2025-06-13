@@ -9,5 +9,6 @@ public interface AccountTypeService {
     void delete(Integer id);
     ACCOUNT_TYPE getById(Integer id);
     List<ACCOUNT_TYPE> getAll();
+    List<ACCOUNT_TYPE> searchAccountTypes(String searchWord);
 
 }

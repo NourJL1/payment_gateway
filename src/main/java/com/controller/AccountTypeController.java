@@ -44,4 +44,10 @@ public class AccountTypeController {
         return ResponseEntity.ok(accountTypeService.getAll());
      
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<ACCOUNT_TYPE>> searchAccountTypes(@RequestParam("word") String searchWord) {
+        List<ACCOUNT_TYPE> accountTypes = accountTypeService.searchAccountTypes(searchWord);
+        return ResponseEntity.ok(accountTypes);
+    }
 }

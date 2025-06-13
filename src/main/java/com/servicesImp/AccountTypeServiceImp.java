@@ -52,4 +52,12 @@ public class AccountTypeServiceImp implements AccountTypeService {
     public List<ACCOUNT_TYPE> getAll() {
         return accountTypeRepository.findAll();
     }
+
+    @Override
+    public List<ACCOUNT_TYPE> searchAccountTypes(String searchWord) {
+        if (searchWord == null || searchWord.trim().isEmpty()) {
+            return accountTypeRepository.findAll();
+        }
+        return accountTypeRepository.searchAccountTypes(searchWord);
+    }
 }
