@@ -91,4 +91,9 @@ public class CardController {
         cardService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/search")
+    public ResponseEntity<List<CARD>> searchCards(@RequestParam("word") String searchWord) {
+        List<CARD> cards = cardService.searchCards(searchWord);
+        return ResponseEntity.ok(cards);
+    }
 }

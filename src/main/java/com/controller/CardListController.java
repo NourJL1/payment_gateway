@@ -42,4 +42,9 @@ public class CardListController {
         cardListService.deleteCardList(id);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/search")
+    public ResponseEntity<List<CARD_LIST>> searchCardLists(@RequestParam("word") String searchWord) {
+        List<CARD_LIST> cardLists = cardListService.searchCardLists(searchWord);
+        return ResponseEntity.ok(cardLists);
+    }
 }

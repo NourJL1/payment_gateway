@@ -10,5 +10,6 @@ public interface BankService {
     void delete(Integer id);
     BANK getById(Integer id);
     List<BANK> getAll();
+    List<BANK> searchBanks(String searchWord);
 
 }

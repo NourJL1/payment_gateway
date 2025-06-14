@@ -10,6 +10,7 @@ public interface CardListService {
     CARD_LIST updateCardList(Integer cliCode, CARD_LIST cardList);
     void deleteCardList(Integer cliCode);
     Optional<CARD_LIST> findById(Integer cliCode);
+    List<CARD_LIST> searchCardLists(String searchWord);
 
     }
 

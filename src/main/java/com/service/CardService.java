@@ -8,5 +8,6 @@ public interface CardService {
     Optional<CARD> findById(Integer id);
     CARD save(CARD card);
     void deleteById(Integer id);
+    List<CARD> searchCards(String searchWord);
 
 }

@@ -40,4 +40,11 @@ public class BankController {
     @GetMapping
     public ResponseEntity<List<BANK>> getAll() {
         return ResponseEntity.ok(bankService.getAll());
-    }}
+    }
+    @GetMapping("/search")
+    public ResponseEntity<List<BANK>> searchBanks(@RequestParam("word") String searchWord) {
+        List<BANK> banks = bankService.searchBanks(searchWord);
+        return ResponseEntity.ok(banks);
+    }
+  
+  }

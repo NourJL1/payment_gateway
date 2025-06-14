@@ -19,6 +19,9 @@ public class CARD {
 	    @Column(name = "CAR_NUMB", nullable = false)
 	    private String carNumb;
 
+        @Column(name = "CAR_IDEN", nullable = false)
+	    private String carIden;
+
 	    @Column(name = "CAR_EXPIRY_DATE", nullable = false)
 	    @Temporal(TemporalType.DATE)
 	    private Date carExpiryDate;
@@ -44,6 +47,25 @@ public class CARD {
 	    @JsonIgnoreProperties("cards") // ← empêche le renvoi de la liste des cartes depuis CARD_TYPE
 
 	    private CARD_LIST cardList;
+
+      public Integer getCarCode() {
+			return carCode;
+		}
+
+
+		public void setCarCode(Integer carCode) {
+			this.carCode = carCode;
+		}
+
+
+		public String getCarIden() {
+			return carIden;
+		}
+
+
+		public void setCarIden(String carIden) {
+			this.carIden = carIden;
+		}
 
 
 		public String getCarNumb() {
@@ -106,10 +128,12 @@ public class CARD {
 		}
 
 
-		public CARD(String carNumb, Date carExpiryDate, String carEmvData, String carLabe, CARD_TYPE cardType,
-				CARD_LIST cardList) {
+		public CARD(Integer carCode, String carNumb, String carIden, Date carExpiryDate, String carEmvData,
+				String carLabe, CARD_TYPE cardType, CARD_LIST cardList) {
 			super();
+			this.carCode = carCode;
 			this.carNumb = carNumb;
+			this.carIden = carIden;
 			this.carExpiryDate = carExpiryDate;
 			this.carEmvData = carEmvData;
 			this.carLabe = carLabe;

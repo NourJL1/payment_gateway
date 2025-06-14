@@ -50,4 +50,11 @@ public class BankServiceImp implements BankService {
     public List<BANK> getAll() {
         return bankRepository.findAll();
     }
+    @Override
+    public List<BANK> searchBanks(String searchWord) {
+        if (searchWord == null || searchWord.trim().isEmpty()) {
+            return bankRepository.findAll();
+        }
+        return bankRepository.searchBanks(searchWord);
+    }
 }

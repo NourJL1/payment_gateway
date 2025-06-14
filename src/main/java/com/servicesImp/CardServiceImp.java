@@ -44,4 +44,12 @@ public class CardServiceImp implements CardService {
 	        throw new RuntimeException("Impossible de supprimer cette carte car elle est référencée ailleurs.");
 	    }	}
 
+      @Override
+    public List<CARD> searchCards(String searchWord) {
+        if (searchWord == null || searchWord.trim().isEmpty()) {
+            return cardRepository.findAll();
+        }
+        return cardRepository.searchCards(searchWord);
+    }
+
 }

@@ -59,6 +59,13 @@ public class CardListServiceImp implements CardListService {
         return cardListRepository.findById(cliCode);
 
 	}
+  @Override
+    public List<CARD_LIST> searchCardLists(String searchWord) {
+        if (searchWord == null || searchWord.trim().isEmpty()) {
+            return cardListRepository.findAll();
+        }
+        return cardListRepository.searchCardLists(searchWord);
+    }
 
 	
 }
