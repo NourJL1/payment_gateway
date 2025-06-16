@@ -25,5 +25,6 @@ public interface WalletOperationTypeMapService {
     void delete(Integer id);
     WALLET_OPERATION_TYPE_MAP getById(Integer id);
     List<WALLET_OPERATION_TYPE_MAP> getAll();
+      List<WALLET_OPERATION_TYPE_MAP> searchWalletOperationTypeMaps(String searchWord);
 
 }

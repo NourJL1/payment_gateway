@@ -22,7 +22,7 @@ public class WALLET_OPERATIONS {
 
 
     @Column(name = "WOP_IDEN", nullable = false)
-    private Integer wopIden;
+    private String wopIden;
 
     @ManyToOne
     @JoinColumn(name = "WOP_WAL_CODE", referencedColumnName = "WAL_CODE", nullable = false)
@@ -66,7 +66,7 @@ public class WALLET_OPERATIONS {
 	
 
 
-	public WALLET_OPERATIONS(Integer wopCode, Integer wopIden, WALLET wallet, Integer wopOtyCode, Float wopAmount,
+	public WALLET_OPERATIONS(Integer wopCode, String wopIden, WALLET wallet, Integer wopOtyCode, Float wopAmount,
 			String wopCurrency, String wopStatus, String wopLabel, Date wopTimestamps,
 			List<OPERATION_DETAILS> operationDetails, CUSTOMER customer) {
 		super();
@@ -109,13 +109,13 @@ public class WALLET_OPERATIONS {
 
 
 
-	public Integer getWopIden() {
+	public String getWopIden() {
 		return wopIden;
 	}
 
 
 
-	public void setWopIden(Integer wopIden) {
+	public void setWopIden(String wopIden) {
 		this.wopIden = wopIden;
 	}
 

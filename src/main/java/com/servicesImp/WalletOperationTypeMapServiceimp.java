@@ -113,4 +113,12 @@ public class WalletOperationTypeMapServiceimp implements WalletOperationTypeMapS
 	    public List<WALLET_OPERATION_TYPE_MAP> getAll() {
 	        return repository.findAll();
 	    }
+
+        @Override
+	    public List<WALLET_OPERATION_TYPE_MAP> searchWalletOperationTypeMaps(String searchWord) {
+	        if (searchWord == null || searchWord.trim().isEmpty()) {
+	            return repository.findAll();
+	        }
+	        return repository.searchWalletOperationTypeMaps(searchWord);
+	    }
 }

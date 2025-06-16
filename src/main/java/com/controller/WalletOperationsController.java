@@ -49,4 +49,10 @@ public class WalletOperationsController {
 	        return ResponseEntity.noContent().build();
 	    }
 
+      @GetMapping("/search")
+	    public ResponseEntity<List<WALLET_OPERATIONS>> searchWalletOperations(@RequestParam("word") String searchWord) {
+	        List<WALLET_OPERATIONS> walletOperations = service.searchWalletOperations(searchWord);
+	        return ResponseEntity.ok(walletOperations);
+	    }
+
 }

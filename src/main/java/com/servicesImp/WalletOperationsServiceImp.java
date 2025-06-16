@@ -76,6 +76,13 @@ public class WalletOperationsServiceImp implements WalletOperationsService{
         return repository.findByWOP_WAL_CODEOrderByWOP_TIMESTAMPDesc(walletCode);
 
 	}*/
+  @Override
+    public List<WALLET_OPERATIONS> searchWalletOperations(String searchWord) {
+        if (searchWord == null || searchWord.trim().isEmpty()) {
+            return repository.findAll();
+        }
+        return repository.searchWalletOperations(searchWord);
+    }
 
 	
 	

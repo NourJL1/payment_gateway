@@ -54,6 +54,14 @@ public class WalletCategoryOperationTypeMapServiceImp implements WalletCategoryO
 	        }
 	    }
 
+      @Override
+	    public List<WALLET_CATEGORY_OPERATION_TYPE_MAP> searchWalletCategoryOperationTypeMaps(String searchWord) {
+	        if (searchWord == null || searchWord.trim().isEmpty()) {
+	            return repository.findAll();
+	        }
+	        return repository.searchWalletCategoryOperationTypeMaps(searchWord);
+	    }
+
 	    }
 
 

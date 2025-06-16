@@ -30,4 +30,8 @@ public interface WalletOperationsService {
 
     // 🔹 Récupérer les opérations d’un portefeuille triées par date décroissante
     List<WALLET_OPERATIONS> getOperationsByWalletSortedByTimestamp(Integer walletCode);*/
-}
+    
+    List<WALLET_OPERATIONS> searchWalletOperations(String searchWord);
+    
+
+  }

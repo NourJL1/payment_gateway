@@ -42,4 +42,10 @@ public class WalletOperationTypeMapController {
     public List<WALLET_OPERATION_TYPE_MAP> getAll() {
         return service.getAll();
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<WALLET_OPERATION_TYPE_MAP>> searchWalletOperationTypeMaps(@RequestParam("word") String searchWord) {
+        List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMaps = service.searchWalletOperationTypeMaps(searchWord);
+        return ResponseEntity.ok(walletOperationTypeMaps);
+    }
 }
