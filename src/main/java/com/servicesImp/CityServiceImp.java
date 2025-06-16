@@ -49,5 +49,13 @@ public class CityServiceImp implements CityService {
 		cityRepository.deleteById(id);
 		
 	}
+  
 
-}
+    @Override
+    public List<CITY> searchCities(String searchWord) {
+        if (searchWord == null || searchWord.trim().isEmpty()) {
+            return cityRepository.findAll();
+        }
+        return cityRepository.searchCities(searchWord);
+
+}}

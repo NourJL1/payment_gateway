@@ -55,4 +55,10 @@ public class CityController {
         cityService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<CITY>> searchCities(@RequestParam("word") String searchWord) {
+        List<CITY> cities = cityService.searchCities(searchWord);
+        return ResponseEntity.ok(cities);
+    }
 }

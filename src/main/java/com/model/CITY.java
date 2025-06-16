@@ -3,12 +3,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
 
 @Entity
 @Table(name = "CITY")
 @Data
-@NoArgsConstructor
+
 public class CITY {
     
     @Id

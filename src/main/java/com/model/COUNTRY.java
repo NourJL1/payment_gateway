@@ -1,9 +1,9 @@
 package com.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -19,7 +19,7 @@ public class COUNTRY {
     private Integer ctrCode;
 
     @Column(name = "CTR_IDEN", nullable = false)
-    private Integer ctrIden;
+    private String ctrIden;
     
     
     @Column(name = "CTR_LABE", nullable = false)
@@ -45,13 +45,13 @@ public class COUNTRY {
 
 
 
-	public Integer getCtrIden() {
+	public String getCtrIden() {
 		return ctrIden;
 	}
 
 
 
-	public void setCtrIden(Integer ctrIden) {
+	public void setCtrIden(String ctrIden) {
 		this.ctrIden = ctrIden;
 	}
 
@@ -81,11 +81,13 @@ public class COUNTRY {
 
 
 
-	public COUNTRY(Integer ctrIden, String ctrLabe, List<CITY> cities) {
-        this.ctrIden = ctrIden;
-        this.ctrLabe = ctrLabe;
-        this.cities = cities;
-    }
+	public COUNTRY(Integer ctrCode, String ctrIden, String ctrLabe, List<CITY> cities) {
+		super();
+		this.ctrCode = ctrCode;
+		this.ctrIden = ctrIden;
+		this.ctrLabe = ctrLabe;
+		this.cities = cities;
+	}
 	
 	public COUNTRY() {}
 }

@@ -64,4 +64,10 @@ public class CountryController {
         countryService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<COUNTRY>> searchCountries(@RequestParam("word") String searchWord) {
+        List<COUNTRY> countries = countryService.searchCountries(searchWord);
+        return ResponseEntity.ok(countries);
+    }
 }

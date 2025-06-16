@@ -8,5 +8,6 @@ public interface CountryService {
 	    Optional<COUNTRY> findById(Integer id);
 	    COUNTRY save(COUNTRY country);
 	    void deleteById(Integer id);
+      List<COUNTRY> searchCountries(String searchWord);
 
 }

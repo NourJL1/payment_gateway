@@ -37,4 +37,12 @@ public class CountryServiceImp implements CountryService {
     public void deleteById(Integer id) {
         countryRepository.deleteById(id);
     }
+
+      @Override
+    public List<COUNTRY> searchCountries(String searchWord) {
+        if (searchWord == null || searchWord.trim().isEmpty()) {
+            return countryRepository.findAll();
+        }
+        return countryRepository.searchCountries(searchWord);
+    }
 }

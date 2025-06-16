@@ -7,5 +7,6 @@ public interface CityService {
 	    Optional<CITY> findById(Integer id);
 	    CITY save(CITY city);
 	    void deleteById(Integer id);
+      List<CITY> searchCities(String searchWord);
 
 }
