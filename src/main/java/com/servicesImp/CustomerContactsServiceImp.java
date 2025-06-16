@@ -49,6 +49,12 @@ public class CustomerContactsServiceImp implements CustomerContactsService{
 		
 	}
 
-	    
+	    @Override
+	    public List<CUSTOMER_CONTACTS> searchCustomerContacts(String searchWord) {
+	        if (searchWord == null || searchWord.trim().isEmpty()) {
+	            return repository.findAll();
+	        }
+	        return repository.searchCustomerContacts(searchWord);
+	    }
 
 }

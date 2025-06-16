@@ -9,5 +9,6 @@ public interface CustomerContactsService {
 	    CUSTOMER_CONTACTS createContact(CUSTOMER_CONTACTS contact);
 	    CUSTOMER_CONTACTS updateContact(Integer id, CUSTOMER_CONTACTS updatedContact);
 	    void deleteContact(Integer id);
+        List<CUSTOMER_CONTACTS> searchCustomerContacts(String searchWord);
 
 }

@@ -2,9 +2,6 @@ package com.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 import com.model.CUSTOMER_CONTACTS;
 import com.service.CustomerContactsService;
 import java.util.List;
@@ -47,5 +44,11 @@ public class CustomerContactsController {
     public ResponseEntity<Void> deleteContact(@PathVariable Integer CCO_CODE) {
         service.deleteContact(CCO_CODE);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<CUSTOMER_CONTACTS>> searchCustomerContacts(@RequestParam("word") String searchWord) {
+        List<CUSTOMER_CONTACTS> customerContacts = service.searchCustomerContacts(searchWord);
+        return ResponseEntity.ok(customerContacts);
     }
 }
