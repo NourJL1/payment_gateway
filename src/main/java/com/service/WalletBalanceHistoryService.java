@@ -10,4 +10,5 @@ public interface WalletBalanceHistoryService {
 	    WALLET_BALANCE_HISTORY createWalletBalanceHistory(WALLET_BALANCE_HISTORY walletBalanceHistory);
 	    WALLET_BALANCE_HISTORY updateWalletBalanceHistory(Integer wbhCode, WALLET_BALANCE_HISTORY walletBalanceHistoryDetails);
 	    void deleteWalletBalanceHistory(Integer wbhCode);
+        List<WALLET_BALANCE_HISTORY> searchWalletBalanceHistories(String searchWord);
 }

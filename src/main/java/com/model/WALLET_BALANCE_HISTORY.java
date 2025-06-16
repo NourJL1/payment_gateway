@@ -17,7 +17,7 @@ public class WALLET_BALANCE_HISTORY {
     private Integer wbhCode;
 
     @Column(name = "WBH_IDEN", nullable = false)
-    private Integer wbhIden;
+    private String wbhIden;
 
     @Column(name = "WBH_EFF_BAL")
     private Float wbhEffBal;
@@ -42,7 +42,7 @@ public class WALLET_BALANCE_HISTORY {
 	
 
 	
-	public WALLET_BALANCE_HISTORY(Integer wbhCode, Integer wbhIden, Float wbhEffBal, Float wbhLogicBalance,
+	public WALLET_BALANCE_HISTORY(Integer wbhCode, String wbhIden, Float wbhEffBal, Float wbhLogicBalance,
 			Float wbhSpecificBalance, Date wbhLastUpdated, WALLET wallet) {
 		super();
 		this.wbhCode = wbhCode;
@@ -71,14 +71,14 @@ public class WALLET_BALANCE_HISTORY {
 
 
 
-	public Integer getWbhIden() {
+	public String getWbhIden() {
 		return wbhIden;
 	}
 
 
 
 
-	public void setWbhIden(Integer wbhIden) {
+	public void setWbhIden(String wbhIden) {
 		this.wbhIden = wbhIden;
 	}
 

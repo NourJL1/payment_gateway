@@ -59,6 +59,13 @@ public class WalletBalanceHistoryServiceImp implements WalletBalanceHistoryServi
         repository.deleteById(wbhCode);
 		
 	}
+  @Override
+	    public List<WALLET_BALANCE_HISTORY> searchWalletBalanceHistories(String searchWord) {
+	        if (searchWord == null || searchWord.trim().isEmpty()) {
+	            return repository.findAll();
+	        }
+	        return repository.searchWalletBalanceHistories(searchWord);
+	    }
 
 	
 }

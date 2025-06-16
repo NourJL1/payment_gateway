@@ -45,4 +45,10 @@ public class WalletBalanceHistoryController {
     @DeleteMapping("/{id}")
     public void deleteWalletBalanceHistory(@PathVariable Integer id) {
         service.deleteWalletBalanceHistory(id);
+    }
+  
+  @GetMapping("/search")
+    public ResponseEntity<List<WALLET_BALANCE_HISTORY>> searchWalletBalanceHistories(@RequestParam("word") String searchWord) {
+        List<WALLET_BALANCE_HISTORY> walletBalanceHistories = service.searchWalletBalanceHistories(searchWord);
+        return ResponseEntity.ok(walletBalanceHistories);
     }}
