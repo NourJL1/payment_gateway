@@ -9,4 +9,5 @@ public interface PeriodicityService {
 	    Optional<PERIODICITY> getById(Integer id);
 	    PERIODICITY update(Integer id, PERIODICITY periodicity);
 	    void delete(Integer id);
+        List<PERIODICITY> searchPeriodicities(String searchWord);
 }

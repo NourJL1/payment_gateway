@@ -5,13 +5,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Entity
 @Table(name = "PERIODICITY")
 @Data
-@AllArgsConstructor
 
 public class PERIODICITY {
 	@Id
@@ -20,7 +18,7 @@ public class PERIODICITY {
     private Integer perCode;
 
     @Column(name = "PER_IDEN", nullable = false)
-    private Integer perIden;
+    private String perIden;
 
     @Column(name = "PER_LABE", nullable = false)
     private String perLabe;
@@ -34,11 +32,11 @@ public class PERIODICITY {
     @JsonManagedReference("periodicity-walletOp")
     private List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMaps;
 
-	public Integer getPerIden() {
+	public String getPerIden() {
 		return perIden;
 	}
 
-	public void setPerIden(Integer perIden) {
+	public void setPerIden(String perIden) {
 		this.perIden = perIden;
 	}
 
@@ -82,6 +80,15 @@ public class PERIODICITY {
 
 public PERIODICITY() {}
 	
-
+public PERIODICITY(Integer perCode, String perIden, String perLabe,
+			List<WALLET_CATEGORY_OPERATION_TYPE_MAP> walletCategoryOperationTypeMaps,
+			List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMaps) {
+		super();
+		this.perCode = perCode;
+		this.perIden = perIden;
+		this.perLabe = perLabe;
+		this.walletCategoryOperationTypeMaps = walletCategoryOperationTypeMaps;
+		this.walletOperationTypeMaps = walletOperationTypeMaps;
+	}
 
 }

@@ -40,4 +40,10 @@ public class PeriodicityController {
         service.delete(id);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<PERIODICITY>> searchPeriodicities(@RequestParam("word") String searchWord) {
+        List<PERIODICITY> periodicities = service.searchPeriodicities(searchWord);
+        return ResponseEntity.ok(periodicities);
+    }
+
 }

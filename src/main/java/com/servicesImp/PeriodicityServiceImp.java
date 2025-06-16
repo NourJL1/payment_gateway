@@ -50,6 +50,13 @@ public class PeriodicityServiceImp implements PeriodicityService {
         }
         repository.deleteById(id);
     }
+    @Override
+    public List<PERIODICITY> searchPeriodicities(String searchWord) {
+        if (searchWord == null || searchWord.trim().isEmpty()) {
+            return repository.findAll();
+        }
+        return repository.searchPeriodicities(searchWord);
+    }
 
 
 }
