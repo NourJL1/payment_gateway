@@ -37,7 +37,7 @@ public class WALLET {
 	    private Integer walCode;
 
 	    @Column(name = "WAL_IDEN", nullable = false)
-	    private Integer walIden;
+	    private String walIden;
 
 	    @Column(name = "WAL_LABE", length = 255)
 	    private String walLabe;
@@ -130,11 +130,11 @@ public class WALLET {
 	    
 	    
 
-		public Integer getWalIden() {
+		public String getWalIden() {
 			return walIden;
 		}
 
-		public void setWalIden(Integer walIden) {
+		public void setWalIden(String walIden) {
 			this.walIden = walIden;
 		}
 
@@ -297,7 +297,7 @@ public class WALLET {
 		}
 
 		
-		public WALLET(Integer walCode, Integer walIden, String walLabe, Integer walKey, Float walEffBal,
+		public WALLET(Integer walCode, String walIden, String walLabe, Integer walKey, Float walEffBal,
 				Float walLogicBalance, Float walSpecificBalance, LocalDateTime lastUpdatedDate, Integer walFinId,
 				CUSTOMER customer, WALLET_STATUS walletStatus, WALLET_TYPE walletType, WALLET_CATEGORY walletCategory,
 				List<WALLET_OPERATIONS> walletOperations, WALLET_BALANCE_HISTORY lastBalanceHistory,

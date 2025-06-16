@@ -10,4 +10,5 @@ public interface WalletTypeService {
     Optional<WALLET_TYPE> getWalletTypeById(Integer wtyCode);
     WALLET_TYPE updateWalletType(Integer wtyCode, WALLET_TYPE walletType);
     void deleteWalletType(Integer wtyCode);
+    List<WALLET_TYPE> searchWalletTypes(String searchWord);
 }

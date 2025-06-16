@@ -9,4 +9,5 @@ public interface WalletStatusService {
     WALLET_STATUS createWalletStatus(WALLET_STATUS walletStatus);
     WALLET_STATUS updateWalletStatus(Integer wstCode, WALLET_STATUS walletStatusDetails);
     void deleteWalletStatus(Integer wstCode);
+    List<WALLET_STATUS> searchWalletStatuses(String searchWord);
 }

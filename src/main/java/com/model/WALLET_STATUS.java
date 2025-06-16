@@ -5,9 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "WALLET_STATUS")  // Fix the table name
 @Data
@@ -19,7 +17,7 @@ public class WALLET_STATUS {
 	    private Integer wstCode;
 
 	    @Column(name = "WST_IDEN", nullable = false)
-	    private Integer wstIden;
+	    private String wstIden;
 
 	    @Column(name = "WST_LABE", nullable = false)
 	    private String wstLabe;
@@ -39,11 +37,11 @@ public class WALLET_STATUS {
 			this.wstCode = wstCode;
 		}
 
-		public Integer getWstIden() {
+		public String getWstIden() {
 			return wstIden;
 		}
 
-		public void setWstIden(Integer wstIden) {
+		public void setWstIden(String wstIden) {
 			this.wstIden = wstIden;
 		}
 
@@ -65,7 +63,7 @@ public class WALLET_STATUS {
 
 		
 	    
-	    public WALLET_STATUS(Integer wstCode, Integer wstIden, String wstLabe, List<WALLET> wallets) {
+	    public WALLET_STATUS(Integer wstCode, String wstIden, String wstLabe, List<WALLET> wallets) {
 			super();
 			this.wstCode = wstCode;
 			this.wstIden = wstIden;

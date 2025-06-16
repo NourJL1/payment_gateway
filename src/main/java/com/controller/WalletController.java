@@ -1,7 +1,5 @@
 package com.controller;
 
-import com.model.WALLET;
-import com.model.WALLET_BALANCE_HISTORY;
 import com.service.WalletService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +13,8 @@ import com.service.*;
 import com.servicesImp.*;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,7 +44,8 @@ public class WalletController {
   @Autowired 
   private WalletBalanceHistoryRepository walletBalanceHistoryRepository;
   
-  
+    @Autowired 
+  private WalletRepository walletRepository;
   
     
     
@@ -243,6 +244,94 @@ public class WalletController {
     public List<WALLET> getWalletsByCustomerMail(@PathVariable String mail) {
         return walletService.searchByCustomerCusMailAddress(mail);
     }
+
+      @GetMapping("/by-iden/{walIden}")
+    public ResponseEntity<List<WALLET>> getByWalIden(@PathVariable String walIden) {
+        List<WALLET> wallets = walletService.findByWalIden(walIden);
+        return wallets.isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(wallets);
+    }
+
+
+    @GetMapping("/by-label/{label}")
+    public ResponseEntity<List<WALLET>> getByWalLabe(@PathVariable String label) {
+        return ResponseEntity.ok(walletService.findByWalLabe(label));
+    }
+
+    @GetMapping("/by-key/{key}")
+    public ResponseEntity<List<WALLET>> getByWalKey(@PathVariable Integer key) {
+        return ResponseEntity.ok(walletService.findByWalKey(key));
+    }
+
+    @GetMapping("/by-eff-bal/{effBal}")
+    public ResponseEntity<List<WALLET>> getByEffBal(@PathVariable Float effBal) {
+        return ResponseEntity.ok(walletService.findByWalEffBal(effBal));
+    }
+
+    @GetMapping("/by-logic-bal/{logicBal}")
+    public ResponseEntity<List<WALLET>> getByLogicBal(@PathVariable Float logicBal) {
+        return ResponseEntity.ok(walletService.findByWalLogicBalance(logicBal));
+    }
+
+    @GetMapping("/by-specific-bal/{specificBal}")
+    public ResponseEntity<List<WALLET>> getBySpecificBal(@PathVariable Float specificBal) {
+        return ResponseEntity.ok(walletService.findByWalSpecificBalance(specificBal));
+    }
+
+    @GetMapping("/by-fin-id/{finId}")
+    public ResponseEntity<List<WALLET>> getByFinId(@PathVariable Integer finId) {
+        return ResponseEntity.ok(walletService.findByWalFinId(finId));
+    }
+
+    @GetMapping("/by-customer/{cusCode}")
+    public ResponseEntity<List<WALLET>> getByCustomer(@PathVariable Integer cusCode) {
+        return ResponseEntity.ok(walletService.findByCustomer_CusCode(cusCode));
+    }
+
+    @GetMapping("/by-status/{wstCode}")
+    public ResponseEntity<List<WALLET>> getByStatus(@PathVariable Integer wstCode) {
+        return ResponseEntity.ok(walletService.findByWalletStatus_WstCode(wstCode));
+    }
+
+    @GetMapping("/by-type/{wtyCode}")
+    public ResponseEntity<List<WALLET>> getByType(@PathVariable Integer wtyCode) {
+        return ResponseEntity.ok(walletService.findByWalletType_WtyCode(wtyCode));
+    }
+
+    @GetMapping("/by-category/{wcaCode}")
+    public ResponseEntity<List<WALLET>> getByCategory(@PathVariable Integer wcaCode) {
+        return ResponseEntity.ok(walletService.findByWalletCategory_WcaCode(wcaCode));
+    }
+
+    @GetMapping("/by-last-update/{lastUpdate}")
+    public ResponseEntity<List<WALLET>> getByLastUpdated(@PathVariable String lastUpdate) {
+        // Supprimer les guillemets autour de la chaîne, si présents
+        lastUpdate = lastUpdate.replace("\"", "");
+
+        // Adapter le format si besoin
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS");
+        LocalDateTime parsedDate = LocalDateTime.parse(lastUpdate, formatter);
+
+        List<WALLET> wallets = walletService.findByLastUpdatedDate(parsedDate);
+        return ResponseEntity.ok(wallets);
+    }
+    @DeleteMapping("/by-iden/{walIden}")
+    public ResponseEntity<Void> deleteWalletByWalIden(@PathVariable String walIden) {
+        List<WALLET> wallets = walletRepository.findByWalIden(walIden);
+        if (!wallets.isEmpty()) {
+            walletService.deleteByWalIden(walIden);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+    
+    @GetMapping("/search")
+    public ResponseEntity<List<WALLET>> searchWallets(@RequestParam("word") String searchWord) {
+        List<WALLET> wallets = walletService.searchWallets(searchWord);
+        return ResponseEntity.ok(wallets);
+    }
+
+
+   
 
    
 }

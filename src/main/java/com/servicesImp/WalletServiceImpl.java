@@ -1,5 +1,6 @@
 package com.servicesImp;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,9 @@ import org.springframework.stereotype.Service;
 import com.model.CARD_LIST;
 import com.model.WALLET;
 import com.service.WalletService;
+
+import jakarta.persistence.EntityNotFoundException;
+
 import com.repository.CardListRepository;
 import com.repository.WalletRepository;
 
@@ -105,4 +109,106 @@ public class WalletServiceImpl implements WalletService {
     public List<WALLET> getWalletsByStatus(String status) {
         return walletRepository.findByStatus(status);
     }*/
+    @Override
+	public List<WALLET> findByWalIden(String walIden) {
+        return walletRepository.findByWalIden(walIden);
+
+	}
+
+
+	@Override
+	public List<WALLET> findByWalLabe(String walLabe) {
+        return walletRepository.findByWalLabe(walLabe);
+
+	}
+
+
+	@Override
+	public List<WALLET> findByWalKey(Integer walKey) {
+        return walletRepository.findByWalKey(walKey);
+
+	}
+
+
+	@Override
+	public List<WALLET> findByWalEffBal(Float walEffBal) {
+        return walletRepository.findByWalEffBal(walEffBal);
+
+	}
+
+
+	@Override
+	public List<WALLET> findByWalLogicBalance(Float walLogicBalance) {
+        return walletRepository.findByWalLogicBalance(walLogicBalance);
+
+	}
+
+
+	@Override
+	public List<WALLET> findByWalSpecificBalance(Float walSpecificBalance) {
+        return walletRepository.findByWalSpecificBalance(walSpecificBalance);
+
+	}
+
+
+	@Override
+	public List<WALLET> findByWalFinId(Integer walFinId) {
+        return walletRepository.findByWalFinId(walFinId);
+
+	}
+
+
+	@Override
+	public List<WALLET> findByCustomer_CusCode(Integer cusCode) {
+        return walletRepository.findByCustomer_CusCode(cusCode);
+
+	}
+
+
+	@Override
+	public List<WALLET> findByWalletStatus_WstCode(Integer wstCode) {
+        return walletRepository.findByWalletStatus_WstCode(wstCode);
+
+	}
+
+
+	@Override
+	public List<WALLET> findByWalletType_WtyCode(Integer wtyCode) {
+        return walletRepository.findByWalletType_WtyCode(wtyCode);
+
+	}
+
+
+	@Override
+	public List<WALLET> findByWalletCategory_WcaCode(Integer wcaCode) {
+        return walletRepository.findByWalletCategory_WcaCode(wcaCode);
+
+	}
+
+
+	@Override
+	public List<WALLET> findByLastUpdatedDate(LocalDateTime lastUpdatedDate) {
+        return walletRepository.findByLastUpdatedDate(lastUpdatedDate);
+
+	}
+
+
+	@Override
+	public void deleteByWalIden(String walIden) {
+		List<WALLET> wallets = walletRepository.findByWalIden(walIden);
+	    if (!wallets.isEmpty()) {
+	        walletRepository.deleteAll(wallets);
+	    } else {
+	        throw new EntityNotFoundException("Wallet with walIden " + walIden + " not found");
+	    }
+		
+	}
+	
+	 @Override
+	    public List<WALLET> searchWallets(String searchWord) {
+	        if (searchWord == null || searchWord.trim().isEmpty()) {
+	            return walletRepository.findAll();
+	        }
+	        return walletRepository.searchWallets(searchWord);
+	    }
 }

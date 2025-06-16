@@ -39,4 +39,10 @@ public class WalletTypeController {
         walletTypeService.deleteWalletType(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<WALLET_TYPE>> searchWalletTypes(@RequestParam("word") String searchWord) {
+        List<WALLET_TYPE> walletTypes = walletTypeService.searchWalletTypes(searchWord);
+        return ResponseEntity.ok(walletTypes);
+    }
 }

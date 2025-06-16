@@ -44,5 +44,12 @@ public class WalletStatusServiceImp implements WalletStatusService {
         repository.deleteById(wstCode);
 		
 	}
+   @Override
+	    public List<WALLET_STATUS> searchWalletStatuses(String searchWord) {
+	        if (searchWord == null || searchWord.trim().isEmpty()) {
+	            return repository.findAll();
+	        }
+	        return repository.searchWalletStatuses(searchWord);
+	    }
 
 }

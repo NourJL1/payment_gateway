@@ -18,7 +18,7 @@ public class WALLET_TYPE {
     private Integer wtyCode;
 
     @Column(name = "WTY_IDEN", nullable = false)
-    private Integer wtyIden;
+    private String wtyIden;
 
     @Column(name = "WTY_LABE", nullable = false)
     private String wtyLabe;
@@ -38,11 +38,11 @@ public class WALLET_TYPE {
 		this.wtyCode = wtyCode;
 	}
 
-	public Integer getWtyIden() {
+	public String getWtyIden() {
 		return wtyIden;
 	}
 
-	public void setWtyIden(Integer wtyIden) {
+	public void setWtyIden(String wtyIden) {
 		this.wtyIden = wtyIden;
 	}
 
@@ -63,7 +63,7 @@ public class WALLET_TYPE {
 	}
 
 	
-    public WALLET_TYPE(Integer wtyCode, Integer wtyIden, String wtyLabe, List<WALLET> wallets) {
+    public WALLET_TYPE(Integer wtyCode, String wtyIden, String wtyLabe, List<WALLET> wallets) {
 		super();
 		this.wtyCode = wtyCode;
 		this.wtyIden = wtyIden;

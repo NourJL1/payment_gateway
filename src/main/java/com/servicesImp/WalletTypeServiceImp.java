@@ -44,4 +44,12 @@ public class WalletTypeServiceImp implements WalletTypeService {
         walletTypeRepository.deleteById(wtyCode);
     }
 
+    @Override
+    public List<WALLET_TYPE> searchWalletTypes(String searchWord) {
+        if (searchWord == null || searchWord.trim().isEmpty()) {
+            return walletTypeRepository.findAll();
+        }
+        return walletTypeRepository.searchWalletTypes(searchWord);
+    }
+
 }
