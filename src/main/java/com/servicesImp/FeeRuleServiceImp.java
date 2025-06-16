@@ -1,5 +1,4 @@
 package com.servicesImp;
-import com.model.FEE_RULE;
 import com.repository.FeeRuleRepository;
 import com.service.FeeRuleService;
 import com.service.FeeRuleTypeService;
@@ -69,6 +68,13 @@ public class FeeRuleServiceImp implements FeeRuleService {
 		  repository.deleteById(id);
 		
 	}
+   @Override
+	    public List<FEE_RULE> searchFeeRules(String searchWord) {
+	        if (searchWord == null || searchWord.trim().isEmpty()) {
+	            return repository.findAll();
+	        }
+	        return repository.searchFeeRules(searchWord);
+	    }
 
     
 }

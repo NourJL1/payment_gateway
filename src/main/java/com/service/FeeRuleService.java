@@ -7,5 +7,6 @@ public interface FeeRuleService {
 	    Optional<FEE_RULE> findById(Integer id);
 	    FEE_RULE save(FEE_RULE feeRule);
 	    void deleteById(Integer id);
+      List<FEE_RULE> searchFeeRules(String searchWord);
 
 }

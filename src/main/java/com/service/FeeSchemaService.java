@@ -9,5 +9,6 @@ public interface FeeSchemaService {
 	    Optional<FEE_SCHEMA> findById(Integer id);
 	    FEE_SCHEMA save(FEE_SCHEMA feeSchema);
 	    void deleteById(Integer id);
+      List<FEE_SCHEMA> searchFeeSchemas(String searchWord);
 
 }

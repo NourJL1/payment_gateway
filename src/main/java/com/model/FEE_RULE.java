@@ -15,7 +15,7 @@ public class FEE_RULE {
     private Integer fruCode;
 	
     @Column(name = "FRU_IDEN", nullable = false)
-    private Integer fruIden;
+    private String fruIden;
 
     @Column(name = "FRU_LABE", nullable = false)
     private String fruLabe;
@@ -35,8 +35,9 @@ public class FEE_RULE {
     @Column(name = "FRU_FEES_AMOUNT", nullable = false)
     private Float fruFeesAmount;
 
-    @Column(name = "FRU_TVA_CODE", nullable = false)
-    private Integer fruTvaCode;
+  @ManyToOne
+    @JoinColumn(name = "FRU_TVA_CODE", referencedColumnName = "VAT_CODE")
+    private VatRate fruTva;
 
     @Column(name = "FRU_TVA_WALLET_ID", nullable = false)
     private Integer fruTvaWalletId;
@@ -71,12 +72,12 @@ public class FEE_RULE {
 	}
 
 
-	public Integer getFruIden() {
+	public String getFruIden() {
 		return fruIden;
 	}
 
 
-	public void setFruIden(Integer fruIden) {
+	public void setFruIden(String fruIden) {
 		this.fruIden = fruIden;
 	}
 
@@ -141,14 +142,7 @@ public class FEE_RULE {
 	}
 
 
-	public Integer getFruTvaCode() {
-		return fruTvaCode;
-	}
-
-
-	public void setFruTvaCode(Integer fruTvaCode) {
-		this.fruTvaCode = fruTvaCode;
-	}
+	
 
 
 	public Integer getFruTvaWalletId() {
@@ -199,13 +193,23 @@ public class FEE_RULE {
 	public void setFeeSchema(FEE_SCHEMA feeSchema) {
 		this.feeSchema = feeSchema;
 	}
+  
+	public VatRate getFruTva() {
+		return fruTva;
+	}
 
 
-	public FEE_RULE(Integer fruIden, String fruLabe, String fruPrimaryWalletId, Float fruPrimaryAmount,
-			Integer fruPrimaryFeesId, Integer fruFeesWalletId, Float fruFeesAmount, Integer fruTvaCode,
+	public void setFruTva(VatRate fruTva) {
+		this.fruTva = fruTva;
+	}
+
+
+	public FEE_RULE(Integer fruCode, String fruIden, String fruLabe, String fruPrimaryWalletId, Float fruPrimaryAmount,
+			Integer fruPrimaryFeesId, Integer fruFeesWalletId, Float fruFeesAmount, VatRate fruTva,
 			Integer fruTvaWalletId, Float fruTvaAmount, String fruSens, FEE_RULE_TYPE feeRuleType,
 			FEE_SCHEMA feeSchema) {
 		super();
+		this.fruCode = fruCode;
 		this.fruIden = fruIden;
 		this.fruLabe = fruLabe;
 		this.fruPrimaryWalletId = fruPrimaryWalletId;
@@ -213,7 +217,7 @@ public class FEE_RULE {
 		this.fruPrimaryFeesId = fruPrimaryFeesId;
 		this.fruFeesWalletId = fruFeesWalletId;
 		this.fruFeesAmount = fruFeesAmount;
-		this.fruTvaCode = fruTvaCode;
+		this.fruTva = fruTva;
 		this.fruTvaWalletId = fruTvaWalletId;
 		this.fruTvaAmount = fruTvaAmount;
 		this.fruSens = fruSens;

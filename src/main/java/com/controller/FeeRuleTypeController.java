@@ -61,4 +61,10 @@ public class FeeRuleTypeController {
         return ResponseEntity.noContent().build();
     }
 
+      @GetMapping("/search")
+    public ResponseEntity<List<FEE_RULE_TYPE>> searchFeeRuleTypes(@RequestParam("word") String searchWord) {
+        List<FEE_RULE_TYPE> feeRuleTypes = feeRuleTypeService.searchFeeRuleTypes(searchWord);
+        return ResponseEntity.ok(feeRuleTypes);
+    }
+
 }

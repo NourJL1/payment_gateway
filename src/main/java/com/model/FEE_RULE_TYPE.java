@@ -14,7 +14,7 @@ public class FEE_RULE_TYPE {
 	    private Integer frtCode;
 
 	    @Column(name = "FRT_IDEN", nullable = false)
-	    private Integer frtIden;
+	    private String frtIden;
 
 	    @Column(name = "FRT_LABE", nullable = false)
 	    private String frtLabe;
@@ -33,13 +33,13 @@ public class FEE_RULE_TYPE {
 
 
 
-		public Integer getFrtIden() {
+		public String getFrtIden() {
 			return frtIden;
 		}
 
 
 
-		public void setFrtIden(Integer frtIden) {
+		public void setFrtIden(String frtIden) {
 			this.frtIden = frtIden;
 		}
 
@@ -57,7 +57,7 @@ public class FEE_RULE_TYPE {
 
 
 
-		public FEE_RULE_TYPE(Integer frtCode, Integer frtIden, String frtLabe) {
+		public FEE_RULE_TYPE(Integer frtCode, String frtIden, String frtLabe) {
 			super();
 			this.frtCode = frtCode;
 			this.frtIden = frtIden;

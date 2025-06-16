@@ -17,7 +17,7 @@ public class FEE_SCHEMA {
 	    private Integer fscCode;
 
 	    @Column(name = "FSC_IDEN", nullable = false)
-	    private Integer fscIden;
+	    private String fscIden;
 
 	    @Column(name = "FSC_LABE", nullable = false)
 	    private String fscLabe;
@@ -42,11 +42,11 @@ public class FEE_SCHEMA {
 			this.fscCode = fscCode;
 		}
 
-		public Integer getFscIden() {
+		public String getFscIden() {
 			return fscIden;
 		}
 
-		public void setFscIden(Integer fscIden) {
+		public void setFscIden(String fscIden) {
 			this.fscIden = fscIden;
 		}
 
@@ -66,7 +66,7 @@ public class FEE_SCHEMA {
 			this.feeRules = feeRules;
 		}
 
-		public FEE_SCHEMA(Integer fscCode, Integer fscIden, String fscLabe, List<FEE_RULE> feeRules) {
+		public FEE_SCHEMA(Integer fscCode, String fscIden, String fscLabe, List<FEE_RULE> feeRules) {
 			super();
 			this.fscCode = fscCode;
 			this.fscIden = fscIden;

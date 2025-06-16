@@ -55,4 +55,10 @@ public class FeeSchemaController {
         feeSchemaService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<FEE_SCHEMA>> searchFeeSchemas(@RequestParam("word") String searchWord) {
+        List<FEE_SCHEMA> feeSchemas = feeSchemaService.searchFeeSchemas(searchWord);
+        return ResponseEntity.ok(feeSchemas);
+    }
 }

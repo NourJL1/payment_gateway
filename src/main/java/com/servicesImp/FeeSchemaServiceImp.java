@@ -41,7 +41,13 @@ public class FeeSchemaServiceImp implements FeeSchemaService {
 	}
 
 	
-    
+    @Override
+    public List<FEE_SCHEMA> searchFeeSchemas(String searchWord) {
+        if (searchWord == null || searchWord.trim().isEmpty()) {
+            return feeSchemaRepository.findAll();
+        }
+        return feeSchemaRepository.searchFeeSchemas(searchWord);
+    }
 
 
 }

@@ -40,4 +40,13 @@ public class FeeRuleTypeServiceImp implements FeeRuleTypeService {
 		
 	}
 
+   @Override
+	    public List<FEE_RULE_TYPE> searchFeeRuleTypes(String searchWord) {
+	        if (searchWord == null || searchWord.trim().isEmpty()) {
+	            return feeRuleTypeRepository.findAll();
+	        }
+	        return feeRuleTypeRepository.searchFeeRuleTypes(searchWord);
+	    }
+
+
 }
