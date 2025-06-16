@@ -34,5 +34,12 @@ public class CustmerDocListeServiceImp implements CustomerDocListeService {
 		customerDocListeRepository.deleteById(id);
 		
 	}
+  @Override
+    public List<CUSTOMER_DOC_LISTE> searchCustomerDocListes(String searchWord) {
+        if (searchWord == null || searchWord.trim().isEmpty()) {
+            return customerDocListeRepository.findAll();
+        }
+        return customerDocListeRepository.searchCustomerDocListes(searchWord);
+    }
 
 }

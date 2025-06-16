@@ -53,4 +53,10 @@ public class CustomertDocListeController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<CUSTOMER_DOC_LISTE>> searchCustomerDocListes(@RequestParam("word") String searchWord) {
+        List<CUSTOMER_DOC_LISTE> customerDocListes = customerDocListeService.searchCustomerDocListes(searchWord);
+        return ResponseEntity.ok(customerDocListes);
+    }
+
 }

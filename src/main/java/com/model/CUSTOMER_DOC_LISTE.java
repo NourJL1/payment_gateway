@@ -24,7 +24,7 @@ public class CUSTOMER_DOC_LISTE {
 	    private Integer cdlCode;
 
 	    @Column(name = "CDL_IDEN", nullable = false)
-	    private Integer cdlIden;
+	    private String cdlIden;
 
 	    @Column(name = "CDL_LABE", nullable = false)
 	    private String cdlLabe;
@@ -40,11 +40,11 @@ public class CUSTOMER_DOC_LISTE {
 	    
 
 
-		public Integer getCdlIden() {
+		public String getCdlIden() {
 			return cdlIden;
 		}
 
-		public void setCdlIden(Integer cdlIden) {
+		public void setCdlIden(String cdlIden) {
 			this.cdlIden = cdlIden;
 		}
 
@@ -76,7 +76,7 @@ public class CUSTOMER_DOC_LISTE {
 
 		
 		
-		public CUSTOMER_DOC_LISTE(Integer cdlCode, Integer cdlIden, String cdlLabe, List<CUSTOMER_DOC> customerDocs) {
+		public CUSTOMER_DOC_LISTE(Integer cdlCode, String cdlIden, String cdlLabe, List<CUSTOMER_DOC> customerDocs) {
 			super();
 			this.cdlCode = cdlCode;
 			this.cdlIden = cdlIden;
