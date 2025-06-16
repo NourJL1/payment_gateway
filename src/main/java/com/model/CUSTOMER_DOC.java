@@ -16,7 +16,7 @@ public class CUSTOMER_DOC {
 	    private Integer cdoCode;
 
 	    @Column(name = "CDO_IDEN", nullable = false)
-	    private Integer cdoIden;
+	    private String cdoIden;
 
 	    @Column(name = "CDO_LABE", nullable = false)
 	    private String cdoLabe;
@@ -36,11 +36,11 @@ public class CUSTOMER_DOC {
 
 	    private DOC_TYPE docType;
 
-		public Integer getCdoIden() {
+		public String getCdoIden() {
 			return cdoIden;
 		}
 
-		public void setCdoIden(Integer cdoIden) {
+		public void setCdoIden(String cdoIden) {
 			this.cdoIden = cdoIden;
 		}
 
@@ -70,7 +70,7 @@ public class CUSTOMER_DOC {
 			this.docType = docType;
 		}
 
-		public CUSTOMER_DOC(Integer cdoIden, String cdoLabe, Integer cdoCdlCode, CUSTOMER_DOC_LISTE customerDocListe,
+		public CUSTOMER_DOC(String cdoIden, String cdoLabe, Integer cdoCdlCode, CUSTOMER_DOC_LISTE customerDocListe,
 				DOC_TYPE docType) {
 			super();
 			this.cdoIden = cdoIden;

@@ -9,5 +9,6 @@ public interface CustomerDocService {
 	    Optional<CUSTOMER_DOC> findById(Integer id);
 	    CUSTOMER_DOC save(CUSTOMER_DOC customerDoc);
 	    void deleteById(Integer id);
+        List<CUSTOMER_DOC> searchCustomerDocs(String searchWord);
 
 }

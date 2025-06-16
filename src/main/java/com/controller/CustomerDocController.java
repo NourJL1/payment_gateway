@@ -53,5 +53,10 @@ public class CustomerDocController {
         customerDocService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/search")
+    public ResponseEntity<List<CUSTOMER_DOC>> searchCustomerDocs(@RequestParam("word") String searchWord) {
+        List<CUSTOMER_DOC> customerDocs = customerDocService.searchCustomerDocs(searchWord);
+        return ResponseEntity.ok(customerDocs);
+    }
 
 }
