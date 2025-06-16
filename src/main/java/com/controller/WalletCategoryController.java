@@ -52,4 +52,10 @@ public class WalletCategoryController {
         return ResponseEntity.ok("Wallet Category deleted successfully.");
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<WALLET_CATEGORY>> searchWalletCategories(@RequestParam("word") String searchWord) {
+        List<WALLET_CATEGORY> walletCategories = walletCategoryService.searchWalletCategories(searchWord);
+        return ResponseEntity.ok(walletCategories);
+    }
+
 }

@@ -18,7 +18,7 @@ public class WALLET_CATEGORY {
     private Integer wcaCode;
 
     @Column(name = "WCA_IDEN", nullable = false)
-    private Integer wcaIden;
+    private String wcaIden;
 
     @Column(name = "WCA_LABE", nullable = false)
     private String wcaLabe;
@@ -53,13 +53,13 @@ public class WALLET_CATEGORY {
 
 
 
-	public Integer getWcaIden() {
+	public String getWcaIden() {
 		return wcaIden;
 	}
 
 
 
-	public void setWcaIden(Integer wcaIden) {
+	public void setWcaIden(String wcaIden) {
 		this.wcaIden = wcaIden;
 	}
 
@@ -115,7 +115,7 @@ public class WALLET_CATEGORY {
 
 
 	
-	public WALLET_CATEGORY(Integer wcaCode, Integer wcaIden, String wcaLabe, Integer wcaFinId, List<WALLET> wallets,
+	public WALLET_CATEGORY(Integer wcaCode, String wcaIden, String wcaLabe, Integer wcaFinId, List<WALLET> wallets,
 			List<WALLET_CATEGORY_OPERATION_TYPE_MAP> walletCategoryOperationTypeMappings) {
 		super();
 		this.wcaCode = wcaCode;

@@ -9,5 +9,6 @@ public interface WalletCategoryService {
 	    void deleteWalletCategory(Integer id);
 	    WALLET_CATEGORY getWalletCategoryById(Integer id);
 	    List<WALLET_CATEGORY> getAllWalletCategories();
+      List<WALLET_CATEGORY> searchWalletCategories(String searchWord);
 
 }

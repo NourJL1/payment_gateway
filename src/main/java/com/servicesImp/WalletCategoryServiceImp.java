@@ -54,7 +54,15 @@ public class WalletCategoryServiceImp implements WalletCategoryService {
 	        walletCategoryRepository.deleteById(id);
 	    }
 
-	
+	@Override
+	    public List<WALLET_CATEGORY> searchWalletCategories(String searchWord) {
+	        if (searchWord == null || searchWord.trim().isEmpty()) {
+	            return walletCategoryRepository.findAll();
+	        }
+	        return walletCategoryRepository.searchWalletCategories
+
+	(searchWord);
+	    }
 
 
     
