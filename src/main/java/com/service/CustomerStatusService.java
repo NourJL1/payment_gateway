@@ -8,5 +8,6 @@ public interface CustomerStatusService {
     Optional<CUSTOMER_STATUS> findById(Integer id);
     CUSTOMER_STATUS save(CUSTOMER_STATUS customerStatus);
     void deleteById(Integer id);
+    List<CUSTOMER_STATUS> searchCustomerStatuses(String searchWord);
 
 }

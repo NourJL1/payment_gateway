@@ -34,4 +34,11 @@ public class CustomerStatusServiceImp implements CustomerStatusService {
 		  customerStatusRepository.deleteById(id);
 		
 	}
+  @Override
+    public List<CUSTOMER_STATUS> searchCustomerStatuses(String searchWord) {
+        if (searchWord == null || searchWord.trim().isEmpty()) {
+            return customerStatusRepository.findAll();
+        }
+        return customerStatusRepository.searchCustomerStatuses(searchWord);
+    }
 }

@@ -58,4 +58,10 @@ public class CustomerStatusController {
         customerStatusService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<CUSTOMER_STATUS>> searchCustomerStatuses(@RequestParam("word") String searchWord) {
+        List<CUSTOMER_STATUS> customerStatuses = customerStatusService.searchCustomerStatuses(searchWord);
+        return ResponseEntity.ok(customerStatuses);
+    }
 }

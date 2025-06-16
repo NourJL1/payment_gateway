@@ -12,7 +12,7 @@ public class CUSTOMER_STATUS {
     private Integer ctsCode;
 
     @Column(name = "CTS_IDEN", nullable = false)
-    private Integer ctsIden;
+    private String ctsIden;
 
     @Column(name = "CTS_LABE", nullable = false)
     private String ctsLabe;
@@ -27,11 +27,11 @@ public class CUSTOMER_STATUS {
 		this.ctsCode = ctsCode;
 	}
 
-	public Integer getCtsIden() {
+	public String getCtsIden() {
 		return ctsIden;
 	}
 
-	public void setCtsIden(Integer ctsIden) {
+	public void setCtsIden(String ctsIden) {
 		this.ctsIden = ctsIden;
 	}
 
@@ -44,7 +44,7 @@ public class CUSTOMER_STATUS {
 	}
 
 	
-	public CUSTOMER_STATUS(Integer ctsCode, Integer ctsIden, String ctsLabe) {
+	public CUSTOMER_STATUS(Integer ctsCode, String ctsIden, String ctsLabe) {
 		super();
 		this.ctsCode = ctsCode;
 		this.ctsIden = ctsIden;
