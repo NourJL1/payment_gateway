@@ -17,7 +17,7 @@ public class OPERATION_TYPE {
 	    private Integer optCode;
 
 	    @Column(name = "OPT_IDEN", nullable = false)
-	    private Integer optIden;
+	    private String optIden;
 
 	    @Column(name = "OPT_LABE", nullable = false)
 	    private String optLabe;
@@ -68,11 +68,11 @@ public class OPERATION_TYPE {
 			this.optCode = optCode;
 		}
 
-		public Integer getOptIden() {
+		public String getOptIden() {
 			return optIden;
 		}
 
-		public void setOptIden(Integer optIden) {
+		public void setOptIden(String optIden) {
 			this.optIden = optIden;
 		}
 
@@ -143,7 +143,7 @@ public class OPERATION_TYPE {
 
 		
 		
-	public OPERATION_TYPE(Integer optCode, Integer optIden, String optLabe, Integer optFscIden, String optFscLab,
+	public OPERATION_TYPE(Integer optCode, String optIden, String optLabe, Integer optFscIden, String optFscLab,
 				WALLET wallet, List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMappings, FEE_SCHEMA feeSchema,
 				List<WALLET_CATEGORY_OPERATION_TYPE_MAP> walletCategoryOperationTypeMappings,
 				WALLET_CATEGORY walletCategory) {

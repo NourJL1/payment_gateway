@@ -9,4 +9,5 @@ public interface OperationTypeService {
     OPERATION_TYPE createOperationType(OPERATION_TYPE operationType);
     OPERATION_TYPE updateOperationType(Integer id, OPERATION_TYPE operationType);
     void deleteOperationType(Integer id);
+      List<OPERATION_TYPE> searchOperationTypes(String searchWord);
 }

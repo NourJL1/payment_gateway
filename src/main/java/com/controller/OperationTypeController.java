@@ -50,4 +50,10 @@ public class OperationTypeController {
         operationTypeService.deleteOperationType(id);
         return ResponseEntity.ok("Operation Type deleted successfully.");
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<OPERATION_TYPE>> searchOperationTypes(@RequestParam("word") String searchWord) {
+        List<OPERATION_TYPE> operationTypes = operationTypeService.searchOperationTypes(searchWord);
+        return ResponseEntity.ok(operationTypes);
+    }
 }

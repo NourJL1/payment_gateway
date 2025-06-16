@@ -20,6 +20,9 @@ public class OPERATION_DETAILS {
 	    @Column(name = "ODE_CUS_CODE", nullable = false)
 	    private Integer odeCusCode;
 
+      @Column(name = "ODE_IDEN", nullable = false)
+	    private String odeIden;
+
 	    @Column(name = "ODE_TYPE", nullable = false)
 	    private String odeType;
 
@@ -140,11 +143,24 @@ public class OPERATION_DETAILS {
 			this.walletOperation = walletOperation;
 		}
 
+    
+		public String getOdeIden() {
+			return odeIden;
+		}
 
-		public OPERATION_DETAILS(Integer odeCusCode, String odeType, String odeValue, Float odeFeeAmount,
-				String odePayMeth, String odeRecipientWallet, Date odeCreatedAt, WALLET_OPERATIONS walletOperation) {
+
+		public void setOdeIden(String odeIden) {
+			this.odeIden = odeIden;
+		}
+
+
+	public OPERATION_DETAILS(Integer odeCode, Integer odeCusCode, String odeIden, String odeType, String odeValue,
+				Float odeFeeAmount, String odePayMeth, String odeRecipientWallet, Date odeCreatedAt,
+				WALLET_OPERATIONS walletOperation) {
 			super();
+			this.odeCode = odeCode;
 			this.odeCusCode = odeCusCode;
+			this.odeIden = odeIden;
 			this.odeType = odeType;
 			this.odeValue = odeValue;
 			this.odeFeeAmount = odeFeeAmount;

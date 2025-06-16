@@ -54,4 +54,11 @@ public class OperationsDetailsServiceImp implements OperationDetailsService {
     public void deleteById(Integer id) {
         operationDetailsRepository.deleteById(id);
     }
+    @Override
+    public List<OPERATION_DETAILS> searchOperationDetails(String searchWord) {
+        if (searchWord == null || searchWord.trim().isEmpty()) {
+            return operationDetailsRepository.findAll();
+        }
+        return operationDetailsRepository.searchOperationDetails(searchWord);
+    }
 }

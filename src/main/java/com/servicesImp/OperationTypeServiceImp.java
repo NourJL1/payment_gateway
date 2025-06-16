@@ -1,5 +1,4 @@
 package com.servicesImp;
-import com.model.OPERATION_TYPE;
 import com.repository.FeeSchemaRepository;
 import com.repository.OperationTypeRepository;
 import com.repository.WalletCategoryRepository;
@@ -86,6 +85,14 @@ public class OperationTypeServiceImp implements OperationTypeService {
     @Override
     public void deleteOperationType(Integer id) {
         operationTypeRepository.deleteById(id);
+    }
+
+    @Override
+    public List<OPERATION_TYPE> searchOperationTypes(String searchWord) {
+        if (searchWord == null || searchWord.trim().isEmpty()) {
+            return operationTypeRepository.findAll();
+        }
+        return operationTypeRepository.searchOperationTypes(searchWord);
     }
 	
 }

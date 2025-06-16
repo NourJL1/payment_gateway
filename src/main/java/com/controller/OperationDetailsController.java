@@ -63,4 +63,10 @@ public class OperationDetailsController {
 	        return ResponseEntity.noContent().build();
 	    }
 
+        @GetMapping("/search")
+	    public ResponseEntity<List<OPERATION_DETAILS>> searchOperationDetails(@RequestParam("word") String searchWord) {
+	        List<OPERATION_DETAILS> operationDetails = operationDetailsService.searchOperationDetails(searchWord);
+	        return ResponseEntity.ok(operationDetails);
+	    }
+
 }

@@ -8,6 +8,6 @@ public interface OperationDetailsService {
     Optional<OPERATION_DETAILS> findById(Integer id);
     OPERATION_DETAILS save(OPERATION_DETAILS operationDetails);
     void deleteById(Integer id);
-   
+     List<OPERATION_DETAILS> searchOperationDetails(String searchWord);
 
 }
