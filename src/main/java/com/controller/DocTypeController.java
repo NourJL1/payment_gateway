@@ -53,5 +53,10 @@ public class DocTypeController {
         docTypeService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
-
+    
+    @GetMapping("/search")
+    public ResponseEntity<List<DOC_TYPE>> searchDocTypes(@RequestParam("word") String searchWord) {
+        List<DOC_TYPE> docTypes = docTypeService.searchDocTypes(searchWord);
+        return ResponseEntity.ok(docTypes);
+    }
 }

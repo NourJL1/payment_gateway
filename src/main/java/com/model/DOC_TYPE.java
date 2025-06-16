@@ -14,7 +14,7 @@ public class DOC_TYPE {
     private Integer dtyCode;
 
     @Column(name = "DTY_IDEN", nullable = false)
-    private Integer dtyIden;
+    private String dtyIden;
 
     @Column(name = "DTY_LABE", nullable = false)
     private String dtyLabe;
@@ -22,11 +22,11 @@ public class DOC_TYPE {
     @OneToMany(mappedBy = "docType", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<CUSTOMER_DOC> customerDocs;
 
-	public Integer getDtyIden() {
+	public String getDtyIden() {
 		return dtyIden;
 	}
 
-	public void setDtyIden(Integer dtyIden) {
+	public void setDtyIden(String dtyIden) {
 		this.dtyIden = dtyIden;
 	}
 
@@ -46,8 +46,9 @@ public class DOC_TYPE {
 		this.customerDocs = customerDocs;
 	}
 
-	public DOC_TYPE(Integer dtyIden, String dtyLabe, List<CUSTOMER_DOC> customerDocs) {
+		public DOC_TYPE(Integer dtyCode, String dtyIden, String dtyLabe, List<CUSTOMER_DOC> customerDocs) {
 		super();
+		this.dtyCode = dtyCode;
 		this.dtyIden = dtyIden;
 		this.dtyLabe = dtyLabe;
 		this.customerDocs = customerDocs;

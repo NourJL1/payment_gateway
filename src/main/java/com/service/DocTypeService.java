@@ -8,5 +8,6 @@ public interface DocTypeService {
     Optional<DOC_TYPE> findById(Integer id);
     DOC_TYPE save(DOC_TYPE docType);
     void deleteById(Integer id);
+    List<DOC_TYPE> searchDocTypes(String searchWord);
 
 }

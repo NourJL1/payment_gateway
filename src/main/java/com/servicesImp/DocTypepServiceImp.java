@@ -36,4 +36,12 @@ public class DocTypepServiceImp implements DocTypeService {
 		
 	}
 
+  @Override
+    public List<DOC_TYPE> searchDocTypes(String searchWord) {
+        if (searchWord == null || searchWord.trim().isEmpty()) {
+            return docTypeRepository.findAll();
+        }
+        return docTypeRepository.searchDocTypes(searchWord);
+    }
+
 }
