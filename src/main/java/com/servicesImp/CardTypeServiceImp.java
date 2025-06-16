@@ -35,4 +35,12 @@ public class CardTypeServiceImp implements CardTypeService {
 		   cardTypeRepository.deleteById(id);		
 	}
 
+   @Override
+	    public List<CARD_TYPE> searchCardTypes(String searchWord) {
+	        if (searchWord == null || searchWord.trim().isEmpty()) {
+	            return cardTypeRepository.findAll();
+	        }
+	        return cardTypeRepository.searchCardTypes(searchWord);
+	    }
+
 }

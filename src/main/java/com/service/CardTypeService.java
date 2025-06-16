@@ -8,4 +8,5 @@ public interface CardTypeService {
     Optional<CARD_TYPE> findById(Integer id);
     CARD_TYPE save(CARD_TYPE cardType);
     void deleteById(Integer id);
+    List<CARD_TYPE> searchCardTypes(String searchWord);
 }

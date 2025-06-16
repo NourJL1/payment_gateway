@@ -51,6 +51,11 @@ public class CardTypeController {
         cardTypeService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/search")
+    public ResponseEntity<List<CARD_TYPE>> searchCardTypes(@RequestParam("word") String searchWord) {
+        List<CARD_TYPE> cardTypes = cardTypeService.searchCardTypes(searchWord);
+        return ResponseEntity.ok(cardTypes);
+    }
 
 
 }
