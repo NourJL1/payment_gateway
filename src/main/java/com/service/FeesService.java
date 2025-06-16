@@ -10,5 +10,6 @@ public interface FeesService {
     void delete(Integer id);
     FEES getById(Integer id);
     List<FEES> getAll();
+    List<FEES> searchFees(String searchWord);
 
 }

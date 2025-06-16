@@ -23,7 +23,7 @@ public class FEES {
 
 	 
 	    @Column(name = "FEE_IDEN")
-	    private Integer feeIden;
+	    private String feeIden;
 
 	    @Column(name = "FEE_LABE")
 	    private String feeLabel;
@@ -66,11 +66,11 @@ public class FEES {
 			this.feeCode = feeCode;
 		}
 
-		public Integer getFeeIden() {
+		public String getFeeIden() {
 			return feeIden;
 		}
 
-		public void setFeeIden(Integer feeIden) {
+		public void setFeeIden(String feeIden) {
 			this.feeIden = feeIden;
 		}
 
@@ -148,7 +148,7 @@ public class FEES {
 		}
 
 		
-		public FEES(Integer feeCode, Integer feeIden, String feeLabel, Float feeMinLimit, Float feeAmount,
+		public FEES(Integer feeCode, String feeIden, String feeLabel, Float feeMinLimit, Float feeAmount,
 				Float feeMaxLimit, String feePercentage, Float feeMaxAmount, Integer financialInstitutionId,
 				List<WALLET_CATEGORY_OPERATION_TYPE_MAP> walletCategoryOperationTypeMaps,
 				List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMaps) {

@@ -58,4 +58,9 @@ public class FeesController {
             return ResponseEntity.notFound().build();
         }
     }
+    @GetMapping("/search")
+    public ResponseEntity<List<FEES>> searchFees(@RequestParam("word") String searchWord) {
+        List<FEES> fees = feesService.searchFees(searchWord);
+        return ResponseEntity.ok(fees);
+    }
 }

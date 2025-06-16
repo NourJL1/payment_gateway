@@ -63,5 +63,12 @@ public class FeesServiceImp implements FeesService {
 
         repository.delete(fees);
     }
+    @Override
+    public List<FEES> searchFees(String searchWord) {
+        if (searchWord == null || searchWord.trim().isEmpty()) {
+            return repository.findAll();
+        }
+        return repository.searchFees(searchWord);
+    }
 
 }
