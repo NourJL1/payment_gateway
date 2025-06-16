@@ -8,5 +8,6 @@ public interface CustomerIdentityTypeService {
 	    Optional<CUSTOMER_IDENTITY_TYPE> findById(Integer id);
 	    CUSTOMER_IDENTITY_TYPE save(CUSTOMER_IDENTITY_TYPE customerIdentityType);
 	    void deleteById(Integer id);
+        List<CUSTOMER_IDENTITY_TYPE> searchCustomerIdentityTypes(String searchWord);
 
 }

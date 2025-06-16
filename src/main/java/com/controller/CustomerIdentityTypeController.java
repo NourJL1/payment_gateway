@@ -53,7 +53,11 @@ public class CustomerIdentityTypeController {
 	        customerIdentityTypeService.deleteById(id);
 	        return ResponseEntity.noContent().build();
 	    }
-	    
+	    @GetMapping("/search")
+	    public ResponseEntity<List<CUSTOMER_IDENTITY_TYPE>> searchCustomerIdentityTypes(@RequestParam("word") String searchWord) {
+	        List<CUSTOMER_IDENTITY_TYPE> customerIdentityTypes = customerIdentityTypeService.searchCustomerIdentityTypes(searchWord);
+	        return ResponseEntity.ok(customerIdentityTypes);
+	    }
 	    
 
 }

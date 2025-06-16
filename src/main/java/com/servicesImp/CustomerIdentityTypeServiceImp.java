@@ -34,6 +34,14 @@ public class CustomerIdentityTypeServiceImp  implements CustomerIdentityTypeServ
 		  customerIdentityTypeRepository.deleteById(id);
 		
 	}
+
+  @Override
+    public List<CUSTOMER_IDENTITY_TYPE> searchCustomerIdentityTypes(String searchWord) {
+        if (searchWord == null || searchWord.trim().isEmpty()) {
+            return customerIdentityTypeRepository.findAll();
+        }
+        return customerIdentityTypeRepository.searchCustomerIdentityTypes(searchWord);
+    }
 	
 
 }
