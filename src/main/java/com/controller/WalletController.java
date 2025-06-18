@@ -48,7 +48,11 @@ public class WalletController {
   private WalletRepository walletRepository;
   
     
-    
+    @GetMapping("/count")
+    public ResponseEntity<Long> getWalletCount() {
+        long count = walletRepository.count();
+        return ResponseEntity.ok(count);
+    }
     
     
     // 🔹 Récupérer tous les wallets
@@ -322,6 +326,14 @@ public class WalletController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
+    }
+    @GetMapping("/by-customer/{cusCode}/status")
+    public ResponseEntity<WALLET_STATUS> getWalletStatusByCusCode(@PathVariable Integer cusCode) {
+        List<WALLET> wallets = walletService.findByCustomer_CusCode(cusCode);
+        if (wallets.isEmpty() || wallets.get(0).getWalletStatus() == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(wallets.get(0).getWalletStatus());
     }
     
     @GetMapping("/search")

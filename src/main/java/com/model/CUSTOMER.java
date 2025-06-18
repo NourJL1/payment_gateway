@@ -46,7 +46,6 @@ public class CUSTOMER {
     private String cusLastName;
     private String username;
     private String cusMailAddress;
-    @JsonProperty("Password")
     private String cusMotDePasse;
     private String cusPhoneNbr;
 	private String cusAddress;

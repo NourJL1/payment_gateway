@@ -30,12 +30,18 @@ public class CustomerServiceImp implements CustomerService {
 	         throw new IllegalArgumentException("Le client ne peut pas être nul !");
 	     }
 
-	     
-
 	     // Gestion du statut du client (CUSTOMER_STATUS)
 	     if (customer.getStatus() != null) {
-	         CUSTOMER_STATUS existingStatus = customerStatusRepository.findById(customer.getStatus().getCtsIden())
-	                                                                  .orElseThrow(() -> new IllegalStateException("Statut client introuvable !"));
+	         // Convertir le statut ID de String à Integer si nécessaire
+	         Integer statusId;
+	         try {
+	             statusId = Integer.parseInt(customer.getStatus().getCtsIden());
+	         } catch (NumberFormatException e) {
+	             throw new IllegalArgumentException("Le statut du client doit être un entier valide !");
+	         }
+
+	         CUSTOMER_STATUS existingStatus = customerStatusRepository.findById(statusId)
+	             .orElseThrow(() -> new IllegalStateException("Statut client introuvable !"));
 	         customer.setStatus(existingStatus);
 	     } else {
 	         throw new IllegalArgumentException("Le statut du client est obligatoire !");
@@ -44,6 +50,7 @@ public class CustomerServiceImp implements CustomerService {
 	     // Sauvegarde du customer avec les entités bien gérées
 	     return customerRepository.save(customer);
 	 }
+
 	 @Override
 	 public boolean comapreTOTP(String cusMailAdress, String code)
 	    {

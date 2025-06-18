@@ -156,6 +156,14 @@ public class WALLET_BALANCE_HISTORY {
 
 
 	public WALLET_BALANCE_HISTORY() {}
+
+
+
+
+	public void setWbhIden(int i) {
+		// TODO Auto-generated method stub
+		
+	}
     
     
     
