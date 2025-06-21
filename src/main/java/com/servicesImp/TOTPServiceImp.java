@@ -17,11 +17,14 @@ import org.springframework.stereotype.Service;
 
 import com.eatthepath.otp.TimeBasedOneTimePasswordGenerator;
 import com.model.TOTP;
+import com.service.TOTPService;
+
 @Service
-public class TOTPServiceImp {
+public class TOTPServiceImp implements TOTPService {
 
     TOTP totp;
 
+    @Override
     public String generateTOTP(String email)
     {
         totp = new TOTP();
@@ -33,8 +36,8 @@ public class TOTPServiceImp {
         }
     }
 
-
-
+ 
+    @Override
     public boolean verifyTOTP(String email, String code)
     {
         try {

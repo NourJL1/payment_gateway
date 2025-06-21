@@ -10,7 +10,6 @@ import lombok.Data;
 @Entity
 @Table(name = "ACCOUNT_LIST")
 @Data
-
 public class ACCOUNT_LIST {
 	 @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)

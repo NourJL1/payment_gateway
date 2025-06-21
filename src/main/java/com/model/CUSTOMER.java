@@ -321,10 +321,10 @@ public class CUSTOMER {
 	
 	 
 
-  public String getName() {
+  /* public String getName() {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'getName'");
-  }
+  } */
 
 }
 	

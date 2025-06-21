@@ -6,11 +6,14 @@ import com.repository.CustomerIdentityRepository;
 import com.repository.CustomerRepository;
 import com.repository.CustomerStatusRepository;
 import com.service.CustomerService;
+import com.service.EmailService;
 import com.service.TOTPService;
 import com.servicesImp.TOTPServiceImp;
 import com.model.*;
 
 import jakarta.validation.Valid;
+import lombok.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -96,21 +99,6 @@ public class CustomerController {
         CUSTOMER savedCustomer = customerRepository.save(customer);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedCustomer);
-    }
-    
-    @PostMapping("/TOTP")
-    public boolean emailTOTP(@RequestBody otpDTO otp) {
-        return customerService.comapreTOTP(otp.cusMailAdress, otp.totp);
-    }
-    
-    public static class otpDTO {
-        private String cusMailAdress;
-        private String totp;
-        
-        public String getCusMailAdress() { return cusMailAdress; }
-        public void setCusMailAdress(String cusMailAdress) { this.cusMailAdress = cusMailAdress; }
-        public String getTotp() { return totp; }
-        public void setTotp(String totp) { this.totp = totp; }
     }
 
     @GetMapping("/{id}")
@@ -289,5 +277,55 @@ public class CustomerController {
         public void setCusPhoneNbr(String cusPhoneNbr) { this.cusPhoneNbr = cusPhoneNbr; }
         public String getRoles() { return roles; }
         public void setRoles(String roles) { this.roles = roles; }
+    }
+
+    @Autowired
+    EmailService emailService;
+    @Autowired
+    TOTPService totpService;
+
+    @PostMapping("/sendEmail")
+    public String sendEmail(@RequestBody emailDTO email) {
+        if (email.getSubject().equals("TOTP"))
+            email.setText("Your verification code is: " +
+                    totpService.generateTOTP(email.getCusMailAdress()) +
+                    "\n The code expires in 150 seconds.");
+        return emailService.sendMail(
+                email.getCusMailAdress(),
+                email.getSubject(),
+                email.getText());
+    }
+
+    @PostMapping("/compareTOTP")
+    public boolean compareTOPT(@RequestBody otpDTO otp) {
+        return customerService.comapreTOTP(otp.cusMailAdress, otp.code);
+    }
+
+    @Data
+    public static class emailDTO {
+        String cusMailAdress;
+        String subject;
+        String text;
+    }
+
+    public static class otpDTO {
+        private String cusMailAdress;
+        private String code;
+
+        public String getCusMailAdress() {
+            return cusMailAdress;
+        }
+
+        public void setCusMailAdress(String cusMailAdress) {
+            this.cusMailAdress = cusMailAdress;
+        }
+
+        public String getCode() {
+            return code;
+        }
+
+        public void setCode(String code) {
+            this.code = code;
+        }
     }
 }
