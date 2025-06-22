@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -285,15 +286,16 @@ public class CustomerController {
     TOTPService totpService;
 
     @PostMapping("/sendEmail")
-    public String sendEmail(@RequestBody emailDTO email) {
+    public ResponseEntity<Map<String, String>> sendEmail(@RequestBody emailDTO email) {
         if (email.getSubject().equals("TOTP"))
             email.setText("Your verification code is: " +
                     totpService.generateTOTP(email.getCusMailAdress()) +
-                    "\n The code expires in 150 seconds.");
-        return emailService.sendMail(
+                    "\n The code expires in 5 minutes.");
+        String result = emailService.sendMail(
                 email.getCusMailAdress(),
                 email.getSubject(),
                 email.getText());
+        return ResponseEntity.ok().body(Map.of("message", result));
     }
 
     @PostMapping("/compareTOTP")

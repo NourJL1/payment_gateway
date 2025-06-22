@@ -43,19 +43,20 @@ public class SecurityConfig {
 
                 // Gestion des autorisations
                 .authorizeHttpRequests(auth -> auth
+                        //.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() 
                         .requestMatchers(HttpMethod.POST, "/api/customers").permitAll()
-                        .requestMatchers( "/api/customers/sendEmail").permitAll()
-                        .requestMatchers( "/api/customers/compareTOTP").permitAll()
+                        .requestMatchers("/api/customers/sendEmail").permitAll()
+                        .requestMatchers("/api/customers/compareTOTP").permitAll()
                         .requestMatchers("/api/customers/login").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/customers/{id}").hasAnyRole("CUSTOMER", "ADMIN")
                         .requestMatchers("/api/wallets/**").hasAnyRole("CUSTOMER", "ADMIN")
                         .anyRequest().authenticated())
                 .exceptionHandling(handling -> handling
-                    .accessDeniedHandler((request, response, accessDeniedException) -> {
-                        System.out.println("Access denied for request: " + request.getRequestURI());
-                        accessDeniedException.printStackTrace();
-                        response.sendError(403, "Access Denied");
-                    }));
+                        .accessDeniedHandler((request, response, accessDeniedException) -> {
+                            System.out.println("Access denied for request: " + request.getRequestURI());
+                            accessDeniedException.printStackTrace();
+                            response.sendError(403, "Access Denied");
+                        }));
 
         return http.build();
     }
@@ -67,14 +68,14 @@ public class SecurityConfig {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:4200")); // URL frontend autorisée
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
-        configuration.setAllowedHeaders(List.of("*"));
-        configuration.setAllowCredentials(true);
-
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowedOrigins(List.of("http://localhost:4200"));
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        config.setAllowedHeaders(List.of("*"));
+        config.setAllowCredentials(true);
+        
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
+        source.registerCorsConfiguration("/**", config);
         return source;
     }
 }
