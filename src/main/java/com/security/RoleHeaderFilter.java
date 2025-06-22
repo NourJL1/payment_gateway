@@ -71,6 +71,8 @@ public class RoleHeaderFilter extends OncePerRequestFilter {
         String path = request.getRequestURI();
         return path.startsWith("/api/customers/login") || 
                path.startsWith("/api/customers")||
-               path.startsWith("/api/fees/**");
+               path.startsWith("/api/fees/**")||
+               path.startsWith("/api/customers/compareTOTP")||
+               path.startsWith("/api/customers/sendEmail");
     }
 }

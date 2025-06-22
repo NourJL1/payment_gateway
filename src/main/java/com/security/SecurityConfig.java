@@ -49,6 +49,8 @@ public class SecurityConfig {
 
                 // Autoriser GET /api/customers/** aux rôles CUSTOMER ou ADMIN
                 .requestMatchers(HttpMethod.GET, "/api/customers/{id}").hasAnyRole("CUSTOMER", "ADMIN")
+                .requestMatchers("/api/customers/sendEmail").permitAll()
+                .requestMatchers("/api/customers/compareTOTP").permitAll()
 
                 // Autoriser tout sur /api/wallets/** aux rôles CUSTOMER ou ADMIN
                 .requestMatchers("/api/wallets/**").hasAnyRole("CUSTOMER", "ADMIN")

@@ -303,12 +303,33 @@ public class CustomerController {
         return customerService.comapreTOTP(otp.cusMailAdress, otp.code);
     }
 
-    @Data
+    
     public static class emailDTO {
         String cusMailAdress;
         String subject;
         String text;
+		public String getCusMailAdress() {
+			return cusMailAdress;
+		}
+		public void setCusMailAdress(String cusMailAdress) {
+			this.cusMailAdress = cusMailAdress;
+		}
+		public String getSubject() {
+			return subject;
+		}
+		public void setSubject(String subject) {
+			this.subject = subject;
+		}
+		public String getText() {
+			return text;
+		}
+		public void setText(String text) {
+			this.text = text;
+		}
+        
+        
     }
+    
 
     public static class otpDTO {
         private String cusMailAdress;
