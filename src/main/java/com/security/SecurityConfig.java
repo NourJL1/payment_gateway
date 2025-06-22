@@ -41,27 +41,22 @@ public class SecurityConfig {
                 // Politique de session sans état (stateless)
                 .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
-            // Gestion des autorisations
-            .authorizeHttpRequests(auth -> auth
-                // Autoriser inscription (POST /api/customers) et login (GET/POST /api/customers/login)
-                .requestMatchers(HttpMethod.POST, "/api/customers").permitAll()
-                .requestMatchers("/api/customers/login").permitAll()
-
-                // Autoriser GET /api/customers/** aux rôles CUSTOMER ou ADMIN
-                .requestMatchers(HttpMethod.GET, "/api/customers/{id}").hasAnyRole("CUSTOMER", "ADMIN")
-                .requestMatchers("/api/customers/sendEmail").permitAll()
-                .requestMatchers("/api/customers/compareTOTP").permitAll()
-
-                // Autoriser tout sur /api/wallets/** aux rôles CUSTOMER ou ADMIN
-                .requestMatchers("/api/wallets/**").hasAnyRole("CUSTOMER", "ADMIN")
-                .requestMatchers("/api/fees/**").permitAll()
-
-                // Toutes les autres requêtes nécessitent une authentification
-                .anyRequest().authenticated()
-            )
-
-            // Ajout du filtre personnalisé (si tu l’as créé)
-            .addFilterBefore(new RoleHeaderFilter(), UsernamePasswordAuthenticationFilter.class);
+                // Gestion des autorisations
+                .authorizeHttpRequests(auth -> auth
+                        //.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() 
+                        .requestMatchers(HttpMethod.POST, "/api/customers").permitAll()
+                        .requestMatchers("/api/customers/sendEmail").permitAll()
+                        .requestMatchers("/api/customers/compareTOTP").permitAll()
+                        .requestMatchers("/api/customers/login").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/customers/{id}").hasAnyRole("CUSTOMER", "ADMIN")
+                        .requestMatchers("/api/wallets/**").hasAnyRole("CUSTOMER", "ADMIN")
+                        .anyRequest().authenticated())
+                .exceptionHandling(handling -> handling
+                        .accessDeniedHandler((request, response, accessDeniedException) -> {
+                            System.out.println("Access denied for request: " + request.getRequestURI());
+                            accessDeniedException.printStackTrace();
+                            response.sendError(403, "Access Denied");
+                        }));
 
         return http.build();
     }
