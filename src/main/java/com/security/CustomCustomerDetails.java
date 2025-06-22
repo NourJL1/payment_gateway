@@ -25,10 +25,6 @@ public class CustomCustomerDetails implements UserDetails {
         
     }
 
-    public String getCusMotDePasse() {
-        return customer.getCusMotDePasse();
-    }
-
     @Override
     public String getUsername() {
         return customer.getUsername();

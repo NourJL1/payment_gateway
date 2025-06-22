@@ -19,7 +19,7 @@ public class TOTP {
 
     public TOTP()
     {
-        this.code = new TimeBasedOneTimePasswordGenerator(Duration.ofSeconds(150));
+        this.code = new TimeBasedOneTimePasswordGenerator(Duration.ofSeconds(300 ));
         try {
             this.key = KeyGenerator.getInstance(code.getAlgorithm()).generateKey();
         } catch (Exception e) {
