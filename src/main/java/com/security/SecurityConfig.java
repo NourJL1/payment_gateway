@@ -55,6 +55,8 @@ public class SecurityConfig {
                 // Autoriser tout sur /api/wallets/** aux rôles CUSTOMER ou ADMIN
                 .requestMatchers("/api/wallets/**").hasAnyRole("CUSTOMER", "ADMIN")
                 .requestMatchers("/api/fees/**").permitAll()
+                .requestMatchers("/api/fee-schemas/**").permitAll()
+                .requestMatchers("/api/fee-rule-types/**").permitAll()
 
                 // Toutes les autres requêtes nécessitent une authentification
                 .anyRequest().authenticated()

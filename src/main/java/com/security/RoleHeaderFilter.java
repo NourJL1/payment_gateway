@@ -70,9 +70,10 @@ public class RoleHeaderFilter extends OncePerRequestFilter {
     private boolean isPublicEndpoint(HttpServletRequest request) {
         String path = request.getRequestURI();
         return path.startsWith("/api/customers/login") || 
-               path.startsWith("/api/customers")||
-               path.startsWith("/api/fees/**")||
-               path.startsWith("/api/customers/compareTOTP")||
-               path.startsWith("/api/customers/sendEmail");
-    }
+               path.startsWith("/api/customers") ||
+               path.startsWith("/api/fees") ||
+               path.startsWith("/api/customers/compareTOTP") ||
+               path.startsWith("/api/customers/sendEmail") ||
+               path.startsWith("/api/fee-schemas")||
+               path.startsWith("/api/fee-rule-types") ;   }
 }
