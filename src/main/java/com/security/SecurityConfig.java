@@ -46,6 +46,8 @@ public class SecurityConfig {
                 // Autoriser inscription (POST /api/customers) et login (GET/POST /api/customers/login)
                 .requestMatchers(HttpMethod.POST, "/api/customers").permitAll()
                 .requestMatchers("/api/customers/login").permitAll()
+                .requestMatchers("/api/customers/resetPassword/**").permitAll()
+                .requestMatchers("/api/customers/email/**").permitAll()
 
                 // Autoriser GET /api/customers/** aux rôles CUSTOMER ou ADMIN
                 .requestMatchers(HttpMethod.GET, "/api/customers/{id}").hasAnyRole("CUSTOMER", "ADMIN")
@@ -60,10 +62,11 @@ public class SecurityConfig {
 
                 // Toutes les autres requêtes nécessitent une authentification
                 .anyRequest().authenticated()
-            )
+            );
 
             // Ajout du filtre personnalisé (si tu l’as créé)
-            .addFilterBefore(new RoleHeaderFilter(), UsernamePasswordAuthenticationFilter.class);
+            //.addFilterBefore(new RoleHeaderFilter(), UsernamePasswordAuthenticationFilter.class);
+            
 
         return http.build();
     }

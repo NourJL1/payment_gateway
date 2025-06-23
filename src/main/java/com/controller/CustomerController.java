@@ -1,4 +1,3 @@
-
 package com.controller;
 
 import com.repository.CityRepository;
@@ -38,9 +37,6 @@ public class CustomerController {
     private CustomerService customerService;
 
     @Autowired
-    private TOTPServiceImp totpServiceImp;
-
-    @Autowired
     private CustomerRepository customerRepository;
 
     @Autowired
@@ -54,6 +50,9 @@ public class CustomerController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @PostMapping
     public ResponseEntity<?> createCustomer(@Valid @RequestBody CUSTOMER customer) {
@@ -95,8 +94,7 @@ public class CustomerController {
         // Réinitialiser l'ID pour éviter une mise à jour involontaire
         customer.setCusCode(null);
 
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        customer.setCusMotDePasse(encoder.encode(customer.getCusMotDePasse()));
+        customer.setCusMotDePasse(passwordEncoder.encode(customer.getCusMotDePasse()));
 
         // Sauvegarder le client
         CUSTOMER savedCustomer = customerRepository.save(customer);
@@ -126,6 +124,18 @@ public class CustomerController {
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @PutMapping("resetPassword/{cusCode}")
+    public ResponseEntity<Map<String, String>>  resetPassword(@PathVariable Integer cusCode, @RequestBody String password) {
+        CUSTOMER customer = customerService.getCustomerById(cusCode)
+                .orElseThrow(() -> new RuntimeException("Customer not found with id: " + cusCode));
+        customer.setCusMotDePasse(passwordEncoder.encode(password));
+        customerRepository.save(customer);
+
+        System.out.println(customer.getCusMotDePasse());
+
+        return ResponseEntity.ok().body(Map.of("message", "success"));
     }
 
     @DeleteMapping("/{id}")
@@ -187,12 +197,8 @@ public class CustomerController {
         return ResponseEntity.ok(customers);
     }
 
-    @Autowired
-    BCryptPasswordEncoder passwordEncoder;
-
     @PostMapping("/login")
     public ResponseEntity<?> loginCustomer(@RequestBody LoginRequest loginRequest) {
-        System.out.println(passwordEncoder.encode("john"));
         System.out.println("Login attempt: username=" + loginRequest.getUsername());
         try {
             Authentication authentication = authenticationManager.authenticate(
@@ -371,17 +377,10 @@ public class CustomerController {
                 break;
 
             default:
-                //text = email.getText();
                 break;
         }
 
         email.setText(text);
-        /*
-         * if (email.getSubject().equals("TOTP"))
-         * email.setText("Your verification code is: " +
-         * totpService.generateTOTP(email.getCusMailAdress()) +
-         * "\n The code expires in 5 minutes.");
-         */
         String result = emailService.sendMail(
                 email.getCusMailAdress(),
                 email.getSubject(),
