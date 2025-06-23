@@ -36,22 +36,22 @@ public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
-    
+
     @Autowired
     private TOTPServiceImp totpServiceImp;
-    
-    @Autowired 
+
+    @Autowired
     private CustomerRepository customerRepository;
-    
-    @Autowired 
+
+    @Autowired
     private CityRepository cityRepository;
-    
-    @Autowired 
+
+    @Autowired
     private CustomerStatusRepository customerStatusRepository;
-    
+
     @Autowired
     private CustomerIdentityRepository customerIdentityRepository;
-    
+
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -65,7 +65,7 @@ public class CustomerController {
         // Vérifier si la ville existe en base de données
         CITY city = cityRepository.findById(customer.getCity().getCtyCode())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "City not found"));
-        
+
         // Vérifier si le statut du client est défini
         if (customer.getStatus() == null || customer.getStatus().getCtsCode() == null) {
             return ResponseEntity.badRequest().body("Customer status is required.");
@@ -80,9 +80,11 @@ public class CustomerController {
         // Assigner le statut au client
         customer.setStatus(status);
 
-        // Vérifier si l'identité est définie et récupérer les informations de l'identité
+        // Vérifier si l'identité est définie et récupérer les informations de
+        // l'identité
         if (customer.getIdentity() != null && customer.getIdentity().getCidCode() != null) {
-            Optional<CUSTOMER_IDENTITY> identityOpt = customerIdentityRepository.findById(customer.getIdentity().getCidCode());
+            Optional<CUSTOMER_IDENTITY> identityOpt = customerIdentityRepository
+                    .findById(customer.getIdentity().getCidCode());
             if (identityOpt.isPresent()) {
                 customer.setIdentity(identityOpt.get());
             } else {
@@ -184,17 +186,19 @@ public class CustomerController {
         List<CUSTOMER> customers = customerService.searchCustomers(name, email, phone, cityCode, countryCode);
         return ResponseEntity.ok(customers);
     }
-    
+
+    @Autowired
+    BCryptPasswordEncoder passwordEncoder;
+
     @PostMapping("/login")
     public ResponseEntity<?> loginCustomer(@RequestBody LoginRequest loginRequest) {
+        System.out.println(passwordEncoder.encode("john"));
         System.out.println("Login attempt: username=" + loginRequest.getUsername());
         try {
             Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                    loginRequest.getUsername(),
-                    loginRequest.getPassword()
-                )
-            );
+                    new UsernamePasswordAuthenticationToken(
+                            loginRequest.getUsername(),
+                            loginRequest.getPassword()));
             System.out.println("Authentication successful: " + loginRequest.getUsername());
             SecurityContextHolder.getContext().setAuthentication(authentication);
             Optional<CUSTOMER> userOpt = customerRepository.findByUsername(loginRequest.getUsername());
@@ -203,39 +207,52 @@ public class CustomerController {
                 String roles = "ROLE_" + customer.getRole().getName(); // e.g., "ROLE_CUSTOMER"
                 System.out.println("User found: cusCode=" + customer.getCusCode() + ", roles=" + roles);
                 return ResponseEntity.ok(new ResponseDTO(
-                    "Login successful",
-                    customer.getCusCode().toString(),
-                    customer.getUsername(),
-                    customer.getFullName(),
-                    customer.getRole(),
-                    customer.getCusMailAddress(),
-                    customer.getIdentificationType(),
-                    customer.getCusPhoneNbr(),
-                    roles
-                ));
+                        "Login successful",
+                        customer.getCusCode().toString(),
+                        customer.getUsername(),
+                        customer.getFullName(),
+                        customer.getRole(),
+                        customer.getCusMailAddress(),
+                        customer.getIdentificationType(),
+                        customer.getCusPhoneNbr(),
+                        roles));
             } else {
                 System.out.println("User not found: " + loginRequest.getUsername());
-                return ResponseEntity.status(404).body(new ResponseDTO("User not found", null, null, null, null, null, null, null, null));
+                return ResponseEntity.status(404)
+                        .body(new ResponseDTO("User not found", null, null, null, null, null, null, null, null));
             }
         } catch (BadCredentialsException e) {
             System.out.println("Invalid credentials for: " + loginRequest.getUsername());
-            return ResponseEntity.status(401).body(new ResponseDTO("Invalid credentials", null, null, null, null, null, null, null, null));
+            return ResponseEntity.status(401)
+                    .body(new ResponseDTO("Invalid credentials", null, null, null, null, null, null, null, null));
         } catch (Exception e) {
             System.out.println("Login error: " + e.getMessage());
-            return ResponseEntity.status(500).body(new ResponseDTO(e.getMessage(), null, null, null, null, null, null, null, null));
+            return ResponseEntity.status(500)
+                    .body(new ResponseDTO(e.getMessage(), null, null, null, null, null, null, null, null));
         }
     }
-    
+
     public static class LoginRequest {
         private String username;
         private String password;
 
-        public String getUsername() { return username; }
-        public void setUsername(String username) { this.username = username; }
-        public String getPassword() { return password; }
-        public void setPassword(String password) { this.password = password; }
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
     }
-    
+
     public static class ResponseDTO {
         private String message;
         private String cusCode;
@@ -247,8 +264,8 @@ public class CustomerController {
         private String cusPhoneNbr;
         private String roles; // Changed from token to roles
 
-        public ResponseDTO(String message, String cusCode, String username, String fullname, Role role, 
-                           String cusMailAddress, IdentificationType identificationType, String cusPhoneNbr, String roles) {
+        public ResponseDTO(String message, String cusCode, String username, String fullname, Role role,
+                String cusMailAddress, IdentificationType identificationType, String cusPhoneNbr, String roles) {
             this.message = message;
             this.cusCode = cusCode;
             this.username = username;
@@ -260,24 +277,77 @@ public class CustomerController {
             this.roles = roles;
         }
 
-        public String getMessage() { return message; }
-        public void setMessage(String message) { this.message = message; }
-        public String getCusCode() { return cusCode; }
-        public void setCusCode(String cusCode) { this.cusCode = cusCode; }
-        public String getUsername() { return username; }
-        public void setUsername(String username) { this.username = username; }
-        public String getFullname() { return fullname; }
-        public void setFullname(String fullname) { this.fullname = fullname; }
-        public Role getRole() { return role; }
-        public void setRole(Role role) { this.role = role; }
-        public String getCusMailAddress() { return cusMailAddress; }
-        public void setCusMailAddress(String cusMailAddress) { this.cusMailAddress = cusMailAddress; }
-        public IdentificationType getIdentificationType() { return identificationType; }
-        public void setIdentificationType(IdentificationType identificationType) { this.identificationType = identificationType; }
-        public String getCusPhoneNbr() { return cusPhoneNbr; }
-        public void setCusPhoneNbr(String cusPhoneNbr) { this.cusPhoneNbr = cusPhoneNbr; }
-        public String getRoles() { return roles; }
-        public void setRoles(String roles) { this.roles = roles; }
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+
+        public String getCusCode() {
+            return cusCode;
+        }
+
+        public void setCusCode(String cusCode) {
+            this.cusCode = cusCode;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public String getFullname() {
+            return fullname;
+        }
+
+        public void setFullname(String fullname) {
+            this.fullname = fullname;
+        }
+
+        public Role getRole() {
+            return role;
+        }
+
+        public void setRole(Role role) {
+            this.role = role;
+        }
+
+        public String getCusMailAddress() {
+            return cusMailAddress;
+        }
+
+        public void setCusMailAddress(String cusMailAddress) {
+            this.cusMailAddress = cusMailAddress;
+        }
+
+        public IdentificationType getIdentificationType() {
+            return identificationType;
+        }
+
+        public void setIdentificationType(IdentificationType identificationType) {
+            this.identificationType = identificationType;
+        }
+
+        public String getCusPhoneNbr() {
+            return cusPhoneNbr;
+        }
+
+        public void setCusPhoneNbr(String cusPhoneNbr) {
+            this.cusPhoneNbr = cusPhoneNbr;
+        }
+
+        public String getRoles() {
+            return roles;
+        }
+
+        public void setRoles(String roles) {
+            this.roles = roles;
+        }
     }
 
     @Autowired
@@ -287,10 +357,31 @@ public class CustomerController {
 
     @PostMapping("/sendEmail")
     public ResponseEntity<Map<String, String>> sendEmail(@RequestBody emailDTO email) {
-        if (email.getSubject().equals("TOTP"))
-            email.setText("Your verification code is: " +
-                    totpService.generateTOTP(email.getCusMailAdress()) +
-                    "\n The code expires in 5 minutes.");
+        String text = "";
+        switch (email.getSubject()) {
+            case "TOTP":
+                text = "Your verification code is: " +
+                        totpService.generateTOTP(email.getCusMailAdress()) +
+                        "\n The code expires in 5 minutes.";
+                break;
+            case "Reset Password":
+                text = "Click this link to reset your password: \n" +
+                        "http://localhost:4200/reset-password\n\n" +
+                        "If you didn't request this, please ignore this email.";
+                break;
+
+            default:
+                //text = email.getText();
+                break;
+        }
+
+        email.setText(text);
+        /*
+         * if (email.getSubject().equals("TOTP"))
+         * email.setText("Your verification code is: " +
+         * totpService.generateTOTP(email.getCusMailAdress()) +
+         * "\n The code expires in 5 minutes.");
+         */
         String result = emailService.sendMail(
                 email.getCusMailAdress(),
                 email.getSubject(),
@@ -303,33 +394,36 @@ public class CustomerController {
         return customerService.comapreTOTP(otp.cusMailAdress, otp.code);
     }
 
-    
     public static class emailDTO {
         String cusMailAdress;
         String subject;
         String text;
-		public String getCusMailAdress() {
-			return cusMailAdress;
-		}
-		public void setCusMailAdress(String cusMailAdress) {
-			this.cusMailAdress = cusMailAdress;
-		}
-		public String getSubject() {
-			return subject;
-		}
-		public void setSubject(String subject) {
-			this.subject = subject;
-		}
-		public String getText() {
-			return text;
-		}
-		public void setText(String text) {
-			this.text = text;
-		}
-        
-        
+
+        public String getCusMailAdress() {
+            return cusMailAdress;
+        }
+
+        public void setCusMailAdress(String cusMailAdress) {
+            this.cusMailAdress = cusMailAdress;
+        }
+
+        public String getSubject() {
+            return subject;
+        }
+
+        public void setSubject(String subject) {
+            this.subject = subject;
+        }
+
+        public String getText() {
+            return text;
+        }
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
     }
-    
 
     public static class otpDTO {
         private String cusMailAdress;
