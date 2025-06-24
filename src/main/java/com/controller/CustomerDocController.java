@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,6 +35,12 @@ public class CustomerDocController {
         CUSTOMER_DOC createdCustomerDoc = customerDocService.save(customerDoc);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCustomerDoc);
     }
+
+    /* @PostMapping
+    public ResponseEntity<CUSTOMER_DOC> createCustomerDoc(@RequestParam MultipartFile customerDoc) {
+        CUSTOMER_DOC createdCustomerDoc = customerDocService.save(customerDoc);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdCustomerDoc);
+    } */
 
     @PutMapping("/{id}")
     public ResponseEntity<CUSTOMER_DOC> updateCustomerDoc(@PathVariable Integer id, @RequestBody CUSTOMER_DOC customerDoc) {

@@ -1,5 +1,6 @@
 package com.servicesImp;
 import com.model.CITY;
+import com.model.COUNTRY;
 import com.repository.CityRepository;
 import com.repository.CountryRepository;
 import com.service.CityService;
@@ -28,6 +29,7 @@ public class CityServiceImp implements CityService {
 	public Optional<CITY> findById(Integer id) {
 		return cityRepository.findById(id);
 	}
+    
 
 	@Override
     public CITY save(CITY city) {
@@ -58,4 +60,9 @@ public class CityServiceImp implements CityService {
         }
         return cityRepository.searchCities(searchWord);
 
-}}
+}
+
+    @Override
+    public List<CITY> findByCountry(COUNTRY country) {
+        return cityRepository.findByCountry(country);
+    }}
