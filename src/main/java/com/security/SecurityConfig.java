@@ -41,32 +41,36 @@ public class SecurityConfig {
                 // Politique de session sans état (stateless)
                 .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
-            // Gestion des autorisations
-            .authorizeHttpRequests(auth -> auth
-                // Autoriser inscription (POST /api/customers) et login (GET/POST /api/customers/login)
-                .requestMatchers(HttpMethod.POST, "/api/customers").permitAll()
-                .requestMatchers("/api/customers/login").permitAll()
-                .requestMatchers("/api/customers/resetPassword/**").permitAll()
-                .requestMatchers("/api/customers/email/**").permitAll()
+                // Gestion des autorisations
+                /* .authorizeHttpRequests(auth -> auth
+                        // Autoriser inscription (POST /api/customers) et login (GET/POST
+                        // /api/customers/login)
+                        .requestMatchers(HttpMethod.POST, "/api/customers").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/customers").permitAll()
+                        .requestMatchers("/api/customers/login").permitAll()
+                        .requestMatchers("/api/customers/resetPassword/**").permitAll()
+                        .requestMatchers("/api/customers/email/**").permitAll()
+                        .requestMatchers("/api/countries").permitAll()
+                        .requestMatchers("/api/cities/getByCountry/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/wallet-types").permitAll()
 
-                // Autoriser GET /api/customers/** aux rôles CUSTOMER ou ADMIN
-                .requestMatchers(HttpMethod.GET, "/api/customers/{id}").hasAnyRole("CUSTOMER", "ADMIN")
-                .requestMatchers("/api/customers/sendEmail").permitAll()
-                .requestMatchers("/api/customers/compareTOTP").permitAll()
+                        // Autoriser GET /api/customers/** aux rôles CUSTOMER ou ADMIN
+                        .requestMatchers(HttpMethod.GET, "/api/customers/{id}").hasAnyRole("CUSTOMER", "ADMIN")
+                        .requestMatchers("/api/customers/sendEmail").permitAll()
+                        .requestMatchers("/api/customers/compareTOTP").permitAll()
 
-                // Autoriser tout sur /api/wallets/** aux rôles CUSTOMER ou ADMIN
-                .requestMatchers("/api/wallets/**").hasAnyRole("CUSTOMER", "ADMIN")
-                .requestMatchers("/api/fees/**").permitAll()
-                .requestMatchers("/api/fee-schemas/**").permitAll()
-                .requestMatchers("/api/fee-rule-types/**").permitAll()
+                        // Autoriser tout sur /api/wallets/** aux rôles CUSTOMER ou ADMIN
+                        .requestMatchers("/api/wallets/**").hasAnyRole("CUSTOMER", "ADMIN")
+                        .requestMatchers("/api/fees/**").permitAll()
+                        .requestMatchers("/api/fee-schemas/**").permitAll()
+                        .requestMatchers("/api/fee-rule-types/**").permitAll()
 
-                // Toutes les autres requêtes nécessitent une authentification
-                .anyRequest().authenticated()
-            );
+                        // Toutes les autres requêtes nécessitent une authentification
+                        .anyRequest().authenticated()) */;
 
-            // Ajout du filtre personnalisé (si tu l’as créé)
-            //.addFilterBefore(new RoleHeaderFilter(), UsernamePasswordAuthenticationFilter.class);
-            
+        // Ajout du filtre personnalisé (si tu l’as créé)
+        // .addFilterBefore(new RoleHeaderFilter(),
+        // UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -83,7 +87,7 @@ public class SecurityConfig {
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
-        
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
         return source;

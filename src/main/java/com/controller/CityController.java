@@ -1,6 +1,9 @@
 package com.controller;
 import com.model.CITY;
+import com.model.COUNTRY;
 import com.service.CityService;
+import com.service.CountryService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -8,12 +11,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+
 @RestController
 @RequestMapping("/api/cities")
 public class CityController {
 
     @Autowired
     private CityService cityService;
+
+    @Autowired
+    private CountryService countryService;
 
     @GetMapping
     public List<CITY> getAllCities() {
@@ -26,6 +33,14 @@ public class CityController {
         return city.map(ResponseEntity::ok)
                    .orElseGet(() -> ResponseEntity.notFound().build());
     }
+
+    @GetMapping("/getByCountry/{id}")
+    public ResponseEntity<List<CITY>> getMethodName(@PathVariable Integer id) {
+        COUNTRY country = countryService.findById(id).orElseThrow(() -> new RuntimeException("Country not found with id: " + id));
+        List<CITY> cities = cityService.findByCountry(country);
+        return ResponseEntity.ok().body(cities);
+    }
+    
 
     @PostMapping
     public ResponseEntity<CITY> createCity(@RequestBody CITY city) {

@@ -7,6 +7,7 @@ import com.repository.CustomerStatusRepository;
 import com.service.CustomerService;
 import com.service.EmailService;
 import com.service.TOTPService;
+import com.service.WalletService;
 import com.servicesImp.TOTPServiceImp;
 import com.model.*;
 
@@ -25,6 +26,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -35,6 +37,9 @@ public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
+
+    @Autowired
+    private WalletService walletService;
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -66,22 +71,22 @@ public class CustomerController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "City not found"));
 
         // Vérifier si le statut du client est défini
-        if (customer.getStatus() == null || customer.getStatus().getCtsCode() == null) {
+        /* if (customer.getStatus() == null || customer.getStatus().getCtsCode() == null) {
             return ResponseEntity.badRequest().body("Customer status is required.");
-        }
+        } */
 
         // Récupérer le statut en base de données en utilisant `ctsCode`
-        CUSTOMER_STATUS status = customerStatusRepository.findByCtsCode(customer.getStatus().getCtsCode());
+        /* CUSTOMER_STATUS status = customerStatusRepository.findByCtsCode(customer.getStatus().getCtsCode());
         if (status == null) {
             return ResponseEntity.badRequest().body("Invalid customer status.");
-        }
+        } */
 
         // Assigner le statut au client
-        customer.setStatus(status);
+        customer.setStatus(customerStatusRepository.findByCtsCode(3));
 
         // Vérifier si l'identité est définie et récupérer les informations de
         // l'identité
-        if (customer.getIdentity() != null && customer.getIdentity().getCidCode() != null) {
+        /* if (customer.getIdentity() != null && customer.getIdentity().getCidCode() != null) {
             Optional<CUSTOMER_IDENTITY> identityOpt = customerIdentityRepository
                     .findById(customer.getIdentity().getCidCode());
             if (identityOpt.isPresent()) {
@@ -89,17 +94,31 @@ public class CustomerController {
             } else {
                 return ResponseEntity.badRequest().body("Customer Identity not found.");
             }
-        }
+        } */
+
+        customer.setIdentity(customerIdentityRepository.findById(1).get());
 
         // Réinitialiser l'ID pour éviter une mise à jour involontaire
         customer.setCusCode(null);
+        
 
         customer.setCusMotDePasse(passwordEncoder.encode(customer.getCusMotDePasse()));
 
         // Sauvegarder le client
         CUSTOMER savedCustomer = customerRepository.save(customer);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedCustomer);
+        if (customer.getRole().getId()!=4) {
+            
+         WALLET wallet = new WALLET(null, "WAL", null, null, null, null, null, null, null, customer, null, null, null, null, null, null, null, null, null);
+            List<WALLET> wallets = new ArrayList();
+            wallets.add(walletService.createWallet(wallet));
+            
+            
+            //wallet.setWalletType(null);
+        }
+
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(customer);
     }
 
     @GetMapping("/{id}")
