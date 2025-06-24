@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -66,7 +67,9 @@ public class SecurityConfig {
                         .requestMatchers("/api/fee-rule-types/**").permitAll()
 
                         // Toutes les autres requêtes nécessitent une authentification
-                        .anyRequest().authenticated()) */;
+                        .anyRequest().authenticated()) */
+                .httpBasic(Customizer.withDefaults());
+        ;
 
         // Ajout du filtre personnalisé (si tu l’as créé)
         // .addFilterBefore(new RoleHeaderFilter(),
