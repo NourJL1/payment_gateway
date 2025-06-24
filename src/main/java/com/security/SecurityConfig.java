@@ -51,6 +51,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/wallet-types/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/countries/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/cities/**").permitAll() // Simplified for all methods
+                        .requestMatchers("/api/customers/**").permitAll() // Simplified for all methods
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(new RoleHeaderFilter(), UsernamePasswordAuthenticationFilter.class);
