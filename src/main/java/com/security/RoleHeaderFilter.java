@@ -88,7 +88,10 @@ public class RoleHeaderFilter extends OncePerRequestFilter {
                           path.startsWith("/api/fee-rule-types") ||
                           path.startsWith("/api/operation-types") ||
                           path.startsWith("/api/wallet-status") ||
-                          path.startsWith("/api/wallet-categories");
+                          path.startsWith("/api/wallet-categories")||
+                          path.startsWith("/api/wallet-types")||
+                          path.startsWith("/api/countries")||
+                          path.startsWith("/api/cities");
         logger.debug("isPublicEndpoint check: {} {} -> {}", method, path, isPublic);
         return isPublic;
     }

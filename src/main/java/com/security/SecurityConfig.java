@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -36,57 +35,25 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-<<<<<<< HEAD
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/api/customers").permitAll()
                         .requestMatchers("/api/customers/login").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/customers/{id}").hasAnyRole("CUSTOMER", "ADMIN")
                         .requestMatchers("/api/customers/sendEmail").permitAll()
                         .requestMatchers("/api/customers/compareTOTP").permitAll()
-=======
-
-                // Gestion des autorisations
-                /* .authorizeHttpRequests(auth -> auth
-                        // Autoriser inscription (POST /api/customers) et login (GET/POST
-                        // /api/customers/login)
-                        .requestMatchers(HttpMethod.POST, "/api/customers").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/customers").permitAll()
-                        .requestMatchers("/api/customers/login").permitAll()
-                        .requestMatchers("/api/customers/resetPassword/**").permitAll()
-                        .requestMatchers("/api/customers/email/**").permitAll()
-                        .requestMatchers("/api/countries").permitAll()
-                        .requestMatchers("/api/cities/getByCountry/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/wallet-types").permitAll()
-
-                        // Autoriser GET /api/customers/** aux rôles CUSTOMER ou ADMIN
-                        .requestMatchers(HttpMethod.GET, "/api/customers/{id}").hasAnyRole("CUSTOMER", "ADMIN")
-                        .requestMatchers("/api/customers/sendEmail").permitAll()
-                        .requestMatchers("/api/customers/compareTOTP").permitAll()
-
-                        // Autoriser tout sur /api/wallets/** aux rôles CUSTOMER ou ADMIN
->>>>>>> 341ce17a0255abc3aa938d36ca625623e01e6045
                         .requestMatchers("/api/wallets/**").hasAnyRole("CUSTOMER", "ADMIN")
                         .requestMatchers("/api/fees/**").permitAll()
                         .requestMatchers("/api/fee-schemas/**").permitAll()
                         .requestMatchers("/api/fee-rule-types/**").permitAll()
-<<<<<<< HEAD
                         .requestMatchers("/api/operation-types/**").permitAll()
                         .requestMatchers("/api/wallet-status/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/wallet-categories/**").permitAll() // Simplified for all methods
+                        .requestMatchers("/api/wallet-types/**").permitAll() // Simplified for all methods
+                        .requestMatchers("/api/countries/**").permitAll() // Simplified for all methods
+                        .requestMatchers("/api/cities/**").permitAll() // Simplified for all methods
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(new RoleHeaderFilter(), UsernamePasswordAuthenticationFilter.class);
-=======
-
-                        // Toutes les autres requêtes nécessitent une authentification
-                        .anyRequest().authenticated()) */
-                .httpBasic(Customizer.withDefaults());
-        ;
-
-        // Ajout du filtre personnalisé (si tu l’as créé)
-        // .addFilterBefore(new RoleHeaderFilter(),
-        // UsernamePasswordAuthenticationFilter.class);
->>>>>>> 341ce17a0255abc3aa938d36ca625623e01e6045
 
         return http.build();
     }
@@ -103,12 +70,8 @@ public class SecurityConfig {
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
-<<<<<<< HEAD
         config.setExposedHeaders(List.of("X-Roles"));
         
-=======
-
->>>>>>> 341ce17a0255abc3aa938d36ca625623e01e6045
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
         return source;
