@@ -109,7 +109,25 @@ public class CustomerController {
 
         if (customer.getRole().getId()!=4) {
             
-         WALLET wallet = new WALLET(null, "WAL", null, null, null, null, null, null, null, customer, null, null, null, null, null, null, null, null, null);
+         WALLET wallet = new WALLET(null, 
+         "WAL", 
+         null, 
+         null, 
+         0.f, 
+         0.f, 
+         0.f, 
+         null, 
+         null, 
+         customer, 
+         null, 
+         null, 
+         null, 
+         null, 
+         null, 
+         null, 
+         null, 
+         null, 
+         null);
             List<WALLET> wallets = new ArrayList();
             wallets.add(walletService.createWallet(wallet));
             
