@@ -32,38 +32,25 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http, UserDetailsService userDetailsService)
             throws Exception {
         http
-                // Désactivation CSRF pour API REST stateless
                 .csrf(csrf -> csrf.disable())
-
-                // Configuration CORS
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-
-                // Politique de session sans état (stateless)
                 .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-
-            // Gestion des autorisations
-            .authorizeHttpRequests(auth -> auth
-                // Autoriser inscription (POST /api/customers) et login (GET/POST /api/customers/login)
-                .requestMatchers(HttpMethod.POST, "/api/customers").permitAll()
-                .requestMatchers("/api/customers/login").permitAll()
-
-                // Autoriser GET /api/customers/** aux rôles CUSTOMER ou ADMIN
-                .requestMatchers(HttpMethod.GET, "/api/customers/{id}").hasAnyRole("CUSTOMER", "ADMIN")
-                .requestMatchers("/api/customers/sendEmail").permitAll()
-                .requestMatchers("/api/customers/compareTOTP").permitAll()
-
-                // Autoriser tout sur /api/wallets/** aux rôles CUSTOMER ou ADMIN
-                .requestMatchers("/api/wallets/**").hasAnyRole("CUSTOMER", "ADMIN")
-                .requestMatchers("/api/fees/**").permitAll()
-                .requestMatchers("/api/fee-schemas/**").permitAll()
-                .requestMatchers("/api/fee-rule-types/**").permitAll()
-
-                // Toutes les autres requêtes nécessitent une authentification
-                .anyRequest().authenticated()
-            )
-
-            // Ajout du filtre personnalisé (si tu l’as créé)
-            .addFilterBefore(new RoleHeaderFilter(), UsernamePasswordAuthenticationFilter.class);
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(HttpMethod.POST, "/api/customers").permitAll()
+                        .requestMatchers("/api/customers/login").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/customers/{id}").hasAnyRole("CUSTOMER", "ADMIN")
+                        .requestMatchers("/api/customers/sendEmail").permitAll()
+                        .requestMatchers("/api/customers/compareTOTP").permitAll()
+                        .requestMatchers("/api/wallets/**").hasAnyRole("CUSTOMER", "ADMIN")
+                        .requestMatchers("/api/fees/**").permitAll()
+                        .requestMatchers("/api/fee-schemas/**").permitAll()
+                        .requestMatchers("/api/fee-rule-types/**").permitAll()
+                        .requestMatchers("/api/operation-types/**").permitAll()
+                        .requestMatchers("/api/wallet-status/**").permitAll() // Simplified for all methods
+                        .requestMatchers("/api/wallet-categories/**").permitAll() // Simplified for all methods
+                        .anyRequest().authenticated()
+                )
+                .addFilterBefore(new RoleHeaderFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -80,6 +67,7 @@ public class SecurityConfig {
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
+        config.setExposedHeaders(List.of("X-Roles"));
         
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);

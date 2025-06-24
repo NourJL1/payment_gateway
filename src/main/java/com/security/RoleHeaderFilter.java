@@ -23,9 +23,13 @@ public class RoleHeaderFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         
+        String path = request.getRequestURI();
+        String method = request.getMethod();
+        logger.debug("Processing request: {} {}", method, path);
+
         // Skip authentication for public endpoints
         if (isPublicEndpoint(request)) {
-            logger.debug("Skipping authentication for public endpoint: {}", request.getRequestURI());
+            logger.debug("Skipping authentication for public endpoint: {} {}", method, path);
             filterChain.doFilter(request, response);
             return;
         }
@@ -61,7 +65,12 @@ public class RoleHeaderFilter extends OncePerRequestFilter {
                 );
                 SecurityContextHolder.getContext().setAuthentication(auth);
                 logger.info("Authenticated request with roles: {}", authorities);
+            } else {
+                logger.warn("No valid roles found in X-Roles header: {}", rolesHeader);
             }
+        } else {
+            logger.debug("No X-Roles header provided for non-public endpoint: {} {}", method, path);
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN); // Explicitly set 403 for non-public endpoints
         }
 
         filterChain.doFilter(request, response);
@@ -69,11 +78,18 @@ public class RoleHeaderFilter extends OncePerRequestFilter {
 
     private boolean isPublicEndpoint(HttpServletRequest request) {
         String path = request.getRequestURI();
-        return path.startsWith("/api/customers/login") || 
-               path.startsWith("/api/customers") ||
-               path.startsWith("/api/fees") ||
-               path.startsWith("/api/customers/compareTOTP") ||
-               path.startsWith("/api/customers/sendEmail") ||
-               path.startsWith("/api/fee-schemas")||
-               path.startsWith("/api/fee-rule-types") ;   }
+        String method = request.getMethod();
+        boolean isPublic = path.startsWith("/api/customers/login") ||
+                          (path.startsWith("/api/customers") && method.equals("POST")) ||
+                          path.startsWith("/api/customers/sendEmail") ||
+                          path.startsWith("/api/customers/compareTOTP") ||
+                          path.startsWith("/api/fees") ||
+                          path.startsWith("/api/fee-schemas") ||
+                          path.startsWith("/api/fee-rule-types") ||
+                          path.startsWith("/api/operation-types") ||
+                          path.startsWith("/api/wallet-status") ||
+                          path.startsWith("/api/wallet-categories");
+        logger.debug("isPublicEndpoint check: {} {} -> {}", method, path, isPublic);
+        return isPublic;
+    }
 }
