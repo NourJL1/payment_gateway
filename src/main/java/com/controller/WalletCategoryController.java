@@ -1,4 +1,5 @@
 package com.controller;
+
 import com.model.WALLET_CATEGORY;
 import com.service.WalletCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,13 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/wallet-categories")
 public class WalletCategoryController {
-	
-	@Autowired
+    
+    @Autowired
     private WalletCategoryService walletCategoryService;
 
     // ➤ Récupérer toutes les catégories
@@ -47,9 +47,9 @@ public class WalletCategoryController {
 
     // ➤ Supprimer une catégorie
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteWalletCategory(@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteWalletCategory(@PathVariable Integer id) {
         walletCategoryService.deleteWalletCategory(id);
-        return ResponseEntity.ok("Wallet Category deleted successfully.");
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/search")
@@ -57,5 +57,4 @@ public class WalletCategoryController {
         List<WALLET_CATEGORY> walletCategories = walletCategoryService.searchWalletCategories(searchWord);
         return ResponseEntity.ok(walletCategories);
     }
-
 }
