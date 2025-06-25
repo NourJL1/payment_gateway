@@ -52,6 +52,9 @@ public class SecurityConfig {
                         .requestMatchers("/api/countries/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/cities/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/customers/**").permitAll() // Simplified for all methods
+                        .requestMatchers("/api/periodicities/**").permitAll() // Simplified for all methods
+                        .requestMatchers("/api/fee-rule/**").permitAll() // Simplified for all methods
+                        .requestMatchers("/api/vat-rates/**").permitAll() // Simplified for all methods
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(new RoleHeaderFilter(), UsernamePasswordAuthenticationFilter.class);
