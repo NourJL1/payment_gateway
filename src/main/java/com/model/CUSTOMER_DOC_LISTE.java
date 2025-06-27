@@ -32,9 +32,6 @@ public class CUSTOMER_DOC_LISTE {
 
 	    
 	    @OneToMany(mappedBy = "customerDocListe", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	    
-
-	    
 	    private List<CUSTOMER_DOC> customerDocs;
 	    
 	    

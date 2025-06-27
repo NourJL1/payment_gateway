@@ -61,6 +61,8 @@ public class CustomerController {
 
     @PostMapping
     public ResponseEntity<?> createCustomer(@Valid @RequestBody CUSTOMER customer) {
+
+        System.out.println(customer.toString());
         // Vérifier si la ville est définie
         if (customer.getCity() == null || customer.getCity().getCtyCode() == null) {
             return ResponseEntity.badRequest().body("City information is required.");
@@ -69,6 +71,10 @@ public class CustomerController {
         // Vérifier si la ville existe en base de données
         CITY city = cityRepository.findById(customer.getCity().getCtyCode())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "City not found"));
+
+        if (customerRepository.existsByCusMailAddress(customer.getCusMailAddress())) {
+            return ResponseEntity.badRequest().body("email already in use");
+        }
 
         // Vérifier si le statut du client est défini
         /* if (customer.getStatus() == null || customer.getStatus().getCtsCode() == null) {
@@ -96,7 +102,14 @@ public class CustomerController {
             }
         } */
 
-        customer.setIdentity(customerIdentityRepository.findById(1).get());
+        /* if (customer.getIdentity() != null)
+        {
+            customerIdentityRepository.save(customer.getIdentity());
+        } */
+
+       // customer.setIdentity(customerIdentityRepository.findById(1).get());
+
+        
 
         // Réinitialiser l'ID pour éviter une mise à jour involontaire
         customer.setCusCode(null);
@@ -107,36 +120,12 @@ public class CustomerController {
         // Sauvegarder le client
         CUSTOMER savedCustomer = customerRepository.save(customer);
 
-        if (customer.getRole().getId()!=4) {
-            
-         WALLET wallet = new WALLET(null, 
-         "WAL", 
-         null, 
-         null, 
-         0.f, 
-         0.f, 
-         0.f, 
-         null, 
-         null, 
-         customer, 
-         null, 
-         null, 
-         null, 
-         null, 
-         null, 
-         null, 
-         null, 
-         null, 
-         null);
-            List<WALLET> wallets = new ArrayList();
-            wallets.add(walletService.createWallet(wallet));
-            
-            
-            //wallet.setWalletType(null);
-        }
+        //savedCustomer.getWallets().forEach( wallet -> wallet.setCustomer(savedCustomer));
+
+        //customer.getWallets().get(0).setCustomer(customer);
 
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(customer);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedCustomer);
     }
 
     @GetMapping("/{id}")
@@ -164,7 +153,7 @@ public class CustomerController {
     }
 
     @PutMapping("resetPassword/{cusCode}")
-    public ResponseEntity<Map<String, String>>  resetPassword(@PathVariable Integer cusCode, @RequestBody String password) {
+    public ResponseEntity<Map<String, String>> resetPassword(@PathVariable Integer cusCode, @RequestBody String password) {
         CUSTOMER customer = customerService.getCustomerById(cusCode)
                 .orElseThrow(() -> new RuntimeException("Customer not found with id: " + cusCode));
         customer.setCusMotDePasse(passwordEncoder.encode(password));
@@ -256,22 +245,21 @@ public class CustomerController {
                         customer.getFullName(),
                         customer.getRole(),
                         customer.getCusMailAddress(),
-                        customer.getIdentificationType(),
                         customer.getCusPhoneNbr(),
                         roles));
             } else {
                 System.out.println("User not found: " + loginRequest.getUsername());
                 return ResponseEntity.status(404)
-                        .body(new ResponseDTO("User not found", null, null, null, null, null, null, null, null));
+                        .body(new ResponseDTO("User not found", null, null, null, null, null, null, null));
             }
         } catch (BadCredentialsException e) {
             System.out.println("Invalid credentials for: " + loginRequest.getUsername());
             return ResponseEntity.status(401)
-                    .body(new ResponseDTO("Invalid credentials", null, null, null, null, null, null, null, null));
+                    .body(new ResponseDTO("Invalid credentials", null, null, null, null, null, null, null));
         } catch (Exception e) {
             System.out.println("Login error: " + e.getMessage());
             return ResponseEntity.status(500)
-                    .body(new ResponseDTO(e.getMessage(), null, null, null, null, null, null, null, null));
+                    .body(new ResponseDTO(e.getMessage(), null, null, null, null, null, null, null));
         }
     }
 
@@ -303,19 +291,17 @@ public class CustomerController {
         private String fullname;
         private Role role;
         private String cusMailAddress;
-        private IdentificationType identificationType;
         private String cusPhoneNbr;
         private String roles; // Changed from token to roles
 
         public ResponseDTO(String message, String cusCode, String username, String fullname, Role role,
-                String cusMailAddress, IdentificationType identificationType, String cusPhoneNbr, String roles) {
+                String cusMailAddress,  String cusPhoneNbr, String roles) {
             this.message = message;
             this.cusCode = cusCode;
             this.username = username;
             this.fullname = fullname;
             this.role = role;
             this.cusMailAddress = cusMailAddress;
-            this.identificationType = identificationType;
             this.cusPhoneNbr = cusPhoneNbr;
             this.roles = roles;
         }
@@ -366,14 +352,6 @@ public class CustomerController {
 
         public void setCusMailAddress(String cusMailAddress) {
             this.cusMailAddress = cusMailAddress;
-        }
-
-        public IdentificationType getIdentificationType() {
-            return identificationType;
-        }
-
-        public void setIdentificationType(IdentificationType identificationType) {
-            this.identificationType = identificationType;
         }
 
         public String getCusPhoneNbr() {

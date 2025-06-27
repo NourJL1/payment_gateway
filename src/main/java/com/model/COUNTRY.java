@@ -26,7 +26,7 @@ public class COUNTRY {
     private String ctrLabe;  // Change type to String
     
     
-    @OneToMany(mappedBy = "country", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "country", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<CITY> cities;
 

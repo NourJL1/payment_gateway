@@ -18,8 +18,8 @@ public class CustomerStatusController {
     private CustomerStatusService customerStatusService;
 
     @GetMapping
-    public List<CUSTOMER_STATUS> getAllCustomerStatuses() {
-        return customerStatusService.findAll();
+    public ResponseEntity<List<CUSTOMER_STATUS>> getAllCustomerStatuses() {
+        return ResponseEntity.ok().body(customerStatusService.findAll());
     }
 
     @GetMapping("/{id}")

@@ -18,8 +18,8 @@ public class DocTypeController {
     private DocTypeService docTypeService;
 
     @GetMapping
-    public List<DOC_TYPE> getAllDocTypes() {
-        return docTypeService.findAll();
+    public ResponseEntity<List<DOC_TYPE>> getAllDocTypes() {
+        return ResponseEntity.ok().body(docTypeService.findAll());
     }
 
     @GetMapping("/{id}")

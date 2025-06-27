@@ -24,7 +24,7 @@ public class CITY {
 
     
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JsonIgnore
+    //@JsonIgnore
     @JoinColumn(name = "CTY_CTR_CODE", referencedColumnName = "CTR_CODE", nullable = false)
     private COUNTRY country;
     

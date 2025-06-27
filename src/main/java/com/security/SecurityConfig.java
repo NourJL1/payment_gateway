@@ -37,10 +37,15 @@ public class SecurityConfig {
                 .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/api/customers").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/customers").permitAll()
                         .requestMatchers("/api/customers/login").permitAll()
+                        .requestMatchers("/api/customers/**").permitAll()//.hasAnyRole("ADMIN", "CUSTOMER") // Simplified for all methods
+                        .requestMatchers("/api/customer-status/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/customers/{id}").hasAnyRole("CUSTOMER", "ADMIN")
                         .requestMatchers("/api/customers/sendEmail").permitAll()
                         .requestMatchers("/api/customers/compareTOTP").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/wallets").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/customer-identity-type").permitAll() 
                         .requestMatchers("/api/wallets/**").hasAnyRole("CUSTOMER", "ADMIN")
                         .requestMatchers("/api/fees/**").permitAll()
                         .requestMatchers("/api/fee-schemas/**").permitAll()
@@ -51,10 +56,10 @@ public class SecurityConfig {
                         .requestMatchers("/api/wallet-types/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/countries/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/cities/**").permitAll() // Simplified for all methods
-                        .requestMatchers("/api/customers/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/periodicities/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/fee-rule/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/vat-rates/**").permitAll() // Simplified for all methods
+                        .requestMatchers("/api/doc-type").permitAll() // Simplified for all methods
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(new RoleHeaderFilter(), UsernamePasswordAuthenticationFilter.class);

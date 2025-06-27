@@ -17,8 +17,8 @@ public class CustomerIdentityTypeController {
 	    private CustomerIdentityTypeService customerIdentityTypeService;
 
 	    @GetMapping
-	    public List<CUSTOMER_IDENTITY_TYPE> getAllCustomerIdentityTypes() {
-	        return customerIdentityTypeService.findAll();
+	    public ResponseEntity<List<CUSTOMER_IDENTITY_TYPE>> getAllCustomerIdentityTypes() {
+	        return ResponseEntity.ok().body(customerIdentityTypeService.findAll());
 	    }
 
 	    @GetMapping("/{id}")
