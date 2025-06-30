@@ -27,13 +27,11 @@ public class CUSTOMER_DOC {
 	    @ManyToOne
 	    @JoinColumn(name = "CDO_CDL_CODE", referencedColumnName = "CDL_CODE", nullable = false)
 	    @JsonIgnore
-
 	    private CUSTOMER_DOC_LISTE customerDocListe;
 	    
 	    @ManyToOne
 	    @JoinColumn(name = "CDO_DTY_CODE", referencedColumnName = "DTY_CODE", nullable = false)
 	    @JsonIgnore
-
 	    private DOC_TYPE docType;
 
 		public String getCdoIden() {

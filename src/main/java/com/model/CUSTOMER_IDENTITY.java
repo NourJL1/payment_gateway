@@ -27,18 +27,12 @@ public class CUSTOMER_IDENTITY {
 	    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	    @JoinColumn(name = "CID_CIT_CODE", nullable = false)
 	    @NotNull(message = "Customer Identity Type is required")
-	    
-
-	    
 	    private CUSTOMER_IDENTITY_TYPE customerIdentityType;
 
 
 	    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
 	    @JoinColumn(name = "CID_CDL_CODE", nullable = false)
 	    @NotNull(message = "Customer Document List is required")
-
-	    
-	    
 	    private CUSTOMER_DOC_LISTE customerDocListe;
 	    
 	    public boolean isEmpty() {

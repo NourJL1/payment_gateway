@@ -70,7 +70,7 @@ public class WALLET {
 	    // Relation *..1 avec CUSTOMER
 	    @ManyToOne
 	    @JoinColumn(name = "WAL_CUS_CODE", referencedColumnName = "CUS_CODE")
-	    @JsonIgnore
+	    //@JsonIgnore
 	    private CUSTOMER customer;
 
 	    // Relation *..1 avec WALLET_STATUS
@@ -89,8 +89,6 @@ public class WALLET {
 	    // Relation *..1 avec WALLET_CATEGORY
 	    @ManyToOne
 	    @JoinColumn(name = "WAL_WCA_CODE", referencedColumnName = "WCA_CODE")
-
-	    
 	    private WALLET_CATEGORY walletCategory;
 
 	    // Relation 1..0-* avec WALLET_OPERATIONS
@@ -199,7 +197,7 @@ public class WALLET {
 		}
 
 		public CUSTOMER getCustomer() {
-			return customer;
+			return this.customer;
 		}
 
 		public void setCustomer(CUSTOMER customer) {

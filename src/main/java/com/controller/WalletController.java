@@ -146,6 +146,13 @@ public class WalletController {
      */
 
     // Créer un nouveau wallet
+    /*     @PostMapping
+    public ResponseEntity<?> createWallet(@Valid @RequestBody WALLET wallet) {
+        if(wallet.getCustomer() == null)
+            return ResponseEntity.badRequest().body("customer not found");
+        return ResponseEntity.ok().body(walletService.createWallet(wallet));
+    } */
+
     @PostMapping
     public ResponseEntity<WALLET> createWallet(@Valid @RequestBody WALLET wallet) {
         // Vérification et récupération des entités liées avant de créer le wallet
@@ -153,15 +160,15 @@ public class WalletController {
         Optional<WALLET_STATUS> walletStatusOpt = walletStatusRepository
                 .findById(3/* wallet.getWalletStatus().getWstCode() */);
         Optional<WALLET_TYPE> walletTypeOpt = walletTypeRepository.findById(wallet.getWalletType().getWtyCode());
-        Optional<WALLET_CATEGORY> walletCategoryOpt = walletCategoryRepository
+        /* Optional<WALLET_CATEGORY> walletCategoryOpt = walletCategoryRepository
                 .findById(wallet.getWalletCategory().getWcaCode());
         Optional<CARD_LIST> cardListOpt = wallet.getCardList() != null
                 ? cardListRepository.findById(wallet.getCardList().getCliCode())
-                : Optional.empty();
+                : Optional.empty(); */
 
         // Vérification des dépendances
-        if (customerOpt.isEmpty() || walletStatusOpt.isEmpty() || walletTypeOpt.isEmpty()
-                || walletCategoryOpt.isEmpty()) {
+        if (customerOpt.isEmpty() || walletStatusOpt.isEmpty() || walletTypeOpt.isEmpty()/* 
+                || walletCategoryOpt.isEmpty() */) {
             return ResponseEntity.badRequest().body(null);
         }
 
@@ -169,8 +176,8 @@ public class WalletController {
         wallet.setCustomer(customerOpt.get());
         wallet.setWalletStatus(walletStatusOpt.get());
         wallet.setWalletType(walletTypeOpt.get());
-        wallet.setWalletCategory(walletCategoryOpt.get());
-        cardListOpt.ifPresent(wallet::setCardList);
+        //wallet.setWalletCategory(walletCategoryOpt.get());
+        //cardListOpt.ifPresent(wallet::setCardList);
 
         // Étape 1 : création initiale du wallet
         WALLET savedWallet = walletService.createWallet(wallet);
@@ -192,6 +199,7 @@ public class WalletController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(updatedWallet);
     }
+
 
     // 🔹 Mettre à jour un wallet existant
     @PutMapping("/{id}")

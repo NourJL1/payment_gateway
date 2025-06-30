@@ -7,9 +7,6 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import com.model.IdentificationType;
-
 import com.model.Role;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -89,30 +86,12 @@ public class CUSTOMER {
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "CUS_CTR_CODE", referencedColumnName = "CTR_CODE")
     private COUNTRY country;
-    
-    @Enumerated(EnumType.STRING)
-    private IdentificationType identificationType;
-
-    
-
-	public IdentificationType getIdentificationType() {
-		return identificationType;
-	}
-
-	public void setIdentificationType(IdentificationType identificationType) {
-		this.identificationType = identificationType;
-	}
-
-	
-
-	
-
 
 
 	// Relation 1..* avec WALLET
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @ToString.Exclude
-
+	@JsonIgnore
     private List<WALLET> wallets;
     
 
@@ -241,7 +220,7 @@ public class CUSTOMER {
 
 	
 	public Integer getCusCode() {
-		return cusCode;
+		return this.cusCode;
 	}
 
 	public void setCusCode(Integer cusCode) {

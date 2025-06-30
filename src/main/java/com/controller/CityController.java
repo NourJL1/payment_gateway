@@ -44,6 +44,7 @@ public class CityController {
 
     @PostMapping
     public ResponseEntity<CITY> createCity(@RequestBody CITY city) {
+        System.out.println(city.toString());
         CITY createdCity = cityService.save(city);
         return ResponseEntity.ok(createdCity);
     }
