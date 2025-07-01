@@ -4,6 +4,7 @@ import com.repository.CityRepository;
 import com.repository.CustomerIdentityRepository;
 import com.repository.CustomerRepository;
 import com.repository.CustomerStatusRepository;
+import com.service.CustomerDocListeService;
 import com.service.CustomerService;
 import com.service.EmailService;
 import com.service.TOTPService;
@@ -49,9 +50,9 @@ public class CustomerController {
 
     @Autowired
     private CustomerStatusRepository customerStatusRepository;
-
-    @Autowired
-    private CustomerIdentityRepository customerIdentityRepository;
+    
+    @Autowired 
+    private CustomerDocListeService customerDocListeService;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -88,7 +89,7 @@ public class CustomerController {
         } */
 
         // Assigner le statut au client
-        customer.setStatus(customerStatusRepository.findByCtsCode(3));
+        customer.setStatus(customerStatusRepository.findByCtsCode(1));
 
         // Vérifier si l'identité est définie et récupérer les informations de
         // l'identité
@@ -109,7 +110,7 @@ public class CustomerController {
 
        // customer.setIdentity(customerIdentityRepository.findById(1).get());
 
-        
+        customerDocListeService.save(customer.getIdentity().getCustomerDocListe());
 
         // Réinitialiser l'ID pour éviter une mise à jour involontaire
         customer.setCusCode(null);

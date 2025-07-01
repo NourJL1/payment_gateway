@@ -1,6 +1,9 @@
 package com.servicesImp;
+
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
@@ -33,123 +36,90 @@ public class CustomerDocServiceImp implements CustomerDocService {
     @Autowired
     private CustomerDocRepository customerDocRepository;
 
-	@Override
-	public List<CUSTOMER_DOC> findAll() {
-		 return customerDocRepository.findAll();
-	}
-
-	@Override
-	public Optional<CUSTOMER_DOC> findById(Integer id) {
-		 return customerDocRepository.findById(id);
-	}
-
-	@Value("${document.storage.path}")
-    private String storageDir ;
-
-	private static SecretKey secretKey;
-        static{
-            try{
-                /* KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
-                keyGenerator.init(128);
-                secretKey = keyGenerator.generateKey(); */
-                String key = "@myEncryptionKey"; 
-                secretKey = new SecretKeySpec(key.getBytes(), "AES");
-        }
-        catch(Exception e)
-        {System.out.println(e.getClass().toString() + ":\n" + e.getMessage());}
+    @Override
+    public List<CUSTOMER_DOC> findAll() {
+        return customerDocRepository.findAll();
     }
 
-	public static byte[] encrypt(MultipartFile data) throws Exception 
-    {
+    @Override
+    public Optional<CUSTOMER_DOC> findById(Integer id) {
+        return customerDocRepository.findById(id);
+    }
+
+    @Value("${document.storage.path}")
+    private String storageDir;
+
+    private static SecretKey secretKey;
+    static {
+        try {
+            /*
+             * KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+             * keyGenerator.init(128);
+             * secretKey = keyGenerator.generateKey();
+             */
+            String key = "@myEncryptionKey";
+            secretKey = new SecretKeySpec(key.getBytes(), "AES");
+        } catch (Exception e) {
+            System.out.println(e.getClass().toString() + ":\n" + e.getMessage());
+        }
+    }
+
+    public static byte[] encrypt(MultipartFile data) throws Exception {
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.ENCRYPT_MODE, secretKey);
         return cipher.doFinal(data.getBytes());
     }
 
-    public static byte[] decrypt(byte[] data) throws Exception 
-    {
+    public static byte[] decrypt(byte[] data) throws Exception {
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.DECRYPT_MODE, secretKey);
         return cipher.doFinal(data);
     }
 
-	@Override
-	public CUSTOMER_DOC save(CUSTOMER_DOC customerDoc) {
+    @Override
+    public CUSTOMER_DOC save(CUSTOMER_DOC customerDoc, MultipartFile file) {
 
-		/* String userDir = storageDir + "/" + user.getRole()  + "/" + File.separator + user.getId() + File.separator;
-
-        try
-        {
-            // create directory if it doesn't exist
-            if(!Files.exists(Paths.get(userDir)))
-                Files.createDirectory(Paths.get(userDir));
-
-            // delete document if it already exist
-            if(customerDocRepository.existsByUserAndType(user, type))
-            {
-                Files.deleteIfExists(new File(userDir+type+getFileExtension(file.getOriginalFilename())).toPath());
-                documentRepository.delete(documentRepository.findByUserAndType(user, type));
+        try {
+            Path customerDocListePath = Paths.get(storageDir + "/" + customerDoc.getCustomerDocListe().getCdlLabe());
+            // Create directory if it doesn't exist
+            if (!Files.exists(customerDocListePath)) {
+                Files.createDirectories(customerDocListePath);
             }
-       
-        }
-        catch(Exception e)
-        {
-            return ResponseEntity.badRequest().body("file storage directory error: " + e.getClass().toString() + ":\n" + e.getMessage());
-        }
 
-        // check if file is attached
-        if(file == null || file.isEmpty())
-            return ResponseEntity.badRequest().body("no file was attached");
+            // encryption
+            byte[] encryptedFile;
+            encryptedFile = encrypt(file);
 
-        Document document = new Document(
-            null,
-            user,
-            getFileExtension(file.getOriginalFilename()),
-            type,
-            false
-        );
+            File filePath = new File(customerDocListePath + "/" + customerDoc.getCdoLabe() + ".enc");
 
-        // encryption
-        byte[] encryptedFile;
-        try
-        {
-            encryptedFile = encrypt(file); 
-        }
-        catch(Exception e)
-        {
-            return ResponseEntity.badRequest().body("file encryption error: " + e.getClass().toString() + ":\n" + e.getMessage());
-        }
+            System.out.println("----file path: " + filePath);
 
-        File filePath = new File(userDir + type + ".enc");
-        try 
-        {
             FileOutputStream fos = new FileOutputStream(filePath);
-            fos.write(encryptedFile); 
+            fos.write(encryptedFile);
             fos.close();
-        }
-        catch(Exception e)
-        {
-            return ResponseEntity.badRequest().body("file storage error: " + e.getClass().toString() + ":\n" + e.getMessage());
+
+            return customerDocRepository.save(customerDoc);
+        } catch (Exception e) {
+            System.out.println(e.getClass() + "---" + e.getMessage());
+            return null;
+            // return ResponseEntity.badRequest().body("file storage error: " +
+            // e.getClass().toString() + ":\n" + e.getMessage());
         }
 
-        // save credentials in db
-        documentRepository.save(document); */
-        //return ResponseEntity.ok().body("file stored successfully");
-		 return customerDocRepository.save(customerDoc);
-	}
+    }
 
-	@Override
-	public void deleteById(Integer id) {
-		 customerDocRepository.deleteById(id);
-		
-	}
-  @Override
+    @Override
+    public void deleteById(Integer id) {
+        customerDocRepository.deleteById(id);
+
+    }
+
+    @Override
     public List<CUSTOMER_DOC> searchCustomerDocs(String searchWord) {
         if (searchWord == null || searchWord.trim().isEmpty()) {
             return customerDocRepository.findAll();
         }
         return customerDocRepository.searchCustomerDocs(searchWord);
     }
-    
 
 }

@@ -29,8 +29,6 @@ public class CUSTOMER_DOC_LISTE {
 	    @Column(name = "CDL_LABE", nullable = false)
 	    private String cdlLabe;
 	    @JsonIgnore
-
-	    
 	    @OneToMany(mappedBy = "customerDocListe", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	    private List<CUSTOMER_DOC> customerDocs;
 	    

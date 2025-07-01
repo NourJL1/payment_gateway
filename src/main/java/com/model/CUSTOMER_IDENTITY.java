@@ -30,7 +30,7 @@ public class CUSTOMER_IDENTITY {
 	    private CUSTOMER_IDENTITY_TYPE customerIdentityType;
 
 
-	    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
+	    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
 	    @JoinColumn(name = "CID_CDL_CODE", nullable = false)
 	    @NotNull(message = "Customer Document List is required")
 	    private CUSTOMER_DOC_LISTE customerDocListe;

@@ -23,13 +23,9 @@ public class CustmerDocListeServiceImp implements CustomerDocListeService {
 
 	@Value("${document.storage.path}")
     private String storageDir ;
-    private String allCustomerDir, allMerchantDir, allInternDir;
 
     @PostConstruct
     public void init() {
-        this.allCustomerDir = storageDir + File.separator + "Customers" + File.separator;
-        this.allMerchantDir = storageDir + File.separator + "Merchants" + File.separator;
-        this.allInternDir = storageDir + File.separator + "Internes" + File.separator;
     }
 
 	@Override
@@ -45,13 +41,7 @@ public class CustmerDocListeServiceImp implements CustomerDocListeService {
 
 	@Override
 	public CUSTOMER_DOC_LISTE save(CUSTOMER_DOC_LISTE customerDocListe) {
-		//String cdlPath = storageDir + "/" + user.getRole()  + "/" + File.separator + user.getId() + File.separator;
-		try {
-			Files.createDirectory(Paths.get(customerDocListe.getCdlLabe()));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		return customerDocListeRepository.save(customerDocListe);
 	}
 

@@ -60,6 +60,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/fee-rule/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/vat-rates/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/doc-type").permitAll() // Simplified for all methods
+                        .requestMatchers("/api/customer-doc/**").permitAll() // Simplified for all methods
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(new RoleHeaderFilter(), UsernamePasswordAuthenticationFilter.class);
