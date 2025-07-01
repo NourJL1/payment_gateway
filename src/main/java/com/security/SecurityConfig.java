@@ -59,8 +59,17 @@ public class SecurityConfig {
                         .requestMatchers("/api/periodicities/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/fee-rule/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/vat-rates/**").permitAll() // Simplified for all methods
+<<<<<<< HEAD
+                        .requestMatchers("/api/cards/**").permitAll()
+                        .requestMatchers("/api/card-lists/**").permitAll()
+                        .requestMatchers("/api/card-types/**").permitAll()
+                        .requestMatchers("/api/accounts/**").permitAll()
+                        .requestMatchers("/api/account-lists/**").permitAll()
+                        .requestMatchers("/api/account-types/**").permitAll()
+                        .requestMatchers("/api/banks/**").permitAll()
+=======
                         .requestMatchers("/api/doc-type").permitAll() // Simplified for all methods
-                        .requestMatchers("/api/customer-doc/**").permitAll() // Simplified for all methods
+>>>>>>> c87c5d10daabb596599af34181e4e95ba031f4b7
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(new RoleHeaderFilter(), UsernamePasswordAuthenticationFilter.class);
