@@ -1,9 +1,16 @@
 package com.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.model.CUSTOMER_DOC;
 import com.service.CustomerDocService;
+
+import lombok.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,9 +37,21 @@ public class CustomerDocController {
                           .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
-    public ResponseEntity<CUSTOMER_DOC> createCustomerDoc(@RequestBody CUSTOMER_DOC customerDoc) {
-        CUSTOMER_DOC createdCustomerDoc = customerDocService.save(customerDoc);
+    @Data
+    public class CustomerDocDTO {
+        private CUSTOMER_DOC customerDoc;
+        private MultipartFile file;    
+    }
+
+    @PostMapping //(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<CUSTOMER_DOC> createCustomerDoc(@RequestPart("customerDoc") String customerDocJson, @RequestPart("file") MultipartFile file) throws JsonMappingException, JsonProcessingException {
+        
+        CUSTOMER_DOC customerDoc = (new ObjectMapper()).readValue(customerDocJson, CUSTOMER_DOC.class);
+
+        //System.out.println("----------------------------------"+customerDoc);
+        //System.out.println("----------------------------------"+file);
+        
+        CUSTOMER_DOC createdCustomerDoc = customerDocService.save(customerDoc, file);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCustomerDoc);
     }
 
@@ -43,12 +62,12 @@ public class CustomerDocController {
     } */
 
     @PutMapping("/{id}")
-    public ResponseEntity<CUSTOMER_DOC> updateCustomerDoc(@PathVariable Integer id, @RequestBody CUSTOMER_DOC customerDoc) {
+    public ResponseEntity<CUSTOMER_DOC> updateCustomerDoc(@PathVariable Integer id, @RequestBody CUSTOMER_DOC customerDoc, MultipartFile file) {
         if (!customerDocService.findById(id).isPresent()) {
             return ResponseEntity.notFound().build();
         }
         
-        CUSTOMER_DOC updatedCustomerDoc = customerDocService.save(customerDoc);
+        CUSTOMER_DOC updatedCustomerDoc = customerDocService.save(customerDoc, file);
         return ResponseEntity.ok(updatedCustomerDoc);
     }
 
