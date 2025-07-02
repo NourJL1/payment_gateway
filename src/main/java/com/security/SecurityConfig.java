@@ -59,7 +59,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/periodicities/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/fee-rule/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/vat-rates/**").permitAll() // Simplified for all methods
-<<<<<<< HEAD
+
 
                         .requestMatchers("/api/cards/**").permitAll()
                         .requestMatchers("/api/card-lists/**").permitAll()
@@ -73,10 +73,10 @@ public class SecurityConfig {
                         .requestMatchers("/api/wallet-category-operation-type-map/api/wallet-category-operation-type-map/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/wallet-operation-type-map/**").permitAll() // Simplified for all methods
 
-=======
+
                         .requestMatchers("/api/doc-type").permitAll() // Simplified for all methods
                         .requestMatchers("/api/customer-doc/**").permitAll() // Simplified for all methods
->>>>>>> ce809e2967f5f86fba45edcc2817fe2f1b55dce1
+
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(new RoleHeaderFilter(), UsernamePasswordAuthenticationFilter.class);
