@@ -1,6 +1,8 @@
 package com.model;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,6 +22,7 @@ public class DOC_TYPE {
     private String dtyLabe;
     
     @OneToMany(mappedBy = "docType", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
     private List<CUSTOMER_DOC> customerDocs;
 
 	public String getDtyIden() {
