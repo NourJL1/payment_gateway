@@ -12,13 +12,10 @@ public interface WalletService {
     List<WALLET> getAllWallets();
     WALLET updateWallet(Integer walCode, WALLET wallet);
     void deleteWallet(Integer walCode);
-   // List<WALLET> getWalletsByCustomerCode(String customerCode);
-    //List<WALLET> getWalletsByStatus(String status);
-    
     List<WALLET> searchByCustomerCusCode(Integer cusCode);
     List<WALLET> searchByCustomerCusIden(String cusIden);
     List<WALLET> searchByCustomerCusMailAddress(String cusMailAddress);
-      List<WALLET> findByWalIden(String walIden);
+    List<WALLET> findByWalIden(String walIden);
     List<WALLET> findByWalLabe(String walLabe);
     List<WALLET> findByWalKey(Integer walKey);
     List<WALLET> findByWalEffBal(Float walEffBal);
@@ -30,7 +27,7 @@ public interface WalletService {
     List<WALLET> findByWalletType_WtyCode(Integer wtyCode);
     List<WALLET> findByWalletCategory_WcaCode(Integer wcaCode);
     List<WALLET> findByLastUpdatedDate(LocalDateTime lastUpdatedDate);
-    public void deleteByWalIden(String walIden);
-
+    void deleteByWalIden(String walIden);
     List<WALLET> searchWallets(String searchWord);
+    Long countActiveWallets();
 }
