@@ -49,6 +49,10 @@ public class WalletController {
         long count = walletRepository.count();
         return ResponseEntity.ok(count);
     }
+    @GetMapping("/count/active")
+    public ResponseEntity<Long> getActiveWalletCount() {
+        return new ResponseEntity<>(walletService.countActiveWallets(), HttpStatus.OK);
+    }
 
     // 🔹 Récupérer tous les wallets
     @GetMapping

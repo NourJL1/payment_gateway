@@ -59,6 +59,9 @@ public class SecurityConfig {
                         .requestMatchers("/api/periodicities/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/fee-rule/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/vat-rates/**").permitAll() // Simplified for all methods
+
+
+
                         .requestMatchers("/api/cards/**").permitAll()
                         .requestMatchers("/api/card-lists/**").permitAll()
                         .requestMatchers("/api/card-types/**").permitAll()
