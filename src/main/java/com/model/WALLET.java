@@ -1,11 +1,8 @@
 package com.model;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -23,8 +20,6 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 
 
 @Entity
@@ -68,7 +63,7 @@ public class WALLET {
 	    private Integer walFinId;
 
 	    // Relation *..1 avec CUSTOMER
-	    @ManyToOne
+	    @OneToOne
 	    @JoinColumn(name = "WAL_CUS_CODE", referencedColumnName = "CUS_CODE")
 	    //@JsonIgnore
 	    private CUSTOMER customer;

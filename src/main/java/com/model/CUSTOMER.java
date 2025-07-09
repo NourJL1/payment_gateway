@@ -1,18 +1,10 @@
 package com.model;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.model.Role;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,23 +12,22 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.JoinTable;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
 @Table(name = "customers", uniqueConstraints = {@UniqueConstraint(columnNames = "CUS_CODE"), @UniqueConstraint(columnNames = "username")})
-@Data // Utilisation de Lombok pour générer les getters et setters
-
+//@Data // Utilisation de Lombok pour générer les getters et setters
 public class CUSTOMER {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CUS_CODE")
     private Integer cusCode;
+
+	@Column(name = "CUS_IDEN")//, nullable = false)
+    private String cusIden ;
 
     private String cusFirstName;
     private String cusMidName;
@@ -46,7 +37,6 @@ public class CUSTOMER {
     private String cusMotDePasse;
     private String cusPhoneNbr;
 	private String cusAddress;
-    private String cusIden ;
     private Integer cusFinId;
     
     
@@ -89,10 +79,10 @@ public class CUSTOMER {
 
 
 	// Relation 1..* avec WALLET
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @ToString.Exclude
 	@JsonIgnore
-    private List<WALLET> wallets;
+    private WALLET wallet;
     
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -210,12 +200,12 @@ public class CUSTOMER {
 
 	
 
-	public List<WALLET> getWallets() {
-		return wallets;
+	public WALLET getWallet() {
+		return wallet;
 	}
 
-	public void setWallets(List<WALLET> wallets) {
-		this.wallets = wallets;
+	public void setWallet(WALLET wallet) {
+		this.wallet = wallet;
 	}
 
 	
@@ -233,7 +223,7 @@ public class CUSTOMER {
 	public CUSTOMER(Integer cusCode, String cusFirstName, String cusMidName, String cusLastName, String cusMailAddress,
 			String cusMotDePasse, String cusPhoneNbr, String cusAddress, String cusIden, Integer cusFinId,
 			List<CUSTOMER_CONTACTS> contacts, CUSTOMER_STATUS status, CUSTOMER_IDENTITY identity, CITY city,
-			COUNTRY country, List<WALLET> wallets, List<WALLET_OPERATIONS> walletOperations) {
+			COUNTRY country, WALLET wallet, List<WALLET_OPERATIONS> walletOperations) {
 		super();
 		this.cusCode = cusCode;
 		this.cusFirstName = cusFirstName;
@@ -250,7 +240,7 @@ public class CUSTOMER {
 		this.identity = identity;
 		this.city = city;
 		this.country = country;
-		this.wallets = wallets;
+		this.wallet = wallet;
 		this.walletOperations = walletOperations;
 	}
 
@@ -297,13 +287,6 @@ public class CUSTOMER {
 
 	    return fullName.toString().trim();
 	}
-	
-	 
-
-  /* public String getName() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getName'");
-  } */
 
 }
 	

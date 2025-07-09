@@ -116,7 +116,13 @@ public class CustomerServiceImp implements CustomerService {
 
 	}
 
-	@Override
+	/* @Override
+	public List<CUSTOMER> getCustomerByWallet(Integer walCode) {
+		return customerRepository.findByWallet();
+
+	} */
+
+	/* @Override
 	public List<CUSTOMER> getCustomersWithWallets() {
 		return customerRepository.findByWalletsIsNotEmpty();
 
@@ -126,7 +132,7 @@ public class CustomerServiceImp implements CustomerService {
 	public List<CUSTOMER> getCustomersWithoutWallets() {
 		return customerRepository.findByWalletsIsEmpty();
 
-	}
+	} */
 
 	public List<CUSTOMER> searchCustomers(String name, String email, String phone) {
 		return customerRepository.searchCustomers(name, email, phone);
@@ -135,20 +141,17 @@ public class CustomerServiceImp implements CustomerService {
 
 	@Override
 	public List<CUSTOMER> getCustomersByCity(Integer cityCode) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<CUSTOMER> getCustomersByCountry(Integer countryCode) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<CUSTOMER> searchCustomers(String name, String email, String phone, Integer cityCode,
 			Integer countryCode) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

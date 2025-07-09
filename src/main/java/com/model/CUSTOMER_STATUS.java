@@ -1,7 +1,6 @@
 package com.model;
 import jakarta.persistence.*;
 
-import lombok.Data;
 @Entity
 @Table(name = "customer_status") // Optionnel, mais permet de préciser le nom de la table en base de données
 public class CUSTOMER_STATUS {

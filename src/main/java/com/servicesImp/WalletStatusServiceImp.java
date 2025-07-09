@@ -1,6 +1,5 @@
 package com.servicesImp;
 import com.model.WALLET_STATUS;
-import com.repository.WalletOperationsRepository;
 import com.repository.WalletStatusRepository;
 import com.service.WalletStatusService;
 import org.springframework.beans.factory.annotation.Autowired;

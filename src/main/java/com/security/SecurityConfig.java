@@ -59,9 +59,6 @@ public class SecurityConfig {
                         .requestMatchers("/api/periodicities/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/fee-rule/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/vat-rates/**").permitAll() // Simplified for all methods
-<<<<<<< HEAD
-
-
                         .requestMatchers("/api/cards/**").permitAll()
                         .requestMatchers("/api/card-lists/**").permitAll()
                         .requestMatchers("/api/card-types/**").permitAll()
@@ -69,19 +66,11 @@ public class SecurityConfig {
                         .requestMatchers("/api/account-lists/**").permitAll()
                         .requestMatchers("/api/account-types/**").permitAll()
                         .requestMatchers("/api/banks/**").permitAll()
-
-                        .requestMatchers("/api/doc-type").permitAll() // Simplified for all methods
                         .requestMatchers("/api/wallet-category-operation-type-map/api/wallet-category-operation-type-map/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/wallet-operation-type-map/**").permitAll() // Simplified for all methods
-
-
-                        .requestMatchers("/api/doc-type").permitAll() // Simplified for all methods
+                        .requestMatchers("/api/doc-type/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/customer-doc/**").permitAll() // Simplified for all methods
 
-=======
-                        .requestMatchers("/api/doc-type").permitAll() // Simplified for all methods
-                        .requestMatchers("/api/customer-doc/**").permitAll() // Simplified for all methods
->>>>>>> 14ee6b18726ff6b2bc434ae9529599b92976d91d
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(new RoleHeaderFilter(), UsernamePasswordAuthenticationFilter.class);

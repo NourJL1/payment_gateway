@@ -1,13 +1,11 @@
 package com.servicesImp;
 import com.model.WALLET_CATEGORY_OPERATION_TYPE_MAP;
 import com.repository.*;
-import com.model.*;
 import com.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 @Service
 
 public class WalletCategoryOperationTypeMapServiceImp implements WalletCategoryOperationTypeMapService  {

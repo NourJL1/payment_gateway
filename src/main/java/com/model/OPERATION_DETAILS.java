@@ -3,9 +3,6 @@ package com.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.util.Date;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "OPERATION_DETAILS")
 @Data

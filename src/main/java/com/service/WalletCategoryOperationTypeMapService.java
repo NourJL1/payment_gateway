@@ -1,8 +1,6 @@
 package com.service;
 import com.model.WALLET_CATEGORY_OPERATION_TYPE_MAP;
 import java.util.List;
-import java.util.Optional;
-import com.model.*;
 
 public interface WalletCategoryOperationTypeMapService {
 	List<WALLET_CATEGORY_OPERATION_TYPE_MAP> getAll();

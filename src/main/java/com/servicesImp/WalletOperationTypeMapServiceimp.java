@@ -8,8 +8,6 @@ import com.model.WALLET_OPERATION_TYPE_MAP;
 import com.repository.*;
 import com.service.*;
 
-import jakarta.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
