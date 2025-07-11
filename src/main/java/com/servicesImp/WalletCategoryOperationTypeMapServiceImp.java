@@ -31,13 +31,7 @@ public class WalletCategoryOperationTypeMapServiceImp implements WalletCategoryO
 	    public WALLET_CATEGORY_OPERATION_TYPE_MAP update(Integer id, WALLET_CATEGORY_OPERATION_TYPE_MAP mapping) {
 	        return repository.findById(id).map(existing -> {
 	            existing.setLimitMax(mapping.getLimitMax());
-	            existing.setFeeIden(mapping.getFeeIden());
-	            existing.setFeeLabel(mapping.getFeeLabel());
-	            existing.setFeeMinLimit(mapping.getFeeMinLimit());
-	            existing.setFeeAmount(mapping.getFeeAmount());
-	            existing.setFeeMaxLimit(mapping.getFeeMaxLimit());
-	            existing.setFeePercentage(mapping.getFeePercentage());
-	            existing.setFeeMaxAmount(mapping.getFeeMaxAmount());
+	            
 	            existing.setFinancialInstitutionId(mapping.getFinancialInstitutionId());
 	            return repository.save(existing);
 	        }).orElse(null);

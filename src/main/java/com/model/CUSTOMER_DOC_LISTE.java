@@ -1,6 +1,9 @@
 package com.model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -40,6 +43,12 @@ public class CUSTOMER_DOC_LISTE {
 
 		public void setCdlIden(String cdlIden) {
 			this.cdlIden = cdlIden;
+		}
+
+		@PrePersist
+		public void setCdlIden() {
+			this.cdlIden = "CDL-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
+					+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
 		}
 
 		public String getCdlLabe() {

@@ -34,6 +34,11 @@ public class CUSTOMER_STATUS {
 		this.ctsIden = ctsIden;
 	}
 
+	@PrePersist
+	public void setCtsIden() {
+		this.ctsIden = "CTS-" + ctsLabe.substring(0, 3).toUpperCase();
+	}
+
 	public String getCtsLabe() {
 		return ctsLabe;
 	}

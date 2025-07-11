@@ -1,5 +1,11 @@
 package com.model;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.UUID;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.CascadeType;
@@ -13,82 +19,80 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.ToString;
 
 @Entity
-@Table(name = "customers", uniqueConstraints = {@UniqueConstraint(columnNames = "CUS_CODE"), @UniqueConstraint(columnNames = "username")})
-//@Data // Utilisation de Lombok pour générer les getters et setters
+@Table(name = "customers", uniqueConstraints = { @UniqueConstraint(columnNames = "CUS_CODE"),
+		@UniqueConstraint(columnNames = "username") })
+// @Data // Utilisation de Lombok pour générer les getters et setters
 public class CUSTOMER {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CUS_CODE")
-    private Integer cusCode;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "CUS_CODE")
+	private Integer cusCode;
 
-	@Column(name = "CUS_IDEN")//, nullable = false)
-    private String cusIden ;
+	@Column(name = "CUS_IDEN") // , nullable = false)
+	private String cusIden;
 
-    private String cusFirstName;
-    private String cusMidName;
-    private String cusLastName;
-    private String username;
-    private String cusMailAddress;
-    private String cusMotDePasse;
-    private String cusPhoneNbr;
+	private String cusFirstName;
+	private String cusMidName;
+	private String cusLastName;
+	private String username;
+	private String cusMailAddress;
+	private String cusMotDePasse;
+	private String cusPhoneNbr;
 	private String cusAddress;
-    private Integer cusFinId;
-    
-    
-    // Relation 1..0-* avec CUSTOMER_CONTACTS
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @ToString.Exclude
-    private List<CUSTOMER_CONTACTS> contacts;
+	private Integer cusFinId;
 
-    // Relation *..1 avec CUSTOMER_STATUS
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "CUS_CTS_CODE",nullable = false, referencedColumnName = "CTS_CODE")
-    private CUSTOMER_STATUS status;
+	// Relation 1..0-* avec CUSTOMER_CONTACTS
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ToString.Exclude
+	private List<CUSTOMER_CONTACTS> contacts;
 
-    // Relation *..1 avec CUSTOMER_IDENTITY
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "CUS_CID_CODE",nullable = false,referencedColumnName = "CID_CODE")
-    private CUSTOMER_IDENTITY identity;
-    
-    /* @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-        name = "user_roles",
-        joinColumns = @JoinColumn(name = "user_id"),
-        inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<Role> roles = new HashSet<>(); */
+	// Relation *..1 avec CUSTOMER_STATUS
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "CUS_CTS_CODE", nullable = false, referencedColumnName = "CTS_CODE")
+	private CUSTOMER_STATUS status;
+
+	// Relation *..1 avec CUSTOMER_IDENTITY
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "CUS_CID_CODE", nullable = false, referencedColumnName = "CID_CODE")
+	private CUSTOMER_IDENTITY identity;
+
+	/*
+	 * @ManyToMany(fetch = FetchType.EAGER)
+	 * 
+	 * @JoinTable(
+	 * name = "user_roles",
+	 * joinColumns = @JoinColumn(name = "user_id"),
+	 * inverseJoinColumns = @JoinColumn(name = "role_id")
+	 * )
+	 * private Set<Role> roles = new HashSet<>();
+	 */
 	@ManyToOne
 	private Role role;
 
 	// Relation *..1 avec CITY
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "CUS_CTY_CODE", referencedColumnName = "CTY_CODE")
-    private CITY city;
-    
-    
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "CUS_CTY_CODE", referencedColumnName = "CTY_CODE")
+	private CITY city; 
 
-    // Relation *..1 avec COUNTRY (corrigée)
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "CUS_CTR_CODE", referencedColumnName = "CTR_CODE")
-    private COUNTRY country;
-
+	// Relation *..1 avec COUNTRY (corrigée)
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "CUS_CTR_CODE", referencedColumnName = "CTR_CODE")
+	private COUNTRY country;
 
 	// Relation 1..* avec WALLET
-    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @ToString.Exclude
+	@OneToOne(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ToString.Exclude
 	@JsonIgnore
-    private WALLET wallet;
-    
+	private WALLET wallet;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<WALLET_OPERATIONS> walletOperations;
-    
-    
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<WALLET_OPERATIONS> walletOperations;
 
 	public List<WALLET_OPERATIONS> getWalletOperations() {
 		return walletOperations;
@@ -166,6 +170,12 @@ public class CUSTOMER {
 		this.cusIden = cusIden;
 	}
 
+	@PrePersist
+	public void setCusIden() {
+		this.cusIden = "CUS-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
+				+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
+	}
+
 	public Integer getCusFinId() {
 		return cusFinId;
 	}
@@ -198,8 +208,6 @@ public class CUSTOMER {
 		this.identity = identity;
 	}
 
-	
-
 	public WALLET getWallet() {
 		return wallet;
 	}
@@ -208,7 +216,6 @@ public class CUSTOMER {
 		this.wallet = wallet;
 	}
 
-	
 	public Integer getCusCode() {
 		return this.cusCode;
 	}
@@ -217,9 +224,6 @@ public class CUSTOMER {
 		this.cusCode = cusCode;
 	}
 
-	
-	
-	
 	public CUSTOMER(Integer cusCode, String cusFirstName, String cusMidName, String cusLastName, String cusMailAddress,
 			String cusMotDePasse, String cusPhoneNbr, String cusAddress, String cusIden, Integer cusFinId,
 			List<CUSTOMER_CONTACTS> contacts, CUSTOMER_STATUS status, CUSTOMER_IDENTITY identity, CITY city,
@@ -244,11 +248,8 @@ public class CUSTOMER {
 		this.walletOperations = walletOperations;
 	}
 
-	public CUSTOMER() {}
-
-	
-
-
+	public CUSTOMER() {
+	}
 
 	public CITY getCity() {
 		return city;
@@ -277,22 +278,19 @@ public class CUSTOMER {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 	@JsonProperty("fullName")
 	public String getFullName() {
-	    StringBuilder fullName = new StringBuilder();
+		StringBuilder fullName = new StringBuilder();
 
-	    if (cusFirstName != null) fullName.append(cusFirstName).append(" ");
-	    if (cusMidName != null) fullName.append(cusMidName).append(" ");
-	    if (cusLastName != null) fullName.append(cusLastName);
+		if (cusFirstName != null)
+			fullName.append(cusFirstName).append(" ");
+		if (cusMidName != null)
+			fullName.append(cusMidName).append(" ");
+		if (cusLastName != null)
+			fullName.append(cusLastName);
 
-	    return fullName.toString().trim();
+		return fullName.toString().trim();
 	}
 
 }
-	
-	
-    
-    
-    
-    
-

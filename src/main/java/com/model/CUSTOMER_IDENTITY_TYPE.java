@@ -1,5 +1,8 @@
 package com.model;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -40,6 +43,11 @@ public class CUSTOMER_IDENTITY_TYPE {
 
 		public void setCitIden(String citIden) {
 			this.citIden = citIden;
+		}
+
+		@PrePersist
+		public void setCitIden() {
+			this.citIden = "CIT-" + citLabe.substring(0, 3).toUpperCase();
 		}
 
 		public String getCitLabe() {

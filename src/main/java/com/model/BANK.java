@@ -1,5 +1,9 @@
 package com.model;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -12,26 +16,26 @@ import lombok.Data;
 
 public class BANK {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "BAN_CODE", nullable = false, unique = true)
-    private Integer banCode;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "BAN_CODE", nullable = false, unique = true)
+	private Integer banCode;
 
-    @Column(name = "BAN_IDEN", nullable = false)
-    private Integer banIden;
+	@Column(name = "BAN_IDEN", nullable = false)
+	private String banIden;
 
-    @Column(name = "BAN_CORP_NAME", nullable = false)
-    private String banCorpName;
+	@Column(name = "BAN_CORP_NAME", nullable = false)
+	private String banCorpName;
 
-    @Column(name = "BAN_INIT", nullable = false)
-    private String banInit;
+	@Column(name = "BAN_INIT", nullable = false)
+	private String banInit;
 
-    @Column(name = "BAN_FIN_ID", nullable = false)
-    private Integer banFinId;
+	@Column(name = "BAN_FIN_ID", nullable = false)
+	private Integer banFinId;
 
-    // Relation avec ACCOUNT (1 BANK peut être associée à plusieurs ACCOUNTS)
-    @OneToMany(mappedBy = "bank", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<ACCOUNT> accounts;
+	// Relation avec ACCOUNT (1 BANK peut être associée à plusieurs ACCOUNTS)
+	@OneToMany(mappedBy = "bank", cascade = CascadeType.ALL)
+	@JsonIgnore
+	private List<ACCOUNT> accounts;
 
 	public Integer getBanCode() {
 		return banCode;
@@ -41,12 +45,18 @@ public class BANK {
 		this.banCode = banCode;
 	}
 
-	public Integer getBanIden() {
+	public String getBanIden() {
 		return banIden;
 	}
 
-	public void setBanIden(Integer banIden) {
+	public void setBanIden(String banIden) {
 		this.banIden = banIden;
+	}
+
+	@PrePersist
+	public void setBanIden() {
+		this.banIden = "BAN-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
+				+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
 	}
 
 	public String getBanCorpName() {
@@ -81,7 +91,7 @@ public class BANK {
 		this.accounts = accounts;
 	}
 
-	public BANK(Integer banCode, Integer banIden, String banCorpName, String banInit, Integer banFinId,
+	public BANK(Integer banCode, String banIden, String banCorpName, String banInit, Integer banFinId,
 			List<ACCOUNT> accounts) {
 		super();
 		this.banCode = banCode;
@@ -91,12 +101,9 @@ public class BANK {
 		this.banFinId = banFinId;
 		this.accounts = accounts;
 	}
-	
+
 	// Constructeur par défaut (obligatoire pour Hibernate)
-    public BANK() {
-    }
-    
-    
-    
+	public BANK() {
+	}
 
 }

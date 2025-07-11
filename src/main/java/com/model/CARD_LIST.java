@@ -1,6 +1,9 @@
 package com.model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -18,7 +21,7 @@ public class CARD_LIST {
 	    private Integer cliCode;
 
 	    @Column(name = "CLI_IDEN", nullable = false)
-	    private Integer cliIden;
+	    private String cliIden;
 
 	    @Column(name = "CLI_LABE", nullable = false)
 	    private String cliLabe;
@@ -32,12 +35,18 @@ public class CARD_LIST {
 	    @OneToMany(mappedBy = "cardList", cascade = CascadeType.ALL, orphanRemoval = true)
 	    private List<CARD> cards;
 
-		public Integer getCliIden() {
+		public String getCliIden() {
 			return cliIden;
 		}
 
-		public void setCliIden(Integer cliIden) {
+		public void setCliIden(String cliIden) {
 			this.cliIden = cliIden;
+		}
+
+		@PrePersist
+		public void setCliIden() {
+			this.cliIden = "CLI-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
+				+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
 		}
 
 		public String getCliLabe() {
@@ -75,7 +84,7 @@ public class CARD_LIST {
 
 		
 
-		public CARD_LIST(Integer cliCode, Integer cliIden, String cliLabe, WALLET wallet, List<CARD> cards) {
+		public CARD_LIST(Integer cliCode, String cliIden, String cliLabe, WALLET wallet, List<CARD> cards) {
 			super();
 			this.cliCode = cliCode;
 			this.cliIden = cliIden;

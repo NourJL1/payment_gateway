@@ -1,5 +1,9 @@
 package com.model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.UUID;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -38,6 +42,12 @@ public class CUSTOMER_DOC {
 
 		public void setCdoIden(String cdoIden) {
 			this.cdoIden = cdoIden;
+		}
+
+		@PrePersist
+		public void setCdoIden() {
+			this.cdoIden = "CDO-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
+					+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
 		}
 
 		public String getCdoLabe() {

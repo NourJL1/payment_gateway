@@ -84,12 +84,6 @@ public class WalletOperationTypeMapServiceimp implements WalletOperationTypeMapS
 	            updated.setWotmLimitMax(walletOperationTypeMap.getWotmLimitMax());
 	            updated.setWotmDispAmount(walletOperationTypeMap.getWotmDispAmount());
 	            updated.setFees(walletOperationTypeMap.getFees());
-	            updated.setWotmFeeIden(walletOperationTypeMap.getWotmFeeIden());
-	            updated.setWotmFeeLab(walletOperationTypeMap.getWotmFeeLab());
-	            updated.setWotmFeeMinLimit(walletOperationTypeMap.getWotmFeeMinLimit());
-	            updated.setWotmFeeAmount(walletOperationTypeMap.getWotmFeeAmount());
-	            updated.setWotmFeeMaxLimit(walletOperationTypeMap.getWotmFeeMaxLimit());
-	            updated.setWotmFeePercentage(walletOperationTypeMap.getWotmFeePercentage());
 	            updated.setPeriodicity(walletOperationTypeMap.getPeriodicity());
 	            updated.setWotmFinId(walletOperationTypeMap.getWotmFinId());
 	            return repository.save(updated);
