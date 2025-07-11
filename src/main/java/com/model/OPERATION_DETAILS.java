@@ -58,6 +58,8 @@ public class OPERATION_DETAILS {
 	@PrePersist
 	protected void onCreate() {
 		this.odeCreatedAt = new Date();
+		this.odeIden = "ODE-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
+				+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
 	}
 
 	public Integer getOdeCusCode() {
@@ -132,11 +134,11 @@ public class OPERATION_DETAILS {
 		this.odeIden = odeIden;
 	}
 
-	@PrePersist
+	/* @PrePersist
 	public void setOdeIden() {
 		this.odeIden = "ODE-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
 				+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
-	}
+	} */
 
 	public OPERATION_DETAILS(Integer odeCode, Integer odeCusCode, String odeIden, String odeType, String odeValue,
 			Float odeFeeAmount, String odePayMeth, String odeRecipientWallet, Date odeCreatedAt,

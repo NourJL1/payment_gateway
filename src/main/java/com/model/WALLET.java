@@ -56,6 +56,10 @@ public class WALLET {
 	@PreUpdate
 	@PrePersist
 	private void updateLastUpdatedDate() {
+		if (this.walIden == null) {
+			this.walIden = "WAL-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss")) + "-"
+					+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
+		}
 		this.lastUpdatedDate = LocalDateTime.now();
 	}
 
@@ -123,11 +127,14 @@ public class WALLET {
 		this.walIden = walIden;
 	}
 
-	@PrePersist
-	public void setWalIden() {
-		this.walIden = "WAL-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss")) + "-"
-				+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
-	}
+	/*
+	 * @PrePersist
+	 * public void setWalIden() {
+	 * this.walIden = "WAL-" +
+	 * LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss")) + "-"
+	 * + UUID.randomUUID().toString().substring(0, 4).toUpperCase();
+	 * }
+	 */
 
 	public String getWalLabe() {
 		return walLabe;
