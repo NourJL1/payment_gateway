@@ -1,7 +1,6 @@
 package com.servicesImp;
 
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,7 +13,6 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,12 +20,7 @@ import com.model.CUSTOMER_DOC;
 import com.repository.CustomerDocRepository;
 import com.service.CustomerDocService;
 
-import org.springframework.web.multipart.MultipartFile;
-import org.aspectj.util.FileUtil;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.io.File;
-import java.io.FileOutputStream;
 
 @Service
 

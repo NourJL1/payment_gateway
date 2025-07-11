@@ -1,6 +1,5 @@
 package com.model;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 import com.fasterxml.jackson.annotation.JsonProperty;

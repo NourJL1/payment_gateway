@@ -1,14 +1,8 @@
 package com.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 @Entity
 @Table(name = "CUSTOMER_IDENTITY")
@@ -30,7 +24,7 @@ public class CUSTOMER_IDENTITY {
 	    private CUSTOMER_IDENTITY_TYPE customerIdentityType;
 
 
-	    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
+	    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
 	    @JoinColumn(name = "CID_CDL_CODE", nullable = false)
 	    @NotNull(message = "Customer Document List is required")
 	    private CUSTOMER_DOC_LISTE customerDocListe;

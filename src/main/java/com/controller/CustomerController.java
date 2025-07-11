@@ -1,7 +1,6 @@
 package com.controller;
 
 import com.repository.CityRepository;
-import com.repository.CustomerIdentityRepository;
 import com.repository.CustomerRepository;
 import com.repository.CustomerStatusRepository;
 import com.service.CustomerDocListeService;
@@ -9,11 +8,9 @@ import com.service.CustomerService;
 import com.service.EmailService;
 import com.service.TOTPService;
 import com.service.WalletService;
-import com.servicesImp.TOTPServiceImp;
 import com.model.*;
 
 import jakarta.validation.Valid;
-import lombok.Data;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,7 +24,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -201,7 +197,7 @@ public class CustomerController {
         return ResponseEntity.ok(customers);
     }
 
-    @GetMapping("/with-wallets")
+    /* @GetMapping("/with-wallets")
     public ResponseEntity<List<CUSTOMER>> getCustomersWithWallets() {
         List<CUSTOMER> customers = customerService.getCustomersWithWallets();
         return ResponseEntity.ok(customers);
@@ -211,7 +207,7 @@ public class CustomerController {
     public ResponseEntity<List<CUSTOMER>> getCustomersWithoutWallets() {
         List<CUSTOMER> customers = customerService.getCustomersWithoutWallets();
         return ResponseEntity.ok(customers);
-    }
+    } */
 
     @GetMapping("/search")
     public ResponseEntity<List<CUSTOMER>> searchCustomers(

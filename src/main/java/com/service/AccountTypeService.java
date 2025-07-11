@@ -1,7 +1,6 @@
 package com.service;
 import com.model.ACCOUNT_TYPE;
 import java.util.List;
-import java.util.Optional;
 
 public interface AccountTypeService {
 	ACCOUNT_TYPE create(ACCOUNT_TYPE accountType);

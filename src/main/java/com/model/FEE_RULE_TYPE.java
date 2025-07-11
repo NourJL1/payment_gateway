@@ -1,5 +1,7 @@
 package com.model;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -41,6 +43,12 @@ public class FEE_RULE_TYPE {
 
 		public void setFrtIden(String frtIden) {
 			this.frtIden = frtIden;
+		}
+
+		@PrePersist
+		public void setFrtIden() {
+			this.frtIden = "FRT-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
+				+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
 		}
 
 

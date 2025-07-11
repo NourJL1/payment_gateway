@@ -1,37 +1,33 @@
 package com.model;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.UUID;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
 
 @Entity
 @Table(name = "CITY")
 @Data
 
 public class CITY {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CTY_CODE", nullable = false, unique = true)
-    private Integer ctyCode;
 
-    @Column(name = "CTY_IDEN", nullable = false)
-    private Integer ctyIden;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "CTY_CODE", nullable = false, unique = true)
+	private Integer ctyCode;
 
-    @Column(name = "CTY_LABE", nullable = false)
-    private String ctyLabe;
+	@Column(name = "CTY_IDEN", nullable = false)
+	private String ctyIden;
 
-    
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    //@JsonIgnore
-    @JoinColumn(name = "CTY_CTR_CODE", referencedColumnName = "CTR_CODE", nullable = false)
-    private COUNTRY country;
-    
-    
-    
+	@Column(name = "CTY_LABE", nullable = false)
+	private String ctyLabe;
 
-	public CITY(Integer ctyCode, Integer ctyIden, String ctyLabe, COUNTRY country) {
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	// @JsonIgnore
+	@JoinColumn(name = "CTY_CTR_CODE", referencedColumnName = "CTR_CODE", nullable = false)
+	private COUNTRY country;
+
+	public CITY(Integer ctyCode, String ctyIden, String ctyLabe, COUNTRY country) {
 		super();
 		this.ctyCode = ctyCode;
 		this.ctyIden = ctyIden;
@@ -39,26 +35,25 @@ public class CITY {
 		this.country = country;
 	}
 
-
-
 	public Integer getCtyCode() {
 		return ctyCode;
 	}
-
-
 
 	public void setCtyCode(Integer ctyCode) {
 		this.ctyCode = ctyCode;
 	}
 
-
-
-	public Integer getCtyIden() {
+	public String getCtyIden() {
 		return ctyIden;
 	}
 
-	public void setCtyIden(Integer ctyIden) {
+	public void setCtyIden(String ctyIden) {
 		this.ctyIden = ctyIden;
+	}
+
+	@PrePersist
+	public void setCtyIden() {
+		this.ctyIden = "CTY-" + country.getCtrIden() + "-" + UUID.randomUUID().toString().substring(5, 6).toUpperCase();
 	}
 
 	public String getCtyLabe() {
@@ -76,8 +71,9 @@ public class CITY {
 	public void setCountry(COUNTRY country) {
 		this.country = country;
 	}
+
 	// Constructeur par défaut requis par Hibernate
-    public CITY() {
-    }
-    
+	public CITY() {
+	}
+
 }

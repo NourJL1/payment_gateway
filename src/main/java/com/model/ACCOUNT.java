@@ -1,6 +1,8 @@
 package com.model;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -11,62 +13,58 @@ import lombok.Data;
 
 public class ACCOUNT {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ACC_CODE", nullable = false, unique = true)
-    private Integer accCode;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ACC_CODE", nullable = false, unique = true)
+	private Integer accCode;
 
-    @Column(name = "ACC_RIB", nullable = false)
-    private String accRib;
-    
-    @Column(name = "ACC_IDEN", nullable = false)
-    private Integer accIden;
+	@Column(name = "ACC_RIB", nullable = false)
+	private String accRib;
 
-    @Column(name = "ACC_KEY", nullable = false)
-    private String accKey;
+	@Column(name = "ACC_IDEN", nullable = false)
+	private String accIden;
 
-    @ManyToOne
-    @JoinColumn(name = "ACC_ALI_CODE", referencedColumnName = "ALI_CODE", nullable = false)
-    private ACCOUNT_LIST accountList;
+	@Column(name = "ACC_KEY", nullable = false)
+	private String accKey;
 
+	@ManyToOne
+	@JoinColumn(name = "ACC_ALI_CODE", referencedColumnName = "ALI_CODE", nullable = false)
+	private ACCOUNT_LIST accountList;
 
-    // Relation avec ACCOUNT_TYPE (Chaque ACCOUNT a un type d’account)
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ACC_ATY_CODE", referencedColumnName = "ATY_CODE", nullable = false)
-    private ACCOUNT_TYPE accountType;
+	// Relation avec ACCOUNT_TYPE (Chaque ACCOUNT a un type d’account)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "ACC_ATY_CODE", referencedColumnName = "ATY_CODE", nullable = false)
+	private ACCOUNT_TYPE accountType;
 
-    // Relation avec BANK (Chaque ACCOUNT est lié à une seule BANK)
-    @ManyToOne
-    @JoinColumn(name = "ACC_BAN_CODE", referencedColumnName = "BAN_CODE", nullable = false)
+	// Relation avec BANK (Chaque ACCOUNT est lié à une seule BANK)
+	@ManyToOne
+	@JoinColumn(name = "ACC_BAN_CODE", referencedColumnName = "BAN_CODE", nullable = false)
 
-    private BANK bank;
-    
-    public ACCOUNT(){}
-    
-    
+	private BANK bank;
+
+	public ACCOUNT() {
+	}
 
 	public Integer getAccCode() {
 		return accCode;
 	}
 
-
-
 	public void setAccCode(Integer accCode) {
 		this.accCode = accCode;
 	}
 
-
-
-	public Integer getAccIden() {
+	public String getAccIden() {
 		return accIden;
 	}
 
-
-
-	public void setAccIden(Integer accIden) {
+	public void setAccIden(String accIden) {
 		this.accIden = accIden;
 	}
 
-
+	@PrePersist
+	public void setAccIden() {
+		this.accIden = "ACC-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
+				+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
+	}
 
 	public String getAccRib() {
 		return accRib;
@@ -108,7 +106,7 @@ public class ACCOUNT {
 		this.bank = bank;
 	}
 
-	public ACCOUNT(Integer accCode, String accRib, Integer accIden, String accKey, ACCOUNT_LIST accountList,
+	public ACCOUNT(Integer accCode, String accRib, String accIden, String accKey, ACCOUNT_LIST accountList,
 			ACCOUNT_TYPE accountType, BANK bank) {
 		super();
 		this.accCode = accCode;
@@ -119,12 +117,5 @@ public class ACCOUNT {
 		this.accountType = accountType;
 		this.bank = bank;
 	}
-
-	
-	
-    
-    
-    
-    
 
 }

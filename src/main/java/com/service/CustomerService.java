@@ -35,10 +35,10 @@ public interface CustomerService {
     List<CUSTOMER> getCustomersByCountry(Integer countryCode);
 
     // 🔹 Récupérer les clients ayant un portefeuille
-    List<CUSTOMER> getCustomersWithWallets();
+    //List<CUSTOMER> getCustomersWithWallets();
 
     // 🔹 Récupérer les clients sans portefeuille
-    List<CUSTOMER> getCustomersWithoutWallets();
+    //List<CUSTOMER> getCustomersWithoutWallets();
 
     // 🔹 Recherche avancée avec filtres dynamiques
     List<CUSTOMER> searchCustomers(String name, String email, String phone, Integer cityCode, Integer countryCode);

@@ -8,7 +8,8 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
+import com.model.WALLET;
+
 
 public interface CustomerRepository extends JpaRepository<CUSTOMER, Integer> {
         Optional<CUSTOMER> findByCusMailAddress(String email);
@@ -17,9 +18,10 @@ public interface CustomerRepository extends JpaRepository<CUSTOMER, Integer> {
 
         Optional<CUSTOMER> findByUsername(String username);
 
-        List<CUSTOMER> findByWalletsIsNotEmpty();
+        Optional<CUSTOMER> findByWallet(WALLET wallet);
 
-        List<CUSTOMER> findByWalletsIsEmpty();
+        //List<CUSTOMER> findByWalletIsNotEmpty();
+        //List<CUSTOMER> findByWalletsIsEmpty();
 
         boolean existsByCusMailAddress(String email);
 

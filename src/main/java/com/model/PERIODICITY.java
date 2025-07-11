@@ -1,7 +1,7 @@
 package com.model;
+
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
@@ -13,24 +13,24 @@ import lombok.Data;
 
 public class PERIODICITY {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "PER_CODE", nullable = false, unique = true)
-    private Integer perCode;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "PER_CODE", nullable = false, unique = true)
+	private Integer perCode;
 
-    @Column(name = "PER_IDEN", nullable = false)
-    private String perIden;
+	@Column(name = "PER_IDEN", nullable = false)
+	private String perIden;
 
-    @Column(name = "PER_LABE", nullable = false)
-    private String perLabe;
+	@Column(name = "PER_LABE", nullable = false)
+	private String perLabe;
 
-    @OneToMany(mappedBy = "periodicity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference("periodicity-wcotm")
+	@OneToMany(mappedBy = "periodicity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonManagedReference("periodicity-wcotm")
 
-    private List<WALLET_CATEGORY_OPERATION_TYPE_MAP> walletCategoryOperationTypeMaps;
-    
-    @OneToMany(mappedBy = "periodicity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference("periodicity-walletOp")
-    private List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMaps;
+	private List<WALLET_CATEGORY_OPERATION_TYPE_MAP> walletCategoryOperationTypeMaps;
+
+	@OneToMany(mappedBy = "periodicity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonManagedReference("periodicity-walletOp")
+	private List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMaps;
 
 	public String getPerIden() {
 		return perIden;
@@ -40,6 +40,11 @@ public class PERIODICITY {
 		this.perIden = perIden;
 	}
 
+	@PrePersist
+	public void setPerIden() {
+		this.perIden = "PER-" + perLabe.substring(0, 3).toUpperCase();
+	}
+
 	public String getPerLabe() {
 		return perLabe;
 	}
@@ -47,8 +52,6 @@ public class PERIODICITY {
 	public void setPerLabe(String perLabe) {
 		this.perLabe = perLabe;
 	}
-	
-	
 
 	public Integer getPerCode() {
 		return perCode;
@@ -66,7 +69,6 @@ public class PERIODICITY {
 			List<WALLET_CATEGORY_OPERATION_TYPE_MAP> walletCategoryOperationTypeMaps) {
 		this.walletCategoryOperationTypeMaps = walletCategoryOperationTypeMaps;
 	}
-	
 
 	public List<WALLET_OPERATION_TYPE_MAP> getWalletOperationTypeMaps() {
 		return walletOperationTypeMaps;
@@ -76,11 +78,10 @@ public class PERIODICITY {
 		this.walletOperationTypeMaps = walletOperationTypeMaps;
 	}
 
-	
+	public PERIODICITY() {
+	}
 
-public PERIODICITY() {}
-	
-public PERIODICITY(Integer perCode, String perIden, String perLabe,
+	public PERIODICITY(Integer perCode, String perIden, String perLabe,
 			List<WALLET_CATEGORY_OPERATION_TYPE_MAP> walletCategoryOperationTypeMaps,
 			List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMaps) {
 		super();

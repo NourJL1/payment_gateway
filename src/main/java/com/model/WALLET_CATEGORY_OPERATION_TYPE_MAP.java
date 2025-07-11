@@ -44,7 +44,9 @@ public class WALLET_CATEGORY_OPERATION_TYPE_MAP {
 
 	    private PERIODICITY periodicity;
 
-	    
+	    @Column(name = "WCTOM_FIN_ID")
+	    private Integer financialInstitutionId;
+
 		public OPERATION_TYPE getOperationType() {
 			return operationType;
 		}
@@ -85,17 +87,23 @@ public class WALLET_CATEGORY_OPERATION_TYPE_MAP {
 			this.periodicity = periodicity;
 		}
 
-		
+		public Integer getFinancialInstitutionId() {
+			return financialInstitutionId;
+		}
+
+		public void setFinancialInstitutionId(Integer financialInstitutionId) {
+			this.financialInstitutionId = financialInstitutionId;
+		}
 
 		public WALLET_CATEGORY_OPERATION_TYPE_MAP(OPERATION_TYPE operationType, WALLET_CATEGORY walletCategory,
-				Integer limitMax, FEES fees, PERIODICITY periodicity) {
+				Integer limitMax, FEES fees, PERIODICITY periodicity, Integer financialInstitutionId) {
 			super();
 			this.operationType = operationType;
 			this.walletCategory = walletCategory;
 			this.limitMax = limitMax;
 			this.fees = fees;
 			this.periodicity = periodicity;
-			
+			this.financialInstitutionId = financialInstitutionId;
 		}
 		 public WALLET_CATEGORY_OPERATION_TYPE_MAP() {}
 		

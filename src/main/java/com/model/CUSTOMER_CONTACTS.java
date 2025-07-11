@@ -7,7 +7,10 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 @Table(name = "CUSTOMER_CONTACTS")
@@ -21,7 +24,7 @@ public class CUSTOMER_CONTACTS {
     private Integer ccoCode;
 
     @Column(name = "CCO_IDEN", nullable = false)
-    private Integer ccoIden;
+    private String ccoIden;
 
     @Column(name = "CCO_CONTACT_NAME", nullable = false)
     private String ccoContactName;
@@ -53,12 +56,18 @@ public class CUSTOMER_CONTACTS {
     
     
 
-	public Integer getCcoIden() {
+	public String getCcoIden() {
 		return ccoIden;
 	}
 
-	public void setCcoIden(Integer ccoIden) {
+	public void setCcoIden(String ccoIden) {
 		this.ccoIden = ccoIden;
+	}
+
+	@PrePersist
+	public void setCcoIden() {
+		this.ccoIden = "CCO-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
+				+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
 	}
 
 	public String getCcoContactName() {
@@ -109,7 +118,7 @@ public class CUSTOMER_CONTACTS {
 		this.customer = customer;
 	}
 
-	public CUSTOMER_CONTACTS(Integer ccoIden, String ccoContactName, String ccoContactMail, String ccoContactPhone,
+	public CUSTOMER_CONTACTS(String ccoIden, String ccoContactName, String ccoContactMail, String ccoContactPhone,
 			Date ccoAddedAt, Date ccoLastInteraction, CUSTOMER customer) {
 		super();
 		this.ccoIden = ccoIden;

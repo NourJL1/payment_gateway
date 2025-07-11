@@ -1,4 +1,5 @@
 package com.model;
+
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -10,26 +11,24 @@ import lombok.Data;
 @Table(name = "WALLET_TYPE")
 @Data
 
-
 public class WALLET_TYPE {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "WTY_CODE", nullable = false, unique = true)
-    private Integer wtyCode;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "WTY_CODE", nullable = false, unique = true)
+	private Integer wtyCode;
 
-    @Column(name = "WTY_IDEN", nullable = false)
-    private String wtyIden;
+	@Column(name = "WTY_IDEN", nullable = false)
+	private String wtyIden;
 
-    @Column(name = "WTY_LABE", nullable = false)
-    private String wtyLabe;
+	@Column(name = "WTY_LABE", nullable = false)
+	private String wtyLabe;
 
-    // Relation avec WALLET (Un type peut être lié à plusieurs wallets)
-    @OneToMany(mappedBy = "walletType", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnore
+	// Relation avec WALLET (Un type peut être lié à plusieurs wallets)
+	@OneToMany(mappedBy = "walletType", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
 
-    private List<WALLET> wallets;
+	private List<WALLET> wallets;
 
-    
 	public Integer getWtyCode() {
 		return wtyCode;
 	}
@@ -44,6 +43,11 @@ public class WALLET_TYPE {
 
 	public void setWtyIden(String wtyIden) {
 		this.wtyIden = wtyIden;
+	}
+
+	@PrePersist
+	public void setWtyIden() {
+		this.wtyIden = "WTY-" + wtyLabe.substring(0, 3).toUpperCase();
 	}
 
 	public String getWtyLabe() {
@@ -62,8 +66,7 @@ public class WALLET_TYPE {
 		this.wallets = wallets;
 	}
 
-	
-    public WALLET_TYPE(Integer wtyCode, String wtyIden, String wtyLabe, List<WALLET> wallets) {
+	public WALLET_TYPE(Integer wtyCode, String wtyIden, String wtyLabe, List<WALLET> wallets) {
 		super();
 		this.wtyCode = wtyCode;
 		this.wtyIden = wtyIden;
@@ -71,8 +74,7 @@ public class WALLET_TYPE {
 		this.wallets = wallets;
 	}
 
-	public WALLET_TYPE() {}
-    
-    
+	public WALLET_TYPE() {
+	}
 
 }

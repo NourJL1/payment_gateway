@@ -1,7 +1,6 @@
 package com.model;
 import jakarta.persistence.*;
 
-import lombok.Data;
 @Entity
 @Table(name = "customer_status") // Optionnel, mais permet de préciser le nom de la table en base de données
 public class CUSTOMER_STATUS {
@@ -33,6 +32,11 @@ public class CUSTOMER_STATUS {
 
 	public void setCtsIden(String ctsIden) {
 		this.ctsIden = ctsIden;
+	}
+
+	@PrePersist
+	public void setCtsIden() {
+		this.ctsIden = "CTS-" + ctsLabe.substring(0, 3).toUpperCase();
 	}
 
 	public String getCtsLabe() {

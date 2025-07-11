@@ -1,172 +1,173 @@
 package com.model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.UUID;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "FEES")
 @Data
 
-
 public class FEES {
-	 @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    @Column(name = "FEE_CODE", nullable = false, unique = true)
-	    private Integer feeCode;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "FEE_CODE", nullable = false, unique = true)
+	private Integer feeCode;
 
-	 
-	    @Column(name = "FEE_IDEN")
-	    private String feeIden;
+	@Column(name = "FEE_IDEN")
+	private String feeIden;
 
-	    @Column(name = "FEE_LABE")
-	    private String feeLabel;
+	@Column(name = "FEE_LABE")
+	private String feeLabel;
 
-	    @Column(name = "FEE_MIN_LIMIT")
-	    private Float feeMinLimit;
+	@Column(name = "FEE_MIN_LIMIT")
+	private Float feeMinLimit;
 
-	    @Column(name = "FEE_AMOUNT")
-	    private Float feeAmount;
+	@Column(name = "FEE_AMOUNT")
+	private Float feeAmount;
 
-	    @Column(name = "FEE_MAX_LIMIT")
-	    private Float feeMaxLimit;
+	@Column(name = "FEE_MAX_LIMIT")
+	private Float feeMaxLimit;
 
-	    @Column(name = "FEE_PERCENTAGE")
-	    private String feePercentage;
+	@Column(name = "FEE_PERCENTAGE")
+	private String feePercentage;
 
-	    @Column(name = "FEE_MAX_AMOUNT")
-	    private Float feeMaxAmount;
+	@Column(name = "FEE_MAX_AMOUNT")
+	private Float feeMaxAmount;
 
-	    @Column(name = "FEE_FIN_ID")
-	    private Integer financialInstitutionId;
+	@Column(name = "FEE_FIN_ID")
+	private Integer financialInstitutionId;
 
-	    @OneToMany(mappedBy = "fees")
-	    @JsonManagedReference("fee-wcotm")
+	@OneToMany(mappedBy = "fees")
+	@JsonManagedReference("fee-wcotm")
 
-	    private List<WALLET_CATEGORY_OPERATION_TYPE_MAP> walletCategoryOperationTypeMaps;
+	private List<WALLET_CATEGORY_OPERATION_TYPE_MAP> walletCategoryOperationTypeMaps;
 
-	    @OneToMany(mappedBy = "fees")
-	    @JsonManagedReference("fees-walletOp")
+	@OneToMany(mappedBy = "fees")
+	@JsonManagedReference("fees-walletOp")
 
-	    private List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMaps;
-	    
-	    
+	private List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMaps;
 
-		public Integer getFeeCode() {
-			return feeCode;
-		}
+	public Integer getFeeCode() {
+		return feeCode;
+	}
 
-		public void setFeeCode(Integer feeCode) {
-			this.feeCode = feeCode;
-		}
+	public void setFeeCode(Integer feeCode) {
+		this.feeCode = feeCode;
+	}
 
-		public String getFeeIden() {
-			return feeIden;
-		}
+	public String getFeeIden() {
+		return feeIden;
+	}
 
-		public void setFeeIden(String feeIden) {
-			this.feeIden = feeIden;
-		}
+	public void setFeeIden(String feeIden) {
+		this.feeIden = feeIden;
+	}
 
-		public String getFeeLabel() {
-			return feeLabel;
-		}
+	@PrePersist
+	public void setFeeIden() {
+		this.feeIden = "FEE-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
+				+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
+	}
 
-		public void setFeeLabel(String feeLabel) {
-			this.feeLabel = feeLabel;
-		}
+	public String getFeeLabel() {
+		return feeLabel;
+	}
 
-		public Float getFeeMinLimit() {
-			return feeMinLimit;
-		}
+	public void setFeeLabel(String feeLabel) {
+		this.feeLabel = feeLabel;
+	}
 
-		public void setFeeMinLimit(Float feeMinLimit) {
-			this.feeMinLimit = feeMinLimit;
-		}
+	public Float getFeeMinLimit() {
+		return feeMinLimit;
+	}
 
-		public Float getFeeAmount() {
-			return feeAmount;
-		}
+	public void setFeeMinLimit(Float feeMinLimit) {
+		this.feeMinLimit = feeMinLimit;
+	}
 
-		public void setFeeAmount(Float feeAmount) {
-			this.feeAmount = feeAmount;
-		}
+	public Float getFeeAmount() {
+		return feeAmount;
+	}
 
-		public Float getFeeMaxLimit() {
-			return feeMaxLimit;
-		}
+	public void setFeeAmount(Float feeAmount) {
+		this.feeAmount = feeAmount;
+	}
 
-		public void setFeeMaxLimit(Float feeMaxLimit) {
-			this.feeMaxLimit = feeMaxLimit;
-		}
+	public Float getFeeMaxLimit() {
+		return feeMaxLimit;
+	}
 
-		public String getFeePercentage() {
-			return feePercentage;
-		}
+	public void setFeeMaxLimit(Float feeMaxLimit) {
+		this.feeMaxLimit = feeMaxLimit;
+	}
 
-		public void setFeePercentage(String feePercentage) {
-			this.feePercentage = feePercentage;
-		}
+	public String getFeePercentage() {
+		return feePercentage;
+	}
 
-		public Float getFeeMaxAmount() {
-			return feeMaxAmount;
-		}
+	public void setFeePercentage(String feePercentage) {
+		this.feePercentage = feePercentage;
+	}
 
-		public void setFeeMaxAmount(Float feeMaxAmount) {
-			this.feeMaxAmount = feeMaxAmount;
-		}
+	public Float getFeeMaxAmount() {
+		return feeMaxAmount;
+	}
 
-		public Integer getFinancialInstitutionId() {
-			return financialInstitutionId;
-		}
+	public void setFeeMaxAmount(Float feeMaxAmount) {
+		this.feeMaxAmount = feeMaxAmount;
+	}
 
-		public void setFinancialInstitutionId(Integer financialInstitutionId) {
-			this.financialInstitutionId = financialInstitutionId;
-		}
+	public Integer getFinancialInstitutionId() {
+		return financialInstitutionId;
+	}
 
-		public List<WALLET_CATEGORY_OPERATION_TYPE_MAP> getWalletCategoryOperationTypeMaps() {
-			return walletCategoryOperationTypeMaps;
-		}
+	public void setFinancialInstitutionId(Integer financialInstitutionId) {
+		this.financialInstitutionId = financialInstitutionId;
+	}
 
-		public void setWalletCategoryOperationTypeMaps(
-				List<WALLET_CATEGORY_OPERATION_TYPE_MAP> walletCategoryOperationTypeMaps) {
-			this.walletCategoryOperationTypeMaps = walletCategoryOperationTypeMaps;
-		}
+	public List<WALLET_CATEGORY_OPERATION_TYPE_MAP> getWalletCategoryOperationTypeMaps() {
+		return walletCategoryOperationTypeMaps;
+	}
 
-		public List<WALLET_OPERATION_TYPE_MAP> getWalletOperationTypeMaps() {
-			return walletOperationTypeMaps;
-		}
+	public void setWalletCategoryOperationTypeMaps(
+			List<WALLET_CATEGORY_OPERATION_TYPE_MAP> walletCategoryOperationTypeMaps) {
+		this.walletCategoryOperationTypeMaps = walletCategoryOperationTypeMaps;
+	}
 
-		public void setWalletOperationTypeMaps(List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMaps) {
-			this.walletOperationTypeMaps = walletOperationTypeMaps;
-		}
+	public List<WALLET_OPERATION_TYPE_MAP> getWalletOperationTypeMaps() {
+		return walletOperationTypeMaps;
+	}
 
-		
-		public FEES(Integer feeCode, String feeIden, String feeLabel, Float feeMinLimit, Float feeAmount,
-				Float feeMaxLimit, String feePercentage, Float feeMaxAmount, Integer financialInstitutionId,
-				List<WALLET_CATEGORY_OPERATION_TYPE_MAP> walletCategoryOperationTypeMaps,
-				List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMaps) {
-			super();
-			this.feeCode = feeCode;
-			this.feeIden = feeIden;
-			this.feeLabel = feeLabel;
-			this.feeMinLimit = feeMinLimit;
-			this.feeAmount = feeAmount;
-			this.feeMaxLimit = feeMaxLimit;
-			this.feePercentage = feePercentage;
-			this.feeMaxAmount = feeMaxAmount;
-			this.financialInstitutionId = financialInstitutionId;
-			this.walletCategoryOperationTypeMaps = walletCategoryOperationTypeMaps;
-			this.walletOperationTypeMaps = walletOperationTypeMaps;
-		}
+	public void setWalletOperationTypeMaps(List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMaps) {
+		this.walletOperationTypeMaps = walletOperationTypeMaps;
+	}
 
-		public FEES() {}
-		
+	public FEES(Integer feeCode, String feeIden, String feeLabel, Float feeMinLimit, Float feeAmount,
+			Float feeMaxLimit, String feePercentage, Float feeMaxAmount, Integer financialInstitutionId,
+			List<WALLET_CATEGORY_OPERATION_TYPE_MAP> walletCategoryOperationTypeMaps,
+			List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMaps) {
+		super();
+		this.feeCode = feeCode;
+		this.feeIden = feeIden;
+		this.feeLabel = feeLabel;
+		this.feeMinLimit = feeMinLimit;
+		this.feeAmount = feeAmount;
+		this.feeMaxLimit = feeMaxLimit;
+		this.feePercentage = feePercentage;
+		this.feeMaxAmount = feeMaxAmount;
+		this.financialInstitutionId = financialInstitutionId;
+		this.walletCategoryOperationTypeMaps = walletCategoryOperationTypeMaps;
+		this.walletOperationTypeMaps = walletOperationTypeMaps;
+	}
+
+	public FEES() {
+	}
 
 }

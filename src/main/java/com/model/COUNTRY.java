@@ -55,6 +55,11 @@ public class COUNTRY {
 		this.ctrIden = ctrIden;
 	}
 
+	@PrePersist
+	public void setCtrIden() {
+		this.ctrIden = "CTR-" + ctrIden;
+	}
+
 
 
 	public String getCtrLabe() {

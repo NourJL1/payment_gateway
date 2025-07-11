@@ -1,11 +1,10 @@
 package com.model;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.UUID;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -23,307 +22,307 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
-
 
 @Entity
 
 @Table(name = "WALLET")
 public class WALLET {
-	 @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    @Column(name = "WAL_CODE", unique = true, nullable = false)
-	    private Integer walCode;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "WAL_CODE", unique = true, nullable = false)
+	private Integer walCode;
 
-	    @Column(name = "WAL_IDEN", nullable = false)
-	    private String walIden;
+	@Column(name = "WAL_IDEN", nullable = false)
+	private String walIden;
 
-	    @Column(name = "WAL_LABE", length = 255)
-	    private String walLabe;
+	@Column(name = "WAL_LABE", length = 255)
+	private String walLabe;
 
-	    @Column(name = "WAL_KEY")
-	    private Integer walKey;
+	@Column(name = "WAL_KEY")
+	private Integer walKey;
 
-	    @Column(name = "WAL_EFF_BAL")
-	    private Float walEffBal;
+	@Column(name = "WAL_EFF_BAL")
+	private Float walEffBal;
 
-	    @Column(name = "WAL_LOGIC_BALANCE")
-	    private Float walLogicBalance;
+	@Column(name = "WAL_LOGIC_BALANCE")
+	private Float walLogicBalance;
 
-	    @Column(name = "WAL_SPECIFIC_BALANCE")
-	    private Float walSpecificBalance;
+	@Column(name = "WAL_SPECIFIC_BALANCE")
+	private Float walSpecificBalance;
 
-	    @Column(name = "LAST_UPDATED_DATE")
-	    private LocalDateTime lastUpdatedDate;
-	    
-	    @PreUpdate
-	    @PrePersist
-	    private void updateLastUpdatedDate() {
-	        this.lastUpdatedDate = LocalDateTime.now();
-	    }
+	@Column(name = "LAST_UPDATED_DATE")
+	private LocalDateTime lastUpdatedDate;
 
-	    
-	    @Column(name= "WAL_FIN_ID")
-	    private Integer walFinId;
-
-	    // Relation *..1 avec CUSTOMER
-	    @ManyToOne
-	    @JoinColumn(name = "WAL_CUS_CODE", referencedColumnName = "CUS_CODE")
-	    //@JsonIgnore
-	    private CUSTOMER customer;
-
-	    // Relation *..1 avec WALLET_STATUS
-	    @ManyToOne
-	    @JoinColumn(name = "WAL_WST_CODE", referencedColumnName = "WST_CODE")
-	    
-
-
-	    private WALLET_STATUS walletStatus;
-
-	    // Relation *..1 avec WALLET_TYPE
-	    @ManyToOne
-	    @JoinColumn(name = "WAL_WTY_CODE", referencedColumnName = "WTY_CODE")
-	    private WALLET_TYPE walletType;
-
-	    // Relation *..1 avec WALLET_CATEGORY
-	    @ManyToOne
-	    @JoinColumn(name = "WAL_WCA_CODE", referencedColumnName = "WCA_CODE")
-	    private WALLET_CATEGORY walletCategory;
-
-	    // Relation 1..0-* avec WALLET_OPERATIONS
-	    @OneToMany(mappedBy = "wallet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	    @JsonIgnore
-	    private List<WALLET_OPERATIONS> walletOperations;
-	    
-	    
-
-	 // One-to-One : Dernier solde historique
-	    @OneToOne
-	    @JoinColumn(name = "WAL_WBH_CODE", referencedColumnName = "WBH_CODE", nullable = true)
-
-	    private WALLET_BALANCE_HISTORY lastBalanceHistory;
-
-	    // Relation 0..1 → 0..* avec OPERATION_TYPE
-	    @OneToMany(mappedBy = "wallet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	   @JsonIgnore
-
-	    private List<OPERATION_TYPE> operationTypes;
-
-	    @OneToOne(cascade = CascadeType.ALL)
-	    @JoinColumn(name = "WAL_CLI_CODE", referencedColumnName = "CLI_CODE", nullable = true) 
-	    private CARD_LIST cardList;
-
-
-
-	    // Relation 0..1 → * avec ACCOUNT_LIST
-	    @OneToMany(mappedBy = "wallet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-
-	    private List<ACCOUNT_LIST> accountList;
-
-	    // Relation avec WALLET_OPERATION_TYPE_MAP (Fix mapping issue)
-	    @OneToMany(mappedBy = "wallet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	    @JsonManagedReference("wallet-walletOp")
-	    private List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMappings;
-	    
-	    
-
-		public String getWalIden() {
-			return walIden;
+	@PreUpdate
+	@PrePersist
+	private void updateLastUpdatedDate() {
+		if (this.walIden == null) {
+			this.walIden = "WAL-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss")) + "-"
+					+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
 		}
+		this.lastUpdatedDate = LocalDateTime.now();
+	}
 
-		public void setWalIden(String walIden) {
-			this.walIden = walIden;
-		}
+	@Column(name = "WAL_FIN_ID")
+	private Integer walFinId;
 
-		public String getWalLabe() {
-			return walLabe;
-		}
+	// Relation *..1 avec CUSTOMER
+	@OneToOne
+	@JoinColumn(name = "WAL_CUS_CODE", referencedColumnName = "CUS_CODE")
+	// @JsonIgnore
+	private CUSTOMER customer;
 
-		public void setWalLabe(String walLabe) {
-			this.walLabe = walLabe;
-		}
+	// Relation *..1 avec WALLET_STATUS
+	@ManyToOne
+	@JoinColumn(name = "WAL_WST_CODE", referencedColumnName = "WST_CODE")
 
-		public Integer getWalKey() {
-			return walKey;
-		}
+	private WALLET_STATUS walletStatus;
 
-		public void setWalKey(Integer walKey) {
-			this.walKey = walKey;
-		}
+	// Relation *..1 avec WALLET_TYPE
+	@ManyToOne
+	@JoinColumn(name = "WAL_WTY_CODE", referencedColumnName = "WTY_CODE")
+	private WALLET_TYPE walletType;
 
-		public Float getWalEffBal() {
-			return walEffBal;
-		}
+	// Relation *..1 avec WALLET_CATEGORY
+	@ManyToOne
+	@JoinColumn(name = "WAL_WCA_CODE", referencedColumnName = "WCA_CODE")
+	private WALLET_CATEGORY walletCategory;
 
-		public void setWalEffBal(Float walEffBal) {
-		    this.walEffBal = walEffBal;
-		    updateLastUpdatedDate();  // Mise à jour de la date à chaque modification
-		}
+	// Relation 1..0-* avec WALLET_OPERATIONS
+	@OneToMany(mappedBy = "wallet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
+	private List<WALLET_OPERATIONS> walletOperations;
 
-		public Float getWalLogicBalance() {
-			return walLogicBalance;
-		}
+	// One-to-One : Dernier solde historique
+	@OneToOne
+	@JoinColumn(name = "WAL_WBH_CODE", referencedColumnName = "WBH_CODE", nullable = true)
 
-		public void setWalLogicBalance(Float walLogicBalance) {
-		    this.walLogicBalance = walLogicBalance;
-		    updateLastUpdatedDate();  // Mise à jour de la date à chaque modification
-		}
+	private WALLET_BALANCE_HISTORY lastBalanceHistory;
 
-		public Float getWalSpecificBalance() {
-			return walSpecificBalance;
-		}
+	// Relation 0..1 → 0..* avec OPERATION_TYPE
+	@OneToMany(mappedBy = "wallet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
 
-		public void setWalSpecificBalance(Float walSpecificBalance) {
-		    this.walSpecificBalance = walSpecificBalance;
-		    updateLastUpdatedDate();  // Mise à jour de la date à chaque modification
-		}
+	private List<OPERATION_TYPE> operationTypes;
 
-		
-		public Integer getWalCode() {
-			return walCode;
-		}
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "WAL_CLI_CODE", referencedColumnName = "CLI_CODE", nullable = true)
+	private CARD_LIST cardList;
 
-		public void setWalCode(Integer walCode) {
-			this.walCode = walCode;
-		}
+	// Relation 0..1 → * avec ACCOUNT_LIST
+	@OneToMany(mappedBy = "wallet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 
-		public LocalDateTime getLastUpdatedDate() {
-			return lastUpdatedDate;
-		}
+	private List<ACCOUNT_LIST> accountList;
 
-		public void setLastUpdatedDate(LocalDateTime lastUpdatedDate) {
-			this.lastUpdatedDate = lastUpdatedDate;
-		}
+	// Relation avec WALLET_OPERATION_TYPE_MAP (Fix mapping issue)
+	@OneToMany(mappedBy = "wallet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonManagedReference("wallet-walletOp")
+	private List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMappings;
 
-		public CUSTOMER getCustomer() {
-			return this.customer;
-		}
+	public String getWalIden() {
+		return walIden;
+	}
 
-		public void setCustomer(CUSTOMER customer) {
-			this.customer = customer;
-		}
+	public void setWalIden(String walIden) {
+		this.walIden = walIden;
+	}
 
-		public WALLET_STATUS getWalletStatus() {
-			return walletStatus;
-		}
+	/*
+	 * @PrePersist
+	 * public void setWalIden() {
+	 * this.walIden = "WAL-" +
+	 * LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss")) + "-"
+	 * + UUID.randomUUID().toString().substring(0, 4).toUpperCase();
+	 * }
+	 */
 
-		public void setWalletStatus(WALLET_STATUS walletStatus) {
-			this.walletStatus = walletStatus;
-		}
+	public String getWalLabe() {
+		return walLabe;
+	}
 
-		public WALLET_TYPE getWalletType() {
-			return walletType;
-		}
+	public void setWalLabe(String walLabe) {
+		this.walLabe = walLabe;
+	}
 
-		public void setWalletType(WALLET_TYPE walletType) {
-			this.walletType = walletType;
-		}
+	public Integer getWalKey() {
+		return walKey;
+	}
 
-		public WALLET_CATEGORY getWalletCategory() {
-			return walletCategory;
-		}
+	public void setWalKey(Integer walKey) {
+		this.walKey = walKey;
+	}
 
-		public void setWalletCategory(WALLET_CATEGORY walletCategory) {
-			this.walletCategory = walletCategory;
-		}
+	public Float getWalEffBal() {
+		return walEffBal;
+	}
 
-		public List<WALLET_OPERATIONS> getWalletOperations() {
-			return walletOperations;
-		}
+	public void setWalEffBal(Float walEffBal) {
+		this.walEffBal = walEffBal;
+		updateLastUpdatedDate(); // Mise à jour de la date à chaque modification
+	}
 
-		public void setWalletOperations(List<WALLET_OPERATIONS> walletOperations) {
-			this.walletOperations = walletOperations;
-		}
+	public Float getWalLogicBalance() {
+		return walLogicBalance;
+	}
 
-		
+	public void setWalLogicBalance(Float walLogicBalance) {
+		this.walLogicBalance = walLogicBalance;
+		updateLastUpdatedDate(); // Mise à jour de la date à chaque modification
+	}
 
-		/*public List<WALLET_BALANCE_HISTORY> getBalanceHistories() {
-			return balanceHistories;
-		}
+	public Float getWalSpecificBalance() {
+		return walSpecificBalance;
+	}
 
-		public void setBalanceHistories(List<WALLET_BALANCE_HISTORY> balanceHistories) {
-			this.balanceHistories = balanceHistories;
-		}*/
+	public void setWalSpecificBalance(Float walSpecificBalance) {
+		this.walSpecificBalance = walSpecificBalance;
+		updateLastUpdatedDate(); // Mise à jour de la date à chaque modification
+	}
 
-		public WALLET_BALANCE_HISTORY getLastBalanceHistory() {
-			return lastBalanceHistory;
-		}
+	public Integer getWalCode() {
+		return walCode;
+	}
 
-		public void setLastBalanceHistory(WALLET_BALANCE_HISTORY lastBalanceHistory) {
-			this.lastBalanceHistory = lastBalanceHistory;
-		}
+	public void setWalCode(Integer walCode) {
+		this.walCode = walCode;
+	}
 
-		public List<OPERATION_TYPE> getOperationTypes() {
-			return operationTypes;
-		}
+	public LocalDateTime getLastUpdatedDate() {
+		return lastUpdatedDate;
+	}
 
-		public void setOperationTypes(List<OPERATION_TYPE> operationTypes) {
-			this.operationTypes = operationTypes;
-		}
+	public void setLastUpdatedDate(LocalDateTime lastUpdatedDate) {
+		this.lastUpdatedDate = lastUpdatedDate;
+	}
 
-		public CARD_LIST getCardList() {
-			return cardList;
-		}
+	public CUSTOMER getCustomer() {
+		return this.customer;
+	}
 
-		public void setCardList(CARD_LIST cardList) {
-			this.cardList = cardList;
-		}
+	public void setCustomer(CUSTOMER customer) {
+		this.customer = customer;
+	}
 
-		public List<ACCOUNT_LIST> getAccountList() {
-			return accountList;
-		}
+	public WALLET_STATUS getWalletStatus() {
+		return walletStatus;
+	}
 
-		public void setAccountList(List<ACCOUNT_LIST> accountList) {
-			this.accountList = accountList;
-		}
+	public void setWalletStatus(WALLET_STATUS walletStatus) {
+		this.walletStatus = walletStatus;
+	}
 
-		public List<WALLET_OPERATION_TYPE_MAP> getWalletOperationTypeMappings() {
-			return walletOperationTypeMappings;
-		}
+	public WALLET_TYPE getWalletType() {
+		return walletType;
+	}
 
-		public void setWalletOperationTypeMappings(List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMappings) {
-			this.walletOperationTypeMappings = walletOperationTypeMappings;
-		}
+	public void setWalletType(WALLET_TYPE walletType) {
+		this.walletType = walletType;
+	}
 
-		public Integer getWalFinId() {
-			return walFinId;
-		}
+	public WALLET_CATEGORY getWalletCategory() {
+		return walletCategory;
+	}
 
-		public void setWalFinId(Integer walFinId) {
-			this.walFinId = walFinId;
-		}
+	public void setWalletCategory(WALLET_CATEGORY walletCategory) {
+		this.walletCategory = walletCategory;
+	}
 
-		
-		public WALLET(Integer walCode, String walIden, String walLabe, Integer walKey, Float walEffBal,
-				Float walLogicBalance, Float walSpecificBalance, LocalDateTime lastUpdatedDate, Integer walFinId,
-				CUSTOMER customer, WALLET_STATUS walletStatus, WALLET_TYPE walletType, WALLET_CATEGORY walletCategory,
-				List<WALLET_OPERATIONS> walletOperations, WALLET_BALANCE_HISTORY lastBalanceHistory,
-				List<OPERATION_TYPE> operationTypes, CARD_LIST cardList, List<ACCOUNT_LIST> accountList,
-				List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMappings) {
-			super();
-			this.walCode = walCode;
-			this.walIden = walIden;
-			this.walLabe = walLabe;
-			this.walKey = walKey;
-			this.walEffBal = walEffBal;
-			this.walLogicBalance = walLogicBalance;
-			this.walSpecificBalance = walSpecificBalance;
-			this.lastUpdatedDate = lastUpdatedDate;
-			this.walFinId = walFinId;
-			this.customer = customer;
-			this.walletStatus = walletStatus;
-			this.walletType = walletType;
-			this.walletCategory = walletCategory;
-			this.walletOperations = walletOperations;
-			this.lastBalanceHistory = lastBalanceHistory;
-			this.operationTypes = operationTypes;
-			this.cardList = cardList;
-			this.accountList = accountList;
-			this.walletOperationTypeMappings = walletOperationTypeMappings;
-		}
+	public List<WALLET_OPERATIONS> getWalletOperations() {
+		return walletOperations;
+	}
 
-		public WALLET() {}
-		
+	public void setWalletOperations(List<WALLET_OPERATIONS> walletOperations) {
+		this.walletOperations = walletOperations;
+	}
+
+	/*
+	 * public List<WALLET_BALANCE_HISTORY> getBalanceHistories() {
+	 * return balanceHistories;
+	 * }
+	 * 
+	 * public void setBalanceHistories(List<WALLET_BALANCE_HISTORY>
+	 * balanceHistories) {
+	 * this.balanceHistories = balanceHistories;
+	 * }
+	 */
+
+	public WALLET_BALANCE_HISTORY getLastBalanceHistory() {
+		return lastBalanceHistory;
+	}
+
+	public void setLastBalanceHistory(WALLET_BALANCE_HISTORY lastBalanceHistory) {
+		this.lastBalanceHistory = lastBalanceHistory;
+	}
+
+	public List<OPERATION_TYPE> getOperationTypes() {
+		return operationTypes;
+	}
+
+	public void setOperationTypes(List<OPERATION_TYPE> operationTypes) {
+		this.operationTypes = operationTypes;
+	}
+
+	public CARD_LIST getCardList() {
+		return cardList;
+	}
+
+	public void setCardList(CARD_LIST cardList) {
+		this.cardList = cardList;
+	}
+
+	public List<ACCOUNT_LIST> getAccountList() {
+		return accountList;
+	}
+
+	public void setAccountList(List<ACCOUNT_LIST> accountList) {
+		this.accountList = accountList;
+	}
+
+	public List<WALLET_OPERATION_TYPE_MAP> getWalletOperationTypeMappings() {
+		return walletOperationTypeMappings;
+	}
+
+	public void setWalletOperationTypeMappings(List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMappings) {
+		this.walletOperationTypeMappings = walletOperationTypeMappings;
+	}
+
+	public Integer getWalFinId() {
+		return walFinId;
+	}
+
+	public void setWalFinId(Integer walFinId) {
+		this.walFinId = walFinId;
+	}
+
+	public WALLET(Integer walCode, String walIden, String walLabe, Integer walKey, Float walEffBal,
+			Float walLogicBalance, Float walSpecificBalance, LocalDateTime lastUpdatedDate, Integer walFinId,
+			CUSTOMER customer, WALLET_STATUS walletStatus, WALLET_TYPE walletType, WALLET_CATEGORY walletCategory,
+			List<WALLET_OPERATIONS> walletOperations, WALLET_BALANCE_HISTORY lastBalanceHistory,
+			List<OPERATION_TYPE> operationTypes, CARD_LIST cardList, List<ACCOUNT_LIST> accountList,
+			List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMappings) {
+		super();
+		this.walCode = walCode;
+		this.walIden = walIden;
+		this.walLabe = walLabe;
+		this.walKey = walKey;
+		this.walEffBal = walEffBal;
+		this.walLogicBalance = walLogicBalance;
+		this.walSpecificBalance = walSpecificBalance;
+		this.lastUpdatedDate = lastUpdatedDate;
+		this.walFinId = walFinId;
+		this.customer = customer;
+		this.walletStatus = walletStatus;
+		this.walletType = walletType;
+		this.walletCategory = walletCategory;
+		this.walletOperations = walletOperations;
+		this.lastBalanceHistory = lastBalanceHistory;
+		this.operationTypes = operationTypes;
+		this.cardList = cardList;
+		this.accountList = accountList;
+		this.walletOperationTypeMappings = walletOperationTypeMappings;
+	}
+
+	public WALLET() {
+	}
 
 }

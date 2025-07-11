@@ -1,7 +1,6 @@
 package com.service;
 import com.model.OPERATION_TYPE;
 import java.util.List;
-import java.util.Optional;
 
 public interface OperationTypeService {
 	List<OPERATION_TYPE> getAllOperationTypes();
