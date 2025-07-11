@@ -44,30 +44,7 @@ public class WALLET_CATEGORY_OPERATION_TYPE_MAP {
 
 	    private PERIODICITY periodicity;
 
-	    @Column(name = "WCOTM_FEE_IDEN")
-	    private Integer feeIden;
-
-	    @Column(name = "WCOTM_FEE_LABE")
-	    private String feeLabel;
-
-	    @Column(name = "WCOTM_FEE_MIN_LIMIT")
-	    private Float feeMinLimit;
-
-	    @Column(name = "WCOTM_FEE_AMOUNT")
-	    private Float feeAmount;
-
-	    @Column(name = "WCOTM_FEE_MAX_LIMIT")
-	    private Float feeMaxLimit;
-
-	    @Column(name = "WCOTM_FEE_PERCENTAGE")
-	    private String feePercentage;
-
-	    @Column(name = "WCOTM_FEE_MAX_AMOUNT")
-	    private Float feeMaxAmount;
-
-	    @Column(name = "WCTOM_FIN_ID")
-	    private Integer financialInstitutionId;
-
+	    
 		public OPERATION_TYPE getOperationType() {
 			return operationType;
 		}
@@ -108,88 +85,17 @@ public class WALLET_CATEGORY_OPERATION_TYPE_MAP {
 			this.periodicity = periodicity;
 		}
 
-		public Integer getFeeIden() {
-			return feeIden;
-		}
-
-		public void setFeeIden(Integer feeIden) {
-			this.feeIden = feeIden;
-		}
-
-		public String getFeeLabel() {
-			return feeLabel;
-		}
-
-		public void setFeeLabel(String feeLabel) {
-			this.feeLabel = feeLabel;
-		}
-
-		public Float getFeeMinLimit() {
-			return feeMinLimit;
-		}
-
-		public void setFeeMinLimit(Float feeMinLimit) {
-			this.feeMinLimit = feeMinLimit;
-		}
-
-		public Float getFeeAmount() {
-			return feeAmount;
-		}
-
-		public void setFeeAmount(Float feeAmount) {
-			this.feeAmount = feeAmount;
-		}
-
-		public Float getFeeMaxLimit() {
-			return feeMaxLimit;
-		}
-
-		public void setFeeMaxLimit(Float feeMaxLimit) {
-			this.feeMaxLimit = feeMaxLimit;
-		}
-
-		public String getFeePercentage() {
-			return feePercentage;
-		}
-
-		public void setFeePercentage(String feePercentage) {
-			this.feePercentage = feePercentage;
-		}
-
-		public Float getFeeMaxAmount() {
-			return feeMaxAmount;
-		}
-
-		public void setFeeMaxAmount(Float feeMaxAmount) {
-			this.feeMaxAmount = feeMaxAmount;
-		}
-
-		public Integer getFinancialInstitutionId() {
-			return financialInstitutionId;
-		}
-
-		public void setFinancialInstitutionId(Integer financialInstitutionId) {
-			this.financialInstitutionId = financialInstitutionId;
-		}
+		
 
 		public WALLET_CATEGORY_OPERATION_TYPE_MAP(OPERATION_TYPE operationType, WALLET_CATEGORY walletCategory,
-				Integer limitMax, FEES fees, PERIODICITY periodicity, Integer feeIden, String feeLabel,
-				Float feeMinLimit, Float feeAmount, Float feeMaxLimit, String feePercentage, Float feeMaxAmount,
-				Integer financialInstitutionId) {
+				Integer limitMax, FEES fees, PERIODICITY periodicity) {
 			super();
 			this.operationType = operationType;
 			this.walletCategory = walletCategory;
 			this.limitMax = limitMax;
 			this.fees = fees;
 			this.periodicity = periodicity;
-			this.feeIden = feeIden;
-			this.feeLabel = feeLabel;
-			this.feeMinLimit = feeMinLimit;
-			this.feeAmount = feeAmount;
-			this.feeMaxLimit = feeMaxLimit;
-			this.feePercentage = feePercentage;
-			this.feeMaxAmount = feeMaxAmount;
-			this.financialInstitutionId = financialInstitutionId;
+			
 		}
 		 public WALLET_CATEGORY_OPERATION_TYPE_MAP() {}
 		

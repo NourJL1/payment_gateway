@@ -71,7 +71,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/banks/**").permitAll()
 
                         .requestMatchers("/api/doc-type").permitAll() // Simplified for all methods
-                        .requestMatchers("/api/wallet-category-operation-type-map/api/wallet-category-operation-type-map/**").permitAll() // Simplified for all methods
+                        .requestMatchers("/api/wallet-category-operation-type-map/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/wallet-operation-type-map/**").permitAll() // Simplified for all methods
 
 
