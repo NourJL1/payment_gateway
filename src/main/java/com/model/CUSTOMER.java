@@ -43,11 +43,12 @@ public class CUSTOMER {
 	private String cusLastName;
 	private String username;
 	private String cusMailAddress;
-	@JsonProperty(access = Access.WRITE_ONLY)
-	private String cusMotDePasse;
 	private String cusPhoneNbr;
 	private String cusAddress;
 	private Integer cusFinId;
+
+	// @JsonProperty(access = Access.WRITE_ONLY)
+	private String cusMotDePasse;
 
 	// Relation 1..0-* avec CUSTOMER_CONTACTS
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -55,7 +56,7 @@ public class CUSTOMER {
 	private List<CUSTOMER_CONTACTS> contacts;
 
 	// Relation *..1 avec CUSTOMER_STATUS
-	@ManyToOne //(cascade = CascadeType.ALL)
+	@ManyToOne // (cascade = CascadeType.ALL)
 	@JoinColumn(name = "CUS_CTS_CODE", nullable = false, referencedColumnName = "CTS_CODE")
 	private CUSTOMER_STATUS status;
 
@@ -63,14 +64,14 @@ public class CUSTOMER {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "CUS_CID_CODE", nullable = false, referencedColumnName = "CID_CODE")
 	private CUSTOMER_IDENTITY identity;
-	
+
 	@ManyToOne
 	private Role role;
 
 	// Relation *..1 avec CITY
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "CUS_CTY_CODE", referencedColumnName = "CTY_CODE")
-	private CITY city; 
+	private CITY city;
 
 	// Relation *..1 avec COUNTRY (corrigée)
 	@ManyToOne(cascade = CascadeType.MERGE)
@@ -130,7 +131,7 @@ public class CUSTOMER {
 		this.cusMailAddress = cusMailAddress;
 	}
 
-	@JsonIgnore
+	// @JsonIgnore
 	public String getCusMotDePasse() {
 		return cusMotDePasse;
 	}
