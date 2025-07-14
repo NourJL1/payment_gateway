@@ -7,6 +7,8 @@ import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -41,7 +43,7 @@ public class CUSTOMER {
 	private String cusLastName;
 	private String username;
 	private String cusMailAddress;
-	@JsonIgnore
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private String cusMotDePasse;
 	private String cusPhoneNbr;
 	private String cusAddress;
@@ -128,6 +130,7 @@ public class CUSTOMER {
 		this.cusMailAddress = cusMailAddress;
 	}
 
+	@JsonIgnore
 	public String getCusMotDePasse() {
 		return cusMotDePasse;
 	}

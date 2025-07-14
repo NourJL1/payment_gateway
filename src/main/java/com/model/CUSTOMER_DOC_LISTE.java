@@ -49,7 +49,7 @@ public class CUSTOMER_DOC_LISTE {
 	private CUSTOMER_IDENTITY customerIdentity;
 
 	
-	@PreRemove
+	/* @PreRemove
 	public void preRemove() {
 		String storageDir = (new CustomerDocListeServiceImp()).getStorageDir();
 		System.out.println("----storageDir: " + storageDir);
@@ -61,7 +61,7 @@ public class CUSTOMER_DOC_LISTE {
         }
         catch(IOException e)
         {System.out.println("------------------------------"+e.getClass().toString() + ":\n" + e.getMessage());}
-	}
+	} */
 
 	public String getCdlIden() {
 		return cdlIden;

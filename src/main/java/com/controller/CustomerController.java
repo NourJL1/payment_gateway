@@ -109,7 +109,9 @@ public class CustomerController {
         customer.setWallet(new WALLET( null, null, null, null, 0f, 0f, 0f,  null, null, customer, null, null, null, null, null, null, null, null, null));
 
 
+        System.out.println("------------------------------------------------"+customer.getCusMotDePasse());
         customer.setCusMotDePasse(passwordEncoder.encode(customer.getCusMotDePasse()));
+        System.out.println("------------------------------------------------"+customer.getCusMotDePasse());
 
         // Sauvegarder le client
         CUSTOMER savedCustomer = customerRepository.save(customer);
@@ -118,7 +120,7 @@ public class CustomerController {
 
         //customer.getWallets().get(0).setCustomer(customer);
 
-
+        System.out.println("------------------------------------------------"+savedCustomer.getCusMotDePasse());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedCustomer);
     }
@@ -387,6 +389,8 @@ public class CustomerController {
         String text = "";
         switch (email.getSubject()) {
             case "TOTP":
+                if(customerRepository.existsByCusMailAddress(email.getCusMailAdress()))
+                    return ResponseEntity.badRequest().body(Map.of("message", "Email already exists"));
                 text = "Your verification code is: " +
                         totpService.generateTOTP(email.getCusMailAdress()) +
                         "\n The code expires in 5 minutes.";
