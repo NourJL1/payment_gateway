@@ -9,9 +9,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface WalletRepository extends JpaRepository<WALLET, Integer> {
-    List<WALLET> findByCustomerCusCode(Integer cusCode);
-    List<WALLET> findByCustomerCusIden(String cusIden);
-    List<WALLET> findByCustomerCusMailAddress(String cusMailAddress);
+    WALLET findByCustomerCusCode(Integer cusCode);
+    WALLET findByCustomerCusIden(String cusIden);
+    WALLET findByCustomerCusMailAddress(String cusMailAddress);
     List<WALLET> findByWalIden(String walIden);
     List<WALLET> findByWalLabe(String walLabe);
     List<WALLET> findByWalKey(Integer walKey);
@@ -19,7 +19,7 @@ public interface WalletRepository extends JpaRepository<WALLET, Integer> {
     List<WALLET> findByWalLogicBalance(Float walLogicBalance);
     List<WALLET> findByWalSpecificBalance(Float walSpecificBalance);
     List<WALLET> findByWalFinId(Integer walFinId);
-    List<WALLET> findByCustomer_CusCode(Integer cusCode);
+    WALLET findByCustomer_CusCode(Integer cusCode);
     List<WALLET> findByWalletStatus_WstCode(Integer wstCode);
     List<WALLET> findByWalletType_WtyCode(Integer wtyCode);
     List<WALLET> findByWalletCategory_WcaCode(Integer wcaCode);

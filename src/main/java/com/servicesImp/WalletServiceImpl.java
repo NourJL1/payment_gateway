@@ -91,19 +91,19 @@ public class WalletServiceImpl implements WalletService {
     }
 
     @Override
-    public List<WALLET> searchByCustomerCusCode(Integer cusCode) {
+    public WALLET searchByCustomerCusCode(Integer cusCode) {
         logger.debug("Searching wallets by customer cusCode: {}", cusCode);
         return walletRepository.findByCustomerCusCode(cusCode);
     }
 
     @Override
-    public List<WALLET> searchByCustomerCusIden(String cusIden) {
+    public WALLET searchByCustomerCusIden(String cusIden) {
         logger.debug("Searching wallets by customer cusIden: {}", cusIden);
         return walletRepository.findByCustomerCusIden(cusIden);
     }
 
     @Override
-    public List<WALLET> searchByCustomerCusMailAddress(String cusMailAddress) {
+    public WALLET searchByCustomerCusMailAddress(String cusMailAddress) {
         logger.debug("Searching wallets by customer cusMailAddress: {}", cusMailAddress);
         return walletRepository.findByCustomerCusMailAddress(cusMailAddress);
     }
@@ -151,7 +151,7 @@ public class WalletServiceImpl implements WalletService {
     }
 
     @Override
-    public List<WALLET> findByCustomer_CusCode(Integer cusCode) {
+    public WALLET findByCustomer_CusCode(Integer cusCode) {
         logger.debug("Searching wallets by customer cusCode: {}", cusCode);
         return walletRepository.findByCustomer_CusCode(cusCode);
     }

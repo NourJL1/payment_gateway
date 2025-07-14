@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.model.CUSTOMER_DOC;
+import com.model.CUSTOMER_DOC_LISTE;
 
 public interface CustomerDocRepository extends JpaRepository<CUSTOMER_DOC, Integer>{
  @Query("SELECT cd FROM CUSTOMER_DOC cd WHERE " +
@@ -13,4 +14,6 @@ public interface CustomerDocRepository extends JpaRepository<CUSTOMER_DOC, Integ
 	           "CAST(cd.cdoCode AS string) LIKE CONCAT('%', :searchWord, '%') OR " +
 	           "CAST(cd.cdoIden AS string) LIKE CONCAT('%', :searchWord, '%')")
 	    List<CUSTOMER_DOC> searchCustomerDocs(@Param("searchWord") String searchWord);
+
+	List<CUSTOMER_DOC> findByCustomerDocListe(CUSTOMER_DOC_LISTE customerDocListe);
 }

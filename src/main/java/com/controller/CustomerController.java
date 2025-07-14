@@ -7,7 +7,6 @@ import com.service.CustomerDocListeService;
 import com.service.CustomerService;
 import com.service.EmailService;
 import com.service.TOTPService;
-import com.service.WalletService;
 import com.model.*;
 
 import jakarta.validation.Valid;
@@ -24,6 +23,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -34,9 +34,6 @@ public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
-
-    @Autowired
-    private WalletService walletService;
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -59,14 +56,12 @@ public class CustomerController {
     @PostMapping
     public ResponseEntity<?> createCustomer(@Valid @RequestBody CUSTOMER customer) {
 
-        System.out.println(customer.toString());
         // Vérifier si la ville est définie
         if (customer.getCity() == null || customer.getCity().getCtyCode() == null) {
             return ResponseEntity.badRequest().body("City information is required.");
         }
 
-        // Vérifier si la ville existe en base de données
-        CITY city = cityRepository.findById(customer.getCity().getCtyCode())
+        cityRepository.findById(customer.getCity().getCtyCode())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "City not found"));
 
         if (customerRepository.existsByCusMailAddress(customer.getCusMailAddress())) {
@@ -85,7 +80,8 @@ public class CustomerController {
         } */
 
         // Assigner le statut au client
-        customer.setStatus(customerStatusRepository.findByCtsCode(1));
+        if (customer.getStatus() == null) 
+            customer.setStatus(customerStatusRepository.findByCtsCode(3)); // Default status
 
         // Vérifier si l'identité est définie et récupérer les informations de
         // l'identité
@@ -110,7 +106,8 @@ public class CustomerController {
 
         // Réinitialiser l'ID pour éviter une mise à jour involontaire
         customer.setCusCode(null);
-        
+        customer.setWallet(new WALLET( null, null, null, null, 0f, 0f, 0f,  null, null, customer, null, null, null, null, null, null, null, null, null));
+
 
         customer.setCusMotDePasse(passwordEncoder.encode(customer.getCusMotDePasse()));
 
@@ -120,6 +117,7 @@ public class CustomerController {
         //savedCustomer.getWallets().forEach( wallet -> wallet.setCustomer(savedCustomer));
 
         //customer.getWallets().get(0).setCustomer(customer);
+
 
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedCustomer);
@@ -240,6 +238,7 @@ public class CustomerController {
                         customer.getCusCode().toString(),
                         customer.getUsername(),
                         customer.getFullName(),
+                        customer.getStatus().getCtsLabe(),
                         customer.getRole(),
                         customer.getCusMailAddress(),
                         customer.getCusPhoneNbr(),
@@ -247,16 +246,16 @@ public class CustomerController {
             } else {
                 System.out.println("User not found: " + loginRequest.getUsername());
                 return ResponseEntity.status(404)
-                        .body(new ResponseDTO("User not found", null, null, null, null, null, null, null));
+                        .body(new ResponseDTO("User not found",null,  null, null, null, null, null, null, null));
             }
         } catch (BadCredentialsException e) {
             System.out.println("Invalid credentials for: " + loginRequest.getUsername());
             return ResponseEntity.status(401)
-                    .body(new ResponseDTO("Invalid credentials", null, null, null, null, null, null, null));
+                    .body(new ResponseDTO("Invalid credentials", null, null, null, null, null, null, null, null));
         } catch (Exception e) {
             System.out.println("Login error: " + e.getMessage());
             return ResponseEntity.status(500)
-                    .body(new ResponseDTO(e.getMessage(), null, null, null, null, null, null, null));
+                    .body(new ResponseDTO(e.getMessage(), null, null, null, null, null, null, null, null));
         }
     }
 
@@ -286,17 +285,19 @@ public class CustomerController {
         private String cusCode;
         private String username;
         private String fullname;
+        private String status;
         private Role role;
         private String cusMailAddress;
         private String cusPhoneNbr;
         private String roles; // Changed from token to roles
 
-        public ResponseDTO(String message, String cusCode, String username, String fullname, Role role,
+        public ResponseDTO(String message, String cusCode, String username, String fullname, String status, Role role,
                 String cusMailAddress,  String cusPhoneNbr, String roles) {
             this.message = message;
             this.cusCode = cusCode;
             this.username = username;
             this.fullname = fullname;
+            this.status = status;
             this.role = role;
             this.cusMailAddress = cusMailAddress;
             this.cusPhoneNbr = cusPhoneNbr;
@@ -365,6 +366,14 @@ public class CustomerController {
 
         public void setRoles(String roles) {
             this.roles = roles;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
         }
     }
 

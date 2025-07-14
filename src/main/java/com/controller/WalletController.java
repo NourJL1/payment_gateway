@@ -159,13 +159,13 @@ public class WalletController {
         // Vérification et récupération des entités liées avant de créer le wallet
         Optional<CUSTOMER> customerOpt = customerRepository.findById(wallet.getCustomer().getCusCode());
         Optional<WALLET_STATUS> walletStatusOpt = walletStatusRepository
-                .findById(3/* wallet.getWalletStatus().getWstCode() */);
+                .findById( wallet.getWalletStatus().getWstCode());
         Optional<WALLET_TYPE> walletTypeOpt = walletTypeRepository.findById(wallet.getWalletType().getWtyCode());
-        /* Optional<WALLET_CATEGORY> walletCategoryOpt = walletCategoryRepository
+        Optional<WALLET_CATEGORY> walletCategoryOpt = walletCategoryRepository
                 .findById(wallet.getWalletCategory().getWcaCode());
         Optional<CARD_LIST> cardListOpt = wallet.getCardList() != null
                 ? cardListRepository.findById(wallet.getCardList().getCliCode())
-                : Optional.empty(); */
+                : Optional.empty();
 
         // Vérification des dépendances
         if (customerOpt.isEmpty() || walletStatusOpt.isEmpty() || walletTypeOpt.isEmpty()/* 
@@ -268,17 +268,17 @@ public class WalletController {
      */
 
     @GetMapping("/by-customer-code/{code}")
-    public List<WALLET> getWalletsByCustomerCode(@PathVariable Integer code) {
-        return walletService.searchByCustomerCusCode(code);
+    public ResponseEntity<WALLET> getWalletsByCustomerCode(@PathVariable Integer code) {
+        return ResponseEntity.ok().body(walletService.searchByCustomerCusCode(code));
     }
 
     @GetMapping("/by-customer-iden/{iden}")
-    public List<WALLET> getWalletsByCustomerIden(@PathVariable String iden) {
+    public WALLET getWalletsByCustomerIden(@PathVariable String iden) {
         return walletService.searchByCustomerCusIden(iden);
     }
 
     @GetMapping("/by-customer-mail/{mail}")
-    public List<WALLET> getWalletsByCustomerMail(@PathVariable String mail) {
+    public WALLET getWalletsByCustomerMail(@PathVariable String mail) {
         return walletService.searchByCustomerCusMailAddress(mail);
     }
 
@@ -319,7 +319,7 @@ public class WalletController {
     }
 
     @GetMapping("/by-customer/{cusCode}")
-    public ResponseEntity<List<WALLET>> getByCustomer(@PathVariable Integer cusCode) {
+    public ResponseEntity<WALLET> getByCustomer(@PathVariable Integer cusCode) {
         return ResponseEntity.ok(walletService.findByCustomer_CusCode(cusCode));
     }
 
@@ -361,14 +361,14 @@ public class WalletController {
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/by-customer/{cusCode}/status")
+    /* @GetMapping("/by-customer/{cusCode}/status")
     public ResponseEntity<WALLET_STATUS> getWalletStatusByCusCode(@PathVariable Integer cusCode) {
         List<WALLET> wallets = walletService.findByCustomer_CusCode(cusCode);
         if (wallets.isEmpty() || wallets.get(0).getWalletStatus() == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(wallets.get(0).getWalletStatus());
-    }
+    } */
 
     @GetMapping("/search")
     public ResponseEntity<List<WALLET>> searchWallets(@RequestParam("word") String searchWord) {

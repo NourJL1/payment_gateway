@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 @Entity
 @Table(name = "DOC_TYPE")
@@ -23,6 +24,7 @@ public class DOC_TYPE {
 	private String dtyLabe;
 
 	@OneToMany(mappedBy = "docType", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ToString.Exclude
 	@JsonIgnore
 	private List<CUSTOMER_DOC> customerDocs;
 

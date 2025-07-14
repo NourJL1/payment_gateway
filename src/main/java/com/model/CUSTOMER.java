@@ -1,6 +1,5 @@
 package com.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -42,6 +41,7 @@ public class CUSTOMER {
 	private String cusLastName;
 	private String username;
 	private String cusMailAddress;
+	@JsonIgnore
 	private String cusMotDePasse;
 	private String cusPhoneNbr;
 	private String cusAddress;
@@ -53,7 +53,7 @@ public class CUSTOMER {
 	private List<CUSTOMER_CONTACTS> contacts;
 
 	// Relation *..1 avec CUSTOMER_STATUS
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne //(cascade = CascadeType.ALL)
 	@JoinColumn(name = "CUS_CTS_CODE", nullable = false, referencedColumnName = "CTS_CODE")
 	private CUSTOMER_STATUS status;
 
@@ -61,17 +61,7 @@ public class CUSTOMER {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "CUS_CID_CODE", nullable = false, referencedColumnName = "CID_CODE")
 	private CUSTOMER_IDENTITY identity;
-
-	/*
-	 * @ManyToMany(fetch = FetchType.EAGER)
-	 * 
-	 * @JoinTable(
-	 * name = "user_roles",
-	 * joinColumns = @JoinColumn(name = "user_id"),
-	 * inverseJoinColumns = @JoinColumn(name = "role_id")
-	 * )
-	 * private Set<Role> roles = new HashSet<>();
-	 */
+	
 	@ManyToOne
 	private Role role;
 

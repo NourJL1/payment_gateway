@@ -60,6 +60,13 @@ public class WALLET {
 			this.walIden = "WAL-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss")) + "-"
 					+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
 		}
+		if (this.walLabe == null) {
+        this.walLabe = "Wallet-" + (this.walletType != null ? 
+                          this.walletType.getWtyLabe() : "Default");
+		}
+		if (this.walKey == null) {
+			this.walKey = UUID.randomUUID().hashCode();// Default value if not set
+		}
 		this.lastUpdatedDate = LocalDateTime.now();
 	}
 
@@ -111,7 +118,6 @@ public class WALLET {
 
 	// Relation 0..1 → * avec ACCOUNT_LIST
 	@OneToMany(mappedBy = "wallet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-
 	private List<ACCOUNT_LIST> accountList;
 
 	// Relation avec WALLET_OPERATION_TYPE_MAP (Fix mapping issue)
@@ -126,15 +132,6 @@ public class WALLET {
 	public void setWalIden(String walIden) {
 		this.walIden = walIden;
 	}
-
-	/*
-	 * @PrePersist
-	 * public void setWalIden() {
-	 * this.walIden = "WAL-" +
-	 * LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss")) + "-"
-	 * + UUID.randomUUID().toString().substring(0, 4).toUpperCase();
-	 * }
-	 */
 
 	public String getWalLabe() {
 		return walLabe;

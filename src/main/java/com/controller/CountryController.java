@@ -45,7 +45,7 @@ public class CountryController {
         }
 
         COUNTRY existingCountry = existingCountryOpt.get();
-        if (!id.equals(country.getCtrIden())) {
+        if (id!=country.getCtrCode()) {
             return ResponseEntity.badRequest().build(); // Empêche la modification d’un mauvais ID
         }
 

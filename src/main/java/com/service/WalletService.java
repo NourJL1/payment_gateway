@@ -12,9 +12,9 @@ public interface WalletService {
     List<WALLET> getAllWallets();
     WALLET updateWallet(Integer walCode, WALLET wallet);
     void deleteWallet(Integer walCode);
-    List<WALLET> searchByCustomerCusCode(Integer cusCode);
-    List<WALLET> searchByCustomerCusIden(String cusIden);
-    List<WALLET> searchByCustomerCusMailAddress(String cusMailAddress);
+    WALLET searchByCustomerCusCode(Integer cusCode);
+    WALLET searchByCustomerCusIden(String cusIden);
+    WALLET searchByCustomerCusMailAddress(String cusMailAddress);
     List<WALLET> findByWalIden(String walIden);
     List<WALLET> findByWalLabe(String walLabe);
     List<WALLET> findByWalKey(Integer walKey);
@@ -22,7 +22,7 @@ public interface WalletService {
     List<WALLET> findByWalLogicBalance(Float walLogicBalance);
     List<WALLET> findByWalSpecificBalance(Float walSpecificBalance);
     List<WALLET> findByWalFinId(Integer walFinId);
-    List<WALLET> findByCustomer_CusCode(Integer cusCode);
+    WALLET findByCustomer_CusCode(Integer cusCode);
     List<WALLET> findByWalletStatus_WstCode(Integer wstCode);
     List<WALLET> findByWalletType_WtyCode(Integer wtyCode);
     List<WALLET> findByWalletCategory_WcaCode(Integer wcaCode);

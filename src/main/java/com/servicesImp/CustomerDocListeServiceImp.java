@@ -12,13 +12,17 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 @Service
-public class CustmerDocListeServiceImp implements CustomerDocListeService {
+public class CustomerDocListeServiceImp implements CustomerDocListeService {
 
 	@Autowired
     private CustomerDocListeRepository customerDocListeRepository;
 
 	@Value("${document.storage.path}")
-    private String storageDir ;
+    public String storageDir ;
+
+	public String getStorageDir() {
+        return storageDir;
+    }
 
     @PostConstruct
     public void init() {

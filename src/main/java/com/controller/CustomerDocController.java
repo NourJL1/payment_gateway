@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import java.util.Optional;
 
+
 @RestController
 @RequestMapping("/api/customer-doc")
 public class CustomerDocController {
@@ -36,19 +37,27 @@ public class CustomerDocController {
                           .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @GetMapping("file/{id}")
+    public ResponseEntity<?> getCustomerDocFileById(@PathVariable Integer id) {
+        return customerDocService.findFileById(id);
+    }
+
+    @GetMapping("/cdl/{cdlCode}")
+    public ResponseEntity<?> getByCustomerDocListe(@PathVariable Integer cdlCode) {
+        return customerDocService.findByCustomerDocListe(cdlCode);
+    }
+    
+
     @Data
     public class CustomerDocDTO {
         private CUSTOMER_DOC customerDoc;
         private MultipartFile file;    
     }
 
-    @PostMapping //(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping 
     public ResponseEntity<CUSTOMER_DOC> createCustomerDoc(@RequestPart("customerDoc") String customerDocJson, @RequestPart("file") MultipartFile file) throws JsonMappingException, JsonProcessingException {
         
         CUSTOMER_DOC customerDoc = (new ObjectMapper()).readValue(customerDocJson, CUSTOMER_DOC.class);
-
-        //System.out.println("----------------------------------"+customerDoc);
-        //System.out.println("----------------------------------"+file);
         
         CUSTOMER_DOC createdCustomerDoc = customerDocService.save(customerDoc, file);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCustomerDoc);
@@ -78,6 +87,7 @@ public class CustomerDocController {
         customerDocService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
     @GetMapping("/search")
     public ResponseEntity<List<CUSTOMER_DOC>> searchCustomerDocs(@RequestParam("word") String searchWord) {
         List<CUSTOMER_DOC> customerDocs = customerDocService.searchCustomerDocs(searchWord);
