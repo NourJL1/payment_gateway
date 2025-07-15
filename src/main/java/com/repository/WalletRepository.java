@@ -24,6 +24,8 @@ public interface WalletRepository extends JpaRepository<WALLET, Integer> {
     List<WALLET> findByWalletType_WtyCode(Integer wtyCode);
     List<WALLET> findByWalletCategory_WcaCode(Integer wcaCode);
     List<WALLET> findByLastUpdatedDate(LocalDateTime lastUpdatedDate);
+    List<WALLET> findByCreatedAt(LocalDateTime createdAt);
+
 
     // Updated query to count wallets with wstCode = 1 (ACTIVE)
     @Query("SELECT COUNT(w) FROM WALLET w WHERE w.walletStatus.wstCode = 1")
@@ -38,6 +40,8 @@ public interface WalletRepository extends JpaRepository<WALLET, Integer> {
             "CAST(w.walEffBal AS string) LIKE CONCAT('%', :searchWord, '%') OR " +
             "CAST(w.walLogicBalance AS string) LIKE CONCAT('%', :searchWord, '%') OR " +
             "CAST(w.walSpecificBalance AS string) LIKE CONCAT('%', :searchWord, '%') OR " +
-            "CAST(w.lastUpdatedDate AS string) LIKE CONCAT('%', :searchWord, '%')")
+            "CAST(w.lastUpdatedDate AS string) LIKE CONCAT('%', :searchWord, '%') OR " +
+            "CAST(w.createdAt AS string) LIKE CONCAT('%', :searchWord, '%')")
     List<WALLET> searchWallets(@Param("searchWord") String searchWord);
+
 }

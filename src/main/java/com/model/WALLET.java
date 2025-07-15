@@ -49,6 +49,9 @@ public class WALLET {
 
 	@Column(name = "WAL_SPECIFIC_BALANCE")
 	private Float walSpecificBalance;
+	
+	@Column(name = "CREATED_AT", updatable = false)
+	private LocalDateTime createdAt;
 
 	@Column(name = "LAST_UPDATED_DATE")
 	private LocalDateTime lastUpdatedDate;
@@ -68,6 +71,9 @@ public class WALLET {
 			this.walKey = UUID.randomUUID().hashCode();// Default value if not set
 		}
 		this.lastUpdatedDate = LocalDateTime.now();
+		
+		 this.createdAt = LocalDateTime.now(); // ✅ Set only once
+		    this.lastUpdatedDate = LocalDateTime.now(); // ✅ Always updated
 	}
 
 	@Column(name = "WAL_FIN_ID")
@@ -183,6 +189,15 @@ public class WALLET {
 	public void setWalCode(Integer walCode) {
 		this.walCode = walCode;
 	}
+	
+	public LocalDateTime getCreatedAt() {
+	    return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+	    this.createdAt = createdAt;
+	}
+
 
 	public LocalDateTime getLastUpdatedDate() {
 		return lastUpdatedDate;
