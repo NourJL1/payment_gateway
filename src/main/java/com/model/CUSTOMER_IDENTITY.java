@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "CUSTOMER_IDENTITY")
-//@Data
+// @Data
 
 public class CUSTOMER_IDENTITY {
 	@Id
@@ -16,10 +16,14 @@ public class CUSTOMER_IDENTITY {
 	@Column(name = "CID_NUM", nullable = false)
 	private String cidNum;
 
-	/* @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	@JoinColumn(name = "CID_CUS_CODE", nullable = false)
-	@NotNull(message = "Customer is required")
-	private CUSTOMER customer; */
+	/*
+	 * @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	 * 
+	 * @JoinColumn(name = "CID_CUS_CODE", nullable = false)
+	 * 
+	 * @NotNull(message = "Customer is required")
+	 * private CUSTOMER customer;
+	 */
 
 	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "CID_CIT_CODE", nullable = false)
@@ -30,6 +34,12 @@ public class CUSTOMER_IDENTITY {
 	@JoinColumn(name = "CID_CDL_CODE", nullable = false)
 	@NotNull(message = "Customer Document List is required")
 	private CUSTOMER_DOC_LISTE customerDocListe;
+
+	@PrePersist
+	public void onCreate() {
+		this.customerDocListe.setCdlLabe(this.customerIdentityType.getCitIden() + "-"
+				+ String.format("%06d", this.customerDocListe.getCdlCode()));
+	}
 
 	public boolean isEmpty() {
 		return this.cidNum == null || this.cidNum.isEmpty();

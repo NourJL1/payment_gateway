@@ -36,12 +36,12 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "/api/customers").permitAll()
+                        /* .requestMatchers(HttpMethod.POST, "/api/customers").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/customers").permitAll()
-                        .requestMatchers("/api/customers/login").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/customers/{id}").hasAnyRole("CUSTOMER", "ADMIN")
+                        .requestMatchers("/api/customers/login").permitAll() */
                         .requestMatchers("/api/customers/**").permitAll()//.hasAnyRole("ADMIN", "CUSTOMER") // Simplified for all methods
                         .requestMatchers("/api/customer-status/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/customers/{id}").hasAnyRole("CUSTOMER", "ADMIN")
                         .requestMatchers("/api/customers/sendEmail").permitAll()
                         .requestMatchers("/api/customers/compareTOTP").permitAll()
                         .requestMatchers("/api/wallets/**").permitAll()
@@ -66,7 +66,6 @@ public class SecurityConfig {
                         .requestMatchers("/api/account-types/**").permitAll()
                         .requestMatchers("/api/banks/**").permitAll()
 
-                        
                         .requestMatchers("/api/wallet-category-operation-type-map/**").permitAll() // Simplified for all methods
                         
                         .requestMatchers("/api/wallet-operation-type-map/**").permitAll() // Simplified for all methods

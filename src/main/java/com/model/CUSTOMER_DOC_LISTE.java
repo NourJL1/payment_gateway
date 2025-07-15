@@ -75,7 +75,7 @@ public class CUSTOMER_DOC_LISTE {
 	public void setCdlIden() {
 		this.cdlIden = "CDL-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
 				+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
-		// this.cdlLabe = customerIdentity.getCustomer().getCusIden();
+		//if (this.cdlLabe == null)
 	}
 
 	public String getCdlLabe() {
