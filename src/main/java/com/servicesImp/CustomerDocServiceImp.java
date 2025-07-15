@@ -38,7 +38,7 @@ public class CustomerDocServiceImp implements CustomerDocService {
 
     @Autowired
     private CustomerDocListeRepository customerDocListeRepository;
-    
+
     @Value("${document.storage.path}")
     private String storageDir;
 
@@ -63,7 +63,12 @@ public class CustomerDocServiceImp implements CustomerDocService {
                 byte[] encryptedFile = Files.readAllBytes(new File(path).toPath());
                 file = decrypt(encryptedFile);
 
-                return ResponseEntity.ok().contentType(MediaType.valueOf(customerDoc.get().getDocType().getDtyIden())).body( file);
+                return ResponseEntity.ok()
+                        .header("Content-Security-Policy", "default-src 'none'")
+                        .header("X-Frame-Options", "DENY") // Prevent iframing
+                        .header("X-Permitted-Cross-Domain-Policies", "none")
+                        .contentType(MediaType.valueOf(customerDoc.get().getDocType().getDtyIden()))
+                        .body(file);
 
             } catch (InvalidKeyException e) {
                 return ResponseEntity.badRequest().body(e.getClass().toString() + ":\n" + e.getMessage());
@@ -73,10 +78,10 @@ public class CustomerDocServiceImp implements CustomerDocService {
         }
         return null;
     }
-    
+
     @Override
     public Optional<CUSTOMER_DOC> findById(Integer id) {
-    return customerDocRepository.findById(id);
+        return customerDocRepository.findById(id);
     }
 
     private static SecretKey secretKey;
@@ -114,10 +119,8 @@ public class CustomerDocServiceImp implements CustomerDocService {
             // Create directory if it doesn't exist
             if (!Files.exists(customerDocListePath)) {
                 Files.createDirectories(customerDocListePath);
-                System.out.println("--------------"+ customerDocListePath);
+                System.out.println("--------------" + customerDocListePath);
             }
-
-            
 
             // encryption
             byte[] encryptedFile;
@@ -125,7 +128,7 @@ public class CustomerDocServiceImp implements CustomerDocService {
 
             File filePath = new File(customerDocListePath + "/" + customerDoc.getCdoLabe() + ".enc");
 
-            System.out.println("--------------"+ filePath.getAbsolutePath());
+            System.out.println("--------------" + filePath.getAbsolutePath());
 
             FileOutputStream fos = new FileOutputStream(filePath);
             fos.write(encryptedFile);
