@@ -43,8 +43,8 @@ public class CustomerController {
 
     @Autowired
     private CustomerStatusRepository customerStatusRepository;
-    
-    @Autowired 
+
+    @Autowired
     private CustomerDocListeService customerDocListeService;
 
     @Autowired
@@ -69,59 +69,66 @@ public class CustomerController {
         }
 
         // Vérifier si le statut du client est défini
-        /* if (customer.getStatus() == null || customer.getStatus().getCtsCode() == null) {
-            return ResponseEntity.badRequest().body("Customer status is required.");
-        } */
+        /*
+         * if (customer.getStatus() == null || customer.getStatus().getCtsCode() ==
+         * null) {
+         * return ResponseEntity.badRequest().body("Customer status is required.");
+         * }
+         */
 
         // Récupérer le statut en base de données en utilisant `ctsCode`
-        /* CUSTOMER_STATUS status = customerStatusRepository.findByCtsCode(customer.getStatus().getCtsCode());
-        if (status == null) {
-            return ResponseEntity.badRequest().body("Invalid customer status.");
-        } */
+        /*
+         * CUSTOMER_STATUS status =
+         * customerStatusRepository.findByCtsCode(customer.getStatus().getCtsCode());
+         * if (status == null) {
+         * return ResponseEntity.badRequest().body("Invalid customer status.");
+         * }
+         */
 
         // Assigner le statut au client
-        if (customer.getStatus() == null) 
+        if (customer.getStatus() == null)
             customer.setStatus(customerStatusRepository.findByCtsCode(3)); // Default status
 
         // Vérifier si l'identité est définie et récupérer les informations de
         // l'identité
-        /* if (customer.getIdentity() != null && customer.getIdentity().getCidCode() != null) {
-            Optional<CUSTOMER_IDENTITY> identityOpt = customerIdentityRepository
-                    .findById(customer.getIdentity().getCidCode());
-            if (identityOpt.isPresent()) {
-                customer.setIdentity(identityOpt.get());
-            } else {
-                return ResponseEntity.badRequest().body("Customer Identity not found.");
-            }
-        } */
+        /*
+         * if (customer.getIdentity() != null && customer.getIdentity().getCidCode() !=
+         * null) {
+         * Optional<CUSTOMER_IDENTITY> identityOpt = customerIdentityRepository
+         * .findById(customer.getIdentity().getCidCode());
+         * if (identityOpt.isPresent()) {
+         * customer.setIdentity(identityOpt.get());
+         * } else {
+         * return ResponseEntity.badRequest().body("Customer Identity not found.");
+         * }
+         * }
+         */
 
-        /* if (customer.getIdentity() != null)
-        {
-            customerIdentityRepository.save(customer.getIdentity());
-        } */
+        /*
+         * if (customer.getIdentity() != null)
+         * {
+         * customerIdentityRepository.save(customer.getIdentity());
+         * }
+         */
 
-       // customer.setIdentity(customerIdentityRepository.findById(1).get());
+        // customer.setIdentity(customerIdentityRepository.findById(1).get());
 
         customerDocListeService.save(customer.getIdentity().getCustomerDocListe());
 
         // Réinitialiser l'ID pour éviter une mise à jour involontaire
         customer.setCusCode(null);
-        customer.setWallet(new WALLET( null, null, null, null, 0f, 0f, 0f,  null, null, customer, null, null, null, null, null, null, null, null, null));
+        customer.setWallet(new WALLET(null, null, null, null, 0f, 0f, 0f, null, null, customer, null, null, null, null,
+                null, null, null, null, null));
 
-
-        System.out.println("------------------------------------------------"+customer.getCusMotDePasse());
         customer.setCusMotDePasse(passwordEncoder.encode(customer.getCusMotDePasse()));
-        System.out.println("------------------------------------------------"+customer.getCusMotDePasse());
 
         // Sauvegarder le client
         CUSTOMER savedCustomer = customerRepository.save(customer);
 
-        //savedCustomer.getWallets().forEach( wallet -> wallet.setCustomer(savedCustomer));
+        // savedCustomer.getWallets().forEach( wallet ->
+        // wallet.setCustomer(savedCustomer));
 
-        //customer.getWallets().get(0).setCustomer(customer);
-
-        System.out.println("------------------------------------------------"+savedCustomer.getCusMotDePasse());
-
+        // customer.getWallets().get(0).setCustomer(customer);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedCustomer);
     }
 
@@ -161,6 +168,24 @@ public class CustomerController {
         return ResponseEntity.ok().body(Map.of("message", "success"));
     }
 
+    /*
+     * @PutMapping("resetPassword")
+     * public ResponseEntity<Map<String, String>> resetPassword(@RequestParam String
+     * email,
+     * 
+     * @RequestParam String password) {
+     * CUSTOMER customer = customerService.getCustomerByEmail(email)
+     * .orElseThrow(() -> new RuntimeException("Customer not found with email: " +
+     * email));
+     * customer.setCusMotDePasse(passwordEncoder.encode(password));
+     * customerRepository.save(customer);
+     * 
+     * System.out.println(customer.getCusMotDePasse());
+     * 
+     * return ResponseEntity.ok().body(Map.of("message", "success"));
+     * }
+     */
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCustomer(@PathVariable Integer id) {
         if (customerService.existsById(id)) {
@@ -197,17 +222,19 @@ public class CustomerController {
         return ResponseEntity.ok(customers);
     }
 
-    /* @GetMapping("/with-wallets")
-    public ResponseEntity<List<CUSTOMER>> getCustomersWithWallets() {
-        List<CUSTOMER> customers = customerService.getCustomersWithWallets();
-        return ResponseEntity.ok(customers);
-    }
-
-    @GetMapping("/without-wallets")
-    public ResponseEntity<List<CUSTOMER>> getCustomersWithoutWallets() {
-        List<CUSTOMER> customers = customerService.getCustomersWithoutWallets();
-        return ResponseEntity.ok(customers);
-    } */
+    /*
+     * @GetMapping("/with-wallets")
+     * public ResponseEntity<List<CUSTOMER>> getCustomersWithWallets() {
+     * List<CUSTOMER> customers = customerService.getCustomersWithWallets();
+     * return ResponseEntity.ok(customers);
+     * }
+     * 
+     * @GetMapping("/without-wallets")
+     * public ResponseEntity<List<CUSTOMER>> getCustomersWithoutWallets() {
+     * List<CUSTOMER> customers = customerService.getCustomersWithoutWallets();
+     * return ResponseEntity.ok(customers);
+     * }
+     */
 
     @GetMapping("/search")
     public ResponseEntity<List<CUSTOMER>> searchCustomers(
@@ -248,7 +275,7 @@ public class CustomerController {
             } else {
                 System.out.println("User not found: " + loginRequest.getUsername());
                 return ResponseEntity.status(404)
-                        .body(new ResponseDTO("User not found",null,  null, null, null, null, null, null, null));
+                        .body(new ResponseDTO("User not found", null, null, null, null, null, null, null, null));
             }
         } catch (BadCredentialsException e) {
             System.out.println("Invalid credentials for: " + loginRequest.getUsername());
@@ -294,7 +321,7 @@ public class CustomerController {
         private String roles; // Changed from token to roles
 
         public ResponseDTO(String message, String cusCode, String username, String fullname, String status, Role role,
-                String cusMailAddress,  String cusPhoneNbr, String roles) {
+                String cusMailAddress, String cusPhoneNbr, String roles) {
             this.message = message;
             this.cusCode = cusCode;
             this.username = username;
@@ -389,16 +416,18 @@ public class CustomerController {
         String text = "";
         switch (email.getSubject()) {
             case "TOTP":
-                if(customerRepository.existsByCusMailAddress(email.getCusMailAdress()))
-                    return ResponseEntity.badRequest().body(Map.of("message", "Email already exists"));
+                if (customerRepository.existsByCusMailAddress(email.getCusMailAdress()))
+                    return ResponseEntity.ok().body(Map.of("message", "Email already exists"));
                 text = "Your verification code is: " +
                         totpService.generateTOTP(email.getCusMailAdress()) +
                         "\n The code expires in 5 minutes.";
                 break;
             case "Reset Password":
-                text = "Click this link to reset your password: \n" +
-                        "http://localhost:4200/reset-password\n\n" +
-                        "If you didn't request this, please ignore this email.";
+                if (!customerRepository.existsByCusMailAddress(email.getCusMailAdress()))
+                    return ResponseEntity.ok().body(Map.of("message", "Email doesn't exist in our system"));
+                text = "Your verification code is: " +
+                        totpService.generateTOTP(email.getCusMailAdress()) +
+                        "\n The code expires in 5 minutes.";
                 break;
 
             default:
