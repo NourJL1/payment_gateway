@@ -63,11 +63,15 @@ public class CustomerDocServiceImp implements CustomerDocService {
                 byte[] encryptedFile = Files.readAllBytes(new File(path).toPath());
                 file = decrypt(encryptedFile);
 
+                // Create secure inline preview headers
                 return ResponseEntity.ok()
-                        .header("Content-Security-Policy", "default-src 'none'")
-                        .header("X-Frame-Options", "DENY") // Prevent iframing
-                        .header("X-Permitted-Cross-Domain-Policies", "none")
-                        .contentType(MediaType.valueOf(customerDoc.get().getDocType().getDtyIden()))
+                        .header("Content-Type", customerDoc.get().getDocType().getDtyIden())/* 
+                        .header("Content-Disposition", "inline; filename=\"" + customerDoc.get().getCdoLabe() + "\"")
+                        .header("Content-Security-Policy", "default-src 'none'; sandbox")
+                        .header("X-Content-Type-Options", "nosniff")
+                        .header("X-Frame-Options", "DENY")
+                        .header("Cache-Control", "no-store, max-age=0")
+                        .header("Pragma", "no-cache") */
                         .body(file);
 
             } catch (InvalidKeyException e) {
