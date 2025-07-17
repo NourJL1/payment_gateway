@@ -13,6 +13,8 @@ import com.service.TOTPService;
 
 import jakarta.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +37,8 @@ public class CustomerServiceImp implements CustomerService {
 
 	@Autowired
 	private TOTPService totpService;
+	
+    private static final Logger logger = LoggerFactory.getLogger(WalletServiceImpl.class);
 
 	@Override
 	@Transactional
@@ -144,12 +148,12 @@ public class CustomerServiceImp implements CustomerService {
 	public List<CUSTOMER> getCustomersWithoutWallets() {
 		return customerRepository.findByWalletsIsEmpty();
 
-	} */
+	} 
 
 	public List<CUSTOMER> searchCustomers(String name, String email, String phone) {
 		return customerRepository.searchCustomers(name, email, phone);
 
-	}
+	} */
 
 	@Override
 	public List<CUSTOMER> getCustomersByStatus(Integer statusCode) {
@@ -170,9 +174,17 @@ public class CustomerServiceImp implements CustomerService {
 	}
 
 	@Override
-	public List<CUSTOMER> searchCustomers(String name, String email, String phone, Integer cityCode,
+	public List<CUSTOMER> searchCustomers(String searchWord)
+	{
+		logger.debug("Searching customers with searchWord: {}", searchWord);
+        if (searchWord == null || searchWord.trim().isEmpty()) {
+            return customerRepository.findAll();
+        }
+        return customerRepository.searchCustomers(searchWord);
+	}
+	/* public List<CUSTOMER> searchCustomers(String name, String email, String phone, Integer cityCode,
 			Integer countryCode) {
 		return null;
-	}
+	} */
 
 }

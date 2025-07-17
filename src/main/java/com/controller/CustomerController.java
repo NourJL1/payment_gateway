@@ -242,7 +242,7 @@ public class CustomerController {
      * }
      */
 
-    @GetMapping("/search")
+    /* @GetMapping("/search")
     public ResponseEntity<List<CUSTOMER>> searchCustomers(
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String email,
@@ -250,6 +250,12 @@ public class CustomerController {
             @RequestParam(required = false) Integer cityCode,
             @RequestParam(required = false) Integer countryCode) {
         List<CUSTOMER> customers = customerService.searchCustomers(name, email, phone, cityCode, countryCode);
+        return ResponseEntity.ok(customers);
+    } */
+
+    @GetMapping("/search")
+    public ResponseEntity<List<CUSTOMER>> searchCustomers(@RequestParam("word") String searchWord) {
+        List<CUSTOMER> customers = customerService.searchCustomers(searchWord);
         return ResponseEntity.ok(customers);
     }
 

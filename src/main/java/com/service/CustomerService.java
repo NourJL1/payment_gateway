@@ -41,7 +41,8 @@ public interface CustomerService {
     //List<CUSTOMER> getCustomersWithoutWallets();
 
     // 🔹 Recherche avancée avec filtres dynamiques
-    List<CUSTOMER> searchCustomers(String name, String email, String phone, Integer cityCode, Integer countryCode);
+    //List<CUSTOMER> searchCustomers(String name, String email, String phone, Integer cityCode, Integer countryCode);
+    List<CUSTOMER> searchCustomers(String searchWord);
 
 	boolean comapreTOTP(String cusMailAdress, String totp);
 
