@@ -44,6 +44,8 @@ public interface CustomerService {
     List<CUSTOMER> searchCustomers(String name, String email, String phone, Integer cityCode, Integer countryCode);
 
 	boolean comapreTOTP(String cusMailAdress, String totp);
+
+    List<CUSTOMER> getCustomersByStatus(Integer statusCode);
 	
 
 }

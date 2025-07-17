@@ -1,5 +1,7 @@
 package com.repository;
 
+import com.model.CITY;
+import com.model.COUNTRY;
 import com.model.CUSTOMER;
 
 import java.util.List;
@@ -9,12 +11,20 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import com.model.WALLET;
+import com.model.CUSTOMER_STATUS;
+
 
 
 public interface CustomerRepository extends JpaRepository<CUSTOMER, Integer> {
         Optional<CUSTOMER> findByCusMailAddress(String email);
 
         Optional<CUSTOMER> findByCusPhoneNbr(String phone);
+
+        List<CUSTOMER> findByStatus(CUSTOMER_STATUS status);
+
+        List<CUSTOMER> findByCountry(COUNTRY country);
+
+        List<CUSTOMER> findByCity(CITY city);
 
         Optional<CUSTOMER> findByUsername(String username);
 

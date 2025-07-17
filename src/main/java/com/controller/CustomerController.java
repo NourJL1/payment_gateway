@@ -210,6 +210,12 @@ public class CustomerController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/status/{statusCode}")
+    public ResponseEntity<List<CUSTOMER>> getCustomersByStatus(@PathVariable Integer statusCode) {
+        List<CUSTOMER> customers = customerService.getCustomersByStatus(statusCode);
+        return ResponseEntity.ok(customers);
+    }
+
     @GetMapping("/city/{cityCode}")
     public ResponseEntity<List<CUSTOMER>> getCustomersByCity(@PathVariable Integer cityCode) {
         List<CUSTOMER> customers = customerService.getCustomersByCity(cityCode);

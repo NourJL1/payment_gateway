@@ -1,7 +1,11 @@
 package com.servicesImp;
 
+import com.model.CITY;
+import com.model.COUNTRY;
 import com.model.CUSTOMER;
 import com.model.CUSTOMER_STATUS;
+import com.repository.CityRepository;
+import com.repository.CountryRepository;
 import com.repository.CustomerRepository;
 import com.repository.CustomerStatusRepository;
 import com.service.CustomerService;
@@ -22,6 +26,12 @@ public class CustomerServiceImp implements CustomerService {
 
 	@Autowired
 	private CustomerStatusRepository customerStatusRepository;
+
+	@Autowired
+	private CityRepository cityRepository;
+
+	@Autowired
+	private CountryRepository countryRepository;
 
 	@Autowired
 	private TOTPService totpService;
@@ -84,6 +94,8 @@ public class CustomerServiceImp implements CustomerService {
 			customer.setStatus(customerDetails.getStatus());
 			customer.setIdentity(customerDetails.getIdentity());
 			customer.setCusIden(customerDetails.getCusIden());
+			customer.setCountry(customerDetails.getCountry());
+			customer.setCity(customerDetails.getCity());
 
 			return customerRepository.save(customer);
 		}).orElseThrow(() -> new RuntimeException("Customer non trouvé"));
@@ -140,13 +152,21 @@ public class CustomerServiceImp implements CustomerService {
 	}
 
 	@Override
+	public List<CUSTOMER> getCustomersByStatus(Integer statusCode) {
+		CUSTOMER_STATUS status = customerStatusRepository.findById(statusCode).get();
+		return customerRepository.findByStatus(status);
+	}
+
+	@Override
 	public List<CUSTOMER> getCustomersByCity(Integer cityCode) {
-		return null;
+		CITY city = cityRepository.findById(cityCode).get();
+		return customerRepository.findByCity(city);
 	}
 
 	@Override
 	public List<CUSTOMER> getCustomersByCountry(Integer countryCode) {
-		return null;
+		COUNTRY country = countryRepository.findById(countryCode).get();
+		return customerRepository.findByCountry(country);
 	}
 
 	@Override
