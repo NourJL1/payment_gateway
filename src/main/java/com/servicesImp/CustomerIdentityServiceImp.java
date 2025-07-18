@@ -57,4 +57,9 @@ public class CustomerIdentityServiceImp implements CustomerIdentityService  {
 		
 	}
 
+	@Override
+	public boolean existsByCidNum(String cidNum) {
+		return repository.existsByCidNum(cidNum);
+	}
+
 }

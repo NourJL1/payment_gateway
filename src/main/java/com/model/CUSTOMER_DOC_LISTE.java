@@ -19,7 +19,9 @@ import lombok.Data;
 import lombok.ToString;
 
 import org.aspectj.util.FileUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 
 @Entity
 @Table(name = "CUSTOMER_DOC_LISTE")
@@ -48,19 +50,21 @@ public class CUSTOMER_DOC_LISTE {
 	@JsonIgnore
 	private CUSTOMER_IDENTITY customerIdentity;
 
-	
+	@Transient
+	@Autowired
+	private Environment env;
+
 	/* @PreRemove
 	public void preRemove() {
-		String storageDir = (new CustomerDocListeServiceImp()).getStorageDir();
+		String storageDir = null;
 		System.out.println("----storageDir: " + storageDir);
-		try
-        {
-            FileUtil.deleteContents(new File(storageDir + File.separator + cdlLabe));
-            Files.deleteIfExists(Paths.get(storageDir + File.separator + cdlLabe));
+		try {
+			FileUtil.deleteContents(new File(storageDir + File.separator + cdlLabe));
+			Files.deleteIfExists(Paths.get(storageDir + File.separator + cdlLabe));
 			System.out.println("----Directory deleted: " + storageDir + File.separator + cdlLabe);
-        }
-        catch(IOException e)
-        {System.out.println("------------------------------"+e.getClass().toString() + ":\n" + e.getMessage());}
+		} catch (IOException e) {
+			System.out.println("------------------------------" + e.getClass().toString() + ":\n" + e.getMessage());
+		}
 	} */
 
 	public String getCdlIden() {
@@ -72,10 +76,10 @@ public class CUSTOMER_DOC_LISTE {
 	}
 
 	@PrePersist
-	public void setCdlIden() {
+	public void onCreate() {
 		this.cdlIden = "CDL-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
 				+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
-		//if (this.cdlLabe == null)
+		this.cdlLabe = this.cdlIden;
 	}
 
 	public String getCdlLabe() {

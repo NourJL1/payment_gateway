@@ -7,7 +7,6 @@ import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -27,7 +26,10 @@ import lombok.ToString;
 
 @Entity
 @Table(name = "customers", uniqueConstraints = { @UniqueConstraint(columnNames = "CUS_CODE"),
-		@UniqueConstraint(columnNames = "username") })
+		@UniqueConstraint(columnNames = "username"),
+		@UniqueConstraint(columnNames = "cus_mail_address"),
+		@UniqueConstraint(columnNames = "cus_phone_nbr")
+})
 // @Data // Utilisation de Lombok pour générer les getters et setters
 public class CUSTOMER {
 	@Id

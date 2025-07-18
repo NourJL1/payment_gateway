@@ -1,7 +1,4 @@
 package com.controller;
-import com.model.CUSTOMER_IDENTITY;
-import com.service.CustomerIdentityService;
-
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import com.service.*;
+
 @RestController
 @RequestMapping("/api/customer-identity")
 public class CustomerIdentityController {
@@ -88,5 +86,11 @@ public class CustomerIdentityController {
         customerIdentityService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/existsByCidNum/{num}")
+    public ResponseEntity<Boolean> existsByCidNum(@PathVariable String num) {
+        return ResponseEntity.ok().body(customerIdentityService.existsByCidNum(num));
+    }
+    
 
 }

@@ -35,6 +35,10 @@ public interface CustomerRepository extends JpaRepository<CUSTOMER, Integer> {
 
         boolean existsByCusMailAddress(String email);
 
+        boolean existsByUsername(String username);
+
+        boolean existsByCusPhoneNbr(String phone);
+
         // Recherche avancée avec Query (JPQL)
         @Query("SELECT c FROM CUSTOMER c WHERE " +
                 "LOWER(c.cusFirstName) LIKE LOWER(CONCAT('%', :searchWord, '%')) OR " +

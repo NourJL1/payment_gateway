@@ -70,6 +70,7 @@ public class SecurityConfig {
                         
                         .requestMatchers("/api/wallet-operation-type-map/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/customer-identity-type/**").permitAll() 
+                        .requestMatchers("/api/customer-identity/**").permitAll() 
                         .requestMatchers("/api/doc-type/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/customer-doc/**").permitAll() // Simplified for all methods
 

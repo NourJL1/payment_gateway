@@ -4,4 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CustomerIdentityRepository extends JpaRepository<CUSTOMER_IDENTITY, Integer> {
 
+    boolean existsByCidNum(String cidNum);
+
 }
