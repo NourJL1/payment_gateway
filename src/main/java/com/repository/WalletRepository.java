@@ -33,15 +33,15 @@ public interface WalletRepository extends JpaRepository<WALLET, Integer> {
 
     @Query("SELECT w FROM WALLET w WHERE " +
             "LOWER(w.walLabe) LIKE LOWER(CONCAT('%', :searchWord, '%')) OR " +
-            "CAST(w.walCode AS string) LIKE CONCAT('%', :searchWord, '%') OR " +
-            "CAST(w.walIden AS string) LIKE CONCAT('%', :searchWord, '%') OR " +
-            "CAST(w.walKey AS string) LIKE CONCAT('%', :searchWord, '%') OR " +
-            "CAST(w.walFinId AS string) LIKE CONCAT('%', :searchWord, '%') OR " +
-            "CAST(w.walEffBal AS string) LIKE CONCAT('%', :searchWord, '%') OR " +
-            "CAST(w.walLogicBalance AS string) LIKE CONCAT('%', :searchWord, '%') OR " +
-            "CAST(w.walSpecificBalance AS string) LIKE CONCAT('%', :searchWord, '%') OR " +
-            "CAST(w.lastUpdatedDate AS string) LIKE CONCAT('%', :searchWord, '%') OR " +
-            "CAST(w.createdAt AS string) LIKE CONCAT('%', :searchWord, '%')")
+            "LOWER(CAST(w.walCode AS string)) LIKE CONCAT('%', :searchWord, '%') OR " +
+            "LOWER(CAST(w.walIden AS string)) LIKE CONCAT('%', :searchWord, '%') OR " +
+            "LOWER(CAST(w.walKey AS string)) LIKE CONCAT('%', :searchWord, '%') OR " +
+            "LOWER(CAST(w.walFinId AS string)) LIKE CONCAT('%', :searchWord, '%') OR " +
+            "LOWER(CAST(w.walEffBal AS string)) LIKE CONCAT('%', :searchWord, '%') OR " +
+            "LOWER(CAST(w.walLogicBalance AS string)) LIKE CONCAT('%', :searchWord, '%') OR " +
+            "LOWER(CAST(w.walSpecificBalance AS string)) LIKE CONCAT('%', :searchWord, '%') OR " +
+            "LOWER(CAST(w.lastUpdatedDate AS string)) LIKE CONCAT('%', :searchWord, '%') OR " +
+            "LOWER(CAST(w.createdAt AS string)) LIKE CONCAT('%', :searchWord, '%')")
     List<WALLET> searchWallets(@Param("searchWord") String searchWord);
 
 }

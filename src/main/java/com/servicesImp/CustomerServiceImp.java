@@ -1,7 +1,11 @@
 package com.servicesImp;
 
+import com.model.CITY;
+import com.model.COUNTRY;
 import com.model.CUSTOMER;
 import com.model.CUSTOMER_STATUS;
+import com.repository.CityRepository;
+import com.repository.CountryRepository;
 import com.repository.CustomerRepository;
 import com.repository.CustomerStatusRepository;
 import com.service.CustomerService;
@@ -9,6 +13,8 @@ import com.service.TOTPService;
 
 import jakarta.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +30,15 @@ public class CustomerServiceImp implements CustomerService {
 	private CustomerStatusRepository customerStatusRepository;
 
 	@Autowired
+	private CityRepository cityRepository;
+
+	@Autowired
+	private CountryRepository countryRepository;
+
+	@Autowired
 	private TOTPService totpService;
+	
+    private static final Logger logger = LoggerFactory.getLogger(WalletServiceImpl.class);
 
 	@Override
 	@Transactional
@@ -84,6 +98,8 @@ public class CustomerServiceImp implements CustomerService {
 			customer.setStatus(customerDetails.getStatus());
 			customer.setIdentity(customerDetails.getIdentity());
 			customer.setCusIden(customerDetails.getCusIden());
+			customer.setCountry(customerDetails.getCountry());
+			customer.setCity(customerDetails.getCity());
 
 			return customerRepository.save(customer);
 		}).orElseThrow(() -> new RuntimeException("Customer non trouvé"));
@@ -132,27 +148,43 @@ public class CustomerServiceImp implements CustomerService {
 	public List<CUSTOMER> getCustomersWithoutWallets() {
 		return customerRepository.findByWalletsIsEmpty();
 
-	} */
+	} 
 
 	public List<CUSTOMER> searchCustomers(String name, String email, String phone) {
 		return customerRepository.searchCustomers(name, email, phone);
 
+	} */
+
+	@Override
+	public List<CUSTOMER> getCustomersByStatus(Integer statusCode) {
+		CUSTOMER_STATUS status = customerStatusRepository.findById(statusCode).get();
+		return customerRepository.findByStatus(status);
 	}
 
 	@Override
 	public List<CUSTOMER> getCustomersByCity(Integer cityCode) {
-		return null;
+		CITY city = cityRepository.findById(cityCode).get();
+		return customerRepository.findByCity(city);
 	}
 
 	@Override
 	public List<CUSTOMER> getCustomersByCountry(Integer countryCode) {
-		return null;
+		COUNTRY country = countryRepository.findById(countryCode).get();
+		return customerRepository.findByCountry(country);
 	}
 
 	@Override
-	public List<CUSTOMER> searchCustomers(String name, String email, String phone, Integer cityCode,
+	public List<CUSTOMER> searchCustomers(String searchWord)
+	{
+		logger.debug("Searching customers with searchWord: {}", searchWord);
+        if (searchWord == null || searchWord.trim().isEmpty()) {
+            return customerRepository.findAll();
+        }
+        return customerRepository.searchCustomers(searchWord);
+	}
+	/* public List<CUSTOMER> searchCustomers(String name, String email, String phone, Integer cityCode,
 			Integer countryCode) {
 		return null;
-	}
+	} */
 
 }

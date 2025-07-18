@@ -59,17 +59,31 @@ public class WALLET {
 	@PreUpdate
 	@PrePersist
 	private void updateLastUpdatedDate() {
-		if (this.walIden == null) {
+		if (this.walIden == null) 
 			this.walIden = "WAL-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss")) + "-"
 					+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
-		}
-		if (this.walLabe == null) {
+
+		if (this.walLabe == null) 
         this.walLabe = "Wallet-" + (this.walletType != null ? 
                           this.walletType.getWtyLabe() : "Default");
-		}
-		if (this.walKey == null) {
+
+		if (this.walKey == null) 
 			this.walKey = UUID.randomUUID().hashCode();// Default value if not set
+		
+		if (walletCategory == null) {
+			this.walletCategory = new WALLET_CATEGORY();
+			this.walletCategory.setWcaCode(1); // Default category code: CUSTOMER
 		}
+		if (walletType == null) {
+			this.walletType = new WALLET_TYPE();
+			this.walletType.setWtyCode(1); // Default type code: STANDARD
+		}
+		if (walletStatus == null) {
+			this.walletStatus = new WALLET_STATUS();
+			this.walletStatus.setWstCode(1); // Default status code: ACTIVE
+			
+		}
+
 		this.lastUpdatedDate = LocalDateTime.now();
 		
 		 this.createdAt = LocalDateTime.now(); // ✅ Set only once
