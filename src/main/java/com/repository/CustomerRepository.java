@@ -23,6 +23,10 @@ public interface CustomerRepository extends JpaRepository<CUSTOMER, Integer> {
     Optional<CUSTOMER> findByUsername(String username);
     Optional<CUSTOMER> findByWallet(WALLET wallet);
     boolean existsByCusMailAddress(String email);
+
+        boolean existsByUsername(String username);
+
+        boolean existsByCusPhoneNbr(String phone);
     long count();
     long countByStatus(CUSTOMER_STATUS status);
 

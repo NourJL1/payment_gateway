@@ -7,5 +7,6 @@ public interface CustomerIdentityService {
     Optional<CUSTOMER_IDENTITY> findById(Integer id);
     CUSTOMER_IDENTITY save(CUSTOMER_IDENTITY customerIdentity);
     void deleteById(Integer id);
+    boolean existsByCidNum(String cidNum);
 
 }

@@ -53,7 +53,8 @@ public class CITY {
 
 	@PrePersist
 	public void setCtyIden() {
-		this.ctyIden = "CTY-" + country.getCtrIden() + "-" + UUID.randomUUID().toString().substring(5, 6).toUpperCase();
+		this.ctyIden = "CTY-" + country.getCtrIden().substring(4, 6) + "-"
+				+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
 	}
 
 	public String getCtyLabe() {

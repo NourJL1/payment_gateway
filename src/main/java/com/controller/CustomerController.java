@@ -7,11 +7,14 @@ import com.service.CustomerDocListeService;
 import com.service.CustomerService;
 import com.service.EmailService;
 import com.service.TOTPService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.model.*;
 
 import jakarta.validation.Valid;
 
+import org.aspectj.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,6 +26,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -60,6 +67,13 @@ public class CustomerController {
 
     @PostMapping
     public ResponseEntity<?> createCustomer(@Valid @RequestBody CUSTOMER customer) {
+
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            System.out.println("Creating customer: " + mapper.writeValueAsString(customer));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if (customer.getCity() == null || customer.getCity().getCtyCode() == null) {
             return ResponseEntity.badRequest().body("City information is required.");
         }
@@ -84,6 +98,21 @@ public class CustomerController {
         Optional<CUSTOMER> customer = customerService.getCustomerById(id);
         return customer.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("existsByEmail/{cusMailAddress}")
+    public boolean existsByEmail(@PathVariable String cusMailAddress) {
+        return customerRepository.existsByCusMailAddress(cusMailAddress);
+    }
+
+    @GetMapping("existsByUsername/{username}")
+    public boolean existsByUsername(@PathVariable String username) {
+        return customerRepository.existsByUsername(username);
+    }
+
+    @GetMapping("existsByCusPhoneNbr/{phone}")
+    public boolean existsByCusPhoneNbr(@PathVariable String phone) {
+        return customerRepository.existsByCusPhoneNbr(phone);
     }
 
     @GetMapping
@@ -126,8 +155,9 @@ public class CustomerController {
         }
     }
 
-    @PutMapping("/resetPassword/{cusCode}")
-    public ResponseEntity<Map<String, String>> resetPassword(@PathVariable Integer cusCode, @RequestBody String password) {
+    @PutMapping("resetPassword/{cusCode}")
+    public ResponseEntity<Map<String, String>> resetPassword(@PathVariable Integer cusCode,
+            @RequestBody String password) {
         CUSTOMER customer = customerService.getCustomerById(cusCode)
                 .orElseThrow(() -> new RuntimeException("Customer not found with id: " + cusCode));
         customer.setCusMotDePasse(passwordEncoder.encode(password));
@@ -135,10 +165,43 @@ public class CustomerController {
         return ResponseEntity.ok().body(Map.of("message", "success"));
     }
 
+    /*
+     * @PutMapping("resetPassword")
+     * public ResponseEntity<Map<String, String>> resetPassword(@RequestParam String
+     * email,
+     * 
+     * @RequestParam String password) {
+     * CUSTOMER customer = customerService.getCustomerByEmail(email)
+     * .orElseThrow(() -> new RuntimeException("Customer not found with email: " +
+     * email));
+     * customer.setCusMotDePasse(passwordEncoder.encode(password));
+     * customerRepository.save(customer);
+     * 
+     * System.out.println(customer.getCusMotDePasse());
+     * 
+     * return ResponseEntity.ok().body(Map.of("message", "success"));
+     * }
+     */
+
+    @Value("${document.storage.path}")
+    String storageDir;
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCustomer(@PathVariable Integer id) {
         if (customerService.existsById(id)) {
+
+            String cdlLabe = customerService.getCustomerById(id).get().getIdentity().getCustomerDocListe()
+                    .getCdlLabe();
+
+            try {
+                FileUtil.deleteContents(new File(storageDir + File.separator + cdlLabe));
+                Files.deleteIfExists(Paths.get(storageDir + File.separator + cdlLabe));
+            } catch (IOException e) {
+                System.out.println("------------------------------" + e.getClass().toString() + ":\n" + e.getMessage());
+            }
+
             customerService.deleteCustomer(id);
+
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();
@@ -176,6 +239,39 @@ public class CustomerController {
         List<CUSTOMER> customers = customerService.getCustomersByCountry(countryCode);
         return ResponseEntity.ok(customers);
     }
+
+    /*
+     * @GetMapping("/with-wallets")
+     * public ResponseEntity<List<CUSTOMER>> getCustomersWithWallets() {
+     * List<CUSTOMER> customers = customerService.getCustomersWithWallets();
+     * return ResponseEntity.ok(customers);
+     * }
+     * 
+     * @GetMapping("/without-wallets")
+     * public ResponseEntity<List<CUSTOMER>> getCustomersWithoutWallets() {
+     * List<CUSTOMER> customers = customerService.getCustomersWithoutWallets();
+     * return ResponseEntity.ok(customers);
+     * }
+     */
+
+    /*
+     * @GetMapping("/search")
+     * public ResponseEntity<List<CUSTOMER>> searchCustomers(
+     * 
+     * @RequestParam(required = false) String name,
+     * 
+     * @RequestParam(required = false) String email,
+     * 
+     * @RequestParam(required = false) String phone,
+     * 
+     * @RequestParam(required = false) Integer cityCode,
+     * 
+     * @RequestParam(required = false) Integer countryCode) {
+     * List<CUSTOMER> customers = customerService.searchCustomers(name, email,
+     * phone, cityCode, countryCode);
+     * return ResponseEntity.ok(customers);
+     * }
+     */
 
     @GetMapping("/search")
     public ResponseEntity<List<CUSTOMER>> searchCustomers(@RequestParam("word") String searchWord) {
