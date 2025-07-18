@@ -30,6 +30,8 @@ public interface WalletRepository extends JpaRepository<WALLET, Integer> {
     // Updated query to count wallets with wstCode = 1 (ACTIVE)
     @Query("SELECT COUNT(w) FROM WALLET w WHERE w.walletStatus.wstCode = 1")
     Long countActiveWallets();
+    @Query("SELECT COUNT(w) FROM WALLET w WHERE w.walletStatus.wstCode = 2")
+    Long countPendingWallets();
 
     @Query("SELECT w FROM WALLET w WHERE " +
             "LOWER(w.walLabe) LIKE LOWER(CONCAT('%', :searchWord, '%')) OR " +

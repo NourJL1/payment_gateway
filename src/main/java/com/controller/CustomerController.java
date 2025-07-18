@@ -23,7 +23,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -53,82 +52,29 @@ public class CustomerController {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    @Autowired
+    private EmailService emailService;
+
+    @Autowired
+    private TOTPService totpService;
+
     @PostMapping
     public ResponseEntity<?> createCustomer(@Valid @RequestBody CUSTOMER customer) {
-
-        // Vérifier si la ville est définie
         if (customer.getCity() == null || customer.getCity().getCtyCode() == null) {
             return ResponseEntity.badRequest().body("City information is required.");
         }
-
         cityRepository.findById(customer.getCity().getCtyCode())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "City not found"));
-
         if (customerRepository.existsByCusMailAddress(customer.getCusMailAddress())) {
             return ResponseEntity.badRequest().body("email already in use");
         }
-
-        // Vérifier si le statut du client est défini
-        /*
-         * if (customer.getStatus() == null || customer.getStatus().getCtsCode() ==
-         * null) {
-         * return ResponseEntity.badRequest().body("Customer status is required.");
-         * }
-         */
-
-        // Récupérer le statut en base de données en utilisant `ctsCode`
-        /*
-         * CUSTOMER_STATUS status =
-         * customerStatusRepository.findByCtsCode(customer.getStatus().getCtsCode());
-         * if (status == null) {
-         * return ResponseEntity.badRequest().body("Invalid customer status.");
-         * }
-         */
-
-        // Assigner le statut au client
         if (customer.getStatus() == null)
-            customer.setStatus(customerStatusRepository.findByCtsCode(3)); // Default status
-
-        // Vérifier si l'identité est définie et récupérer les informations de
-        // l'identité
-        /*
-         * if (customer.getIdentity() != null && customer.getIdentity().getCidCode() !=
-         * null) {
-         * Optional<CUSTOMER_IDENTITY> identityOpt = customerIdentityRepository
-         * .findById(customer.getIdentity().getCidCode());
-         * if (identityOpt.isPresent()) {
-         * customer.setIdentity(identityOpt.get());
-         * } else {
-         * return ResponseEntity.badRequest().body("Customer Identity not found.");
-         * }
-         * }
-         */
-
-        /*
-         * if (customer.getIdentity() != null)
-         * {
-         * customerIdentityRepository.save(customer.getIdentity());
-         * }
-         */
-
-        // customer.setIdentity(customerIdentityRepository.findById(1).get());
-
+            customer.setStatus(customerStatusRepository.findByCtsCode(3));
         customerDocListeService.save(customer.getIdentity().getCustomerDocListe());
-
-        // Réinitialiser l'ID pour éviter une mise à jour involontaire
         customer.setCusCode(null);
-        customer.setWallet(new WALLET(null, null, null, null, 0f, 0f, 0f, null, null, customer, null, null, null, null,
-                null, null, null, null, null));
-
+        customer.setWallet(new WALLET(null, null, null, null, 0f, 0f, 0f, null, null, customer, null, null, null, null, null, null, null, null, null));
         customer.setCusMotDePasse(passwordEncoder.encode(customer.getCusMotDePasse()));
-
-        // Sauvegarder le client
         CUSTOMER savedCustomer = customerRepository.save(customer);
-
-        // savedCustomer.getWallets().forEach( wallet ->
-        // wallet.setCustomer(savedCustomer));
-
-        // customer.getWallets().get(0).setCustomer(customer);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedCustomer);
     }
 
@@ -146,6 +92,30 @@ public class CustomerController {
         return ResponseEntity.ok(customers);
     }
 
+    @GetMapping("/count")
+    public ResponseEntity<Long> getTotalCustomerCount() {
+        long count = customerService.getTotalCustomerCount();
+        return ResponseEntity.ok(count);
+    }
+
+    @GetMapping("/count/active/{statusCode}")
+    public ResponseEntity<Long> getActiveCustomerCount(@PathVariable Integer statusCode) {
+        long count = customerService.getActiveCustomerCount(statusCode);
+        return ResponseEntity.ok(count);
+    }
+    
+    @GetMapping("/count/new-today")
+    public ResponseEntity<Long> getNewCustomersToday() {
+        long count = customerService.getNewCustomersToday();
+        return ResponseEntity.ok(count);
+    }
+
+    @GetMapping("/growth-rate")
+    public ResponseEntity<Double> getGrowthRate() {
+        double growthRate = customerService.getGrowthRate();
+        return ResponseEntity.ok(growthRate);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<CUSTOMER> updateCustomer(@PathVariable Integer id, @RequestBody CUSTOMER customerDetails) {
         try {
@@ -156,35 +126,14 @@ public class CustomerController {
         }
     }
 
-    @PutMapping("resetPassword/{cusCode}")
+    @PutMapping("/resetPassword/{cusCode}")
     public ResponseEntity<Map<String, String>> resetPassword(@PathVariable Integer cusCode, @RequestBody String password) {
         CUSTOMER customer = customerService.getCustomerById(cusCode)
                 .orElseThrow(() -> new RuntimeException("Customer not found with id: " + cusCode));
         customer.setCusMotDePasse(passwordEncoder.encode(password));
         customerRepository.save(customer);
-
-        System.out.println(customer.getCusMotDePasse());
-
         return ResponseEntity.ok().body(Map.of("message", "success"));
     }
-
-    /*
-     * @PutMapping("resetPassword")
-     * public ResponseEntity<Map<String, String>> resetPassword(@RequestParam String
-     * email,
-     * 
-     * @RequestParam String password) {
-     * CUSTOMER customer = customerService.getCustomerByEmail(email)
-     * .orElseThrow(() -> new RuntimeException("Customer not found with email: " +
-     * email));
-     * customer.setCusMotDePasse(passwordEncoder.encode(password));
-     * customerRepository.save(customer);
-     * 
-     * System.out.println(customer.getCusMotDePasse());
-     * 
-     * return ResponseEntity.ok().body(Map.of("message", "success"));
-     * }
-     */
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCustomer(@PathVariable Integer id) {
@@ -228,31 +177,6 @@ public class CustomerController {
         return ResponseEntity.ok(customers);
     }
 
-    /*
-     * @GetMapping("/with-wallets")
-     * public ResponseEntity<List<CUSTOMER>> getCustomersWithWallets() {
-     * List<CUSTOMER> customers = customerService.getCustomersWithWallets();
-     * return ResponseEntity.ok(customers);
-     * }
-     * 
-     * @GetMapping("/without-wallets")
-     * public ResponseEntity<List<CUSTOMER>> getCustomersWithoutWallets() {
-     * List<CUSTOMER> customers = customerService.getCustomersWithoutWallets();
-     * return ResponseEntity.ok(customers);
-     * }
-     */
-
-    /* @GetMapping("/search")
-    public ResponseEntity<List<CUSTOMER>> searchCustomers(
-            @RequestParam(required = false) String name,
-            @RequestParam(required = false) String email,
-            @RequestParam(required = false) String phone,
-            @RequestParam(required = false) Integer cityCode,
-            @RequestParam(required = false) Integer countryCode) {
-        List<CUSTOMER> customers = customerService.searchCustomers(name, email, phone, cityCode, countryCode);
-        return ResponseEntity.ok(customers);
-    } */
-
     @GetMapping("/search")
     public ResponseEntity<List<CUSTOMER>> searchCustomers(@RequestParam("word") String searchWord) {
         List<CUSTOMER> customers = customerService.searchCustomers(searchWord);
@@ -272,8 +196,7 @@ public class CustomerController {
             Optional<CUSTOMER> userOpt = customerRepository.findByUsername(loginRequest.getUsername());
             if (userOpt.isPresent()) {
                 CUSTOMER customer = userOpt.get();
-                String roles = "ROLE_" + customer.getRole().getName(); // e.g., "ROLE_CUSTOMER"
-                System.out.println("User found: cusCode=" + customer.getCusCode() + ", roles=" + roles);
+                String roles = "ROLE_" + customer.getRole().getName();
                 return ResponseEntity.ok(new ResponseDTO(
                         "Login successful",
                         customer.getCusCode().toString(),
@@ -285,143 +208,17 @@ public class CustomerController {
                         customer.getCusPhoneNbr(),
                         roles));
             } else {
-                System.out.println("User not found: " + loginRequest.getUsername());
                 return ResponseEntity.status(404)
                         .body(new ResponseDTO("User not found", null, null, null, null, null, null, null, null));
             }
         } catch (BadCredentialsException e) {
-            System.out.println("Invalid credentials for: " + loginRequest.getUsername());
             return ResponseEntity.status(401)
                     .body(new ResponseDTO("Invalid credentials", null, null, null, null, null, null, null, null));
         } catch (Exception e) {
-            System.out.println("Login error: " + e.getMessage());
             return ResponseEntity.status(500)
                     .body(new ResponseDTO(e.getMessage(), null, null, null, null, null, null, null, null));
         }
     }
-
-    public static class LoginRequest {
-        private String username;
-        private String password;
-
-        public String getUsername() {
-            return username;
-        }
-
-        public void setUsername(String username) {
-            this.username = username;
-        }
-
-        public String getPassword() {
-            return password;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
-    }
-
-    public static class ResponseDTO {
-        private String message;
-        private String cusCode;
-        private String username;
-        private String fullname;
-        private String status;
-        private Role role;
-        private String cusMailAddress;
-        private String cusPhoneNbr;
-        private String roles; // Changed from token to roles
-
-        public ResponseDTO(String message, String cusCode, String username, String fullname, String status, Role role,
-                String cusMailAddress, String cusPhoneNbr, String roles) {
-            this.message = message;
-            this.cusCode = cusCode;
-            this.username = username;
-            this.fullname = fullname;
-            this.status = status;
-            this.role = role;
-            this.cusMailAddress = cusMailAddress;
-            this.cusPhoneNbr = cusPhoneNbr;
-            this.roles = roles;
-        }
-
-        public String getMessage() {
-            return message;
-        }
-
-        public void setMessage(String message) {
-            this.message = message;
-        }
-
-        public String getCusCode() {
-            return cusCode;
-        }
-
-        public void setCusCode(String cusCode) {
-            this.cusCode = cusCode;
-        }
-
-        public String getUsername() {
-            return username;
-        }
-
-        public void setUsername(String username) {
-            this.username = username;
-        }
-
-        public String getFullname() {
-            return fullname;
-        }
-
-        public void setFullname(String fullname) {
-            this.fullname = fullname;
-        }
-
-        public Role getRole() {
-            return role;
-        }
-
-        public void setRole(Role role) {
-            this.role = role;
-        }
-
-        public String getCusMailAddress() {
-            return cusMailAddress;
-        }
-
-        public void setCusMailAddress(String cusMailAddress) {
-            this.cusMailAddress = cusMailAddress;
-        }
-
-        public String getCusPhoneNbr() {
-            return cusPhoneNbr;
-        }
-
-        public void setCusPhoneNbr(String cusPhoneNbr) {
-            this.cusPhoneNbr = cusPhoneNbr;
-        }
-
-        public String getRoles() {
-            return roles;
-        }
-
-        public void setRoles(String roles) {
-            this.roles = roles;
-        }
-
-        public String getStatus() {
-            return status;
-        }
-
-        public void setStatus(String status) {
-            this.status = status;
-        }
-    }
-
-    @Autowired
-    EmailService emailService;
-    @Autowired
-    TOTPService totpService;
 
     @PostMapping("/sendEmail")
     public ResponseEntity<Map<String, String>> sendEmail(@RequestBody emailDTO email) {
@@ -441,11 +238,9 @@ public class CustomerController {
                         totpService.generateTOTP(email.getCusMailAdress()) +
                         "\n The code expires in 5 minutes.";
                 break;
-
             default:
                 break;
         }
-
         email.setText(text);
         String result = emailService.sendMail(
                 email.getCusMailAdress(),
@@ -459,55 +254,80 @@ public class CustomerController {
         return customerService.comapreTOTP(otp.cusMailAdress, otp.code);
     }
 
+    public static class LoginRequest {
+        private String username;
+        private String password;
+
+        public String getUsername() { return username; }
+        public void setUsername(String username) { this.username = username; }
+        public String getPassword() { return password; }
+        public void setPassword(String password) { this.password = password; }
+    }
+
+    public static class ResponseDTO {
+        private String message;
+        private String cusCode;
+        private String username;
+        private String fullname;
+        private String status;
+        private Role role;
+        private String cusMailAddress;
+        private String cusPhoneNbr;
+        private String roles;
+
+        public ResponseDTO(String message, String cusCode, String username, String fullname, String status, Role role,
+                String cusMailAddress, String cusPhoneNbr, String roles) {
+            this.message = message;
+            this.cusCode = cusCode;
+            this.username = username;
+            this.fullname = fullname;
+            this.status = status;
+            this.role = role;
+            this.cusMailAddress = cusMailAddress;
+            this.cusPhoneNbr = cusPhoneNbr;
+            this.roles = roles;
+        }
+
+        public String getMessage() { return message; }
+        public void setMessage(String message) { this.message = message; }
+        public String getCusCode() { return cusCode; }
+        public void setCusCode(String cusCode) { this.cusCode = cusCode; }
+        public String getUsername() { return username; }
+        public void setUsername(String username) { this.username = username; }
+        public String getFullname() { return fullname; }
+        public void setFullname(String fullname) { this.fullname = fullname; }
+        public String getStatus() { return status; }
+        public void setStatus(String status) { this.status = status; }
+        public Role getRole() { return role; }
+        public void setRole(Role role) { this.role = role; }
+        public String getCusMailAddress() { return cusMailAddress; }
+        public void setCusMailAddress(String cusMailAddress) { this.cusMailAddress = cusMailAddress; }
+        public String getCusPhoneNbr() { return cusPhoneNbr; }
+        public void setCusPhoneNbr(String cusPhoneNbr) { this.cusPhoneNbr = cusPhoneNbr; }
+        public String getRoles() { return roles; }
+        public void setRoles(String roles) { this.roles = roles; }
+    }
+
     public static class emailDTO {
         String cusMailAdress;
         String subject;
         String text;
 
-        public String getCusMailAdress() {
-            return cusMailAdress;
-        }
-
-        public void setCusMailAdress(String cusMailAdress) {
-            this.cusMailAdress = cusMailAdress;
-        }
-
-        public String getSubject() {
-            return subject;
-        }
-
-        public void setSubject(String subject) {
-            this.subject = subject;
-        }
-
-        public String getText() {
-            return text;
-        }
-
-        public void setText(String text) {
-            this.text = text;
-        }
-
+        public String getCusMailAdress() { return cusMailAdress; }
+        public void setCusMailAdress(String cusMailAdress) { this.cusMailAdress = cusMailAdress; }
+        public String getSubject() { return subject; }
+        public void setSubject(String subject) { this.subject = subject; }
+        public String getText() { return text; }
+        public void setText(String text) { this.text = text; }
     }
 
     public static class otpDTO {
         private String cusMailAdress;
         private String code;
 
-        public String getCusMailAdress() {
-            return cusMailAdress;
-        }
-
-        public void setCusMailAdress(String cusMailAdress) {
-            this.cusMailAdress = cusMailAdress;
-        }
-
-        public String getCode() {
-            return code;
-        }
-
-        public void setCode(String code) {
-            this.code = code;
-        }
+        public String getCusMailAdress() { return cusMailAdress; }
+        public void setCusMailAdress(String cusMailAdress) { this.cusMailAdress = cusMailAdress; }
+        public String getCode() { return code; }
+        public void setCode(String code) { this.code = code; }
     }
 }

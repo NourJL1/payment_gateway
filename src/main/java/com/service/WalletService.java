@@ -30,4 +30,5 @@ public interface WalletService {
     void deleteByWalIden(String walIden);
     List<WALLET> searchWallets(String searchWord);
     Long countActiveWallets();
+    Long countPendingWallets();
 }

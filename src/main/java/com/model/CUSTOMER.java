@@ -49,6 +49,9 @@ public class CUSTOMER {
 
 	// @JsonProperty(access = Access.WRITE_ONLY)
 	private String cusMotDePasse;
+	
+	 @Column(name = "CREATED_AT", nullable = false, updatable = false)
+	    private LocalDateTime createdAt;
 
 	// Relation 1..0-* avec CUSTOMER_CONTACTS
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -139,6 +142,14 @@ public class CUSTOMER {
 	public void setCusMotDePasse(String cusMotDePasse) {
 		this.cusMotDePasse = cusMotDePasse;
 	}
+	
+	public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 
 	public String getCusPhoneNbr() {
 		return cusPhoneNbr;
@@ -221,7 +232,7 @@ public class CUSTOMER {
 	public CUSTOMER(Integer cusCode, String cusFirstName, String cusMidName, String cusLastName, String cusMailAddress,
 			String cusMotDePasse, String cusPhoneNbr, String cusAddress, String cusIden, Integer cusFinId,
 			List<CUSTOMER_CONTACTS> contacts, CUSTOMER_STATUS status, CUSTOMER_IDENTITY identity, CITY city,
-			COUNTRY country, WALLET wallet, List<WALLET_OPERATIONS> walletOperations) {
+			COUNTRY country, WALLET wallet, List<WALLET_OPERATIONS> walletOperations, LocalDateTime createdAt) {
 		super();
 		this.cusCode = cusCode;
 		this.cusFirstName = cusFirstName;
@@ -240,6 +251,7 @@ public class CUSTOMER {
 		this.country = country;
 		this.wallet = wallet;
 		this.walletOperations = walletOperations;
+		this.createdAt = createdAt;
 	}
 
 	public CUSTOMER() {

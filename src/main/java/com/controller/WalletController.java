@@ -53,6 +53,11 @@ public class WalletController {
     public ResponseEntity<Long> getActiveWalletCount() {
         return new ResponseEntity<>(walletService.countActiveWallets(), HttpStatus.OK);
     }
+    @GetMapping("/count/pending")
+    public ResponseEntity<Long> getPendingWalletCount() {
+        return new ResponseEntity<>(walletService.countPendingWallets(), HttpStatus.OK);
+    }
+
 
     // 🔹 Récupérer tous les wallets
     @GetMapping

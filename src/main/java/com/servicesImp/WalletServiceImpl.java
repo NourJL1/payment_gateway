@@ -209,4 +209,11 @@ public class WalletServiceImpl implements WalletService {
         logger.info("countActiveWallets: Returned count = {}", count);
         return count;
     }
+    @Override
+    public Long countPendingWallets() {
+        logger.debug("Executing countPendingWallets query for wstCode = 2");
+        Long count = walletRepository.countPendingWallets();
+        logger.info("countPendingWallets: Returned count = {}", count);
+        return count;
+    }
 }

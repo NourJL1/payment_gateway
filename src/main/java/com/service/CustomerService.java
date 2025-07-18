@@ -47,6 +47,12 @@ public interface CustomerService {
 	boolean comapreTOTP(String cusMailAdress, String totp);
 
     List<CUSTOMER> getCustomersByStatus(Integer statusCode);
+    
+    long getTotalCustomerCount();
+    long getActiveCustomerCount(Integer statusCode);
+    
+    long getNewCustomersToday();
+    double getGrowthRate();
 	
 
 }
