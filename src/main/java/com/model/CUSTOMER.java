@@ -53,7 +53,7 @@ public class CUSTOMER {
 	private String cusMotDePasse;
 	
 	 @Column(name = "CREATED_AT", nullable = false, updatable = false)
-	    private LocalDateTime createdAt;
+	private LocalDateTime createdAt;
 
 	// Relation 1..0-* avec CUSTOMER_CONTACTS
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
