@@ -1,6 +1,7 @@
 package com.servicesImp;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -11,6 +12,12 @@ import java.util.Optional;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
@@ -27,6 +34,7 @@ import com.service.CustomerDocService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 @Service
@@ -63,16 +71,19 @@ public class CustomerDocServiceImp implements CustomerDocService {
                 byte[] encryptedFile = Files.readAllBytes(new File(path).toPath());
                 file = decrypt(encryptedFile);
 
+                // convert to pdf
+                //byte[] pdfBytes = convertToPdf(file, customerDoc.get().getDocType().getDtyIden());
+
                 // Create secure inline preview headers
                 return ResponseEntity.ok()
-                        .header("Content-Type", customerDoc.get().getDocType().getDtyIden())/* 
+                        .header("Content-Type", /* "application/pdf" */customerDoc.get().getDocType().getDtyIden())
                         .header("Content-Disposition", "inline; filename=\"" + customerDoc.get().getCdoLabe() + "\"")
                         .header("Content-Security-Policy", "default-src 'none'; sandbox")
                         .header("X-Content-Type-Options", "nosniff")
-                        .header("X-Frame-Options", "DENY")
+                        .header("X-Frame-Options","DENY")
                         .header("Cache-Control", "no-store, max-age=0")
-                        .header("Pragma", "no-cache") */
-                        .body(file);
+                        .header("Pragma", "no-cache")
+                        .body(/* pdfBytes */file);
 
             } catch (InvalidKeyException e) {
                 return ResponseEntity.badRequest().body(e.getClass().toString() + ":\n" + e.getMessage());
@@ -103,17 +114,38 @@ public class CustomerDocServiceImp implements CustomerDocService {
         }
     }
 
-    public static byte[] encrypt(MultipartFile data) throws Exception {
+    private byte[] encrypt(MultipartFile data) throws Exception {
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.ENCRYPT_MODE, secretKey);
         return cipher.doFinal(data.getBytes());
     }
 
-    public static byte[] decrypt(byte[] data) throws Exception {
+    private byte[] decrypt(byte[] data) throws Exception {
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.DECRYPT_MODE, secretKey);
         return cipher.doFinal(data);
     }
+
+    /* private byte[] convertToPdf(byte[] originalFile, String contentType) throws IOException {
+        try (PDDocument document = new PDDocument()) {
+            PDPage page = new PDPage();
+            document.addPage(page);
+
+            try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
+                // For images
+                if (contentType.startsWith("image/")) {
+                    PDImageXObject image = PDImageXObject.createFromByteArray(document, originalFile, "preview");
+                    contentStream.drawImage(image, 0, 0, PDRectangle.A4.getWidth(), PDRectangle.A4.getHeight());
+                }
+                // Add other document type conversions here (DOCX, etc.)
+            }
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            document.save(baos);
+            return baos.toByteArray();
+        }
+    } */
+    
 
     @Override
     public CUSTOMER_DOC save(CUSTOMER_DOC customerDoc, MultipartFile file) {
@@ -145,7 +177,6 @@ public class CustomerDocServiceImp implements CustomerDocService {
             // return ResponseEntity.badRequest().body("file storage error: " +
             // e.getClass().toString() + ":\n" + e.getMessage());
         }
-
     }
 
     @Override

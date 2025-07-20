@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/customer-doc-liste")
-public class CustomertDocListeController {
+public class CustomerDocListeController {
 	
 	@Autowired
     private CustomerDocListeService customerDocListeService;
