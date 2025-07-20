@@ -181,6 +181,7 @@ public class CUSTOMER {
 	public void setCusIden() {
 		this.cusIden = "CUS-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
 				+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
+		this.createdAt = LocalDateTime.now();
 	}
 
 	public Integer getCusFinId() {

@@ -84,9 +84,14 @@ public class CustomerController {
         }
         if (customer.getStatus() == null)
             customer.setStatus(customerStatusRepository.findByCtsCode(3));
+
+        if (customer.getStatus().getCtsLabe().equals("ACTIVE") && customer.getWallet() == null)
+            customer.setWallet(
+                    new WALLET(null, null, null, null, 0f, 0f, 0f, null, null, customer, null, null, null,
+                            null, null, null, null, null, null));
+                            
         customerDocListeService.save(customer.getIdentity().getCustomerDocListe());
         customer.setCusCode(null);
-        customer.setWallet(new WALLET(null, null, null, null, 0f, 0f, 0f, null, null, customer, null, null, null, null, null, null, null, null, null));
         customer.setCusMotDePasse(passwordEncoder.encode(customer.getCusMotDePasse()));
         CUSTOMER savedCustomer = customerRepository.save(customer);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedCustomer);
@@ -132,7 +137,7 @@ public class CustomerController {
         long count = customerService.getActiveCustomerCount(statusCode);
         return ResponseEntity.ok(count);
     }
-    
+
     @GetMapping("/count/new-today")
     public ResponseEntity<Long> getNewCustomersToday() {
         long count = customerService.getNewCustomersToday();
@@ -354,10 +359,21 @@ public class CustomerController {
         private String username;
         private String password;
 
-        public String getUsername() { return username; }
-        public void setUsername(String username) { this.username = username; }
-        public String getPassword() { return password; }
-        public void setPassword(String password) { this.password = password; }
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
     }
 
     public static class ResponseDTO {
@@ -384,24 +400,77 @@ public class CustomerController {
             this.roles = roles;
         }
 
-        public String getMessage() { return message; }
-        public void setMessage(String message) { this.message = message; }
-        public String getCusCode() { return cusCode; }
-        public void setCusCode(String cusCode) { this.cusCode = cusCode; }
-        public String getUsername() { return username; }
-        public void setUsername(String username) { this.username = username; }
-        public String getFullname() { return fullname; }
-        public void setFullname(String fullname) { this.fullname = fullname; }
-        public String getStatus() { return status; }
-        public void setStatus(String status) { this.status = status; }
-        public Role getRole() { return role; }
-        public void setRole(Role role) { this.role = role; }
-        public String getCusMailAddress() { return cusMailAddress; }
-        public void setCusMailAddress(String cusMailAddress) { this.cusMailAddress = cusMailAddress; }
-        public String getCusPhoneNbr() { return cusPhoneNbr; }
-        public void setCusPhoneNbr(String cusPhoneNbr) { this.cusPhoneNbr = cusPhoneNbr; }
-        public String getRoles() { return roles; }
-        public void setRoles(String roles) { this.roles = roles; }
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+
+        public String getCusCode() {
+            return cusCode;
+        }
+
+        public void setCusCode(String cusCode) {
+            this.cusCode = cusCode;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public String getFullname() {
+            return fullname;
+        }
+
+        public void setFullname(String fullname) {
+            this.fullname = fullname;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
+        }
+
+        public Role getRole() {
+            return role;
+        }
+
+        public void setRole(Role role) {
+            this.role = role;
+        }
+
+        public String getCusMailAddress() {
+            return cusMailAddress;
+        }
+
+        public void setCusMailAddress(String cusMailAddress) {
+            this.cusMailAddress = cusMailAddress;
+        }
+
+        public String getCusPhoneNbr() {
+            return cusPhoneNbr;
+        }
+
+        public void setCusPhoneNbr(String cusPhoneNbr) {
+            this.cusPhoneNbr = cusPhoneNbr;
+        }
+
+        public String getRoles() {
+            return roles;
+        }
+
+        public void setRoles(String roles) {
+            this.roles = roles;
+        }
     }
 
     public static class emailDTO {
@@ -409,21 +478,49 @@ public class CustomerController {
         String subject;
         String text;
 
-        public String getCusMailAdress() { return cusMailAdress; }
-        public void setCusMailAdress(String cusMailAdress) { this.cusMailAdress = cusMailAdress; }
-        public String getSubject() { return subject; }
-        public void setSubject(String subject) { this.subject = subject; }
-        public String getText() { return text; }
-        public void setText(String text) { this.text = text; }
+        public String getCusMailAdress() {
+            return cusMailAdress;
+        }
+
+        public void setCusMailAdress(String cusMailAdress) {
+            this.cusMailAdress = cusMailAdress;
+        }
+
+        public String getSubject() {
+            return subject;
+        }
+
+        public void setSubject(String subject) {
+            this.subject = subject;
+        }
+
+        public String getText() {
+            return text;
+        }
+
+        public void setText(String text) {
+            this.text = text;
+        }
     }
 
     public static class otpDTO {
         private String cusMailAdress;
         private String code;
 
-        public String getCusMailAdress() { return cusMailAdress; }
-        public void setCusMailAdress(String cusMailAdress) { this.cusMailAdress = cusMailAdress; }
-        public String getCode() { return code; }
-        public void setCode(String code) { this.code = code; }
+        public String getCusMailAdress() {
+            return cusMailAdress;
+        }
+
+        public void setCusMailAdress(String cusMailAdress) {
+            this.cusMailAdress = cusMailAdress;
+        }
+
+        public String getCode() {
+            return code;
+        }
+
+        public void setCode(String code) {
+            this.code = code;
+        }
     }
 }

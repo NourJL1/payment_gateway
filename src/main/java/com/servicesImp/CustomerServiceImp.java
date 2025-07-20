@@ -4,6 +4,7 @@ import com.model.CITY;
 import com.model.COUNTRY;
 import com.model.CUSTOMER;
 import com.model.CUSTOMER_STATUS;
+import com.model.WALLET;
 import com.repository.CityRepository;
 import com.repository.CountryRepository;
 import com.repository.CustomerRepository;
@@ -82,6 +83,7 @@ public class CustomerServiceImp implements CustomerService {
 
     @Override
     public CUSTOMER updateCustomer(Integer cusCode, CUSTOMER customerDetails) {
+
         return customerRepository.findById(cusCode).map(customer -> {
             customer.setCusFirstName(customerDetails.getCusFirstName());
             customer.setCusMidName(customerDetails.getCusMidName());
@@ -95,6 +97,11 @@ public class CustomerServiceImp implements CustomerService {
             customer.setCusIden(customerDetails.getCusIden());
             customer.setCountry(customerDetails.getCountry());
             customer.setCity(customerDetails.getCity());
+
+            if (customer.getStatus().getCtsLabe().equals("ACTIVE") && customer.getWallet() == null)
+                customer.setWallet(
+                        new WALLET(null, null, null, null, 0f, 0f, 0f, null, null, customer, null, null, null,
+                                null, null, null, null, null, null));
             // Do not update createdAt
             return customerRepository.save(customer);
         }).orElseThrow(() -> new RuntimeException("Customer non trouvé"));
@@ -165,7 +172,7 @@ public class CustomerServiceImp implements CustomerService {
                 .orElseThrow(() -> new RuntimeException("Status not found"));
         return customerRepository.countByStatus(status);
     }
-    
+
     @Override
     public long getNewCustomersToday() {
         return customerRepository.countCustomersCreatedToday();
@@ -177,7 +184,8 @@ public class CustomerServiceImp implements CustomerService {
         LocalDateTime startOfThisMonth = now.with(TemporalAdjusters.firstDayOfMonth()).atStartOfDay();
         LocalDateTime endOfThisMonth = now.with(TemporalAdjusters.lastDayOfMonth()).plusDays(1).atStartOfDay();
         LocalDateTime startOfLastMonth = now.minusMonths(1).with(TemporalAdjusters.firstDayOfMonth()).atStartOfDay();
-        LocalDateTime endOfLastMonth = now.minusMonths(1).with(TemporalAdjusters.lastDayOfMonth()).plusDays(1).atStartOfDay();
+        LocalDateTime endOfLastMonth = now.minusMonths(1).with(TemporalAdjusters.lastDayOfMonth()).plusDays(1)
+                .atStartOfDay();
 
         long thisMonthCount = customerRepository.countCustomersByDateRange(startOfThisMonth, endOfThisMonth);
         long lastMonthCount = customerRepository.countCustomersByDateRange(startOfLastMonth, endOfLastMonth);
