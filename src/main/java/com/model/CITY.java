@@ -21,19 +21,53 @@ public class CITY {
 
 	@Column(name = "CTY_LABE", nullable = false)
 	private String ctyLabe;
+	
+	@Column(name = "CTY_LATITUDE")
+	private Double latitude;
+
+	@Column(name = "CTY_LONGITUDE")
+	private Double longitude;
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	// @JsonIgnore
 	@JoinColumn(name = "CTY_CTR_CODE", referencedColumnName = "CTR_CODE", nullable = false)
 	private COUNTRY country;
 
-	public CITY(Integer ctyCode, String ctyIden, String ctyLabe, COUNTRY country) {
+	public CITY(Integer ctyCode, String ctyIden, String ctyLabe, COUNTRY country, Double latitude, Double longitude) {
 		super();
 		this.ctyCode = ctyCode;
 		this.ctyIden = ctyIden;
 		this.ctyLabe = ctyLabe;
 		this.country = country;
+		this.latitude = latitude;
+		this.longitude = longitude;
 	}
+	
+	
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
+
 
 	public Integer getCtyCode() {
 		return ctyCode;

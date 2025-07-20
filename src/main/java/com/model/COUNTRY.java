@@ -25,6 +25,12 @@ public class COUNTRY {
     @Column(name = "CTR_LABE", nullable = false)
     private String ctrLabe;  // Change type to String
     
+    @Column(name = "CTR_LATITUDE")
+    private Double latitude;
+
+    @Column(name = "CTR_LONGITUDE")
+    private Double longitude;
+    
     
     @OneToMany(mappedBy = "country", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY)
     @JsonIgnore
@@ -33,7 +39,31 @@ public class COUNTRY {
     
     
 
-    public Integer getCtrCode() {
+    public Double getLatitude() {
+		return latitude;
+	}
+
+
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
+
+
+	public Integer getCtrCode() {
 		return ctrCode;
 	}
 
@@ -86,12 +116,14 @@ public class COUNTRY {
 
 
 
-	public COUNTRY(Integer ctrCode, String ctrIden, String ctrLabe, List<CITY> cities) {
+	public COUNTRY(Integer ctrCode, String ctrIden, String ctrLabe, List<CITY> cities, Double latitude, Double longitude) {
 		super();
 		this.ctrCode = ctrCode;
 		this.ctrIden = ctrIden;
 		this.ctrLabe = ctrLabe;
 		this.cities = cities;
+		this.latitude = latitude;
+		this.longitude = longitude;
 	}
 	
 	public COUNTRY() {}
