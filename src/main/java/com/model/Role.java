@@ -20,9 +20,9 @@ public class Role {
     private RoleName name;
 
 
-	@OneToMany(mappedBy = "role")
+	/* @OneToMany(mappedBy = "role")
 	@JsonIgnore
-    private Set<CUSTOMER> customers = new HashSet<>();
+    private Set<CUSTOMER> customers = new HashSet<>(); */
     
     public enum RoleName {
         CUSTOMER,
@@ -54,12 +54,12 @@ public class Role {
 	public void setName(RoleName name) {
 		this.name = name;
 	}
-	public Set<CUSTOMER> getCustomers() {
+	/* public Set<CUSTOMER> getCustomers() {
 		return customers;
 	}
 	public void setCustomers(Set<CUSTOMER> customers) {
 		this.customers = customers;
-	}
+	} */
 	
 
 	
