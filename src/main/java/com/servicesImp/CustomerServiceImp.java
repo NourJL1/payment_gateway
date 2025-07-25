@@ -39,8 +39,6 @@ public class CustomerServiceImp implements CustomerService {
     @Autowired
     private CountryRepository countryRepository;
 
-    @Autowired
-    private TOTPService totpService;
 
     private static final Logger logger = LoggerFactory.getLogger(CustomerServiceImp.class);
 
@@ -64,11 +62,6 @@ public class CustomerServiceImp implements CustomerService {
             throw new IllegalArgumentException("Le statut du client est obligatoire !");
         }
         return customerRepository.save(customer);
-    }
-
-    @Override
-    public boolean comapreTOTP(String cusMailAdress, String code) {
-        return totpService.verifyTOTP(cusMailAdress, code);
     }
 
     @Override

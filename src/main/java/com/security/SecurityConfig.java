@@ -40,6 +40,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/customers").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/customers/{id}").hasAnyRole("CUSTOMER", "ADMIN")
                         .requestMatchers("/api/customers/login").permitAll() */
+                        
+                        .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/customers/**").permitAll()//.hasAnyRole("ADMIN", "CUSTOMER") // Simplified for all methods
                         .requestMatchers("/api/customer-status/**").permitAll()
                         .requestMatchers("/api/customers/sendEmail").permitAll()
@@ -74,9 +76,9 @@ public class SecurityConfig {
                         .requestMatchers("/api/doc-type/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/customer-doc/**").permitAll() // Simplified for all methods
 
-                        .anyRequest().authenticated()
-                )
-                .addFilterBefore(new RoleHeaderFilter(), UsernamePasswordAuthenticationFilter.class);
+                        .anyRequest().permitAll()//.authenticated()
+                );
+                //.addFilterBefore(new RoleHeaderFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

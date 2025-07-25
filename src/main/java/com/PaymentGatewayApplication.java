@@ -8,5 +8,4 @@ public class PaymentGatewayApplication {
 		SpringApplication.run(PaymentGatewayApplication.class, args);
 		System.out.println("todo bien");
 	}
-
 }

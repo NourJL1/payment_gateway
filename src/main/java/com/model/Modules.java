@@ -14,10 +14,9 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-
 @Entity
 @Table(name = "MODULE")
-@Data 
+@Data
 public class Modules {
 
     @Id
@@ -149,8 +148,8 @@ public class Modules {
     public void setCode(Integer code) {
         this.code = code;
     }
-  	public Modules() {}
 
-    
+    public Modules() {
+    }
 
 }

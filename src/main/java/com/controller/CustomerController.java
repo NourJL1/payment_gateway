@@ -5,8 +5,6 @@ import com.repository.CustomerRepository;
 import com.repository.CustomerStatusRepository;
 import com.service.CustomerDocListeService;
 import com.service.CustomerService;
-import com.service.EmailService;
-import com.service.TOTPService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.model.*;
 
@@ -18,10 +16,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -31,7 +25,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -53,17 +46,12 @@ public class CustomerController {
     @Autowired
     private CustomerDocListeService customerDocListeService;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    /* @Autowired
+    private AuthenticationManager authenticationManager; */
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    @Autowired
-    private EmailService emailService;
-
-    @Autowired
-    private TOTPService totpService;
 
     @PostMapping
     public ResponseEntity<?> createCustomer(@Valid @RequestBody CUSTOMER customer) {
@@ -160,33 +148,6 @@ public class CustomerController {
         }
     }
 
-    @PutMapping("resetPassword/{cusCode}")
-    public ResponseEntity<Map<String, String>> resetPassword(@PathVariable Integer cusCode,
-            @RequestBody String password) {
-        CUSTOMER customer = customerService.getCustomerById(cusCode)
-                .orElseThrow(() -> new RuntimeException("Customer not found with id: " + cusCode));
-        customer.setCusMotDePasse(passwordEncoder.encode(password));
-        customerRepository.save(customer);
-        return ResponseEntity.ok().body(Map.of("message", "success"));
-    }
-
-    /*
-     * @PutMapping("resetPassword")
-     * public ResponseEntity<Map<String, String>> resetPassword(@RequestParam String
-     * email,
-     * 
-     * @RequestParam String password) {
-     * CUSTOMER customer = customerService.getCustomerByEmail(email)
-     * .orElseThrow(() -> new RuntimeException("Customer not found with email: " +
-     * email));
-     * customer.setCusMotDePasse(passwordEncoder.encode(password));
-     * customerRepository.save(customer);
-     * 
-     * System.out.println(customer.getCusMotDePasse());
-     * 
-     * return ResponseEntity.ok().body(Map.of("message", "success"));
-     * }
-     */
 
     @Value("${document.storage.path}")
     String storageDir;
@@ -284,7 +245,7 @@ public class CustomerController {
         return ResponseEntity.ok(customers);
     }
 
-    @PostMapping("/login")
+/*     @PostMapping("/login")
     public ResponseEntity<?> loginCustomer(@RequestBody LoginRequest loginRequest) {
         System.out.println("Login attempt: username=" + loginRequest.getUsername());
         try {
@@ -292,7 +253,9 @@ public class CustomerController {
                     new UsernamePasswordAuthenticationToken(
                             loginRequest.getUsername(),
                             loginRequest.getPassword()));
+
             System.out.println("Authentication successful: " + loginRequest.getUsername());
+            
             SecurityContextHolder.getContext().setAuthentication(authentication);
             Optional<CUSTOMER> userOpt = customerRepository.findByUsername(loginRequest.getUsername());
             if (userOpt.isPresent()) {
@@ -321,39 +284,6 @@ public class CustomerController {
         }
     }
 
-    @PostMapping("/sendEmail")
-    public ResponseEntity<Map<String, String>> sendEmail(@RequestBody emailDTO email) {
-        String text = "";
-        switch (email.getSubject()) {
-            case "TOTP":
-                if (customerRepository.existsByCusMailAddress(email.getCusMailAdress()))
-                    return ResponseEntity.ok().body(Map.of("message", "Email already exists"));
-                text = "Your verification code is: " +
-                        totpService.generateTOTP(email.getCusMailAdress()) +
-                        "\n The code expires in 5 minutes.";
-                break;
-            case "Reset Password":
-                if (!customerRepository.existsByCusMailAddress(email.getCusMailAdress()))
-                    return ResponseEntity.ok().body(Map.of("message", "Email doesn't exist in our system"));
-                text = "Your verification code is: " +
-                        totpService.generateTOTP(email.getCusMailAdress()) +
-                        "\n The code expires in 5 minutes.";
-                break;
-            default:
-                break;
-        }
-        email.setText(text);
-        String result = emailService.sendMail(
-                email.getCusMailAdress(),
-                email.getSubject(),
-                email.getText());
-        return ResponseEntity.ok().body(Map.of("message", result));
-    }
-
-    @PostMapping("/compareTOTP")
-    public boolean compareTOPT(@RequestBody otpDTO otp) {
-        return customerService.comapreTOTP(otp.cusMailAdress, otp.code);
-    }
 
     public static class LoginRequest {
         private String username;
@@ -472,55 +402,5 @@ public class CustomerController {
             this.roles = roles;
         }
     }
-
-    public static class emailDTO {
-        String cusMailAdress;
-        String subject;
-        String text;
-
-        public String getCusMailAdress() {
-            return cusMailAdress;
-        }
-
-        public void setCusMailAdress(String cusMailAdress) {
-            this.cusMailAdress = cusMailAdress;
-        }
-
-        public String getSubject() {
-            return subject;
-        }
-
-        public void setSubject(String subject) {
-            this.subject = subject;
-        }
-
-        public String getText() {
-            return text;
-        }
-
-        public void setText(String text) {
-            this.text = text;
-        }
-    }
-
-    public static class otpDTO {
-        private String cusMailAdress;
-        private String code;
-
-        public String getCusMailAdress() {
-            return cusMailAdress;
-        }
-
-        public void setCusMailAdress(String cusMailAdress) {
-            this.cusMailAdress = cusMailAdress;
-        }
-
-        public String getCode() {
-            return code;
-        }
-
-        public void setCode(String code) {
-            this.code = code;
-        }
-    }
+ */
 }
