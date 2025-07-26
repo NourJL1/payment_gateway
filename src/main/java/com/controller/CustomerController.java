@@ -132,11 +132,7 @@ public class CustomerController {
         return ResponseEntity.ok(count);
     }
 
-    @GetMapping("/growth-rate")
-    public ResponseEntity<Double> getGrowthRate() {
-        double growthRate = customerService.getGrowthRate();
-        return ResponseEntity.ok(growthRate);
-    }
+    
 
     @PutMapping("/{id}")
     public ResponseEntity<CUSTOMER> updateCustomer(@PathVariable Integer id, @RequestBody CUSTOMER customerDetails) {

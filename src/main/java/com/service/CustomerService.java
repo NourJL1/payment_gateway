@@ -52,7 +52,6 @@ public interface CustomerService {
     long getActiveCustomerCount(Integer statusCode);
     
     long getNewCustomersToday();
-    double getGrowthRate();
 	
 
 }
