@@ -171,20 +171,5 @@ public class CustomerServiceImp implements CustomerService {
         return customerRepository.countCustomersCreatedToday();
     }
 
-    @Override
-    public double getGrowthRate() {
-        LocalDate now = LocalDate.now();
-        LocalDateTime startOfThisMonth = now.with(TemporalAdjusters.firstDayOfMonth()).atStartOfDay();
-        LocalDateTime endOfThisMonth = now.with(TemporalAdjusters.lastDayOfMonth()).plusDays(1).atStartOfDay();
-        LocalDateTime startOfLastMonth = now.minusMonths(1).with(TemporalAdjusters.firstDayOfMonth()).atStartOfDay();
-        LocalDateTime endOfLastMonth = now.minusMonths(1).with(TemporalAdjusters.lastDayOfMonth()).plusDays(1).atStartOfDay();
-
-        long thisMonthCount = customerRepository.countCustomersByDateRange(startOfThisMonth, endOfThisMonth);
-        long lastMonthCount = customerRepository.countCustomersByDateRange(startOfLastMonth, endOfLastMonth);
-
-        if (lastMonthCount == 0) {
-            return thisMonthCount > 0 ? 100.0 : 0.0; // Handle division by zero
-        }
-        return ((double) (thisMonthCount - lastMonthCount) / lastMonthCount) * 100;
-    }
+    
 }
