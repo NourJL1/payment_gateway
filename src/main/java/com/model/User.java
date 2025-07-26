@@ -1,22 +1,38 @@
 package com.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "USERS")
 
-public class User {
+public class User implements UserDetails// extends ABSTRACT_USER
+{
     @Id
     @Column(name = "USE_CODE")
     private Integer code;
 
     @Column(name = "USE_LOGI", unique = true)
     private String login;
+
+    @Column(name = "USE_PASS")
+    private String password;
 
     @Column(name = "USE_FIRS_NAME")
     private String firstName;
@@ -144,12 +160,82 @@ public class User {
     public User() {
     }
 
+    @PrePersist
+    public void onCreate(){
+        //this.login = login.substring(4);
+    }
+
     public Integer getCode() {
         return code;
     }
 
     public void setCode(Integer code) {
         this.code = code;
+    }
+
+    @JsonProperty("fullName")
+    public String getFullName() {
+        StringBuilder fullName = new StringBuilder();
+
+        if (firstName != null)
+            fullName.append(firstName).append(" ");
+        if (middleName != null)
+            fullName.append(middleName).append(" ");
+        if (lastName != null)
+            fullName.append(lastName);
+
+        return fullName.toString().trim();
+    }
+
+    @Override
+    @JsonIgnore
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+
+        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+
+        if (profile != null)
+        {// General role
+            authorities.add(new SimpleGrantedAuthority("PROFILE_" + profile.getLabel()));
+
+            // Modules
+            for (Modules module : profile.getModules()) {
+                authorities.add(new SimpleGrantedAuthority("MODULE_" + module.getLabel()));
+            }
+
+            // Menu options with permissions
+            for (UserProfileMenuOption upmo : profile.getProfileMenuOptions()) {
+                String mopLabel = upmo.getMenuOption().getLabel();
+
+                if (upmo.getCanAccess())
+                    authorities.add(new SimpleGrantedAuthority("OPTION_" + mopLabel + "_VIEW"));
+                if (upmo.getCanEdit())
+                    authorities.add(new SimpleGrantedAuthority("OPTION_" + mopLabel + "_EDIT"));
+                if (upmo.getCanDelete())
+                    authorities.add(new SimpleGrantedAuthority("OPTION_" + mopLabel + "_DELETE"));
+                if (upmo.getCanInsert())
+                    authorities.add(new SimpleGrantedAuthority("OPTION_" + mopLabel + "_INSERT"));
+                if (upmo.getCanUpdate())
+                    authorities.add(new SimpleGrantedAuthority("OPTION_" + mopLabel + "UPDATE"));
+                if (upmo.getCanPrint())
+                    authorities.add(new SimpleGrantedAuthority("OPTION_" + mopLabel + "PRINT"));
+            }
+        }
+        return authorities;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.login;
     }
 
 }

@@ -84,10 +84,11 @@ public class WALLET {
 			
 		}
 
-		this.lastUpdatedDate = LocalDateTime.now();
+		//this.lastUpdatedDate = LocalDateTime.now();
 		
-		 this.createdAt = LocalDateTime.now(); // ✅ Set only once
-		    this.lastUpdatedDate = LocalDateTime.now(); // ✅ Always updated
+		if (this.createdAt == null) 
+			this.createdAt = LocalDateTime.now(); // ✅ Set only once
+		this.lastUpdatedDate = LocalDateTime.now(); // ✅ Always updated
 	}
 
 	@Column(name = "WAL_FIN_ID")

@@ -2,8 +2,14 @@ package com.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -26,12 +32,13 @@ import lombok.ToString;
 
 @Entity
 @Table(name = "customers", uniqueConstraints = { @UniqueConstraint(columnNames = "CUS_CODE"),
-		@UniqueConstraint(columnNames = "username"),
+		//@UniqueConstraint(columnNames = "username"),
 		@UniqueConstraint(columnNames = "cus_mail_address"),
 		@UniqueConstraint(columnNames = "cus_phone_nbr")
 })
 // @Data // Utilisation de Lombok pour générer les getters et setters
-public class CUSTOMER {
+public class CUSTOMER implements UserDetails
+{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CUS_CODE")
@@ -70,9 +77,6 @@ public class CUSTOMER {
 	@JoinColumn(name = "CUS_CID_CODE", nullable = false, referencedColumnName = "CID_CODE")
 	private CUSTOMER_IDENTITY identity;
 
-	@ManyToOne
-	private Role role;
-
 	// Relation *..1 avec CITY
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "CUS_CTY_CODE", referencedColumnName = "CTY_CODE")
@@ -91,6 +95,9 @@ public class CUSTOMER {
 
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<WALLET_OPERATIONS> walletOperations;
+
+	/* @ManyToOne
+	private Role role; */
 
 	public List<WALLET_OPERATIONS> getWalletOperations() {
 		return walletOperations;
@@ -124,12 +131,22 @@ public class CUSTOMER {
 		this.cusLastName = cusLastName;
 	}
 
-	public String getCusMailAddress() {
-		return cusMailAddress;
+	@JsonProperty("fullName")
+	public String getFullName() {
+		StringBuilder fullName = new StringBuilder();
+
+		if (cusFirstName != null)
+			fullName.append(cusFirstName).append(" ");
+		if (cusMidName != null)
+			fullName.append(cusMidName).append(" ");
+		if (cusLastName != null)
+			fullName.append(cusLastName);
+
+		return fullName.toString().trim();
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public String getCusMailAddress() {
+		return cusMailAddress;
 	}
 
 	public void setCusMailAddress(String cusMailAddress) {
@@ -181,6 +198,8 @@ public class CUSTOMER {
 	public void setCusIden() {
 		this.cusIden = "CUS-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
 				+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
+		//this.username = username.substring(4);
+		this.createdAt = LocalDateTime.now();
 	}
 
 	public Integer getCusFinId() {
@@ -275,10 +294,17 @@ public class CUSTOMER {
 		this.country = country;
 	}
 
-	public Role getRole() {
-		return this.role;
-	}
+	// profiling
 
+	/* public void setRole(Role role) {
+		this.role = role;
+	} 
+
+	 public Role getRole() {
+		return this.role;
+	} */
+
+	@Override
 	public String getUsername() {
 		return username;
 	}
@@ -287,18 +313,15 @@ public class CUSTOMER {
 		this.username = username;
 	}
 
-	@JsonProperty("fullName")
-	public String getFullName() {
-		StringBuilder fullName = new StringBuilder();
+	@Override
+	@JsonIgnore
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return List.of(new SimpleGrantedAuthority("ROLE_CUSTOMER"));
+	}
 
-		if (cusFirstName != null)
-			fullName.append(cusFirstName).append(" ");
-		if (cusMidName != null)
-			fullName.append(cusMidName).append(" ");
-		if (cusLastName != null)
-			fullName.append(cusLastName);
-
-		return fullName.toString().trim();
+	@Override
+	public String getPassword() {
+		return this.cusMotDePasse;
 	}
 
 }

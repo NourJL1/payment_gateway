@@ -13,13 +13,14 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import com.model.*;
+
 @Entity
 @Table(name = "USER_PROFILE")
 
 public class UserProfile {
- @Id
+    @Id
     @Column(name = "UPR_CODE")
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Integer code;
 
@@ -51,17 +52,11 @@ public class UserProfile {
     private List<User> users;
 
     @ManyToMany
-    @JoinTable(
-        name = "USERS_PROFILE_MODULES",
-        joinColumns = @JoinColumn(name = "PRM_UPR_CODE"),
-        inverseJoinColumns = @JoinColumn(name = "PRM_MOD_CODE")
-    )
+    @JoinTable(name = "USERS_PROFILE_MODULES", joinColumns = @JoinColumn(name = "PRM_UPR_CODE"), inverseJoinColumns = @JoinColumn(name = "PRM_MOD_CODE"))
     private List<Modules> modules;
 
     @OneToMany(mappedBy = "profile")
     private List<UserProfileMenuOption> profileMenuOptions;
-
-    
 
     public String getIdentifier() {
         return identifier;
@@ -95,8 +90,6 @@ public class UserProfile {
         return canDecryptPan;
     }
 
-    
-
     public List<Modules> getModules() {
         return modules;
     }
@@ -105,7 +98,6 @@ public class UserProfile {
         return profileMenuOptions;
     }
 
-    
     public void setIdentifier(String identifier) {
         this.identifier = identifier;
     }
@@ -138,8 +130,6 @@ public class UserProfile {
         this.canDecryptPan = canDecryptPan;
     }
 
-   
-
     public void setModules(List<Modules> modules) {
         this.modules = modules;
     }
@@ -147,8 +137,6 @@ public class UserProfile {
     public void setProfileMenuOptions(List<UserProfileMenuOption> profileMenuOptions) {
         this.profileMenuOptions = profileMenuOptions;
     }
-
-   
 
     public UserProfile(Integer code, String identifier, String label, Boolean viewBank, Boolean viewBranch,
             Boolean viewChild, Boolean viewCustomerMerchant, Boolean grantPermission, Boolean canDecryptPan,
@@ -175,7 +163,8 @@ public class UserProfile {
         this.code = code;
     }
 
-   	public UserProfile() {}
+    public UserProfile() {
+    }
 
     public List<User> getUsers() {
         return users;
@@ -185,7 +174,4 @@ public class UserProfile {
         this.users = users;
     }
 
-    
-    
 }
-
