@@ -113,7 +113,7 @@ public class AuthController {
         }
     }
 
-    @Data
+    
     @AllArgsConstructor
     public class CustomerResponseDTO {
         private String cusCode;
@@ -122,9 +122,51 @@ public class AuthController {
         private String status;
         private Collection<String> authorities;
         // private String roles;
+		public String getCusCode() {
+			return cusCode;
+		}
+		public void setCusCode(String cusCode) {
+			this.cusCode = cusCode;
+		}
+		public String getUsername() {
+			return username;
+		}
+		public void setUsername(String username) {
+			this.username = username;
+		}
+		public String getFullname() {
+			return fullname;
+		}
+		public void setFullname(String fullname) {
+			this.fullname = fullname;
+		}
+		public String getStatus() {
+			return status;
+		}
+		public void setStatus(String status) {
+			this.status = status;
+		}
+		public Collection<String> getAuthorities() {
+			return authorities;
+		}
+		public void setAuthorities(Collection<String> authorities) {
+			this.authorities = authorities;
+		}
+		public CustomerResponseDTO(String cusCode, String username, String fullname, String status,
+				Collection<String> authorities) {
+			super();
+			this.cusCode = cusCode;
+			this.username = username;
+			this.fullname = fullname;
+			this.status = status;
+			this.authorities = authorities;
+		}
+		
+		
+        
     }
 
-    @Data
+   
     @AllArgsConstructor
     public class UserResponseDTO {
         private String useCode;
@@ -132,6 +174,38 @@ public class AuthController {
         private String fullname;
         // private String status;
         private Collection<String> authorities;
+		public String getUseCode() {
+			return useCode;
+		}
+		public void setUseCode(String useCode) {
+			this.useCode = useCode;
+		}
+		public String getUsername() {
+			return username;
+		}
+		public void setUsername(String username) {
+			this.username = username;
+		}
+		public String getFullname() {
+			return fullname;
+		}
+		public void setFullname(String fullname) {
+			this.fullname = fullname;
+		}
+		public Collection<String> getAuthorities() {
+			return authorities;
+		}
+		public void setAuthorities(Collection<String> authorities) {
+			this.authorities = authorities;
+		}
+		public UserResponseDTO(String useCode, String username, String fullname, Collection<String> authorities) {
+			super();
+			this.useCode = useCode;
+			this.username = username;
+			this.fullname = fullname;
+			this.authorities = authorities;
+		}
+        
     }
 
     
