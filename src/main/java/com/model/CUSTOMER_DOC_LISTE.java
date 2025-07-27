@@ -1,9 +1,5 @@
 package com.model;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -11,16 +7,11 @@ import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.servicesImp.CustomerDocListeServiceImp;
-import com.servicesImp.CustomerDocServiceImp;
-
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
 
-import org.aspectj.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 
 @Entity

@@ -12,7 +12,6 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import com.model.*;
 
 @Entity
 @Table(name = "USER_PROFILE")

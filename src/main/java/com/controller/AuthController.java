@@ -26,8 +26,6 @@ import com.model.User;
 import com.service.AuthService;
 import com.service.EmailService;
 import com.service.TOTPService;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 
 
 @RestController
@@ -114,7 +112,6 @@ public class AuthController {
     }
 
     
-    @AllArgsConstructor
     public class CustomerResponseDTO {
         private String cusCode;
         private String username;
@@ -167,7 +164,6 @@ public class AuthController {
     }
 
    
-    @AllArgsConstructor
     public class UserResponseDTO {
         private String useCode;
         private String username;

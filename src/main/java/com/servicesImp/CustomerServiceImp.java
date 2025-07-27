@@ -10,8 +10,6 @@ import com.repository.CountryRepository;
 import com.repository.CustomerRepository;
 import com.repository.CustomerStatusRepository;
 import com.service.CustomerService;
-import com.service.TOTPService;
-
 import jakarta.transaction.Transactional;
 
 import org.slf4j.Logger;
@@ -19,9 +17,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.temporal.TemporalAdjusters;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
