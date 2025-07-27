@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -239,6 +240,12 @@ public class CustomerController {
     public ResponseEntity<List<CUSTOMER>> searchCustomers(@RequestParam("word") String searchWord) {
         List<CUSTOMER> customers = customerService.searchCustomers(searchWord);
         return ResponseEntity.ok(customers);
+    }
+    
+    @GetMapping("/count-by-city")
+    public ResponseEntity<Map<String, Long>> getCustomerCountByCity() {
+        Map<String, Long> cityCounts = customerService.getCustomerCountByCity();
+        return ResponseEntity.ok(cityCounts);
     }
 
 /*     @PostMapping("/login")
