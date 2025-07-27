@@ -167,9 +167,13 @@ public class CustomerServiceImp implements CustomerService {
     }
 
     @Override
-    public long getNewCustomersToday() {
+    public long getNewCustomersTodayCount() {
         return customerRepository.countCustomersCreatedToday();
     }
 
+    @Override
+    public List<CUSTOMER> getNewCustomersToday(){
+        return customerRepository.customersCreatedToday();
+    }
     
 }

@@ -51,7 +51,7 @@ public interface CustomerService {
     long getTotalCustomerCount();
     long getActiveCustomerCount(Integer statusCode);
     
-    long getNewCustomersToday();
+    long getNewCustomersTodayCount();
 	
-
+    List<CUSTOMER> getNewCustomersToday();
 }

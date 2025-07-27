@@ -64,8 +64,8 @@ public class WALLET {
 					+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
 
 		if (this.walLabe == null) 
-        this.walLabe = "Wallet-" + (this.walletType != null ? 
-                          this.walletType.getWtyLabe() : "Default");
+		this.walLabe = this.customer.getUsername() + "'s Wallet";
+        //this.walLabe = "Wallet-" + (this.walletType != null ? this.walletType.getWtyLabe() : "Default");
 
 		if (this.walKey == null) 
 			this.walKey = UUID.randomUUID().hashCode();// Default value if not set

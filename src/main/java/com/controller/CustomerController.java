@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -127,12 +126,15 @@ public class CustomerController {
     }
 
     @GetMapping("/count/new-today")
-    public ResponseEntity<Long> getNewCustomersToday() {
-        long count = customerService.getNewCustomersToday();
+    public ResponseEntity<Long> getNewCustomersTodayCount() {
+        long count = customerService.getNewCustomersTodayCount();
         return ResponseEntity.ok(count);
     }
 
-    
+    @GetMapping("/new-today")
+    public ResponseEntity<List<CUSTOMER>> getNewCustomersToday() {
+        return ResponseEntity.ok(customerService.getNewCustomersToday());
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity<CUSTOMER> updateCustomer(@PathVariable Integer id, @RequestBody CUSTOMER customerDetails) {
