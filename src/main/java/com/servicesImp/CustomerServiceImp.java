@@ -22,7 +22,9 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.TemporalAdjusters;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -169,6 +171,16 @@ public class CustomerServiceImp implements CustomerService {
     @Override
     public long getNewCustomersTodayCount() {
         return customerRepository.countCustomersCreatedToday();
+    }
+    
+    @Override
+    public Map<String, Long> getCustomerCountByCity() {
+        List<Object[]> results = customerRepository.countByCity();
+        Map<String, Long> cityCounts = new HashMap<>();
+        for (Object[] result : results) {
+            cityCounts.put((String) result[0], (Long) result[1]);
+        }
+        return cityCounts;
     }
 
     @Override

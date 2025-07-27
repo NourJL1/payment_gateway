@@ -75,6 +75,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/customer-identity/**").permitAll() 
                         .requestMatchers("/api/doc-type/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/customer-doc/**").permitAll() // Simplified for all methods
+                        .requestMatchers("/api/users/**").permitAll() // Simplified for all methods
 
                         .anyRequest().permitAll()//.authenticated()
                 );

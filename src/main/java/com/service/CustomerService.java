@@ -1,6 +1,7 @@
 package com.service;
 import com.model.CUSTOMER;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 public interface CustomerService {
 	
@@ -52,6 +53,7 @@ public interface CustomerService {
     long getActiveCustomerCount(Integer statusCode);
     
     long getNewCustomersTodayCount();
+    Map<String, Long> getCustomerCountByCity();
 	
     List<CUSTOMER> getNewCustomersToday();
 }

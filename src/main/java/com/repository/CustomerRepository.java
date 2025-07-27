@@ -65,4 +65,7 @@ public interface CustomerRepository extends JpaRepository<CUSTOMER, Integer> {
             "LOWER(c.cusPhoneNbr) LIKE LOWER(CONCAT('%', :searchWord, '%')) OR " +
             "LOWER(c.cusAddress) LIKE LOWER(CONCAT('%', :searchWord, '%'))")
     List<CUSTOMER> searchCustomers(@Param("searchWord") String searchWord);
+    
+    @Query("SELECT c.city.ctyLabe, COUNT(c) FROM CUSTOMER c GROUP BY c.city.ctyLabe")
+    List<Object[]> countByCity();
 }

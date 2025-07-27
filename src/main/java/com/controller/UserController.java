@@ -48,5 +48,10 @@ public class UserController {
     public void delete(@PathVariable Integer code) {
         userService.delete(code);
     }
+    
+    @GetMapping("/count")
+    public long getUserCount() {
+        return userService.getUserCount();
+    }
 
 }

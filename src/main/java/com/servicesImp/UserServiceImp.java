@@ -14,6 +14,11 @@ import com.service.UserService;
 public class UserServiceImp  implements UserService {
     @Autowired
     private UserRepository userRepository;
+    
+    @Override
+    public long getUserCount() {
+        return userRepository.count();
+    }
 
     @Override
     public List<User> getAll() {
