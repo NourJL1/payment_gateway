@@ -14,5 +14,6 @@ public interface UserService {
     User update(User user);
 
     void delete(Integer code);
+    long getUserCount(); // Add this method
 
 }
