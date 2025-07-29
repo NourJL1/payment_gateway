@@ -35,19 +35,21 @@ public class OPERATION_TYPE {
 	private WALLET wallet;
 
 	@OneToMany(mappedBy = "operationType", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JsonManagedReference("operationType-walletOp")
+	@JsonIgnore
 	private List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMappings;
 
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "OPT_FSC_CODE", referencedColumnName = "FSC_CODE", nullable = false)
 	private FEE_SCHEMA feeSchema;
-
+	
 	@OneToMany(mappedBy = "operationType", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JsonManagedReference("opt-wcotm")
+	@JsonIgnore
 	private List<WALLET_CATEGORY_OPERATION_TYPE_MAP> walletCategoryOperationTypeMappings;
 
 	// Relation ManyToOne avec WALLET_CATEGORY (si applicable)
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "OPT_WCA_CODE", referencedColumnName = "WCA_CODE", nullable = true)
 	private WALLET_CATEGORY walletCategory;
 

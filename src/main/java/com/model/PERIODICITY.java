@@ -2,6 +2,7 @@ package com.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
@@ -24,12 +25,11 @@ public class PERIODICITY {
 	private String perLabe;
 
 	@OneToMany(mappedBy = "periodicity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JsonManagedReference("periodicity-wcotm")
-
+	@JsonIgnore
 	private List<WALLET_CATEGORY_OPERATION_TYPE_MAP> walletCategoryOperationTypeMaps;
 
 	@OneToMany(mappedBy = "periodicity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JsonManagedReference("periodicity-walletOp")
+	@JsonIgnore
 	private List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMaps;
 
 	public String getPerIden() {

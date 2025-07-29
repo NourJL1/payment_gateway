@@ -38,9 +38,10 @@ public class WalletCategoryOperationTypeMapController {
 	        service.delete(id);
 	    }
 
-      @GetMapping("/search")
-	    public ResponseEntity<List<WALLET_CATEGORY_OPERATION_TYPE_MAP>> searchWalletCategoryOperationTypeMaps(@RequestParam("word") String searchWord) {
-	        List<WALLET_CATEGORY_OPERATION_TYPE_MAP> walletCategoryOperationTypeMaps = service.searchWalletCategoryOperationTypeMaps(searchWord);
-	        return ResponseEntity.ok(walletCategoryOperationTypeMaps);
+	    @GetMapping("/search")
+	    public ResponseEntity<List<WALLET_CATEGORY_OPERATION_TYPE_MAP>> searchWalletCategoryOperationTypeMaps(
+	        @RequestParam("word") String searchWord) {
+	        List<WALLET_CATEGORY_OPERATION_TYPE_MAP> results = service.searchWalletCategoryOperationTypeMaps(searchWord);
+	        return ResponseEntity.ok(results);
 	    }
 }
