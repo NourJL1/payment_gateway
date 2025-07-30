@@ -13,6 +13,7 @@ import com.repository.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -379,6 +380,13 @@ public class WalletController {
     public ResponseEntity<List<WALLET>> searchWallets(@RequestParam("word") String searchWord) {
         List<WALLET> wallets = walletService.searchWallets(searchWord);
         return ResponseEntity.ok(wallets);
+    }
+    
+ // WalletController.java
+    @GetMapping("/count/by-category")
+    public ResponseEntity<Map<String, Long>> getWalletCountByCategory() {
+        Map<String, Long> categoryCounts = walletService.getWalletCountByCategory();
+        return ResponseEntity.ok(categoryCounts);
     }
 
 }

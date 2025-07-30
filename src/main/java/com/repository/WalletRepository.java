@@ -7,11 +7,13 @@ import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 public interface WalletRepository extends JpaRepository<WALLET, Integer> {
     WALLET findByCustomerCusCode(Integer cusCode);
     WALLET findByCustomerCusIden(String cusIden);
     WALLET findByCustomerCusMailAddress(String cusMailAddress);
+    Optional<WALLET> findOneByWalIden(String walIden);
     List<WALLET> findByWalIden(String walIden);
     List<WALLET> findByWalLabe(String walLabe);
     List<WALLET> findByWalKey(Integer walKey);
@@ -45,5 +47,9 @@ public interface WalletRepository extends JpaRepository<WALLET, Integer> {
             "LOWER(CAST(w.lastUpdatedDate AS string)) LIKE CONCAT('%', :searchWord, '%') OR " +
             "LOWER(CAST(w.createdAt AS string)) LIKE CONCAT('%', :searchWord, '%')")
     List<WALLET> searchWallets(@Param("searchWord") String searchWord);
+    
+ // WalletRepository.java
+    @Query("SELECT w.walletCategory.wcaLabe, COUNT(w) FROM WALLET w GROUP BY w.walletCategory.wcaLabe")
+    List<Object[]> countWalletsByCategory();
 
 }

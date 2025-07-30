@@ -4,6 +4,7 @@ import com.model.WALLET;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface WalletService {
@@ -30,5 +31,6 @@ public interface WalletService {
     void deleteByWalIden(String walIden);
     List<WALLET> searchWallets(String searchWord);
     Long countActiveWallets();
-    Long countPendingWallets();
+    Long countPendingWallets();// WalletService.java
+    Map<String, Long> getWalletCountByCategory();
 }
