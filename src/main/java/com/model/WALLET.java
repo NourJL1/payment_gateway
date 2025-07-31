@@ -96,9 +96,9 @@ public class WALLET {
 
 	// Relation *..1 avec CUSTOMER
 	@OneToOne
-	@JsonIgnore
+	
 	@JoinColumn(name = "WAL_CUS_CODE", referencedColumnName = "CUS_CODE")
-	// @JsonIgnore
+	
 	private CUSTOMER customer;
 
 	// Relation *..1 avec WALLET_STATUS
