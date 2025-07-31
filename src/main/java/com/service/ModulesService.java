@@ -11,5 +11,5 @@ public interface ModulesService {
     Modules create(Modules module);
     Modules update(Modules module);
     void delete(Integer code);
-
+    List<Modules> search(String searchWord);
 }

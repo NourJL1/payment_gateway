@@ -44,6 +44,14 @@ public class UserServiceImp  implements UserService {
     public void delete(Integer code) {
         userRepository.deleteById(code);
     }
+
+    @Override
+    public List<User> search(String searchWord) {
+        if (searchWord == null || searchWord.trim().isEmpty()) {
+            return userRepository.findAll();
+        }
+        return userRepository.search(searchWord);
+    }
 }
  
 

@@ -5,16 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.model.MenuOption;
 import com.model.Modules;
 import com.repository.ModulesRepository;
 import com.service.ModulesService;
+
 @Service
 public class ModulesServiceImp implements ModulesService {
 
     @Autowired
     private ModulesRepository moduleRepository;
 
-     @Override
+    @Override
     public List<Modules> getAll() {
         return moduleRepository.findAll();
     }
@@ -39,5 +41,12 @@ public class ModulesServiceImp implements ModulesService {
         moduleRepository.deleteById(code);
     }
 
-    
+    @Override
+    public List<Modules> search(String searchWord) {
+        if (searchWord == null || searchWord.trim().isEmpty()) {
+            return moduleRepository.findAll();
+        }
+        return moduleRepository.search(searchWord);
     }
+
+}

@@ -1,6 +1,11 @@
 package com.model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,6 +16,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
 @Entity
@@ -48,14 +54,23 @@ public class UserProfile {
     private Boolean canDecryptPan;
 
     @OneToMany(mappedBy = "profile")
+    @JsonIgnore
     private List<User> users;
 
     @ManyToMany
+    @JsonIgnore
     @JoinTable(name = "USERS_PROFILE_MODULES", joinColumns = @JoinColumn(name = "PRM_UPR_CODE"), inverseJoinColumns = @JoinColumn(name = "PRM_MOD_CODE"))
     private List<Modules> modules;
 
     @OneToMany(mappedBy = "profile")
+    @JsonIgnore
     private List<UserProfileMenuOption> profileMenuOptions;
+
+    @PrePersist
+	public void prePersist() {
+		this.identifier = "UPR-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
+				+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
+	}
 
     public String getIdentifier() {
         return identifier;

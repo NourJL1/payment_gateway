@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.model.MenuOption;
 import com.model.Modules;
 import com.service.ModulesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/modules")
+@RequestMapping("/api/modules")
 @CrossOrigin(origins = "*") // Optional: allows cross-origin if using Angular frontend
 public class ModuleController {
 
@@ -70,5 +71,11 @@ public class ModuleController {
         }
         moduleService.delete(code);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Modules>> search(@RequestParam("word") String searchWord) {
+        List<Modules> modules = moduleService.search(searchWord);
+        return ResponseEntity.ok(modules);
     }
 }
