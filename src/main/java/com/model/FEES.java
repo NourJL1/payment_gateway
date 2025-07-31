@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
@@ -45,12 +46,12 @@ public class FEES {
 	private Integer financialInstitutionId;
 
 	@OneToMany(mappedBy = "fees")
-	@JsonManagedReference("fee-wcotm")
+	@JsonIgnore
 
 	private List<WALLET_CATEGORY_OPERATION_TYPE_MAP> walletCategoryOperationTypeMaps;
 
 	@OneToMany(mappedBy = "fees")
-	@JsonManagedReference("fees-walletOp")
+	@JsonIgnore
 
 	private List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMaps;
 

@@ -1,6 +1,5 @@
 package com.servicesImp;
 
-
 import com.model.*;
 import com.repository.*;
 import com.service.AccountService;
@@ -12,47 +11,47 @@ import java.util.List;
 @Service
 public class AccountServiceImp implements AccountService {
 
-	@Autowired
+    @Autowired
     private AccountRepository accountRepository;
-	
-	@Autowired 
-	private AccountTypeRepository accountTypeRepository;
-	
-	@Autowired 
-	private AccountListRepository accountListRepository;
-	
+    
+    @Autowired 
+    private AccountTypeRepository accountTypeRepository;
+    
+    @Autowired 
+    private AccountListRepository accountListRepository;
+    
+    @Autowired 
+    private BankRepository bankRepository;
 
-	@Override
-	public ACCOUNT createAccount(ACCOUNT account) {
-	    // Vérifier que l'objet ACCOUNT_TYPE n'est pas nul
-	    if (account.getAccountType() == null || account.getAccountType().getAtyCode() == null) {
-	        throw new IllegalArgumentException("L'ACCOUNT_TYPE ou son atyCode ne peut pas être null.");
-	    }
+    @Override
+    public ACCOUNT createAccount(ACCOUNT account) {
+        // ... (unchanged from previous version)
+        if (account.getAccountType() == null || account.getAccountType().getAtyCode() == null) {
+            throw new IllegalArgumentException("ACCOUNT_TYPE or its atyCode cannot be null.");
+        }
+        Integer atyCode = account.getAccountType().getAtyCode();
+        ACCOUNT_TYPE accountType = accountTypeRepository.findById(atyCode)
+                .orElseThrow(() -> new IllegalArgumentException("ACCOUNT_TYPE with atyCode " + atyCode + " not found."));
+        account.setAccountType(accountType);
 
-	    // Récupérer le type de compte par son atyCode (clé primaire)
-	    Integer atyCode = account.getAccountType().getAtyCode();
-	    ACCOUNT_TYPE accountType = accountTypeRepository.findById(atyCode)
-	            .orElseThrow(() -> new IllegalArgumentException("L'ACCOUNT_TYPE avec atyCode " + atyCode + " est introuvable."));
+        if (account.getAccountList() == null || account.getAccountList().getAliCode() == null) {
+            throw new IllegalArgumentException("ACCOUNT_LIST or its aliCode cannot be null.");
+        }
+        Integer aliCode = account.getAccountList().getAliCode();
+        ACCOUNT_LIST accountList = accountListRepository.findById(aliCode)
+                .orElseThrow(() -> new IllegalArgumentException("ACCOUNT_LIST with aliCode " + aliCode + " not found."));
+        account.setAccountList(accountList);
 
-	    // Affecter le type complet au compte
-	    account.setAccountType(accountType);
+        if (account.getBank() == null || account.getBank().getBanCode() == null) {
+            throw new IllegalArgumentException("BANK or its banCode cannot be null.");
+        }
+        Integer banCode = account.getBank().getBanCode();
+        BANK bank = bankRepository.findById(banCode)
+                .orElseThrow(() -> new IllegalArgumentException("BANK with banCode " + banCode + " not found."));
+        account.setBank(bank);
 
-	    // Vérifier que l'objet ACCOUNT_LIST (aliCode) n'est pas nul
-	    if (account.getAccountList() == null || account.getAccountList().getAliCode() == null) {
-	        throw new IllegalArgumentException("L'ACCOUNT_LIST ou son aliCode ne peut pas être null.");
-	    }
-
-	    // Récupérer l'ACCOUNT_LIST par son aliCode (clé primaire)
-	    Integer aliCode = account.getAccountList().getAliCode();
-	    ACCOUNT_LIST accountList = accountListRepository.findById(aliCode)
-	            .orElseThrow(() -> new IllegalArgumentException("L'ACCOUNT_LIST avec aliCode " + aliCode + " est introuvable."));
-
-	    // Affecter l'ACCOUNT_LIST complet au compte
-	    account.setAccountList(accountList);
-
-	    // Sauvegarder le compte
-	    return accountRepository.save(account);
-	}
+        return accountRepository.save(account);
+    }
 
     @Override
     public ACCOUNT getAccountById(Integer id) {
@@ -66,18 +65,24 @@ public class AccountServiceImp implements AccountService {
 
     @Override
     public ACCOUNT updateAccount(Integer id, ACCOUNT accountData) {
-        // Trouver l'account existant
+        // ... (unchanged from previous version)
         ACCOUNT existingAccount = accountRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Account not found"));
-
-        // Vérifier si l'accountType est présent et valide
         if (accountData.getAccountType() != null && accountData.getAccountType().getAtyCode() != null) {
             ACCOUNT_TYPE accountType = accountTypeRepository.findById(accountData.getAccountType().getAtyCode())
                 .orElseThrow(() -> new RuntimeException("Account Type not found"));
             existingAccount.setAccountType(accountType);
         }
-
-        // Mettre à jour les autres attributs
+        if (accountData.getAccountList() != null && accountData.getAccountList().getAliCode() != null) {
+            ACCOUNT_LIST accountList = accountListRepository.findById(accountData.getAccountList().getAliCode())
+                .orElseThrow(() -> new RuntimeException("Account List not found"));
+            existingAccount.setAccountList(accountList);
+        }
+        if (accountData.getBank() != null && accountData.getBank().getBanCode() != null) {
+            BANK bank = bankRepository.findById(accountData.getBank().getBanCode())
+                .orElseThrow(() -> new RuntimeException("Bank not found"));
+            existingAccount.setBank(bank);
+        }
         if (accountData.getAccRib() != null) {
             existingAccount.setAccRib(accountData.getAccRib());
         }
@@ -87,14 +92,20 @@ public class AccountServiceImp implements AccountService {
         if (accountData.getAccKey() != null) {
             existingAccount.setAccKey(accountData.getAccKey());
         }
-
-        // Sauvegarder et retourner l'account mis à jour
         return accountRepository.save(existingAccount);
     }
 
     @Override
     public void deleteAccount(Integer id) {
+        System.out.println("Deleting account with ID: " + id); // Debug log
+        if (id == null) {
+            throw new IllegalArgumentException("Account ID cannot be null");
+        }
+        if (!accountRepository.existsById(id)) {
+            throw new RuntimeException("Account with ID " + id + " not found");
+        }
         accountRepository.deleteById(id);
+        System.out.println("Account deleted successfully: " + id); // Debug log
     }
 
     @Override

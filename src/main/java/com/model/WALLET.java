@@ -96,8 +96,9 @@ public class WALLET {
 
 	// Relation *..1 avec CUSTOMER
 	@OneToOne
+	
 	@JoinColumn(name = "WAL_CUS_CODE", referencedColumnName = "CUS_CODE")
-	// @JsonIgnore
+	
 	private CUSTOMER customer;
 
 	// Relation *..1 avec WALLET_STATUS
@@ -143,7 +144,7 @@ public class WALLET {
 
 	// Relation avec WALLET_OPERATION_TYPE_MAP (Fix mapping issue)
 	@OneToMany(mappedBy = "wallet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JsonManagedReference("wallet-walletOp")
+	@JsonIgnore
 	private List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMappings;
 
 	public String getWalIden() {

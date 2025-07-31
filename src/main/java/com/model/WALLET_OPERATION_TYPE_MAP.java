@@ -1,6 +1,8 @@
 package com.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,14 +17,11 @@ public class WALLET_OPERATION_TYPE_MAP {
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "WOTM_OPT_CODE", nullable = false)
-	@JsonBackReference("operationType-walletOp")
 
 	private OPERATION_TYPE operationType;
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "WOTM_WAL_CODE", nullable = false)
-	@JsonBackReference("wallet-walletOp")
-
 	private WALLET wallet;
 
 	@Column(name = "WOTM_LIMIT_MAX")
@@ -36,13 +35,10 @@ public class WALLET_OPERATION_TYPE_MAP {
 
 	@ManyToOne
 	@JoinColumn(name = "WOTM_PER_CODE", referencedColumnName = "PER_CODE", nullable = false)
-	@JsonBackReference("periodicity-walletOp")
-
 	private PERIODICITY periodicity;
 
 	@ManyToOne
 	@JoinColumn(name = "WOTM_FEE_CODE", referencedColumnName = "FEE_CODE", nullable = false)
-	@JsonBackReference("fees-walletOp")
 
 	private FEES fees;
 

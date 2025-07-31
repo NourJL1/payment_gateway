@@ -34,8 +34,7 @@ public class WALLET_CATEGORY {
 	private List<WALLET> wallets;
 
 	@OneToMany(mappedBy = "walletCategory", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JsonManagedReference("wcat-wcotm")
-
+	@JsonIgnore
 	private List<WALLET_CATEGORY_OPERATION_TYPE_MAP> walletCategoryOperationTypeMappings;
 
 	public Integer getWcaCode() {

@@ -1,7 +1,9 @@
 package com.servicesImp;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -215,5 +217,20 @@ public class WalletServiceImpl implements WalletService {
         Long count = walletRepository.countPendingWallets();
         logger.info("countPendingWallets: Returned count = {}", count);
         return count;
+    }
+    
+ // WalletServiceImpl.java
+    @Override
+    public Map<String, Long> getWalletCountByCategory() {
+        logger.debug("Fetching wallet counts by category");
+        List<Object[]> results = walletRepository.countWalletsByCategory();
+        Map<String, Long> categoryCounts = new HashMap<>();
+        for (Object[] result : results) {
+            String categoryLabel = (String) result[0];
+            Long count = (Long) result[1];
+            categoryCounts.put(categoryLabel, count);
+        }
+        logger.info("Retrieved wallet counts for {} categories", categoryCounts.size());
+        return categoryCounts;
     }
 }
