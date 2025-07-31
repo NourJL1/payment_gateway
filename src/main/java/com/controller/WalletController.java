@@ -225,6 +225,7 @@ public class WalletController {
         existingWallet.setWalletStatus(walletDetails.getWalletStatus());
         existingWallet.setWalletType(walletDetails.getWalletType());
         existingWallet.setWalletCategory(walletDetails.getWalletCategory());
+        existingWallet.setWalFinId(walletDetails.getWalFinId()); 
 
         WALLET updatedWallet = walletService.createWallet(existingWallet);
 
