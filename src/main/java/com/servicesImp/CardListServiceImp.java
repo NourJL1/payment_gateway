@@ -16,15 +16,14 @@ public class CardListServiceImp implements CardListService {
     private CardListRepository cardListRepository;
 
 	@Override
-    public CARD_LIST createCardList(CARD_LIST cardList) {
-        // Vérifier que cliIden n'est pas nul avant de créer
-        if (cardList.getCliIden() == null) {
-            throw new IllegalArgumentException("cliIden ne peut pas être nul lors de la création.");
-        }
-        
-       
-        return cardListRepository.save(cardList);
-    }
+	public CARD_LIST createCardList(CARD_LIST cardList) {
+	    // Remove the cliIden null check since @PrePersist will set it
+	    // Ensure cliLabe and wallet are valid if required
+	    if (cardList.getCliLabe() == null) {
+	        throw new IllegalArgumentException("cliLabe cannot be null");
+	    }
+	    return cardListRepository.save(cardList);
+	}
 
 
     @Override

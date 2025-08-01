@@ -1,12 +1,19 @@
 package com.repository;
+import com.model.OPERATION_TYPE;
+import com.model.WALLET_CATEGORY;
 import com.model.WALLET_CATEGORY_OPERATION_TYPE_MAP;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface WalletCategoryOperationTypeMapRepository extends JpaRepository<WALLET_CATEGORY_OPERATION_TYPE_MAP, Integer> {
-    @Query("SELECT wcotm FROM WALLET_CATEGORY_OPERATION_TYPE_MAP wcotm " +
+  Optional<WALLET_CATEGORY_OPERATION_TYPE_MAP> findByOperationTypeAndWalletCategory(
+			OPERATION_TYPE operationType,
+			WALLET_CATEGORY walletCategory);  
+  @Query("SELECT wcotm FROM WALLET_CATEGORY_OPERATION_TYPE_MAP wcotm " +
            "LEFT JOIN wcotm.operationType ot " +
            "LEFT JOIN wcotm.walletCategory wc " +
            "INNER JOIN wcotm.fees f " +

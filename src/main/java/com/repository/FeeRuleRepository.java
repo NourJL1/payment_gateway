@@ -2,12 +2,15 @@ package com.repository;
 import com.model.FEE_RULE;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface FeeRuleRepository extends JpaRepository <FEE_RULE, Integer>{
+  
+	Optional<FEE_RULE> findByFeeSchema_FscCodeAndFeeRuleType_FrtIden(Integer fscCode, String frtIden);
 @Query("SELECT fr FROM FEE_RULE fr WHERE " +
 		       "LOWER(fr.fruLabe) LIKE LOWER(CONCAT('%', :searchWord, '%')) OR " +
 		       "LOWER(fr.fruPrimaryWalletId) LIKE LOWER(CONCAT('%', :searchWord, '%')) OR " +
