@@ -1,5 +1,9 @@
 package com.model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.UUID;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,16 +11,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
-
 
 @Entity
 @Table(name = "USERS_PROFILE_MENUOPTION")
 
 public class UserProfileMenuOption {
 
-
-     @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
@@ -45,8 +48,6 @@ public class UserProfileMenuOption {
 
     @Column(name = "UPM_VIEW_PRIN")
     private Boolean canPrint;
-
-    
 
     public UserProfile getProfile() {
         return profile;
@@ -112,8 +113,6 @@ public class UserProfileMenuOption {
         this.canPrint = canPrint;
     }
 
-    
-
     public UserProfileMenuOption(Integer id, UserProfile profile, MenuOption menuOption, Boolean canAccess,
             Boolean canInsert, Boolean canUpdate, Boolean canDelete, Boolean canEdit, Boolean canPrint) {
         this.id = id;
@@ -135,10 +134,7 @@ public class UserProfileMenuOption {
         this.id = id;
     }
 
-	public UserProfileMenuOption() {}
-
-
-
-    
+    public UserProfileMenuOption() {
+    }
 
 }

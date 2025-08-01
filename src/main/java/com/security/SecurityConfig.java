@@ -73,7 +73,12 @@ public class SecurityConfig {
                         .requestMatchers("/api/customer-identity/**").permitAll() 
                         .requestMatchers("/api/doc-type/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/customer-doc/**").permitAll() // Simplified for all methods
+                        
                         .requestMatchers("/api/users/**").permitAll() // Simplified for all methods
+                        .requestMatchers("/api/user-profiles/**").permitAll() // Simplified for all methods
+                        .requestMatchers("/api/modules/**").permitAll() // Simplified for all methods
+                        .requestMatchers("/api/menu-options/**").permitAll() // Simplified for all methods
+                        .requestMatchers("/api/user-profile-menu-options/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/transfer/**").permitAll()
 
                         .anyRequest().permitAll()//.authenticated()

@@ -1,8 +1,11 @@
 package com.model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -27,6 +30,9 @@ public class User implements UserDetails// extends ABSTRACT_USER
     @Id
     @Column(name = "USE_CODE")
     private Integer code;
+
+    @Column(name = "USE_IDEN")
+    private String identifier;
 
     @Column(name = "USE_LOGI", unique = true)
     private String login;
@@ -61,6 +67,12 @@ public class User implements UserDetails// extends ABSTRACT_USER
     @ManyToOne
     @JoinColumn(name = "USE_UPR_CODE")
     private UserProfile profile;
+
+    @PrePersist
+	public void prePersist() {
+		this.identifier = "USE-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
+				+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
+	}
 
     public String getLogin() {
         return login;
@@ -160,11 +172,6 @@ public class User implements UserDetails// extends ABSTRACT_USER
     public User() {
     }
 
-    @PrePersist
-    public void onCreate(){
-        //this.login = login.substring(4);
-    }
-
     public Integer getCode() {
         return code;
     }
@@ -236,6 +243,18 @@ public class User implements UserDetails// extends ABSTRACT_USER
     @Override
     public String getUsername() {
         return this.login;
+    }
+
+
+
+    public String getIdentifier() {
+        return identifier;
+    }
+
+
+
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
     }
 
 }

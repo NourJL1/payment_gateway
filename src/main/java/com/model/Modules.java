@@ -1,6 +1,11 @@
 package com.model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,6 +16,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -53,7 +59,14 @@ public class Modules {
     private List<UserProfile> profiles;
 
     @OneToMany(mappedBy = "module")
+    @JsonIgnore
     private List<MenuOption> menuOptions;
+
+    @PrePersist
+	public void onCreate() {
+		this.identifier = "MOD-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
+				+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
+	}
 
     public String getIdentifier() {
         return identifier;

@@ -16,4 +16,6 @@ public interface UserService {
     void delete(Integer code);
     long getUserCount(); // Add this method
 
+    List<User> search(String searchWord);
+
 }
