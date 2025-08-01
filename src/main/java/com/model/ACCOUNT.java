@@ -31,7 +31,7 @@ public class ACCOUNT {
 	private ACCOUNT_LIST accountList;
 
 	// Relation avec ACCOUNT_TYPE (Chaque ACCOUNT a un type d’account)
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "ACC_ATY_CODE", referencedColumnName = "ATY_CODE", nullable = false)
 	private ACCOUNT_TYPE accountType;
 
