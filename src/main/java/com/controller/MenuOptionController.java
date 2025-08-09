@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.model.CUSTOMER;
 import com.model.MenuOption;
+import com.model.Module;
 import com.service.MenuOptionService;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -41,6 +41,11 @@ public class MenuOptionController {
         return menuOptionService.getMenuOptionById(id)
                 .map(option -> new ResponseEntity<>(option, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/getByIdentifier/{identifier}")
+    public ResponseEntity<MenuOption>  getByIdentifier(@PathVariable String identifier) {
+        return ResponseEntity.ok().body(menuOptionService.getByIdentifier(identifier)) ;
     }
 
     @GetMapping

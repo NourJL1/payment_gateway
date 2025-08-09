@@ -13,6 +13,7 @@ public interface MenuOptionService {
     //Optional<MenuOption> getMenuOptionByIdentifier(String identifier);
     List<MenuOption> getAllMenuOptions();
     List<MenuOption> getMenuOptionsByModule(Integer moduleCode);
+    MenuOption getByIdentifier(String identifier);
     MenuOption updateMenuOption(Integer id, MenuOption menuOption);
     void deleteMenuOption(Integer id);
 

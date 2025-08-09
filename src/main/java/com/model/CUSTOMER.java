@@ -31,7 +31,7 @@ import lombok.ToString;
 
 @Entity
 @Table(name = "customers", uniqueConstraints = { @UniqueConstraint(columnNames = "CUS_CODE"),
-		//@UniqueConstraint(columnNames = "username"),
+		@UniqueConstraint(columnNames = "username"),
 		@UniqueConstraint(columnNames = "cus_mail_address"),
 		@UniqueConstraint(columnNames = "cus_phone_nbr")
 })

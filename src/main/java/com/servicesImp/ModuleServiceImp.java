@@ -6,33 +6,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.model.MenuOption;
-import com.model.Modules;
-import com.repository.ModulesRepository;
-import com.service.ModulesService;
+import com.model.Module;
+import com.repository.ModuleRepository;
+import com.service.ModuleService;
 
 @Service
-public class ModulesServiceImp implements ModulesService {
+public class ModuleServiceImp implements ModuleService {
 
     @Autowired
-    private ModulesRepository moduleRepository;
+    private ModuleRepository moduleRepository;
 
     @Override
-    public List<Modules> getAll() {
+    public List<Module> getAll() {
         return moduleRepository.findAll();
     }
 
     @Override
-    public Modules getById(Integer code) {
+    public Module getById(Integer code) {
         return moduleRepository.findById(code).orElse(null);
     }
 
     @Override
-    public Modules create(Modules module) {
+    public Module create(Module module) {
         return moduleRepository.save(module);
     }
 
     @Override
-    public Modules update(Modules module) {
+    public Module update(Module module) {
         return moduleRepository.save(module);
     }
 
@@ -42,11 +42,16 @@ public class ModulesServiceImp implements ModulesService {
     }
 
     @Override
-    public List<Modules> search(String searchWord) {
+    public List<Module> search(String searchWord) {
         if (searchWord == null || searchWord.trim().isEmpty()) {
             return moduleRepository.findAll();
         }
         return moduleRepository.search(searchWord);
+    }
+
+    @Override
+    public Module getByIdentifier(String identifier) {
+        return moduleRepository.findByIdentifier(identifier);
     }
 
 }

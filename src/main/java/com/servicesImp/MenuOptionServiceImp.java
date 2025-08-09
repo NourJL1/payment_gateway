@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.model.MenuOption;
-import com.model.Modules;
+import com.model.Module;
 import com.model.UserProfile;
 import com.repository.MenuOptionRepository;
-import com.repository.ModulesRepository;
+import com.repository.ModuleRepository;
 import com.repository.UserProfileRepository;
 import com.service.MenuOptionService;
 
@@ -23,7 +23,7 @@ public class MenuOptionServiceImp implements MenuOptionService {
     MenuOptionRepository menuOptionRepository;
 
     @Autowired
-    ModulesRepository modulesRepository;
+    ModuleRepository ModuleRepository;
 
     @Autowired
     UserProfileRepository userProfileRepository;
@@ -45,7 +45,7 @@ public class MenuOptionServiceImp implements MenuOptionService {
 
     @Override
     public List<MenuOption> getMenuOptionsByModule(Integer moduleCode) {
-        Modules module = modulesRepository.findById(moduleCode).get();
+        Module module = ModuleRepository.findById(moduleCode).get();
         return menuOptionRepository.findByModule(module);
     }
 
@@ -73,7 +73,7 @@ public class MenuOptionServiceImp implements MenuOptionService {
         MenuOption menuOption = menuOptionRepository.findById(menuOptionId)
                 .orElseThrow(() -> new EntityNotFoundException("MenuOption not found"));
         
-        Modules module = modulesRepository.findById(newModuleId)
+        Module module = ModuleRepository.findById(newModuleId)
                 .orElseThrow(() -> new EntityNotFoundException("Module not found"));
         
         menuOption.setModule(module);
@@ -86,6 +86,11 @@ public class MenuOptionServiceImp implements MenuOptionService {
             return menuOptionRepository.findAll();
         }
         return menuOptionRepository.search(searchWord);
+    }
+
+    @Override
+    public MenuOption getByIdentifier(String identifier) {
+        return menuOptionRepository.findByIdentifier(identifier);
     }
 
     /* @Override

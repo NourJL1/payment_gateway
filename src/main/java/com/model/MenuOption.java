@@ -17,9 +17,12 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "MENU_OPTION")
+@Table(name = "MENU_OPTION", uniqueConstraints = { @UniqueConstraint(columnNames = "MOP_CODE"),
+		@UniqueConstraint(columnNames = "MOP_IDEN")
+})
 public class MenuOption {
 
     @Id
@@ -43,7 +46,7 @@ public class MenuOption {
 
     @ManyToOne
     @JoinColumn(name = "MOP_MOD_CODE")
-    private Modules module;
+    private Module module;
 
     @OneToMany(mappedBy = "menuOption")
     @JsonIgnore
@@ -87,11 +90,11 @@ public class MenuOption {
         this.formName = formName;
     }
 
-    public Modules getModule() {
+    public Module getModule() {
         return module;
     }
 
-    public void setModule(Modules module) {
+    public void setModule(Module module) {
         this.module = module;
     }
 
@@ -104,7 +107,7 @@ public class MenuOption {
     }
 
     public MenuOption(Integer code, String identifier, String label, MenuOption parentOption, String formName,
-            Modules module, List<UserProfileMenuOption> profileMenuOptions) {
+            Module module, List<UserProfileMenuOption> profileMenuOptions) {
         this.code = code;
         this.identifier = identifier;
         this.label = label;

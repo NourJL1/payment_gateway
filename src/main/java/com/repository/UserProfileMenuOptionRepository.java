@@ -1,8 +1,6 @@
 package com.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-
 import com.model.UserProfileMenuOption;
 import com.model.MenuOption;
 import java.util.List;
