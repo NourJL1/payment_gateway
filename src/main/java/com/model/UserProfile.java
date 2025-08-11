@@ -66,8 +66,7 @@ public class UserProfile {
     @JsonIgnore
     private List<User> users;
 
-    @ManyToMany
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JsonIgnoreProperties("profiles")
     @JoinTable(name = "USERS_PROFILE_MODULES", joinColumns = @JoinColumn(name = "PRM_UPR_CODE"), inverseJoinColumns = @JoinColumn(name = "PRM_MOD_CODE"))
     private List<Module> modules;

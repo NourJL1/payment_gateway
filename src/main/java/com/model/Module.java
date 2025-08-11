@@ -17,13 +17,14 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreRemove;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.Data;
 
 @Entity
 @Table(name = "MODULE", uniqueConstraints = { @UniqueConstraint(columnNames = "MOD_CODE"),
-		@UniqueConstraint(columnNames = "MOD_IDEN")
+        @UniqueConstraint(columnNames = "MOD_IDEN")
 })
 @Data
 public class Module {
@@ -67,10 +68,17 @@ public class Module {
     private List<MenuOption> menuOptions;
 
     @PrePersist
-	public void onCreate() {
-		this.identifier = "MOD-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
-				+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
-	}
+    public void onCreate() {
+        this.identifier = "MOD-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
+                + UUID.randomUUID().toString().substring(0, 4).toUpperCase();
+    }
+
+    @PreRemove
+    private void preRemove() {
+        for (UserProfile profile : profiles) {
+            profile.getModules().remove(this);
+        }
+    }
 
     public String getIdentifier() {
         return identifier;
