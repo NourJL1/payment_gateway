@@ -3,6 +3,7 @@ package com.servicesImp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.model.MenuOption;
@@ -18,7 +19,7 @@ public class ModuleServiceImp implements ModuleService {
 
     @Override
     public List<Module> getAll() {
-        return moduleRepository.findAll();
+        return moduleRepository.findAll(Sort.by(Sort.Direction.ASC, "order"));
     }
 
     @Override
