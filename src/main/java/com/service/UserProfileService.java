@@ -3,7 +3,7 @@ package com.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.model.Modules;
+import com.model.Module;
 import com.model.UserProfile;
 import com.model.UserProfileMenuOption;
 
@@ -16,12 +16,14 @@ public interface UserProfileService {
     Optional<UserProfile> getUserProfileById(Integer id);
     //Optional<UserProfile> getUserProfileByIdentifier(String identifier);
     List<UserProfile> getAllUserProfiles();
+    UserProfile getByIdentifier(String identifier);
+    UserProfile getByUserCode(Integer code);
     //List<UserProfile> getUserProfilesByViewBankPermission(boolean hasPermission);
     //List<UserProfile> getUserProfilesByGrantPermission(boolean hasPermission);
     
     // Update
     UserProfile updateUserProfile(Integer id, UserProfile userProfile);
-    //UserProfile updateUserProfileModules(Integer id, List<Modules> modules);
+    //UserProfile updateUserProfileModule(Integer id, List<Module> Module);
     //UserProfile updateUserProfileMenuOptions(Integer id, List<UserProfileMenuOption> menuOptions);
     
     // Toggle Permissions

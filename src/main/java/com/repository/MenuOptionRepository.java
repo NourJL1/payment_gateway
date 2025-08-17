@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.model.MenuOption;
-import com.model.Modules;
+import com.model.Module;
 
 import java.util.List;
 import com.model.UserProfileMenuOption;
@@ -13,7 +13,8 @@ import com.model.UserProfileMenuOption;
 
 public interface MenuOptionRepository extends JpaRepository<MenuOption, Integer> {
 
-    List<MenuOption> findByModule(Modules module);
+    MenuOption findByIdentifier(String identifier);
+    List<MenuOption> findByModule(Module module);
     List<MenuOption> findByProfileMenuOptions(List<UserProfileMenuOption> profileMenuOptions);
     
     @Query("SELECT mo FROM MenuOption mo WHERE " +

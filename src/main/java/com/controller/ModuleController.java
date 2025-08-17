@@ -1,8 +1,9 @@
 package com.controller;
 
 import com.model.MenuOption;
-import com.model.Modules;
-import com.service.ModulesService;
+import com.model.Module;
+import com.model.UserProfile;
+import com.service.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,34 +16,39 @@ import java.util.List;
 public class ModuleController {
 
     @Autowired
-    private ModulesService moduleService;
+    private ModuleService moduleService;
 
-    // Get all modules
+    // Get all Module
     @GetMapping
-    public List<Modules> getAllModules() {
+    public List<Module> getAllModule() {
         return moduleService.getAll();
     }
 
     // Get a module by its code
     @GetMapping("/{code}")
-    public ResponseEntity<Modules> getModuleById(@PathVariable Integer code) {
-        Modules module = moduleService.getById(code);
+    public ResponseEntity<Module> getModuleById(@PathVariable Integer code) {
+        Module module = moduleService.getById(code);
         if (module == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(module);
     }
 
+    @GetMapping("/getByIdentifier/{identifier}")
+    public ResponseEntity<Module>  getByIdentifier(@PathVariable String identifier) {
+        return ResponseEntity.ok().body(moduleService.getByIdentifier(identifier)) ;
+    }
+
     // Create a new module
     @PostMapping
-    public Modules createModule(@RequestBody Modules module) {
+    public Module createModule(@RequestBody Module module) {
         return moduleService.create(module);
     }
 
     // Update an existing module
     @PutMapping("/{code}")
-    public ResponseEntity<Modules> updateModule(@PathVariable Integer code, @RequestBody Modules moduleDetails) {
-        Modules existingModule = moduleService.getById(code);
+    public ResponseEntity<Module> updateModule(@PathVariable Integer code, @RequestBody Module moduleDetails) {
+        Module existingModule = moduleService.getById(code);
         if (existingModule == null) {
             return ResponseEntity.notFound().build();
         }
@@ -58,14 +64,14 @@ public class ModuleController {
         existingModule.setProfiles(moduleDetails.getProfiles());
         existingModule.setMenuOptions(moduleDetails.getMenuOptions());
 
-        Modules updated = moduleService.update(existingModule);
+        Module updated = moduleService.update(existingModule);
         return ResponseEntity.ok(updated);
     }
 
     // Delete a module
     @DeleteMapping("/{code}")
     public ResponseEntity<Void> deleteModule(@PathVariable Integer code) {
-        Modules existing = moduleService.getById(code);
+        Module existing = moduleService.getById(code);
         if (existing == null) {
             return ResponseEntity.notFound().build();
         }
@@ -74,8 +80,8 @@ public class ModuleController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Modules>> search(@RequestParam("word") String searchWord) {
-        List<Modules> modules = moduleService.search(searchWord);
-        return ResponseEntity.ok(modules);
+    public ResponseEntity<List<Module>> search(@RequestParam("word") String searchWord) {
+        List<Module> Module = moduleService.search(searchWord);
+        return ResponseEntity.ok(Module);
     }
 }

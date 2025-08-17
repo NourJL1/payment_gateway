@@ -17,13 +17,17 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreRemove;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.Data;
 
 @Entity
-@Table(name = "MODULE")
+@Table(name = "MODULE", uniqueConstraints = { @UniqueConstraint(columnNames = "MOD_CODE"),
+        @UniqueConstraint(columnNames = "MOD_IDEN")
+})
 @Data
-public class Modules {
+public class Module {
 
     @Id
 
@@ -53,9 +57,10 @@ public class Modules {
 
     @ManyToOne
     @JoinColumn(name = "MOD_MOD_CODE")
-    private Modules parentModule;
+    private Module parentModule;
 
     @ManyToMany(mappedBy = "modules")
+    @JsonIgnore
     private List<UserProfile> profiles;
 
     @OneToMany(mappedBy = "module")
@@ -63,10 +68,17 @@ public class Modules {
     private List<MenuOption> menuOptions;
 
     @PrePersist
-	public void onCreate() {
-		this.identifier = "MOD-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
-				+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
-	}
+    public void onCreate() {
+        this.identifier = "MOD-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
+                + UUID.randomUUID().toString().substring(0, 4).toUpperCase();
+    }
+
+    @PreRemove
+    private void preRemove() {
+        for (UserProfile profile : profiles) {
+            profile.getModules().remove(this);
+        }
+    }
 
     public String getIdentifier() {
         return identifier;
@@ -116,11 +128,11 @@ public class Modules {
         this.order = order;
     }
 
-    public Modules getParentModule() {
+    public Module getParentModule() {
         return parentModule;
     }
 
-    public void setParentModule(Modules parentModule) {
+    public void setParentModule(Module parentModule) {
         this.parentModule = parentModule;
     }
 
@@ -140,8 +152,8 @@ public class Modules {
         this.menuOptions = menuOptions;
     }
 
-    public Modules(Integer code, String identifier, String label, String logo, Boolean isMenu, String accessPath,
-            Integer order, Modules parentModule, List<UserProfile> profiles, List<MenuOption> menuOptions) {
+    public Module(Integer code, String identifier, String label, String logo, Boolean isMenu, String accessPath,
+            Integer order, Module parentModule, List<UserProfile> profiles, List<MenuOption> menuOptions) {
         this.code = code;
         this.identifier = identifier;
         this.label = label;
@@ -162,7 +174,7 @@ public class Modules {
         this.code = code;
     }
 
-    public Modules() {
+    public Module() {
     }
 
 }

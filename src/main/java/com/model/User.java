@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
+import org.hibernate.annotations.OnDelete;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,9 +22,15 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "USERS", uniqueConstraints = { @UniqueConstraint(columnNames = "MOP_CODE"),
+		@UniqueConstraint(columnNames = "MOP_IDEN"),
+		@UniqueConstraint(columnNames = "MOP_LOGI"),
+		@UniqueConstraint(columnNames = "MOP_PHONE"),
+		@UniqueConstraint(columnNames = "MOP_MAIL")
+})
 
 public class User implements UserDetails// extends ABSTRACT_USER
 {
@@ -69,10 +76,10 @@ public class User implements UserDetails// extends ABSTRACT_USER
     private UserProfile profile;
 
     @PrePersist
-	public void prePersist() {
-		this.identifier = "USE-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
-				+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
-	}
+    public void prePersist() {
+        this.identifier = "USE-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
+                + UUID.randomUUID().toString().substring(0, 4).toUpperCase();
+    }
 
     public String getLogin() {
         return login;
@@ -201,33 +208,18 @@ public class User implements UserDetails// extends ABSTRACT_USER
 
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
-        if (profile != null)
-        {// General role
-            authorities.add(new SimpleGrantedAuthority("PROFILE_" + profile.getLabel()));
+        if (profile != null) {
+            //authorities.add(new SimpleGrantedAuthority("PROFILE_" + profile.getLabel().toUpperCase()));
+                        authorities.add(new SimpleGrantedAuthority(profile.getIdentifier()));
 
-            // Modules
-            for (Modules module : profile.getModules()) {
-                authorities.add(new SimpleGrantedAuthority("MODULE_" + module.getLabel()));
-            }
 
-            // Menu options with permissions
-            for (UserProfileMenuOption upmo : profile.getProfileMenuOptions()) {
-                String mopLabel = upmo.getMenuOption().getLabel();
-
-                if (upmo.getCanAccess())
-                    authorities.add(new SimpleGrantedAuthority("OPTION_" + mopLabel + "_VIEW"));
-                if (upmo.getCanEdit())
-                    authorities.add(new SimpleGrantedAuthority("OPTION_" + mopLabel + "_EDIT"));
-                if (upmo.getCanDelete())
-                    authorities.add(new SimpleGrantedAuthority("OPTION_" + mopLabel + "_DELETE"));
-                if (upmo.getCanInsert())
-                    authorities.add(new SimpleGrantedAuthority("OPTION_" + mopLabel + "_INSERT"));
-                if (upmo.getCanUpdate())
-                    authorities.add(new SimpleGrantedAuthority("OPTION_" + mopLabel + "UPDATE"));
-                if (upmo.getCanPrint())
-                    authorities.add(new SimpleGrantedAuthority("OPTION_" + mopLabel + "PRINT"));
-            }
+            for (Module module : profile.getModules())
+                authorities.add(new SimpleGrantedAuthority("MODULE_" + module.getAccessPath().toUpperCase()));
+            
+            for (UserProfileMenuOption upmo : profile.getProfileMenuOptions())
+                authorities.add(new SimpleGrantedAuthority("UPMO_" + upmo.getId()));
         }
+        
         return authorities;
     }
 
@@ -245,13 +237,9 @@ public class User implements UserDetails// extends ABSTRACT_USER
         return this.login;
     }
 
-
-
     public String getIdentifier() {
         return identifier;
     }
-
-
 
     public void setIdentifier(String identifier) {
         this.identifier = identifier;

@@ -7,10 +7,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.model.Modules;
+import com.controller.UserController;
+import com.model.Module;
+import com.model.User;
 import com.model.UserProfile;
-import com.repository.ModulesRepository;
+import com.repository.ModuleRepository;
 import com.repository.UserProfileRepository;
+import com.repository.UserRepository;
 import com.service.UserProfileService;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -22,7 +25,10 @@ public class UserProfileServiceImp implements UserProfileService {
     private UserProfileRepository userProfileRepository;
 
     @Autowired
-    private ModulesRepository modulesRepository;
+    private UserRepository userRepository;
+
+    @Autowired
+    private ModuleRepository ModuleRepository;
 
     @Override
     public UserProfile createUserProfile(UserProfile userProfile) {
@@ -51,6 +57,7 @@ public class UserProfileServiceImp implements UserProfileService {
                     existingProfile.setViewCustomerMerchant(updatedProfile.getViewCustomerMerchant());
                     existingProfile.setGrantPermission(updatedProfile.getGrantPermission());
                     existingProfile.setCanDecryptPan(updatedProfile.getCanDecryptPan());
+                    existingProfile.setModules(updatedProfile.getModules());
                     return userProfileRepository.save(existingProfile);
                 })
                 .orElseThrow(() -> new EntityNotFoundException("UserProfile not found with id: " + id));
@@ -63,7 +70,7 @@ public class UserProfileServiceImp implements UserProfileService {
 
     @Override
     public List<UserProfile> getUserProfilesWithAccessToModule(Integer moduleCode) {
-        return new ArrayList<>();//userProfileRepository.findByModulesCode(moduleCode);
+        return new ArrayList<>();//userProfileRepository.findByModuleCode(moduleCode);
     }
 
     @Override
@@ -85,7 +92,7 @@ public class UserProfileServiceImp implements UserProfileService {
         UserProfile profile = userProfileRepository.findById(profileId)
                 .orElseThrow(() -> new EntityNotFoundException("UserProfile not found"));
         
-        Modules module = modulesRepository.findById(moduleId)
+        Module module = ModuleRepository.findById(moduleId)
                 .orElseThrow(() -> new EntityNotFoundException("Module not found"));
         
         if (!profile.getModules().contains(module)) {
@@ -110,6 +117,17 @@ public class UserProfileServiceImp implements UserProfileService {
             return userProfileRepository.findAll();
         }
         return userProfileRepository.search(searchWord);
+    }
+
+    @Override
+    public UserProfile getByIdentifier(String identifier) {
+        return userProfileRepository.findByIdentifier(identifier);
+    }
+
+    @Override
+    public UserProfile getByUserCode(Integer code) {
+        User user = userRepository.findById(code).get();
+        return user.getProfile();
     }
 
 }

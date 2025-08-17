@@ -5,8 +5,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.UUID;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,10 +22,14 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreRemove;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "USER_PROFILE")
+@Table(name = "USER_PROFILE", uniqueConstraints = { @UniqueConstraint(columnNames = "UPR_CODE"),
+		@UniqueConstraint(columnNames = "UPR_IDEN")
+})
 
 public class UserProfile {
     @Id
@@ -57,12 +66,12 @@ public class UserProfile {
     @JsonIgnore
     private List<User> users;
 
-    @ManyToMany
-    @JsonIgnore
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JsonIgnoreProperties("profiles")
     @JoinTable(name = "USERS_PROFILE_MODULES", joinColumns = @JoinColumn(name = "PRM_UPR_CODE"), inverseJoinColumns = @JoinColumn(name = "PRM_MOD_CODE"))
-    private List<Modules> modules;
+    private List<Module> modules;
 
-    @OneToMany(mappedBy = "profile")
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<UserProfileMenuOption> profileMenuOptions;
 
@@ -71,6 +80,13 @@ public class UserProfile {
 		this.identifier = "UPR-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
 				+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
 	}
+
+    @PreRemove
+    public void preRemove(){
+        for (User user : this.getUsers()) {
+            user.setProfile(null);
+        }
+    }
 
     public String getIdentifier() {
         return identifier;
@@ -104,7 +120,7 @@ public class UserProfile {
         return canDecryptPan;
     }
 
-    public List<Modules> getModules() {
+    public List<Module> getModules() {
         return modules;
     }
 
@@ -144,7 +160,7 @@ public class UserProfile {
         this.canDecryptPan = canDecryptPan;
     }
 
-    public void setModules(List<Modules> modules) {
+    public void setModules(List<Module> modules) {
         this.modules = modules;
     }
 
@@ -154,7 +170,7 @@ public class UserProfile {
 
     public UserProfile(Integer code, String identifier, String label, Boolean viewBank, Boolean viewBranch,
             Boolean viewChild, Boolean viewCustomerMerchant, Boolean grantPermission, Boolean canDecryptPan,
-            List<User> users, List<Modules> modules, List<UserProfileMenuOption> profileMenuOptions) {
+            List<User> users, List<Module> modules, List<UserProfileMenuOption> profileMenuOptions) {
         this.code = code;
         this.identifier = identifier;
         this.label = label;

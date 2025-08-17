@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.model.MenuOption;
+import com.model.Module;
 import com.model.UserProfile;
 import com.service.UserProfileService;
 
@@ -43,10 +44,22 @@ public class UserProfileController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @GetMapping("/getByIdentifier/{identifier}")
+    public ResponseEntity<UserProfile>  getByIdentifier(@PathVariable String identifier) {
+        return ResponseEntity.ok().body(userProfileService.getByIdentifier(identifier)) ;
+    }
+    
+
     @GetMapping
     public ResponseEntity<List<UserProfile>> getAllUserProfiles() {
         List<UserProfile> profiles = userProfileService.getAllUserProfiles();
         return new ResponseEntity<>(profiles, HttpStatus.OK);
+    }
+
+    @GetMapping("/getByUserCode/{code}")
+    public ResponseEntity<UserProfile> getByUserCode(@PathVariable Integer code) {
+        UserProfile profile = userProfileService.getByUserCode(code);
+        return new ResponseEntity<>(profile, HttpStatus.OK);
     }
 
     // Update
@@ -83,7 +96,7 @@ public class UserProfileController {
     }
 
     // Module management
-    @PostMapping("/{profileId}/modules/{moduleId}")
+    @PostMapping("/{profileId}/Module/{moduleId}")
     public ResponseEntity<UserProfile> addModuleToProfile(
             @PathVariable Integer profileId,
             @PathVariable Integer moduleId) {
@@ -95,7 +108,7 @@ public class UserProfileController {
         }
     }
 
-    @DeleteMapping("/{profileId}/modules/{moduleId}")
+    @DeleteMapping("/{profileId}/Module/{moduleId}")
     public ResponseEntity<UserProfile> removeModuleFromProfile(
             @PathVariable Integer profileId,
             @PathVariable Integer moduleId) {
@@ -113,7 +126,14 @@ public class UserProfileController {
             @PathVariable Integer moduleCode) {
         List<UserProfile> profiles = userProfileService.getUserProfilesWithAccessToModule(moduleCode);
         return new ResponseEntity<>(profiles, HttpStatus.OK);
-    }
+    }/* 
+
+    @GetMapping("/get-Module/{code}")
+    public ResponseEntity<List<Module>> getMethodName(@RequestParam Integer code) {
+        UserProfile profile = userProfileService.getUserProfileById(code).get();
+        return ResponseEntity.ok().body(profile.getModule());
+    } */
+    
 
     @GetMapping("/search")
     public ResponseEntity<List<UserProfile>> search(@RequestParam("word") String searchWord) {
