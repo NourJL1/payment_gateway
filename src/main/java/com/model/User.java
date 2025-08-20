@@ -17,6 +17,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -26,15 +28,16 @@ import jakarta.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "USERS", uniqueConstraints = { @UniqueConstraint(columnNames = "MOP_CODE"),
-		@UniqueConstraint(columnNames = "MOP_IDEN"),
-		@UniqueConstraint(columnNames = "MOP_LOGI"),
-		@UniqueConstraint(columnNames = "MOP_PHONE"),
-		@UniqueConstraint(columnNames = "MOP_MAIL")
+        @UniqueConstraint(columnNames = "MOP_IDEN"),
+        @UniqueConstraint(columnNames = "MOP_LOGI"),
+        @UniqueConstraint(columnNames = "MOP_PHONE"),
+        @UniqueConstraint(columnNames = "MOP_MAIL")
 })
 
 public class User implements UserDetails// extends ABSTRACT_USER
 {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USE_CODE")
     private Integer code;
 
@@ -206,20 +209,19 @@ public class User implements UserDetails// extends ABSTRACT_USER
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
 
-        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + this.getClass().getSimpleName().toUpperCase()));
 
         if (profile != null) {
-            //authorities.add(new SimpleGrantedAuthority("PROFILE_" + profile.getLabel().toUpperCase()));
-                        authorities.add(new SimpleGrantedAuthority(profile.getIdentifier()));
+            authorities.add(new SimpleGrantedAuthority("PROFILE_" + profile.getLabel().toUpperCase()));
+            // authorities.add(new SimpleGrantedAuthority(profile.getIdentifier()));
 
-
-            for (Module module : profile.getModules())
+            /* for (Module module : profile.getModules())
                 authorities.add(new SimpleGrantedAuthority("MODULE_" + module.getAccessPath().toUpperCase()));
-            
+
             for (UserProfileMenuOption upmo : profile.getProfileMenuOptions())
-                authorities.add(new SimpleGrantedAuthority("UPMO_" + upmo.getId()));
+                authorities.add(new SimpleGrantedAuthority("UPMO_" + upmo.getId())); */
         }
-        
+
         return authorities;
     }
 

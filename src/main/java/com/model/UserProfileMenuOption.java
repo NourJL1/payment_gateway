@@ -1,5 +1,8 @@
 package com.model;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -58,6 +61,17 @@ public class UserProfileMenuOption {
 
     public void setMenuOption(MenuOption menuOption) {
         this.menuOption = menuOption;
+    }
+
+    public Map<String, Boolean> getPermits() {
+        Map<String, Boolean> permits = new LinkedHashMap<>();
+        permits.put("canAccess", canAccess);
+        permits.put("canInsert", canInsert);
+        permits.put("canUpdate", canUpdate);
+        permits.put("canDelete", canDelete);
+        permits.put("canEdit", canEdit);
+        permits.put("canPrint", canPrint);
+        return permits;
     }
 
     public Boolean getCanAccess() {
