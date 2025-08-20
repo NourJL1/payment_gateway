@@ -33,7 +33,7 @@ public class UserProfileController {
     @PostMapping
     public ResponseEntity<UserProfile> createUserProfile(@RequestBody UserProfile userProfile) {
         UserProfile createdProfile = userProfileService.createUserProfile(userProfile);
-        return new ResponseEntity<>(createdProfile, HttpStatus.CREATED);
+        return new ResponseEntity<UserProfile>(createdProfile, HttpStatus.CREATED);
     }
 
     // Read

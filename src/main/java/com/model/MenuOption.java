@@ -2,11 +2,13 @@ package com.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,7 +23,7 @@ import jakarta.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "MENU_OPTION", uniqueConstraints = { @UniqueConstraint(columnNames = "MOP_CODE"),
-		@UniqueConstraint(columnNames = "MOP_IDEN")
+        @UniqueConstraint(columnNames = "MOP_IDEN")
 })
 public class MenuOption {
 
@@ -38,6 +40,7 @@ public class MenuOption {
     private String label;
 
     @ManyToOne
+    //@JsonIgnore 
     @JoinColumn(name = "MOP_PARE_CODE")
     private MenuOption parentOption;
 
@@ -48,15 +51,15 @@ public class MenuOption {
     @JoinColumn(name = "MOP_MOD_CODE")
     private Module module;
 
-    @OneToMany(mappedBy = "menuOption")
+    @OneToMany(mappedBy = "menuOption", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<UserProfileMenuOption> profileMenuOptions;
 
     @PrePersist
-	public void onCreate() {
-		this.identifier = "MOP-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
-				+ UUID.randomUUID().toString().substring(0, 4).toUpperCase();
-	}
+    public void onCreate() {
+        this.identifier = "MOP-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmm")) + "-"
+                + UUID.randomUUID().toString().substring(0, 4).toUpperCase();
+    }
 
     public String getIdentifier() {
         return identifier;

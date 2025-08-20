@@ -61,6 +61,12 @@ public class MenuOptionController {
         return new ResponseEntity<>(options, HttpStatus.OK);
     }
 
+    @GetMapping("/getChildOptions/{parentCode}")
+    public ResponseEntity<List<MenuOption>> getChildOptions(@PathVariable Integer parentCode) {
+        List<MenuOption> options = menuOptionService.getChildOptions(parentCode);
+        return new ResponseEntity<>(options, HttpStatus.OK);
+    }
+
     // Update
     @PutMapping("/{id}")
     public ResponseEntity<MenuOption> updateMenuOption(
@@ -68,18 +74,6 @@ public class MenuOptionController {
             @RequestBody MenuOption menuOption) {
         try {
             MenuOption updatedOption = menuOptionService.updateMenuOption(id, menuOption);
-            return new ResponseEntity<>(updatedOption, HttpStatus.OK);
-        } catch (EntityNotFoundException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @PutMapping("/{menuOptionId}/change-module/{newModuleId}")
-    public ResponseEntity<MenuOption> changeMenuOptionModule(
-            @PathVariable Integer menuOptionId,
-            @PathVariable Integer newModuleId) {
-        try {
-            MenuOption updatedOption = menuOptionService.changeMenuOptionModule(menuOptionId, newModuleId);
             return new ResponseEntity<>(updatedOption, HttpStatus.OK);
         } catch (EntityNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

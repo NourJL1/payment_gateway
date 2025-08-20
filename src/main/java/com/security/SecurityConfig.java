@@ -32,20 +32,29 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .headers(headers -> headers
+                        .frameOptions(frameOptions -> frameOptions.sameOrigin())
+                        .contentSecurityPolicy(csp -> csp
+                                .policyDirectives(
+                                        "default-src 'self'")))
                 .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        /* .requestMatchers(HttpMethod.POST, "/api/customers").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/customers").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/customers/{id}").hasAnyRole("CUSTOMER", "ADMIN")
-                        .requestMatchers("/api/customers/login").permitAll() */
-                        
+                        /*
+                         * .requestMatchers(HttpMethod.POST, "/api/customers").permitAll()
+                         * .requestMatchers(HttpMethod.GET, "/api/customers").permitAll()
+                         * .requestMatchers(HttpMethod.GET,
+                         * "/api/customers/{id}").hasAnyRole("CUSTOMER", "ADMIN")
+                         * .requestMatchers("/api/customers/login").permitAll()
+                         */
+
                         .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/api/customers/**").permitAll()//.hasAnyRole("ADMIN", "CUSTOMER") // Simplified for all methods
+                        .requestMatchers("/api/customers/**").permitAll()// .hasAnyRole("ADMIN", "CUSTOMER") //
+                                                                         // Simplified for all methods
                         .requestMatchers("/api/customer-status/**").permitAll()
                         .requestMatchers("/api/customers/sendEmail").permitAll()
                         .requestMatchers("/api/customers/compareTOTP").permitAll()
                         .requestMatchers("/api/wallets/**").permitAll()
-                        //.requestMatchers("/api/wallets/**").hasAnyRole("CUSTOMER", "ADMIN")
+                        // .requestMatchers("/api/wallets/**").hasAnyRole("CUSTOMER", "ADMIN")
                         .requestMatchers("/api/fees/**").permitAll()
                         .requestMatchers("/api/fee-schemas/**").permitAll()
                         .requestMatchers("/api/fee-rule-types/**").permitAll()
@@ -66,14 +75,15 @@ public class SecurityConfig {
                         .requestMatchers("/api/account-types/**").permitAll()
                         .requestMatchers("/api/banks/**").permitAll()
 
-                        .requestMatchers("/api/wallet-category-operation-type-map/**").permitAll() // Simplified for all methods
-                        
+                        .requestMatchers("/api/wallet-category-operation-type-map/**").permitAll() // Simplified for all
+                                                                                                   // methods
+
                         .requestMatchers("/api/wallet-operation-type-map/**").permitAll() // Simplified for all methods
-                        .requestMatchers("/api/customer-identity-type/**").permitAll() 
-                        .requestMatchers("/api/customer-identity/**").permitAll() 
+                        .requestMatchers("/api/customer-identity-type/**").permitAll()
+                        .requestMatchers("/api/customer-identity/**").permitAll()
                         .requestMatchers("/api/doc-type/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/customer-doc/**").permitAll() // Simplified for all methods
-                        
+
                         .requestMatchers("/api/users/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/user-profiles/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/modules/**").permitAll() // Simplified for all methods
@@ -81,9 +91,10 @@ public class SecurityConfig {
                         .requestMatchers("/api/user-profile-menu-options/**").permitAll() // Simplified for all methods
                         .requestMatchers("/api/transfer/**").permitAll()
 
-                        .anyRequest().permitAll()//.authenticated()
+                        .anyRequest().permitAll()// .authenticated()
                 );
-                //.addFilterBefore(new RoleHeaderFilter(), UsernamePasswordAuthenticationFilter.class);
+        // .addFilterBefore(new RoleHeaderFilter(),
+        // UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -96,12 +107,12 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:4200"));
+        config.setAllowedOrigins(List.of("https://localhost:4200"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
         config.setExposedHeaders(List.of("X-Roles"));
-        
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
         return source;

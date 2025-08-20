@@ -315,7 +315,7 @@ public class CUSTOMER implements UserDetails
 	@Override
 	@JsonIgnore
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return List.of(new SimpleGrantedAuthority("ROLE_CUSTOMER"));
+		return List.of(new SimpleGrantedAuthority("ROLE_" + this.getClass().getSimpleName().toUpperCase()));
 	}
 
 	@Override

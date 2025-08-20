@@ -69,18 +69,6 @@ public class MenuOptionServiceImp implements MenuOptionService {
     }
 
     @Override
-    public MenuOption changeMenuOptionModule(Integer menuOptionId, Integer newModuleId) {
-        MenuOption menuOption = menuOptionRepository.findById(menuOptionId)
-                .orElseThrow(() -> new EntityNotFoundException("MenuOption not found"));
-        
-        Module module = ModuleRepository.findById(newModuleId)
-                .orElseThrow(() -> new EntityNotFoundException("Module not found"));
-        
-        menuOption.setModule(module);
-        return menuOptionRepository.save(menuOption);
-    }
-
-    @Override
     public List<MenuOption> search(String searchWord) {
         if (searchWord == null || searchWord.trim().isEmpty()) {
             return menuOptionRepository.findAll();
@@ -93,26 +81,15 @@ public class MenuOptionServiceImp implements MenuOptionService {
         return menuOptionRepository.findByIdentifier(identifier);
     }
 
-    /* @Override
-    public List<MenuOption> getMenuOptionsByProfile(Integer profileId) {
-        UserProfile profile = userProfileRepository.findById(profileId).get();
-        return menuOptionRepository.findByProfileMenuOptionsProfile(profile);
-    } */
+    @Override
+    public List<MenuOption> getChildOptions(Integer parentId) {
+        return menuOptionRepository.findByParentOptionIsNotNull();
+    }
 
-    /* @Override
-    public List<MenuOption> getAccessibleMenuOptions(Integer profileId) {
-        // First get all menu options assigned to the profile
-        List<MenuOption> profileOptions = getMenuOptionsByProfile(profileId);
-        
-        // Then get all their parent options (for complete menu hierarchy)
-        return menuOptionRepository.findAllByIdInWithParents(
-            profileOptions.stream().map(MenuOption::getCode).toList()
-        );
-    } */
-
-    /* @Override
-    public List<MenuOption> search(String word) {
-        return menuOptionRepository.search(word);
-    } */
+    @Override
+    public List<MenuOption> getMenuOptionsByModule(String moduleName) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getMenuOptionsByModule'");
+    }
 
 }

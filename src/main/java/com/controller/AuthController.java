@@ -1,6 +1,7 @@
 package com.controller;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -23,6 +24,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.model.CUSTOMER;
 import com.model.User;
+import com.model.UserProfile;
+import com.model.Module;
+import com.model.UserProfileMenuOption;
 import com.service.AuthService;
 import com.service.EmailService;
 import com.service.TOTPService;
@@ -77,10 +81,11 @@ public class AuthController {
                         ((User) ud).getCode().toString(),
                         ((User) ud).getUsername(),
                         ((User) ud).getFullName(),
-                        // ((User) ud).getStatus(),
+                        ((User) ud).getProfile().getCode(),
                         ((User) ud).getAuthorities().stream()
                                 .map(GrantedAuthority::getAuthority)
-                                .collect(Collectors.toList())));
+                                .collect(Collectors.toList())/* ,
+                        ((User) ud).getProfile().getProfileMenuOptions() */));
             } else
                 return ResponseEntity.status(404).body("User not found");
         } catch (BadCredentialsException e) {
@@ -168,9 +173,45 @@ public class AuthController {
         private String useCode;
         private String username;
         private String fullname;
-        // private String status;
+        private Integer profileCode;
         private Collection<String> authorities;
-		public String getUseCode() {
+        private List<UserProfileMenuOption> options;
+
+        
+
+		public UserResponseDTO(String useCode, String username, String fullname, Collection<String> authorities, List<UserProfileMenuOption> options) {
+            this.useCode = useCode;
+            this.username = username;
+            this.fullname = fullname;
+            this.authorities = authorities;
+            this.options = options;
+        }
+        public UserResponseDTO(String useCode, String username, String fullname, Integer profileCode, Collection<String> authorities) {
+            this.useCode = useCode;
+            this.username = username;
+            this.fullname = fullname;
+            this.profileCode = profileCode;
+            this.authorities = authorities;
+        }
+        public UserResponseDTO(String useCode, String username, String fullname, Collection<String> authorities) {
+            this.useCode = useCode;
+            this.username = username;
+            this.fullname = fullname;
+            this.authorities = authorities;
+        }
+        public Integer getProfileCode() {
+            return profileCode;
+        }
+        public void setProfileCode(Integer profileCode) {
+            this.profileCode = profileCode;
+        }
+        public List<UserProfileMenuOption> getOptions() {
+            return options;
+        }
+        public void setOptions(List<UserProfileMenuOption> options) {
+            this.options = options;
+        }
+        public String getUseCode() {
 			return useCode;
 		}
 		public void setUseCode(String useCode) {
@@ -194,14 +235,6 @@ public class AuthController {
 		public void setAuthorities(Collection<String> authorities) {
 			this.authorities = authorities;
 		}
-		public UserResponseDTO(String useCode, String username, String fullname, Collection<String> authorities) {
-			super();
-			this.useCode = useCode;
-			this.username = username;
-			this.fullname = fullname;
-			this.authorities = authorities;
-		}
-        
     }
 
     
