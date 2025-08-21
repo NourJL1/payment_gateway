@@ -17,7 +17,7 @@ public interface MenuOptionRepository extends JpaRepository<MenuOption, Integer>
     List<MenuOption> findByModule(Module module);
     List<MenuOption> findByProfileMenuOptions(List<UserProfileMenuOption> profileMenuOptions);
 
-    
+    List<MenuOption> findByParentOption(MenuOption parent);
     List<MenuOption> findByParentOptionIsNull();
     List<MenuOption> findByParentOptionIsNotNull();
     

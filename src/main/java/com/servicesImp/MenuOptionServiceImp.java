@@ -83,7 +83,8 @@ public class MenuOptionServiceImp implements MenuOptionService {
 
     @Override
     public List<MenuOption> getChildOptions(Integer parentId) {
-        return menuOptionRepository.findByParentOptionIsNotNull();
+        MenuOption parent = menuOptionRepository.findById(parentId).get();
+        return menuOptionRepository.findByParentOption(parent);//.findByParentOptionIsNotNull();
     }
 
     @Override
