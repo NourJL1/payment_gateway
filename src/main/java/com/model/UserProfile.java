@@ -69,7 +69,7 @@ public class UserProfile {
     @ManyToMany(cascade = {CascadeType.MERGE})
     @JsonIgnoreProperties("profiles")
     @JoinTable(name = "USERS_PROFILE_MODULES", joinColumns = @JoinColumn(name = "PRM_UPR_CODE"), inverseJoinColumns = @JoinColumn(name = "PRM_MOD_CODE"))
-    private List<Module> modules;
+    private List<Module>modules;
 
     @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
     @JsonIgnore
