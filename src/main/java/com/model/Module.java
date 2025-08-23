@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -63,7 +64,7 @@ public class Module {
     @JsonIgnore
     private List<UserProfile> profiles;
 
-    @OneToMany(mappedBy = "module")
+    @OneToMany(mappedBy = "module", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<MenuOption> menuOptions;
 

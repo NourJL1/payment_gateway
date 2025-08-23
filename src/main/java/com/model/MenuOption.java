@@ -42,7 +42,18 @@ public class MenuOption {
     @ManyToOne
     //@JsonIgnore 
     @JoinColumn(name = "MOP_PARE_CODE")
-    private MenuOption parentOption;
+    private MenuOption parentOption;/* 
+
+    @OneToMany(mappedBy = "parentOption", cascade = CascadeType.REMOVE)
+    private List<MenuOption> childOptions;
+
+    public List<MenuOption> getChildOptions() {
+        return childOptions;
+    }
+
+    public void setChildOptions(List<MenuOption> childOptions) {
+        this.childOptions = childOptions;
+    } */
 
     @Column(name = "MOP_FORM_NAME")
     private String formName;
