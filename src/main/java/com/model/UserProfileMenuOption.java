@@ -63,17 +63,6 @@ public class UserProfileMenuOption {
         this.menuOption = menuOption;
     }
 
-    public Map<String, Boolean> getPermits() {
-        Map<String, Boolean> permits = new LinkedHashMap<>();
-        permits.put("canAccess", canAccess);
-        permits.put("canInsert", canInsert);
-        permits.put("canUpdate", canUpdate);
-        permits.put("canDelete", canDelete);
-        permits.put("canEdit", canEdit);
-        permits.put("canPrint", canPrint);
-        return permits;
-    }
-
     public Boolean getCanAccess() {
         return canAccess;
     }
