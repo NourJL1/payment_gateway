@@ -46,40 +46,26 @@ public class WalletTransferServiceImpl implements WalletTransferService {
         @Override
         @Transactional
         public WalletToWalletTransferResponse transfer(WalletToWalletTransferRequest request) {
-                System.out.println("[TRANSFER] Début transfert - demande: " + request);
-
                 WALLET sender = walletRepo.findOneByWalIden(request.getSenderWalletIden())
                                 .orElseThrow(() -> new RuntimeException("Sender wallet not found"));
-                System.out.println("[TRANSFER] Wallet sender trouvé: " + sender.getWalIden() + ", solde logique: "
-                                + sender.getWalLogicBalance());
-
                 WALLET receiver = walletRepo.findOneByWalIden(request.getReceiverWalletIden())
                                 .orElseThrow(() -> new RuntimeException("Receiver wallet not found"));
-                System.out.println("[TRANSFER] Wallet receiver trouvé: " + receiver.getWalIden() + ", solde logique: "
-                                + receiver.getWalLogicBalance());
 
-                if (sender.getWalletStatus().getWstLabe().equals("BLOCKED")) {
-                        System.out.println("[TRANSFER] Wallet sender bloqué");
+                if (sender.getWalletStatus().getWstLabe().equals("BLOCKED"))
                         throw new RuntimeException("Sender wallet is blocked");
-                }
 
                 OPERATION_TYPE operationType = operationTypeRepo.findByOptIden(request.getOperationTypeIden())
                                 .orElseThrow(() -> new RuntimeException("Operation type not found"));
-                System.out.println("[TRANSFER] Type d'opération trouvé: " + operationType.getOptIden());
 
                 wcotmRepo.findByOperationTypeAndWalletCategory(operationType, sender.getWalletCategory())
                                 .orElseThrow(() -> new RuntimeException(
                                                 "Operation not allowed for this wallet category"));
-                System.out.println("[TRANSFER] Opération permise pour la catégorie du wallet sender");
 
                 WALLET_OPERATION_TYPE_MAP wotm = wotmRepo.findByOperationTypeAndWallet(operationType, sender)
                                 .orElseThrow(() -> new RuntimeException("Operation not allowed for this wallet"));
-                System.out.println("[TRANSFER] Mapping opération-wallet trouvé, limite max: " + wotm.getWotmLimitMax());
 
-                if (request.getAmount().compareTo(BigDecimal.valueOf(wotm.getWotmLimitMax())) > 0) {
-                        System.out.println("[TRANSFER] Montant dépasse la limite max");
+                if (request.getAmount().compareTo(BigDecimal.valueOf(wotm.getWotmLimitMax())) > 0)
                         throw new RuntimeException("Amount exceeds max limit for this wallet");
-                }
 
                 FEES fees = wotm.getFees();
                 BigDecimal amount = request.getAmount();
@@ -94,55 +80,44 @@ public class WalletTransferServiceImpl implements WalletTransferService {
                 } else if (amount.compareTo(BigDecimal.valueOf(fees.getFeeMaxLimit())) > 0) {
                         fee = BigDecimal.valueOf(fees.getFeeMaxAmount());
                 }
-                System.out.println("[TRANSFER] Calcul des frais: " + fee);
 
                 FEE_RULE feeRule = feeRuleRepo
                                 .findByFeeSchema_FscCodeAndFeeRuleType_FrtIden(
                                                 operationType.getFeeSchema().getFscCode(), "I")
                                 .orElseThrow(() -> new RuntimeException("Fee rule not found"));
-                System.out.println("[TRANSFER] Fee rule trouvée: " + feeRule.getFruIden());
 
                 BigDecimal vat = BigDecimal.ZERO;
                 if (feeRule.getFruTva() != null && feeRule.getFruTva().getVatRate() != null) {
                         vat = fee.multiply(feeRule.getFruTva().getVatRate());
                 }
-                System.out.println("[TRANSFER] Calcul TVA: " + vat);
 
                 BigDecimal total = amount.add(fee).add(vat);
-                System.out.println("[TRANSFER] Montant total (amount + fee + vat): " + total);
 
                 if (sender.getWalLogicBalance() == null
-                                || BigDecimal.valueOf(sender.getWalLogicBalance()).compareTo(total) < 0) {
-                        System.out.println("[TRANSFER] Solde insuffisant pour le sender");
+                                || BigDecimal.valueOf(sender.getWalLogicBalance()).compareTo(total) < 0)
                         throw new RuntimeException("Insufficient balance");
-                }
 
                 BigDecimal senderNewBalance = BigDecimal.valueOf(sender.getWalLogicBalance()).subtract(total);
                 sender.setWalLogicBalance(senderNewBalance.floatValue());
                 walletRepo.save(sender);
                 saveWalletBalanceHistory(sender);
-                System.out.println("[TRANSFER] Nouveau solde sender: " + senderNewBalance);
 
                 BigDecimal receiverNewBalance = BigDecimal.valueOf(receiver.getWalLogicBalance()).add(amount);
                 receiver.setWalLogicBalance(receiverNewBalance.floatValue());
                 walletRepo.save(receiver);
                 saveWalletBalanceHistory(receiver);
-                System.out.println("[TRANSFER] Nouveau solde receiver: " + receiverNewBalance);
 
                 WALLET feeWallet = walletRepo.findById(feeRule.getFruFeesWalletId())
                                 .orElseThrow(() -> new RuntimeException("Fee wallet not found"));
-
                 feeWallet.setWalLogicBalance(BigDecimal.valueOf(feeWallet.getWalLogicBalance()).add(fee).floatValue());
                 walletRepo.save(feeWallet);
                 saveWalletBalanceHistory(feeWallet);
-                System.out.println("[TRANSFER] Wallet frais mis à jour: " + feeWallet.getWalIden());
 
                 WALLET vatWallet = walletRepo.findById(feeRule.getFruTvaWalletId())
                                 .orElseThrow(() -> new RuntimeException("VAT wallet not found"));
                 vatWallet.setWalLogicBalance(BigDecimal.valueOf(vatWallet.getWalLogicBalance()).add(vat).floatValue());
                 walletRepo.save(vatWallet);
                 saveWalletBalanceHistory(vatWallet);
-                System.out.println("[TRANSFER] Wallet TVA mis à jour: " + vatWallet.getWalIden());
 
                 WALLET_OPERATIONS op = new WALLET_OPERATIONS();
                 op.setWallet(sender);
@@ -153,28 +128,24 @@ public class WalletTransferServiceImpl implements WalletTransferService {
                 op.setWopLabel("Transfert de " + sender.getWalIden() + " vers " + receiver.getWalIden());
                 op.setWopTimestamps(new Date());
                 walletOpRepo.save(op);
-                System.out.println("[TRANSFER] Opération wallet enregistrée, code: " + op.getWopCode());
 
                 operationDetailsRepo.save(createOpDetail(op, "DEBIT", amount, fee, sender, receiver.getWalIden()));
                 operationDetailsRepo.save(
                                 createOpDetail(op, "CREDIT", amount, BigDecimal.ZERO, receiver, receiver.getWalIden()));
                 operationDetailsRepo.save(createOpDetail(op, "FEE", fee, fee, sender, feeWallet.getWalIden()));
                 operationDetailsRepo.save(createOpDetail(op, "TVA", vat, vat, sender, vatWallet.getWalIden()));
-                System.out.println("[TRANSFER] Détails des opérations sauvegardés");
 
-                System.out.println("[TRANSFER] Transfert terminé avec succès");
                 return new WalletToWalletTransferResponse("TXN-" + op.getWopCode(), total, "Transfer successful");
         }
 
         private void saveWalletBalanceHistory(WALLET wallet) {
                 WALLET_BALANCE_HISTORY history = new WALLET_BALANCE_HISTORY();
                 history.setWallet(wallet);
-                history.setWbhEffBal(wallet.getWalEffBal());
+                history.setWbhEffBal(wallet.getWalEffBal()); // ✅ Correction ici
                 history.setWbhLogicBalance(wallet.getWalLogicBalance());
                 history.setWbhSpecificBalance(wallet.getWalSpecificBalance());
                 history.setWbhLastUpdated(new Date());
                 balanceHistoryRepo.save(history);
-                System.out.println("[SAVE HISTORY] Historique solde sauvegardé pour wallet: " + wallet.getWalIden());
         }
 
         private OPERATION_DETAILS createOpDetail(WALLET_OPERATIONS op, String type, BigDecimal value, BigDecimal fee,
@@ -187,8 +158,6 @@ public class WalletTransferServiceImpl implements WalletTransferService {
                 detail.setOdePayMeth("WALLET_TO_WALLET");
                 detail.setOdeRecipientWallet(recipientWalletIden);
                 detail.setOdeCusCode(wallet.getCustomer().getCusCode());
-                System.out.println("[CREATE OP DETAIL] Type: " + type + ", Valeur: " + value + ", Wallet: "
-                                + wallet.getWalIden());
                 return detail;
-}
+        }
 }
