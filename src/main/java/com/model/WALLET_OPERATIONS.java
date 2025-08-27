@@ -168,6 +168,7 @@ public class WALLET_OPERATIONS {
 
 	public void setOperationDetails(List<OPERATION_DETAILS> operationDetails) {
 		this.operationDetails = operationDetails;
+
 	}
 
 	public WALLET_OPERATIONS() {
