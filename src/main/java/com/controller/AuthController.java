@@ -53,7 +53,6 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> loginCustomer(@RequestBody LoginRequest loginRequest) {
-
         System.out.println("Login attempt: username=" + loginRequest.getUsername());
         try {
             Authentication authentication = authenticationManager.authenticate(
@@ -66,16 +65,29 @@ public class AuthController {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             UserDetails ud = authService.loadUserByUsername(loginRequest.getUsername());
             if (ud != null) {
-                // System.out.println("----------------------------------------------"+ud.getClass());
-                if (ud instanceof CUSTOMER)
+                if (ud instanceof CUSTOMER) {
+                    CUSTOMER customer = (CUSTOMER) ud;
+                    
+                    // Create WalletDTO from customer's wallet
+                    WalletDTO walletDTO = null;
+                    if (customer.getWallet() != null) {
+                        walletDTO = new WalletDTO(
+                            customer.getWallet().getWalIden(),
+                            customer.getWallet().getWalLogicBalance(),
+                            customer.getWallet().getWalEffBal()
+                        );
+                    }
+                    
                     return ResponseEntity.ok().body(new CustomerResponseDTO(
-                            ((CUSTOMER) ud).getCusCode().toString(),
-                            ((CUSTOMER) ud).getUsername(),
-                            ((CUSTOMER) ud).getFullName(),
-                            ((CUSTOMER) ud).getStatus().getCtsLabe(),
-                            ((CUSTOMER) ud).getAuthorities().stream()
+                            customer.getCusCode().toString(),
+                            customer.getUsername(),
+                            customer.getFullName(),
+                            customer.getStatus().getCtsLabe(),
+                            customer.getAuthorities().stream()
                                     .map(GrantedAuthority::getAuthority)
-                                    .collect(Collectors.toList())));
+                                    .collect(Collectors.toList()),
+                            walletDTO)); // Include wallet data
+                }
                 // if (ud instanceof User)
                 return ResponseEntity.ok().body(new UserResponseDTO(
                         ((User) ud).getCode().toString(),
@@ -123,7 +135,27 @@ public class AuthController {
         private String fullname;
         private String status;
         private Collection<String> authorities;
-        // private String roles;
+        private WalletDTO wallet; // Add this field
+
+        // Constructor with wallet
+        public CustomerResponseDTO(String cusCode, String username, String fullname, String status,
+                Collection<String> authorities, WalletDTO wallet) {
+            this.cusCode = cusCode;
+            this.username = username;
+            this.fullname = fullname;
+            this.status = status;
+            this.authorities = authorities;
+            this.wallet = wallet;
+        }
+
+        // Getters and setters
+        public WalletDTO getWallet() {
+            return wallet;
+        }
+
+        public void setWallet(WalletDTO wallet) {
+            this.wallet = wallet;
+        }
 		public String getCusCode() {
 			return cusCode;
 		}
@@ -166,6 +198,43 @@ public class AuthController {
 		
 		
         
+    }
+ // Add this WalletDTO class
+    public static class WalletDTO {
+        private String walIden;
+        private Float walLogicBalance;
+        private Float walEffBal;
+
+        public WalletDTO(String walIden, Float walLogicBalance, Float walEffBal) {
+            this.walIden = walIden;
+            this.walLogicBalance = walLogicBalance;
+            this.walEffBal = walEffBal;
+        }
+
+        // Getters and setters
+        public String getWalIden() {
+            return walIden;
+        }
+
+        public void setWalIden(String walIden) {
+            this.walIden = walIden;
+        }
+
+        public Float getWalLogicBalance() {
+            return walLogicBalance;
+        }
+
+        public void setWalLogicBalance(Float walLogicBalance) {
+            this.walLogicBalance = walLogicBalance;
+        }
+
+        public Float getWalEffBal() {
+            return walEffBal;
+        }
+
+        public void setWalEffBal(Float walEffBal) {
+            this.walEffBal = walEffBal;
+        }
     }
 
    
