@@ -28,11 +28,11 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "USERS", uniqueConstraints = { @UniqueConstraint(columnNames = "MOP_CODE"),
-        @UniqueConstraint(columnNames = "MOP_IDEN"),
-        @UniqueConstraint(columnNames = "MOP_LOGI"),
-        @UniqueConstraint(columnNames = "MOP_PHONE"),
-        @UniqueConstraint(columnNames = "MOP_MAIL")
+@Table(name = "USERS", uniqueConstraints = { @UniqueConstraint(columnNames = "USE_CODE"),
+        @UniqueConstraint(columnNames = "USE_IDEN"),
+        @UniqueConstraint(columnNames = "USE_LOGI"),
+        @UniqueConstraint(columnNames = "USE_PHONE"),
+        @UniqueConstraint(columnNames = "USE_MAIL")
 })
 
 public class User implements UserDetails// extends ABSTRACT_USER

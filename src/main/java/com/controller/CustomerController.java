@@ -77,6 +77,7 @@ public class CustomerController {
             customer.setWallet(
                     new WALLET(null, null, null, null, 0f, 0f, 0f, null, null, customer, null, null, null,
                             null, null, null, null, null, null));
+        System.out.println(customer.getIdentity());
                             
         customerDocListeService.save(customer.getIdentity().getCustomerDocListe());
         customer.setCusCode(null);
