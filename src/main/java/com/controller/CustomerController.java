@@ -26,6 +26,9 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/api/customers")
@@ -182,6 +185,12 @@ public class CustomerController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/getEmail/{cusCode}")
+    public ResponseEntity<Map<String, String>> getEmail(@PathVariable Integer cusCode) {
+        return ResponseEntity.ok().body(Map.of("email", customerService.getCustomerById(cusCode).get().getCusMailAddress()));
+    }
+    
+
     @GetMapping("/phone/{phone}")
     public ResponseEntity<CUSTOMER> getCustomerByPhone(@PathVariable String phone) {
         Optional<CUSTOMER> customer = customerService.getCustomerByPhone(phone);
@@ -206,40 +215,7 @@ public class CustomerController {
         List<CUSTOMER> customers = customerService.getCustomersByCountry(countryCode);
         return ResponseEntity.ok(customers);
     }
-
-    /*
-     * @GetMapping("/with-wallets")
-     * public ResponseEntity<List<CUSTOMER>> getCustomersWithWallets() {
-     * List<CUSTOMER> customers = customerService.getCustomersWithWallets();
-     * return ResponseEntity.ok(customers);
-     * }
-     * 
-     * @GetMapping("/without-wallets")
-     * public ResponseEntity<List<CUSTOMER>> getCustomersWithoutWallets() {
-     * List<CUSTOMER> customers = customerService.getCustomersWithoutWallets();
-     * return ResponseEntity.ok(customers);
-     * }
-     */
-
-    /*
-     * @GetMapping("/search")
-     * public ResponseEntity<List<CUSTOMER>> searchCustomers(
-     * 
-     * @RequestParam(required = false) String name,
-     * 
-     * @RequestParam(required = false) String email,
-     * 
-     * @RequestParam(required = false) String phone,
-     * 
-     * @RequestParam(required = false) Integer cityCode,
-     * 
-     * @RequestParam(required = false) Integer countryCode) {
-     * List<CUSTOMER> customers = customerService.searchCustomers(name, email,
-     * phone, cityCode, countryCode);
-     * return ResponseEntity.ok(customers);
-     * }
-     */
-
+   
     @GetMapping("/search")
     public ResponseEntity<List<CUSTOMER>> searchCustomers(@RequestParam("word") String searchWord) {
         List<CUSTOMER> customers = customerService.searchCustomers(searchWord);
@@ -251,163 +227,4 @@ public class CustomerController {
         Map<String, Long> cityCounts = customerService.getCustomerCountByCity();
         return ResponseEntity.ok(cityCounts);
     }
-
-/*     @PostMapping("/login")
-    public ResponseEntity<?> loginCustomer(@RequestBody LoginRequest loginRequest) {
-        System.out.println("Login attempt: username=" + loginRequest.getUsername());
-        try {
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            loginRequest.getUsername(),
-                            loginRequest.getPassword()));
-
-            System.out.println("Authentication successful: " + loginRequest.getUsername());
-            
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            Optional<CUSTOMER> userOpt = customerRepository.findByUsername(loginRequest.getUsername());
-            if (userOpt.isPresent()) {
-                CUSTOMER customer = userOpt.get();
-                String roles = "ROLE_" + customer.getRole().getName();
-                return ResponseEntity.ok(new ResponseDTO(
-                        "Login successful",
-                        customer.getCusCode().toString(),
-                        customer.getUsername(),
-                        customer.getFullName(),
-                        customer.getStatus().getCtsLabe(),
-                        customer.getRole(),
-                        customer.getCusMailAddress(),
-                        customer.getCusPhoneNbr(),
-                        roles));
-            } else {
-                return ResponseEntity.status(404)
-                        .body(new ResponseDTO("User not found", null, null, null, null, null, null, null, null));
-            }
-        } catch (BadCredentialsException e) {
-            return ResponseEntity.status(401)
-                    .body(new ResponseDTO("Invalid credentials", null, null, null, null, null, null, null, null));
-        } catch (Exception e) {
-            return ResponseEntity.status(500)
-                    .body(new ResponseDTO(e.getMessage(), null, null, null, null, null, null, null, null));
-        }
-    }
-
-
-    public static class LoginRequest {
-        private String username;
-        private String password;
-
-        public String getUsername() {
-            return username;
-        }
-
-        public void setUsername(String username) {
-            this.username = username;
-        }
-
-        public String getPassword() {
-            return password;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
-    }
-
-    public static class ResponseDTO {
-        private String message;
-        private String cusCode;
-        private String username;
-        private String fullname;
-        private String status;
-        private Role role;
-        private String cusMailAddress;
-        private String cusPhoneNbr;
-        private String roles;
-
-        public ResponseDTO(String message, String cusCode, String username, String fullname, String status, Role role,
-                String cusMailAddress, String cusPhoneNbr, String roles) {
-            this.message = message;
-            this.cusCode = cusCode;
-            this.username = username;
-            this.fullname = fullname;
-            this.status = status;
-            this.role = role;
-            this.cusMailAddress = cusMailAddress;
-            this.cusPhoneNbr = cusPhoneNbr;
-            this.roles = roles;
-        }
-
-        public String getMessage() {
-            return message;
-        }
-
-        public void setMessage(String message) {
-            this.message = message;
-        }
-
-        public String getCusCode() {
-            return cusCode;
-        }
-
-        public void setCusCode(String cusCode) {
-            this.cusCode = cusCode;
-        }
-
-        public String getUsername() {
-            return username;
-        }
-
-        public void setUsername(String username) {
-            this.username = username;
-        }
-
-        public String getFullname() {
-            return fullname;
-        }
-
-        public void setFullname(String fullname) {
-            this.fullname = fullname;
-        }
-
-        public String getStatus() {
-            return status;
-        }
-
-        public void setStatus(String status) {
-            this.status = status;
-        }
-
-        public Role getRole() {
-            return role;
-        }
-
-        public void setRole(Role role) {
-            this.role = role;
-        }
-
-        public String getCusMailAddress() {
-            return cusMailAddress;
-        }
-
-        public void setCusMailAddress(String cusMailAddress) {
-            this.cusMailAddress = cusMailAddress;
-        }
-
-        public String getCusPhoneNbr() {
-            return cusPhoneNbr;
-        }
-
-        public void setCusPhoneNbr(String cusPhoneNbr) {
-            this.cusPhoneNbr = cusPhoneNbr;
-        }
-
-        public String getRoles() {
-            return roles;
-        }
-
-        public void setRoles(String roles) {
-            this.roles = roles;
-        }
-    }
- */
 }
