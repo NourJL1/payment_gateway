@@ -36,6 +36,18 @@ public class CARD {
 	@Column(name = "CAR_LABE", nullable = false)
 	private String carLabe;
 
+  // 🔹 Nouveau champ : Montant de la carte
+    @Column(name = "CAR_AMOUNT")
+    private Float carAmount;
+
+    // 🔹 Nouveau champ : Plafond
+    @Column(name = "CAR_PLAFOND")
+    private Float carPlafond;
+
+    // 🔹 Nouveau champ : Périodicité du plafond (DAY, WEEK, MONTH)
+    @Column(name = "CAR_PLAFOND_PERIOD", length = 20)
+    private String carPlafondPeriod;
+
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "CAR_CTYP_CODE", nullable = false)
 	@JsonIgnoreProperties("cards") // ← empêche le renvoi de la liste des cartes depuis CARD_TYPE
@@ -48,6 +60,31 @@ public class CARD {
 	@JsonIgnoreProperties("cards") // ← empêche le renvoi de la liste des cartes depuis CARD_TYPE
 
 	private CARD_LIST cardList;
+
+
+  public Float getCarAmount() {
+        return carAmount;
+    }
+
+    public void setCarAmount(Float carAmount) {
+        this.carAmount = carAmount;
+    }
+
+    public Float getCarPlafond() {
+        return carPlafond;
+    }
+
+    public void setCarPlafond(Float carPlafond) {
+        this.carPlafond = carPlafond;
+    }
+
+    public String getCarPlafondPeriod() {
+        return carPlafondPeriod;
+    }
+
+    public void setCarPlafondPeriod(String carPlafondPeriod) {
+        this.carPlafondPeriod = carPlafondPeriod;
+    }
 
 	public Integer getCarCode() {
 		return carCode;
@@ -120,7 +157,7 @@ public class CARD {
 	}
 
 	public CARD(Integer carCode, String carNumb, String carIden, Date carExpiryDate, String carEmvData,
-			String carLabe, CARD_TYPE cardType, CARD_LIST cardList) {
+			String carLabe, CARD_TYPE cardType, CARD_LIST cardList, Float carAmount, Float carPlafond, String carPlafondPeriod) {
 		super();
 		this.carCode = carCode;
 		this.carNumb = carNumb;
@@ -130,6 +167,9 @@ public class CARD {
 		this.carLabe = carLabe;
 		this.cardType = cardType;
 		this.cardList = cardList;
+    this.carAmount = carAmount;
+    this.carPlafond = carPlafond;
+    this.carPlafondPeriod = carPlafondPeriod;
 	}
 
 	public CARD() {

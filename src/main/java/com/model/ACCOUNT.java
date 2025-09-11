@@ -35,6 +35,10 @@ public class ACCOUNT {
 	@JoinColumn(name = "ACC_ATY_CODE", referencedColumnName = "ATY_CODE", nullable = false)
 	private ACCOUNT_TYPE accountType;
 
+   // ✅ Nouveau champ : solde du compte
+    @Column(name = "ACC_BALANCE", nullable = false)
+    private Double accBalance = 0.0;
+
 	// Relation avec BANK (Chaque ACCOUNT est lié à une seule BANK)
 	@ManyToOne
 	@JoinColumn(name = "ACC_BAN_CODE", referencedColumnName = "BAN_CODE", nullable = false)
@@ -43,6 +47,14 @@ public class ACCOUNT {
 
 	public ACCOUNT() {
 	}
+
+  public Double getAccBalance() {
+        return accBalance;
+    }
+
+    public void setAccBalance(Double accBalance) {
+        this.accBalance = accBalance;
+    }
 
 	public Integer getAccCode() {
 		return accCode;
@@ -107,7 +119,7 @@ public class ACCOUNT {
 	}
 
 	public ACCOUNT(Integer accCode, String accRib, String accIden, String accKey, ACCOUNT_LIST accountList,
-			ACCOUNT_TYPE accountType, BANK bank) {
+			ACCOUNT_TYPE accountType, BANK bank, Double accBalance) {
 		super();
 		this.accCode = accCode;
 		this.accRib = accRib;
@@ -116,6 +128,7 @@ public class ACCOUNT {
 		this.accountList = accountList;
 		this.accountType = accountType;
 		this.bank = bank;
+    this.accBalance = accBalance;
 	}
 
 }
