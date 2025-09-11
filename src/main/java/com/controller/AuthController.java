@@ -94,7 +94,7 @@ public class AuthController {
                         ((User) ud).getCode().toString(),
                         ((User) ud).getUsername(),
                         ((User) ud).getFullName(),
-                        ((User) ud).getProfile().getCode(),
+                        ((User) ud).getProfile() != null ? ((User) ud).getProfile().getCode() : null,
                         ((User) ud).getAuthorities().stream()
                                 .map(GrantedAuthority::getAuthority)
                                 .collect(Collectors.toList())/* ,
