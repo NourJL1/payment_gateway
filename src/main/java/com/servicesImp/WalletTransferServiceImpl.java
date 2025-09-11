@@ -1,7 +1,11 @@
 package com.servicesImp;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.endpoint.OperationType;
@@ -129,11 +133,35 @@ public class WalletTransferServiceImpl implements WalletTransferService {
                 op.setWopTimestamps(new Date());
                 walletOpRepo.save(op);
 
-                operationDetailsRepo.save(createOpDetail(op, "DEBIT", amount, fee, sender, receiver.getWalIden()));
+                /*
+                 * operationDetailsRepo.save(createOpDetail(op, "DEBIT", amount, fee, sender,
+                 * receiver.getWalIden()));
+                 * operationDetailsRepo.save(
+                 * createOpDetail(op, "CREDIT", amount, BigDecimal.ZERO, receiver,
+                 * receiver.getWalIden()));
+                 * operationDetailsRepo.save(createOpDetail(op, "FEE", fee, fee, sender,
+                 * feeWallet.getWalIden()));
+                 * operationDetailsRepo.save(createOpDetail(op, "TVA", vat, vat, sender,
+                 * vatWallet.getWalIden()));
+                 */
+
+                // Détails de l'opération
                 operationDetailsRepo.save(
-                                createOpDetail(op, "CREDIT", amount, BigDecimal.ZERO, receiver, receiver.getWalIden()));
-                operationDetailsRepo.save(createOpDetail(op, "FEE", fee, fee, sender, feeWallet.getWalIden()));
-                operationDetailsRepo.save(createOpDetail(op, "TVA", vat, vat, sender, vatWallet.getWalIden()));
+                                createOpDetail(op, "DEBIT", amount, BigDecimal.ZERO, sender, sender.getWalIden())); // ✅
+                                                                                                                    // destinataire
+                                                                                                                    // =
+                                                                                                                    // sender
+                operationDetailsRepo.save(
+                                createOpDetail(op, "CREDIT", amount, BigDecimal.ZERO, receiver, receiver.getWalIden())); // ✅
+                                                                                                                         // destinataire
+                                                                                                                         // =
+                                                                                                                         // receiver
+                operationDetailsRepo.save(
+                                createOpDetail(op, "FEE", fee, fee, sender, feeWallet.getWalIden())); // ✅ destinataire
+                                                                                                      // = wallet frais
+                operationDetailsRepo.save(
+                                createOpDetail(op, "TVA", vat, vat, sender, vatWallet.getWalIden())); // ✅ destinataire
+                                                                                                      // = wallet TVA
 
                 return new WalletToWalletTransferResponse("TXN-" + op.getWopCode(), total, "Transfer successful");
         }
@@ -160,4 +188,5 @@ public class WalletTransferServiceImpl implements WalletTransferService {
                 detail.setOdeCusCode(wallet.getCustomer().getCusCode());
                 return detail;
         }
+
 }

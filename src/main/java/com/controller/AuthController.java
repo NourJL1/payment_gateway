@@ -74,7 +74,8 @@ public class AuthController {
                         walletDTO = new WalletDTO(
                             customer.getWallet().getWalIden(),
                             customer.getWallet().getWalLogicBalance(),
-                            customer.getWallet().getWalEffBal()
+                            customer.getWallet().getWalEffBal(),
+                            customer.getWallet().getWalCode()
                         );
                     }
                     
@@ -204,14 +205,22 @@ public class AuthController {
         private String walIden;
         private Float walLogicBalance;
         private Float walEffBal;
+        private Integer walCode; // Add this field
 
-        public WalletDTO(String walIden, Float walLogicBalance, Float walEffBal) {
+        public WalletDTO(String walIden, Float walLogicBalance, Float walEffBal, Integer walCode) {
             this.walIden = walIden;
             this.walLogicBalance = walLogicBalance;
             this.walEffBal = walEffBal;
+            this.walCode = walCode;
         }
 
         // Getters and setters
+        public Integer getWalCode() {
+            return walCode;
+        }
+        public void setWalCode(Integer walCode) {
+            this.walCode = walCode;
+        }
         public String getWalIden() {
             return walIden;
         }
