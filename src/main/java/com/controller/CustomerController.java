@@ -82,6 +82,7 @@ public class CustomerController {
         customerDocListeService.save(customer.getIdentity().getCustomerDocListe());
         customer.setCusCode(null);
         customer.setCusMotDePasse(passwordEncoder.encode(customer.getCusMotDePasse()));
+        customer.setMfaEnabled(false);
         CUSTOMER savedCustomer = customerRepository.save(customer);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedCustomer);
     }
