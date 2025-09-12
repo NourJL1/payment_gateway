@@ -129,7 +129,7 @@ public class WalletTransferServiceImpl implements WalletTransferService {
                 op.setWopAmount(amount.floatValue());
                 op.setWopCurrency("TND");
                 op.setWopStatus("SUCCESS");
-                op.setWopLabel("Transfert de " + sender.getWalIden() + " vers " + receiver.getWalIden());
+                op.setWopLabel("Transfert de " + sender.getWalLabe() + " vers " + receiver.getWalLabe());
                 op.setWopTimestamps(new Date());
                 walletOpRepo.save(op);
 

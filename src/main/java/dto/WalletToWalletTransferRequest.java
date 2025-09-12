@@ -6,10 +6,11 @@ import lombok.Data;
 @Data
 
 public class WalletToWalletTransferRequest {
+  private String operationTypeIden;
     private String senderWalletIden;
     private String receiverWalletIden;
     private BigDecimal amount;
-    private String operationTypeIden;
+    
 	public String getSenderWalletIden() {
 		return senderWalletIden;
 	}
@@ -34,13 +35,13 @@ public class WalletToWalletTransferRequest {
 	public void setOperationTypeIden(String operationTypeIden) {
 		this.operationTypeIden = operationTypeIden;
 	}
-	public WalletToWalletTransferRequest(String senderWalletIden, String receiverWalletIden, BigDecimal amount,
-			String operationTypeIden) {
+	public WalletToWalletTransferRequest(String operationTypeIden, String senderWalletIden, String receiverWalletIden, BigDecimal amount) {
 		super();
+    this.operationTypeIden = operationTypeIden;
 		this.senderWalletIden = senderWalletIden;
 		this.receiverWalletIden = receiverWalletIden;
 		this.amount = amount;
-		this.operationTypeIden = operationTypeIden;
+		
 	}
 
     
