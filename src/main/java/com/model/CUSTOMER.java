@@ -54,6 +54,15 @@ public class CUSTOMER implements UserDetails
 	private String cusPhoneNbr;
 	private String cusAddress;
 	private Integer cusFinId;
+	private Boolean mfaEnabled;
+
+	public Boolean getMfaEnabled() {
+		return mfaEnabled;
+	}
+
+	public void setMfaEnabled(Boolean mfaEnabled) {
+		this.mfaEnabled = mfaEnabled;
+	}
 
 	// @JsonProperty(access = Access.WRITE_ONLY)
 	private String cusMotDePasse;

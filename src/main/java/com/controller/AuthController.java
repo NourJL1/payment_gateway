@@ -348,7 +348,7 @@ public class AuthController {
     public ResponseEntity<Map<String, String>> sendEmail(@RequestBody emailDTO email) {
         String text = "";
         switch (email.getSubject()) {
-            case "TOTP":
+            case "register":
                 // if (customerRepository.existsByCusMailAddress(email.getCusMailAdress()))
                 if (authService.existsByEmail(email.cusMailAdress))
                     return ResponseEntity.ok().body(Map.of("message", "Email already exists"));
@@ -356,7 +356,7 @@ public class AuthController {
                         totpService.generateTOTP(email.getCusMailAdress()) +
                         "\n The code expires in 5 minutes.";
                 break;
-            case "Reset Password":
+            case "confirm":
                 // if (!customerRepository.existsByCusMailAddress(email.getCusMailAdress()))
                 if (!authService.existsByEmail(email.cusMailAdress))
                     return ResponseEntity.ok().body(Map.of("message", "Email doesn't exist in our system"));
