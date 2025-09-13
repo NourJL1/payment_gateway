@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -28,6 +30,7 @@ public class ACCOUNT {
 
 	@ManyToOne
 	@JoinColumn(name = "ACC_ALI_CODE", referencedColumnName = "ALI_CODE", nullable = false)
+  @JsonIgnoreProperties("accounts") 
 	private ACCOUNT_LIST accountList;
 
 	// Relation avec ACCOUNT_TYPE (Chaque ACCOUNT a un type d’account)

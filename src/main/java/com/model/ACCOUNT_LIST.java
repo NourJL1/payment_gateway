@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -26,14 +27,14 @@ public class ACCOUNT_LIST {
 	private String aliLabe;
 
 	// Clé étrangère vers WALLET
-	@ManyToOne
-	@JoinColumn(name = "ALI_WAL_CODE", nullable = true) // WALLET peut être null (0..1)
-	@JsonIgnore
-	private WALLET wallet;
+	@OneToOne(mappedBy = "accountList") // Lien inverse
+	    @JsonIgnore
+
+	    private WALLET wallet;
 
 	// Relation One-to-Many avec ACCOUNT
 	@OneToMany(mappedBy = "accountList", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JsonIgnore
+	@JsonIgnoreProperties("accountList")
 	private List<ACCOUNT> accounts;
 
 	public ACCOUNT_LIST(Integer aliCode, String aliIden, String aliLabe, WALLET wallet, List<ACCOUNT> accounts) {
