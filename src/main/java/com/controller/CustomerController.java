@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -26,9 +27,6 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 @RestController
 @RequestMapping("/api/customers")
@@ -49,12 +47,13 @@ public class CustomerController {
     @Autowired
     private CustomerDocListeService customerDocListeService;
 
-    /* @Autowired
-    private AuthenticationManager authenticationManager; */
-
     @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    private PasswordEncoder encoder;
 
+    /*
+     * @Autowired
+     * private AuthenticationManager authenticationManager;
+     */
 
     @PostMapping
     public ResponseEntity<?> createCustomer(@Valid @RequestBody CUSTOMER customer) {
@@ -81,10 +80,10 @@ public class CustomerController {
                     new WALLET(null, null, null, null, 0f, 0f, 0f, null, null, customer, null, null, null,
                             null, null, null, null, null, null));
         System.out.println(customer.getIdentity());
-                            
+
         customerDocListeService.save(customer.getIdentity().getCustomerDocListe());
         customer.setCusCode(null);
-        customer.setCusMotDePasse(passwordEncoder.encode(customer.getCusMotDePasse()));
+        customer.setCusMotDePasse(encoder.encode(customer.getCusMotDePasse()));
         customer.setMfaEnabled(false);
         CUSTOMER savedCustomer = customerRepository.save(customer);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedCustomer);
@@ -152,7 +151,6 @@ public class CustomerController {
         }
     }
 
-
     @Value("${document.storage.path}")
     String storageDir;
 
@@ -187,9 +185,21 @@ public class CustomerController {
 
     @GetMapping("/getEmail/{cusCode}")
     public ResponseEntity<Map<String, String>> getEmail(@PathVariable Integer cusCode) {
-        return ResponseEntity.ok().body(Map.of("email", customerService.getCustomerById(cusCode).get().getCusMailAddress()));
+        return ResponseEntity.ok()
+                .body(Map.of("email", customerService.getCustomerById(cusCode).get().getCusMailAddress()));
     }
-    
+
+    @PostMapping("/check-password/{cusCode}")
+    public ResponseEntity<Boolean> checkPassword(
+            @PathVariable Integer cusCode,
+            @RequestBody Map<String, String> payload) {
+
+        CUSTOMER customer = customerService.getCustomerById(cusCode).get();
+        String password = payload.get("password");
+        boolean isValid = encoder.matches(password, customer.getPassword());
+
+        return ResponseEntity.ok(isValid);
+    }
 
     @GetMapping("/phone/{phone}")
     public ResponseEntity<CUSTOMER> getCustomerByPhone(@PathVariable String phone) {
@@ -215,13 +225,13 @@ public class CustomerController {
         List<CUSTOMER> customers = customerService.getCustomersByCountry(countryCode);
         return ResponseEntity.ok(customers);
     }
-   
+
     @GetMapping("/search")
     public ResponseEntity<List<CUSTOMER>> searchCustomers(@RequestParam("word") String searchWord) {
         List<CUSTOMER> customers = customerService.searchCustomers(searchWord);
         return ResponseEntity.ok(customers);
     }
-    
+
     @GetMapping("/count-by-city")
     public ResponseEntity<Map<String, Long>> getCustomerCountByCity() {
         Map<String, Long> cityCounts = customerService.getCustomerCountByCity();
