@@ -253,17 +253,7 @@ public class AuthController {
         private String fullname;
         private Integer profileCode;
         private Collection<String> authorities;
-        private List<UserProfileMenuOption> options;
 
-        
-
-		public UserResponseDTO(String useCode, String username, String fullname, Collection<String> authorities, List<UserProfileMenuOption> options) {
-            this.useCode = useCode;
-            this.username = username;
-            this.fullname = fullname;
-            this.authorities = authorities;
-            this.options = options;
-        }
         public UserResponseDTO(String useCode, String username, String fullname, Integer profileCode, Collection<String> authorities) {
             this.useCode = useCode;
             this.username = username;
@@ -282,12 +272,6 @@ public class AuthController {
         }
         public void setProfileCode(Integer profileCode) {
             this.profileCode = profileCode;
-        }
-        public List<UserProfileMenuOption> getOptions() {
-            return options;
-        }
-        public void setOptions(List<UserProfileMenuOption> options) {
-            this.options = options;
         }
         public String getUseCode() {
 			return useCode;

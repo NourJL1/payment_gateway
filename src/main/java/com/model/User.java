@@ -214,15 +214,22 @@ public class User implements UserDetails// extends ABSTRACT_USER
 
         if (profile != null) {
             authorities.add(new SimpleGrantedAuthority("PROFILE_" + profile.getLabel().toUpperCase()));
-            // authorities.add(new SimpleGrantedAuthority(profile.getIdentifier()));
 
-            /* for (Module module : profile.getModules())
-                authorities.add(new SimpleGrantedAuthority("MODULE_" + module.getAccessPath().toUpperCase()));
-
-            for (UserProfileMenuOption upmo : profile.getProfileMenuOptions())
-                authorities.add(new SimpleGrantedAuthority("UPMO_" + upmo.getId())); */
+            for (UserProfileMenuOption upmo : profile.getProfileMenuOptions()){
+                String option = upmo.getMenuOption().getFormName().toUpperCase();
+                String module = upmo.getMenuOption().getModule().getAccessPath().toUpperCase();
+                if(upmo.getCanAccess()!= null && upmo.getCanAccess())
+                    authorities.add(new SimpleGrantedAuthority("ACCESS_" + module + "_" + option)); 
+                if(upmo.getCanInsert()!= null && upmo.getCanInsert())
+                    authorities.add(new SimpleGrantedAuthority("INSERT_" + module + "_" + option)); 
+                if(upmo.getCanEdit()!= null && upmo.getCanEdit())
+                    authorities.add(new SimpleGrantedAuthority("EDIT_" + module + "_" + option)); 
+                if(upmo.getCanDelete()!= null && upmo.getCanDelete())
+                    authorities.add(new SimpleGrantedAuthority("DELETE_" + module + "_" + option)); 
+                if(upmo.getCanPrint()!= null && upmo.getCanPrint())
+                    authorities.add(new SimpleGrantedAuthority("PRINT_" + module + "_" + option)); 
+            }
         }
-
         return authorities;
     }
 
