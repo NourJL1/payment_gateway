@@ -137,8 +137,10 @@ public class WALLET {
 	private CARD_LIST cardList;
 
 	// Relation 0..1 → * avec ACCOUNT_LIST
-	@OneToMany(mappedBy = "wallet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<ACCOUNT_LIST> accountList;
+	// With this:
+@OneToOne(cascade = CascadeType.ALL)
+@JoinColumn(name = "WAL_ALI_CODE", referencedColumnName = "ALI_CODE", nullable = true)
+private ACCOUNT_LIST accountList;
 
 	// Relation avec WALLET_OPERATION_TYPE_MAP (Fix mapping issue)
 	@OneToMany(mappedBy = "wallet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -296,11 +298,11 @@ public class WALLET {
 		this.cardList = cardList;
 	}
 
-	public List<ACCOUNT_LIST> getAccountList() {
+	public ACCOUNT_LIST getAccountList() {
 		return accountList;
 	}
 
-	public void setAccountList(List<ACCOUNT_LIST> accountList) {
+	public void setAccountList(ACCOUNT_LIST accountList) {
 		this.accountList = accountList;
 	}
 
@@ -324,7 +326,7 @@ public class WALLET {
 			Float walLogicBalance, Float walSpecificBalance, LocalDateTime lastUpdatedDate, Integer walFinId,
 			CUSTOMER customer, WALLET_STATUS walletStatus, WALLET_TYPE walletType, WALLET_CATEGORY walletCategory,
 			List<WALLET_OPERATIONS> walletOperations, WALLET_BALANCE_HISTORY lastBalanceHistory,
-			List<OPERATION_TYPE> operationTypes, CARD_LIST cardList, List<ACCOUNT_LIST> accountList,
+			List<OPERATION_TYPE> operationTypes, CARD_LIST cardList, ACCOUNT_LIST accountList,
 			List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMappings) {
 		super();
 		this.walCode = walCode;

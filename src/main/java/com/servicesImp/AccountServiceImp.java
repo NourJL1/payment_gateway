@@ -68,6 +68,11 @@ public class AccountServiceImp implements AccountService {
         // ... (unchanged from previous version)
         ACCOUNT existingAccount = accountRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Account not found"));
+
+             // Update balance
+        if (accountData.getAccBalance() != null) {
+            existingAccount.setAccBalance(accountData.getAccBalance());
+        }
         if (accountData.getAccountType() != null && accountData.getAccountType().getAtyCode() != null) {
             ACCOUNT_TYPE accountType = accountTypeRepository.findById(accountData.getAccountType().getAtyCode())
                 .orElseThrow(() -> new RuntimeException("Account Type not found"));
