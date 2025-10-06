@@ -10,7 +10,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "ACCOUNT")
+@Table(name = "ACCOUNT", uniqueConstraints = {
+    @UniqueConstraint(columnNames = "ACC_RIB")
+})
 @Data
 
 public class ACCOUNT {

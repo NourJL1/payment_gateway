@@ -50,6 +50,16 @@ public class AccountController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/account-list/{aliCode}")
+    public ResponseEntity<List<ACCOUNT>> getAccountsByAccountList(@PathVariable Integer aliCode) {
+        try {
+            List<ACCOUNT> accounts = accountService.getAccountsByAccountList(aliCode);
+            return ResponseEntity.ok(accounts);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
     @GetMapping("/search")
     public ResponseEntity<List<ACCOUNT>> searchAccounts(@RequestParam("word") String searchWord) {
         List<ACCOUNT> accounts = accountService.searchAccounts(searchWord);
