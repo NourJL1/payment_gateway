@@ -215,6 +215,9 @@ public class User implements UserDetails// extends ABSTRACT_USER
         if (profile != null) {
             authorities.add(new SimpleGrantedAuthority("PROFILE_" + profile.getLabel().toUpperCase()));
 
+            for (Module module : profile.getModules())
+                authorities.add(new SimpleGrantedAuthority("MODULE_" + module.getAccessPath().toUpperCase())); 
+
             for (UserProfileMenuOption upmo : profile.getProfileMenuOptions()){
                 String option = upmo.getMenuOption().getFormName().toUpperCase();
                 String module = upmo.getMenuOption().getModule().getAccessPath().toUpperCase();

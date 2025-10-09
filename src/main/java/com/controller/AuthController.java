@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.swing.Spring;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,6 +14,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,6 +34,10 @@ import com.service.AuthService;
 import com.service.EmailService;
 import com.service.TOTPService;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -52,33 +59,39 @@ public class AuthController {
     private BCryptPasswordEncoder passwordEncoder;
 
     @PostMapping("/login")
-    public ResponseEntity<?> loginCustomer(@RequestBody LoginRequest loginRequest) {
-        System.out.println("Login attempt: username=" + loginRequest.getUsername());
+    public ResponseEntity<?> loginCustomer(@RequestBody LoginRequest loginRequest, HttpServletRequest request) {
         try {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             loginRequest.getUsername(),
                             loginRequest.getPassword()));
 
-            System.out.println("Authentication successful: " + loginRequest.getUsername());
-
             SecurityContextHolder.getContext().setAuthentication(authentication);
+
+            // CRITICAL: Create SecurityContext and store in session
+            SecurityContext context = SecurityContextHolder.createEmptyContext();
+            context.setAuthentication(authentication);
+            SecurityContextHolder.setContext(context);
+
+            // Create session (Spring handles JSESSIONID cookie automatically)
+            HttpSession session = request.getSession(true);
+            session.setAttribute("SPRING_SECURITY_CONTEXT", SecurityContextHolder.getContext());
+
             UserDetails ud = authService.loadUserByUsername(loginRequest.getUsername());
             if (ud != null) {
                 if (ud instanceof CUSTOMER) {
                     CUSTOMER customer = (CUSTOMER) ud;
-                    
+
                     // Create WalletDTO from customer's wallet
                     WalletDTO walletDTO = null;
                     if (customer.getWallet() != null) {
                         walletDTO = new WalletDTO(
-                            customer.getWallet().getWalIden(),
-                            customer.getWallet().getWalLogicBalance(),
-                            customer.getWallet().getWalEffBal(),
-                            customer.getWallet().getWalCode()
-                        );
+                                customer.getWallet().getWalIden(),
+                                customer.getWallet().getWalLogicBalance(),
+                                customer.getWallet().getWalEffBal(),
+                                customer.getWallet().getWalCode());
                     }
-                    
+
                     return ResponseEntity.ok().body(new CustomerResponseDTO(
                             customer.getCusCode().toString(),
                             customer.getUsername(),
@@ -97,8 +110,10 @@ public class AuthController {
                         ((User) ud).getProfile() != null ? ((User) ud).getProfile().getCode() : null,
                         ((User) ud).getAuthorities().stream()
                                 .map(GrantedAuthority::getAuthority)
-                                .collect(Collectors.toList())/* ,
-                        ((User) ud).getProfile().getProfileMenuOptions() */));
+                                .collect(Collectors.toList())/*
+                                                              * ,
+                                                              * ((User) ud).getProfile().getProfileMenuOptions()
+                                                              */));
             } else
                 return ResponseEntity.status(404).body("User not found");
         } catch (BadCredentialsException e) {
@@ -106,6 +121,24 @@ public class AuthController {
         } catch (Exception e) {
             return ResponseEntity.status(500).body(e.getMessage());
         }
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response) {
+        SecurityContextHolder.clearContext();
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+
+        // Clear the JSESSIONID cookie
+        Cookie cookie = new Cookie("JSESSIONID", null);
+        cookie.setPath("/");
+        cookie.setHttpOnly(true);
+        cookie.setMaxAge(0); // Immediately expire
+        response.addCookie(cookie);
+
+        return ResponseEntity.ok("Logged out successfully");
     }
 
     public static class LoginRequest {
@@ -129,7 +162,6 @@ public class AuthController {
         }
     }
 
-    
     public class CustomerResponseDTO {
         private String cusCode;
         private String username;
@@ -157,50 +189,60 @@ public class AuthController {
         public void setWallet(WalletDTO wallet) {
             this.wallet = wallet;
         }
-		public String getCusCode() {
-			return cusCode;
-		}
-		public void setCusCode(String cusCode) {
-			this.cusCode = cusCode;
-		}
-		public String getUsername() {
-			return username;
-		}
-		public void setUsername(String username) {
-			this.username = username;
-		}
-		public String getFullname() {
-			return fullname;
-		}
-		public void setFullname(String fullname) {
-			this.fullname = fullname;
-		}
-		public String getStatus() {
-			return status;
-		}
-		public void setStatus(String status) {
-			this.status = status;
-		}
-		public Collection<String> getAuthorities() {
-			return authorities;
-		}
-		public void setAuthorities(Collection<String> authorities) {
-			this.authorities = authorities;
-		}
-		public CustomerResponseDTO(String cusCode, String username, String fullname, String status,
-				Collection<String> authorities) {
-			super();
-			this.cusCode = cusCode;
-			this.username = username;
-			this.fullname = fullname;
-			this.status = status;
-			this.authorities = authorities;
-		}
-		
-		
-        
+
+        public String getCusCode() {
+            return cusCode;
+        }
+
+        public void setCusCode(String cusCode) {
+            this.cusCode = cusCode;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public String getFullname() {
+            return fullname;
+        }
+
+        public void setFullname(String fullname) {
+            this.fullname = fullname;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
+        }
+
+        public Collection<String> getAuthorities() {
+            return authorities;
+        }
+
+        public void setAuthorities(Collection<String> authorities) {
+            this.authorities = authorities;
+        }
+
+        public CustomerResponseDTO(String cusCode, String username, String fullname, String status,
+                Collection<String> authorities) {
+            super();
+            this.cusCode = cusCode;
+            this.username = username;
+            this.fullname = fullname;
+            this.status = status;
+            this.authorities = authorities;
+        }
+
     }
- // Add this WalletDTO class
+
+    // Add this WalletDTO class
     public static class WalletDTO {
         private String walIden;
         private Float walLogicBalance;
@@ -218,9 +260,11 @@ public class AuthController {
         public Integer getWalCode() {
             return walCode;
         }
+
         public void setWalCode(Integer walCode) {
             this.walCode = walCode;
         }
+
         public String getWalIden() {
             return walIden;
         }
@@ -246,7 +290,6 @@ public class AuthController {
         }
     }
 
-   
     public class UserResponseDTO {
         private String useCode;
         private String username;
@@ -254,52 +297,63 @@ public class AuthController {
         private Integer profileCode;
         private Collection<String> authorities;
 
-        public UserResponseDTO(String useCode, String username, String fullname, Integer profileCode, Collection<String> authorities) {
+        public UserResponseDTO(String useCode, String username, String fullname, Integer profileCode,
+                Collection<String> authorities) {
             this.useCode = useCode;
             this.username = username;
             this.fullname = fullname;
             this.profileCode = profileCode;
             this.authorities = authorities;
         }
+
         public UserResponseDTO(String useCode, String username, String fullname, Collection<String> authorities) {
             this.useCode = useCode;
             this.username = username;
             this.fullname = fullname;
             this.authorities = authorities;
         }
+
         public Integer getProfileCode() {
             return profileCode;
         }
+
         public void setProfileCode(Integer profileCode) {
             this.profileCode = profileCode;
         }
+
         public String getUseCode() {
-			return useCode;
-		}
-		public void setUseCode(String useCode) {
-			this.useCode = useCode;
-		}
-		public String getUsername() {
-			return username;
-		}
-		public void setUsername(String username) {
-			this.username = username;
-		}
-		public String getFullname() {
-			return fullname;
-		}
-		public void setFullname(String fullname) {
-			this.fullname = fullname;
-		}
-		public Collection<String> getAuthorities() {
-			return authorities;
-		}
-		public void setAuthorities(Collection<String> authorities) {
-			this.authorities = authorities;
-		}
+            return useCode;
+        }
+
+        public void setUseCode(String useCode) {
+            this.useCode = useCode;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public String getFullname() {
+            return fullname;
+        }
+
+        public void setFullname(String fullname) {
+            this.fullname = fullname;
+        }
+
+        public Collection<String> getAuthorities() {
+            return authorities;
+        }
+
+        public void setAuthorities(Collection<String> authorities) {
+            this.authorities = authorities;
+        }
     }
 
-    
     @PutMapping("resetPassword/{email}")
     public ResponseEntity<Map<String, String>> resetPassword(@PathVariable String email,
             @RequestBody String password) {
@@ -326,7 +380,6 @@ public class AuthController {
     public ResponseEntity<? extends UserDetails> getByEmail(@PathVariable String email) {
         return ResponseEntity.ok().body(authService.findByEmail(email).get());
     }
-    
 
     @PostMapping("/sendEmail")
     public ResponseEntity<Map<String, String>> sendEmail(@RequestBody emailDTO email) {
