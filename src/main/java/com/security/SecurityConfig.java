@@ -41,19 +41,13 @@ public class SecurityConfig {
                 .addFilterBefore((request, response, chain) -> {
                     HttpSession session = ((HttpServletRequest) request).getSession(false);
                     if (session != null) {
-                        System.out.println("=== SESSION RESTORED ===");
-                        System.out.println("Session ID: " + session.getId());
-
                         SecurityContext context = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
-                        if (context != null) {
+                        if (context != null) 
                             SecurityContextHolder.setContext(context);
-                            System.out.println("Restored user: " + context.getAuthentication().getName());
-                        } else {
+                        else 
                             System.out.println("No security context in session");
-                        }
-                    } else {
+                    } else 
                         System.out.println("No session exists for this request");
-                    }
                     chain.doFilter(request, response);
                 }, UsernamePasswordAuthenticationFilter.class)
                 .formLogin(form -> form.disable())
@@ -62,6 +56,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/transfer/**").permitAll()
+                        .requestMatchers("/api/customers/**").permitAll()
                         // MODULE_WALLETS
                         .requestMatchers("/api/accounts/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
                         .requestMatchers("/api/account-lists/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
