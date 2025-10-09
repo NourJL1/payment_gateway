@@ -11,7 +11,9 @@ import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "CARD")
+@Table(name = "CARD", uniqueConstraints = {
+    @UniqueConstraint(columnNames = "CAR_NUMB")
+})
 @Data
 
 public class CARD {

@@ -9,4 +9,6 @@ public interface AccountService {
     void deleteAccount(Integer id);
     List<ACCOUNT> searchAccounts(String searchWord);
 
+    List<ACCOUNT> getAccountsByAccountList(Integer aliCode);
+
 }

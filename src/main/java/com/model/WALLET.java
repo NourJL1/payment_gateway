@@ -147,6 +147,15 @@ private ACCOUNT_LIST accountList;
 	@JsonIgnore
 	private List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMappings;
 
+  // Relation 1..* avec PRODUCT
+@OneToMany(mappedBy = "wallet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+@JsonIgnore
+private List<PRODUCT> products;
+
+// Getter and Setter
+public List<PRODUCT> getProducts() { return products; }
+public void setProducts(List<PRODUCT> products) { this.products = products; }
+
 	public String getWalIden() {
 		return walIden;
 	}

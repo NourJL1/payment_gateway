@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccountServiceImp implements AccountService {
@@ -25,7 +26,15 @@ public class AccountServiceImp implements AccountService {
 
     @Override
     public ACCOUNT createAccount(ACCOUNT account) {
-        // ... (unchanged from previous version)
+        // Check for duplicate RIB
+        if (account.getAccRib() != null) {
+            Optional<ACCOUNT> existingAccount = accountRepository.findByAccRib(account.getAccRib());
+            if (existingAccount.isPresent()) {
+                throw new RuntimeException("Account with RIB " + account.getAccRib() + " already exists");
+            }
+        }
+
+        // Existing validation code
         if (account.getAccountType() == null || account.getAccountType().getAtyCode() == null) {
             throw new IllegalArgumentException("ACCOUNT_TYPE or its atyCode cannot be null.");
         }
@@ -65,11 +74,18 @@ public class AccountServiceImp implements AccountService {
 
     @Override
     public ACCOUNT updateAccount(Integer id, ACCOUNT accountData) {
-        // ... (unchanged from previous version)
         ACCOUNT existingAccount = accountRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Account not found"));
 
-             // Update balance
+        // Check for duplicate RIB when updating (excluding current account)
+        if (accountData.getAccRib() != null && !accountData.getAccRib().equals(existingAccount.getAccRib())) {
+            Optional<ACCOUNT> duplicateAccount = accountRepository.findByAccRib(accountData.getAccRib());
+            if (duplicateAccount.isPresent() && !duplicateAccount.get().getAccCode().equals(id)) {
+                throw new RuntimeException("Account with RIB " + accountData.getAccRib() + " already exists");
+            }
+        }
+
+        // Update balance
         if (accountData.getAccBalance() != null) {
             existingAccount.setAccBalance(accountData.getAccBalance());
         }
@@ -102,7 +118,7 @@ public class AccountServiceImp implements AccountService {
 
     @Override
     public void deleteAccount(Integer id) {
-        System.out.println("Deleting account with ID: " + id); // Debug log
+        System.out.println("Deleting account with ID: " + id);
         if (id == null) {
             throw new IllegalArgumentException("Account ID cannot be null");
         }
@@ -110,7 +126,7 @@ public class AccountServiceImp implements AccountService {
             throw new RuntimeException("Account with ID " + id + " not found");
         }
         accountRepository.deleteById(id);
-        System.out.println("Account deleted successfully: " + id); // Debug log
+        System.out.println("Account deleted successfully: " + id);
     }
 
     @Override
@@ -119,5 +135,10 @@ public class AccountServiceImp implements AccountService {
             return accountRepository.findAll();
         }
         return accountRepository.searchAccounts(searchWord);
+    }
+
+    @Override
+    public List<ACCOUNT> getAccountsByAccountList(Integer aliCode) {
+        return accountRepository.findByAccountList_AliCode(aliCode);
     }
 }
