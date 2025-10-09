@@ -3,6 +3,7 @@ package com.security;
 import java.util.List;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -56,7 +57,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/transfer/**").permitAll()
-                        .requestMatchers("/api/customers/**").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/customers").permitAll()
                         // MODULE_WALLETS
                         .requestMatchers("/api/accounts/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
                         .requestMatchers("/api/account-lists/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
