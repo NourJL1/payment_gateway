@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -33,6 +34,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http/* , UserDetailsService userDetailsService */)
             throws Exception {
         http
+                //.csrf(csrf -> csrf//.ignoringRequestMatchers("/api/auth/login")
+                //        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .sessionManagement(session -> session
@@ -43,11 +46,11 @@ public class SecurityConfig {
                     HttpSession session = ((HttpServletRequest) request).getSession(false);
                     if (session != null) {
                         SecurityContext context = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
-                        if (context != null) 
+                        if (context != null)
                             SecurityContextHolder.setContext(context);
-                        else 
+                        else
                             System.out.println("No security context in session");
-                    } else 
+                    } else
                         System.out.println("No session exists for this request");
                     chain.doFilter(request, response);
                 }, UsernamePasswordAuthenticationFilter.class)
@@ -57,7 +60,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/transfer/**").permitAll()
-                        .requestMatchers(HttpMethod.POST,"/api/customers").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/customers").permitAll()
                         // MODULE_WALLETS
                         .requestMatchers("/api/accounts/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
                         .requestMatchers("/api/account-lists/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
@@ -145,7 +148,6 @@ public class SecurityConfig {
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
         config.setExposedHeaders(List.of("X-Roles"));
-        // config.setSameSite(CorsConfiguration.SameSite.LAX);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
