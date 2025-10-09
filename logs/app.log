@@ -1,0 +1,176 @@
+2025-10-09T16:07:43.092+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : Starting PaymentGatewayApplication using Java 17.0.14 with PID 37692 (C:\Users\DESKTOP-JIHEN\Desktop\backend\target\classes started by DESKTOP-JIHEN in C:\Users\DESKTOP-JIHEN\Desktop\backend)
+2025-10-09T16:07:43.094+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : No active profile set, falling back to 1 default profile: "default"
+2025-10-09T16:07:43.620+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-09T16:07:43.770+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 150 ms. Found 40 JPA repository interfaces.
+2025-10-09T16:07:43.829+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (https)
+2025-10-09T16:07:43.829+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-10-09T16:07:43.829+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-10-09T16:07:43.849+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.a.c.c.C.[Tomcat-7].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2025-10-09T16:07:43.849+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 753 ms
+2025-10-09T16:07:43.919+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-09T16:07:43.921+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-10-09T16:07:43.935+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-09T16:07:43.936+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-39 - Starting...
+2025-10-09T16:07:43.999+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-39 - Added connection org.postgresql.jdbc.PgConnection@e000abe
+2025-10-09T16:07:44.000+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-39 - Start completed.
+2025-10-09T16:07:44.010+01:00  WARN 37692 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-10-09T16:07:44.012+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-39)']
+	Database driver: undefined/unknown
+	Database version: 17.4
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-09T16:07:44.280+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-09T16:07:44.329+01:00  WARN 37692 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-10-09T16:07:44.329+01:00  WARN 37692 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "uk94c2vkdu1ltc8i7fc287hypm5" of relation "users" does not exist, skipping
+2025-10-09T16:07:45.708+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09T16:07:45.873+01:00  WARN 37692 --- [Payment_Gateway] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-10-09T16:07:45.877+01:00  WARN 37692 --- [Payment_Gateway] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Found 2 UserDetailsService beans, with names [authServiceImp, userDetailsService]. Global Authentication Manager will not use a UserDetailsService for username/password login. Consider publishing a single UserDetailsService bean.
+2025-10-09T16:07:46.223+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-10-09T16:07:46.273+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-10-09T16:07:46.325+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/Payment_Gateway'
+2025-10-09T16:07:46.330+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-10-09T16:07:46.395+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8081], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [C:\Users\DESKTOP-JIHEN\.keystore] using alias [tomcat] with trust store [null]
+2025-10-09T16:07:46.400+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (https) with context path '/'
+2025-10-09T16:07:46.411+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : Started PaymentGatewayApplication in 3.426 seconds (process running for 37866.718)
+2025-10-09T16:07:46.421+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation delta:
+
+
+==========================
+CONDITION EVALUATION DELTA
+==========================
+
+
+Positive matches:
+-----------------
+
+   LogFileWebEndpointAutoConfiguration#logFileWebEndpoint matched:
+      - Log File found logging.file.name logs/app.log (LogFileWebEndpointAutoConfiguration.LogFileCondition)
+      - @ConditionalOnMissingBean (types: org.springframework.boot.actuate.logging.LogFileWebEndpoint; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+
+Negative matches:
+-----------------
+
+    None
+
+
+Exclusions:
+-----------
+
+    None
+
+
+Unconditional classes:
+----------------------
+
+    None
+
+
+
+2025-10-09T16:08:23.818+01:00  INFO 37692 --- [Payment_Gateway] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 1 deletion, 0 modifications)
+2025-10-09T16:08:23.821+01:00  INFO 37692 --- [Payment_Gateway] [Thread-148] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-09T16:08:23.996+01:00  INFO 37692 --- [Payment_Gateway] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-10-09T16:08:23.999+01:00  INFO 37692 --- [Payment_Gateway] [Thread-148] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09T16:08:24.000+01:00  INFO 37692 --- [Payment_Gateway] [Thread-148] com.zaxxer.hikari.HikariDataSource       : HikariPool-39 - Shutdown initiated...
+2025-10-09T16:08:24.003+01:00  INFO 37692 --- [Payment_Gateway] [Thread-148] com.zaxxer.hikari.HikariDataSource       : HikariPool-39 - Shutdown completed.
+2025-10-09T16:08:24.258+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : Starting PaymentGatewayApplication using Java 17.0.14 with PID 37692 (C:\Users\DESKTOP-JIHEN\Desktop\backend\target\classes started by DESKTOP-JIHEN in C:\Users\DESKTOP-JIHEN\Desktop\backend)
+2025-10-09T16:08:24.258+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : No active profile set, falling back to 1 default profile: "default"
+2025-10-09T16:08:24.704+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-09T16:08:24.866+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 160 ms. Found 40 JPA repository interfaces.
+2025-10-09T16:08:24.934+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (https)
+2025-10-09T16:08:24.934+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-10-09T16:08:24.934+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-10-09T16:08:25.009+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.a.c.c.C.[Tomcat-7].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2025-10-09T16:08:25.010+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 751 ms
+2025-10-09T16:08:25.090+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-09T16:08:25.092+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-10-09T16:08:25.109+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-09T16:08:25.110+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-40 - Starting...
+2025-10-09T16:08:25.177+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-40 - Added connection org.postgresql.jdbc.PgConnection@6335168d
+2025-10-09T16:08:25.178+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-40 - Start completed.
+2025-10-09T16:08:25.188+01:00  WARN 37692 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-10-09T16:08:25.189+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-40)']
+	Database driver: undefined/unknown
+	Database version: 17.4
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-09T16:08:25.377+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-09T16:08:25.420+01:00  WARN 37692 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-10-09T16:08:25.420+01:00  WARN 37692 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "uk94c2vkdu1ltc8i7fc287hypm5" of relation "users" does not exist, skipping
+2025-10-09T16:08:26.737+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09T16:08:26.864+01:00  WARN 37692 --- [Payment_Gateway] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-10-09T16:08:26.870+01:00  WARN 37692 --- [Payment_Gateway] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Found 2 UserDetailsService beans, with names [authServiceImp, userDetailsService]. Global Authentication Manager will not use a UserDetailsService for username/password login. Consider publishing a single UserDetailsService bean.
+2025-10-09T16:08:27.260+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-10-09T16:08:27.324+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-10-09T16:08:27.367+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/Payment_Gateway'
+2025-10-09T16:08:27.372+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-10-09T16:08:27.395+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8081], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [C:\Users\DESKTOP-JIHEN\.keystore] using alias [tomcat] with trust store [null]
+2025-10-09T16:08:27.400+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (https) with context path '/'
+2025-10-09T16:08:27.405+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : Started PaymentGatewayApplication in 3.215 seconds (process running for 37907.712)
+2025-10-09T16:08:27.408+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-10-09T16:09:02.147+01:00  INFO 37692 --- [Payment_Gateway] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (1 addition, 0 deletions, 0 modifications)
+2025-10-09T16:09:02.151+01:00  INFO 37692 --- [Payment_Gateway] [Thread-152] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-09T16:09:02.368+01:00  INFO 37692 --- [Payment_Gateway] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-10-09T16:09:02.371+01:00  INFO 37692 --- [Payment_Gateway] [Thread-152] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09T16:09:02.372+01:00  INFO 37692 --- [Payment_Gateway] [Thread-152] com.zaxxer.hikari.HikariDataSource       : HikariPool-40 - Shutdown initiated...
+2025-10-09T16:09:02.373+01:00  INFO 37692 --- [Payment_Gateway] [Thread-152] com.zaxxer.hikari.HikariDataSource       : HikariPool-40 - Shutdown completed.
+2025-10-09T16:09:02.685+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : Starting PaymentGatewayApplication using Java 17.0.14 with PID 37692 (C:\Users\DESKTOP-JIHEN\Desktop\backend\target\classes started by DESKTOP-JIHEN in C:\Users\DESKTOP-JIHEN\Desktop\backend)
+2025-10-09T16:09:02.685+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : No active profile set, falling back to 1 default profile: "default"
+2025-10-09T16:09:03.113+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-09T16:09:03.341+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 227 ms. Found 40 JPA repository interfaces.
+2025-10-09T16:09:03.409+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (https)
+2025-10-09T16:09:03.409+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-10-09T16:09:03.410+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-10-09T16:09:03.423+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.a.c.c.C.[Tomcat-7].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2025-10-09T16:09:03.424+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 736 ms
+2025-10-09T16:09:03.468+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-09T16:09:03.470+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-10-09T16:09:03.480+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-09T16:09:03.481+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-41 - Starting...
+2025-10-09T16:09:03.528+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-41 - Added connection org.postgresql.jdbc.PgConnection@7c7378de
+2025-10-09T16:09:03.528+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-41 - Start completed.
+2025-10-09T16:09:03.533+01:00  WARN 37692 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-10-09T16:09:03.534+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-41)']
+	Database driver: undefined/unknown
+	Database version: 17.4
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-09T16:09:03.780+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-09T16:09:03.870+01:00  WARN 37692 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-10-09T16:09:03.870+01:00  WARN 37692 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "uk94c2vkdu1ltc8i7fc287hypm5" of relation "users" does not exist, skipping
+2025-10-09T16:09:05.206+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-09T16:09:05.315+01:00  WARN 37692 --- [Payment_Gateway] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-10-09T16:09:05.320+01:00  WARN 37692 --- [Payment_Gateway] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Found 2 UserDetailsService beans, with names [authServiceImp, userDetailsService]. Global Authentication Manager will not use a UserDetailsService for username/password login. Consider publishing a single UserDetailsService bean.
+2025-10-09T16:09:05.736+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-10-09T16:09:05.839+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-10-09T16:09:05.888+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/Payment_Gateway'
+2025-10-09T16:09:05.894+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-10-09T16:09:05.948+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8081], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [C:\Users\DESKTOP-JIHEN\.keystore] using alias [tomcat] with trust store [null]
+2025-10-09T16:09:05.958+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (https) with context path '/'
+2025-10-09T16:09:05.978+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : Started PaymentGatewayApplication in 3.36 seconds (process running for 37946.285)
+2025-10-09T16:09:05.983+01:00  INFO 37692 --- [Payment_Gateway] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-10-09T16:11:04.238+01:00  INFO 37692 --- [Payment_Gateway] [https-jsse-nio-8081-exec-6] o.a.c.c.C.[Tomcat-7].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-09T16:11:04.240+01:00  INFO 37692 --- [Payment_Gateway] [https-jsse-nio-8081-exec-6] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-10-09T16:11:04.243+01:00  INFO 37692 --- [Payment_Gateway] [https-jsse-nio-8081-exec-6] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2025-10-09T16:13:07.798+01:00  INFO 37692 --- [Payment_Gateway] [https-jsse-nio-8081-exec-5] com.servicesImp.WalletServiceImpl        : countActiveWallets: Returned count = 9
+2025-10-09T16:13:07.839+01:00  INFO 37692 --- [Payment_Gateway] [https-jsse-nio-8081-exec-4] com.servicesImp.WalletServiceImpl        : countPendingWallets: Returned count = 0
+2025-10-09T16:13:07.877+01:00  INFO 37692 --- [Payment_Gateway] [https-jsse-nio-8081-exec-8] com.servicesImp.WalletServiceImpl        : Retrieved wallet counts for 2 categories
+2025-10-09T16:13:27.245+01:00  INFO 37692 --- [Payment_Gateway] [https-jsse-nio-8081-exec-5] com.servicesImp.WalletServiceImpl        : countActiveWallets: Returned count = 9
+2025-10-09T16:13:27.250+01:00  INFO 37692 --- [Payment_Gateway] [https-jsse-nio-8081-exec-4] com.servicesImp.WalletServiceImpl        : countPendingWallets: Returned count = 0
+2025-10-09T16:13:27.253+01:00  INFO 37692 --- [Payment_Gateway] [https-jsse-nio-8081-exec-6] com.servicesImp.WalletServiceImpl        : Retrieved wallet counts for 2 categories
+2025-10-09T16:14:15.015+01:00  INFO 37692 --- [Payment_Gateway] [https-jsse-nio-8081-exec-10] com.servicesImp.WalletServiceImpl        : countActiveWallets: Returned count = 9
+2025-10-09T16:14:15.015+01:00  INFO 37692 --- [Payment_Gateway] [https-jsse-nio-8081-exec-8] com.servicesImp.WalletServiceImpl        : Retrieved wallet counts for 2 categories
+2025-10-09T16:14:15.015+01:00  INFO 37692 --- [Payment_Gateway] [https-jsse-nio-8081-exec-1] com.servicesImp.WalletServiceImpl        : countPendingWallets: Returned count = 0
+2025-10-09T16:28:15.113+01:00  INFO 37692 --- [Payment_Gateway] [https-jsse-nio-8081-exec-1] com.servicesImp.WalletServiceImpl        : countActiveWallets: Returned count = 9
+2025-10-09T16:28:15.114+01:00  INFO 37692 --- [Payment_Gateway] [https-jsse-nio-8081-exec-4] com.servicesImp.WalletServiceImpl        : countPendingWallets: Returned count = 0
+2025-10-09T16:28:15.114+01:00  INFO 37692 --- [Payment_Gateway] [https-jsse-nio-8081-exec-3] com.servicesImp.WalletServiceImpl        : Retrieved wallet counts for 2 categories
+2025-10-09T16:28:40.557+01:00  WARN 37692 --- [Payment_Gateway] [HikariPool-41 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-41 - Thread starvation or clock leap detected (housekeeper delta=4m6s726ms588µs).

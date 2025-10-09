@@ -2,6 +2,7 @@ package com.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
@@ -324,7 +325,12 @@ public class CUSTOMER implements UserDetails
 	@Override
 	@JsonIgnore
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return List.of(new SimpleGrantedAuthority("ROLE_" + this.getClass().getSimpleName().toUpperCase()));
+		List<GrantedAuthority> authorities = new ArrayList<>();
+
+		authorities.add(new SimpleGrantedAuthority("ROLE_" + this.getClass().getSimpleName().toUpperCase()));
+		authorities.add(new SimpleGrantedAuthority("STATUS_" + this.getStatus().getCtsLabe().toUpperCase()));
+
+		return authorities;
 	}
 
 	@Override
