@@ -62,9 +62,13 @@ public class SecurityConfig {
                         .requestMatchers("/api/transfer/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/customers").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/customers/existsByUsername/*").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/customers/existsByEmail/*").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/customers/existsByCusPhoneNbr/*").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/countries").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/cities").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/cities/getByCountry/*").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/doc-type").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/customer-identity/existsByCidNum/*").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/customer-identity-type").permitAll()
                         // MODULE_WALLETS
                         .requestMatchers("/api/accounts/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
