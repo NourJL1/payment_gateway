@@ -138,12 +138,10 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:4200",
-                "https://localhost:4200",
-                "http://127.0.0.1:4200",
-                "https://127.0.0.1:4200",
-                "http://gateway.uib.tn:4200",
-                "https://gateway.uib.tn:4200"));
+        config.setAllowedOrigins(List.of("http://localhost:4200", "http://127.0.0.1:4200", "http://gateway.uib.tn:4200",
+                "http://localhost", "http://127.0.0.1", "http://gateway.uib.tn",
+                "https://localhost:4200", "https://127.0.0.1:4200", "https://gateway.uib.tn:4200", 
+                "https://localhost", "https://127.0.0.1", "https://gateway.uib.tn"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
