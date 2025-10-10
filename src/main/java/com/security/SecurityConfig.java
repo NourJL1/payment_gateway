@@ -61,6 +61,11 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/transfer/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/customers").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/customers/existsByUsername/*").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/countries").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/cities").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/doc-type").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/customer-identity-type").permitAll()
                         // MODULE_WALLETS
                         .requestMatchers("/api/accounts/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
                         .requestMatchers("/api/account-lists/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
