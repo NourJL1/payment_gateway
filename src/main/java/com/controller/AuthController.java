@@ -69,14 +69,10 @@ public class AuthController {
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
-            // CRITICAL: Create SecurityContext and store in session
-            SecurityContext context = SecurityContextHolder.createEmptyContext();
-            context.setAuthentication(authentication);
-            SecurityContextHolder.setContext(context);
-
-            // Create session (Spring handles JSESSIONID cookie automatically)
-            HttpSession session = request.getSession(true);
+            HttpSession session = request.getSession(true); // Creates JSESSIONID
             session.setAttribute("SPRING_SECURITY_CONTEXT", SecurityContextHolder.getContext());
+
+            SecurityContextHolder.getContext().setAuthentication(authentication);
 
             UserDetails ud = authService.loadUserByUsername(loginRequest.getUsername());
             if (ud != null) {
