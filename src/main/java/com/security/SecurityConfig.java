@@ -51,7 +51,7 @@ public class SecurityConfig {
                         else
                             System.out.println("No security context in session");
                     } else
-                        System.out.println("No session exists for this request");
+                        System.out.println("No session exists for this request: " + ((HttpServletRequest) request).getRequestURI());
                     chain.doFilter(request, response);
                 }, UsernamePasswordAuthenticationFilter.class)
                 .formLogin(form -> form.disable())
@@ -73,12 +73,13 @@ public class SecurityConfig {
                         // MODULE_WALLETS
                         .requestMatchers("/api/accounts/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
                         .requestMatchers("/api/account-lists/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
-                        .requestMatchers("/api/account-types/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
-                        .requestMatchers("/api/banks/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
+                        .requestMatchers("/api/account-types/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS", "ROLE_CUSTOMER", "STATUS_ACTIVE")
+                        .requestMatchers("/api/banks/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS", "ROLE_CUSTOMER", "STATUS_ACTIVE")
                         .requestMatchers("/api/cards/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
                         .requestMatchers("/api/card-lists/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
-                        .requestMatchers("/api/card-types/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
-                        .requestMatchers("/api/wallets/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
+                        .requestMatchers("/api/card-types/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS", "ROLE_CUSTOMER", "STATUS_ACTIVE")
+                        .requestMatchers("/api/wallets/**")
+                        .hasAnyAuthority("ROLE_USER", "MODULE_WALLETS", "ROLE_CUSTOMER", "STATUS_ACTIVE")
                         .requestMatchers("/api/wallet-categories/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
                         .requestMatchers("/api/wallet-status/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
                         .requestMatchers("/api/wallet-types/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
