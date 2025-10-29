@@ -38,7 +38,6 @@ public class OPERATION_TYPE {
 	private List<WALLET_OPERATION_TYPE_MAP> walletOperationTypeMappings;
 
 	@ManyToOne
-	@JsonIgnore
 	@JoinColumn(name = "OPT_FSC_CODE", referencedColumnName = "FSC_CODE", nullable = false)
 	private FEE_SCHEMA feeSchema;
 	

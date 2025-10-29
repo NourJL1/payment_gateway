@@ -51,7 +51,7 @@ public class SecurityConfig {
                         else
                             System.out.println("No security context in session");
                     } else
-                        System.out.println("No session exists for this request");
+                        System.out.println("No session exists for this request: " + ((HttpServletRequest) request).getRequestURI());
                     chain.doFilter(request, response);
                 }, UsernamePasswordAuthenticationFilter.class)
                 .formLogin(form -> form.disable())
@@ -61,22 +61,35 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/transfer/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/customers").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/customer-doc").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/customers/existsByUsername/*").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/customers/existsByEmail/*").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/customers/existsByCusPhoneNbr/*").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/countries").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/cities").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/cities/getByCountry/*").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/doc-type").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/customer-identity/existsByCidNum/*").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/customer-identity-type").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/operation-types").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/products/active").permitAll()
                         // MODULE_WALLETS
-                        .requestMatchers("/api/accounts/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
-                        .requestMatchers("/api/account-lists/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
-                        .requestMatchers("/api/account-types/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
-                        .requestMatchers("/api/banks/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
+                        .requestMatchers("/api/accounts/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS", "ROLE_CUSTOMER", "STATUS_ACTIVE")
+                        .requestMatchers("/api/account-lists/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS", "ROLE_CUSTOMER", "STATUS_ACTIVE")
+                        .requestMatchers("/api/account-types/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS", "ROLE_CUSTOMER", "STATUS_ACTIVE")
+                        .requestMatchers("/api/banks/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS", "ROLE_CUSTOMER", "STATUS_ACTIVE")
                         .requestMatchers("/api/cards/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
                         .requestMatchers("/api/card-lists/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
-                        .requestMatchers("/api/card-types/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
-                        .requestMatchers("/api/wallets/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
+                        .requestMatchers("/api/card-types/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS", "ROLE_CUSTOMER", "STATUS_ACTIVE")
+                        .requestMatchers("/api/wallets/**")
+                        .hasAnyAuthority("ROLE_USER", "MODULE_WALLETS", "ROLE_CUSTOMER", "STATUS_ACTIVE")
                         .requestMatchers("/api/wallet-categories/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
                         .requestMatchers("/api/wallet-status/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
                         .requestMatchers("/api/wallet-types/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
                         // MODULE_CUSTOMERS
                         .requestMatchers("/api/cities/**").hasAnyAuthority("ROLE_USER", "MODULE_CUSTOMERS")
                         .requestMatchers("/api/countries/**").hasAnyAuthority("ROLE_USER", "MODULE_CUSTOMERS")
-                        .requestMatchers("/api/customer-doc/**").hasAnyAuthority("ROLE_USER", "MODULE_CUSTOMERS")
+                        .requestMatchers("/api/customer-doc/**").hasAnyAuthority("ROLE_USER", "MODULE_CUSTOMERS", "ROLE_CUSTOMER")
                         .requestMatchers("/api/customer-identity/**").hasAnyAuthority("ROLE_USER", "MODULE_CUSTOMERS")
                         .requestMatchers("/api/customer-identity-type/**")
                         .hasAnyAuthority("ROLE_USER", "MODULE_CUSTOMERS")
@@ -138,12 +151,10 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:4200",
-                "https://localhost:4200",
-                "http://127.0.0.1:4200",
-                "https://127.0.0.1:4200",
-                "http://gateway.uib.tn:4200",
-                "https://gateway.uib.tn:4200"));
+        config.setAllowedOrigins(List.of("http://localhost:4200", "http://127.0.0.1:4200", "http://gateway.uib.tn:4200",
+                "http://localhost", "http://127.0.0.1", "http://gateway.uib.tn",
+                "https://localhost:4200", "https://127.0.0.1:4200", "https://gateway.uib.tn:4200", 
+                "https://localhost", "https://127.0.0.1", "https://gateway.uib.tn"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
