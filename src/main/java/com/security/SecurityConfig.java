@@ -78,7 +78,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/account-lists/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS", "ROLE_CUSTOMER", "STATUS_ACTIVE")
                         .requestMatchers("/api/account-types/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS", "ROLE_CUSTOMER", "STATUS_ACTIVE")
                         .requestMatchers("/api/banks/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS", "ROLE_CUSTOMER", "STATUS_ACTIVE")
-                        .requestMatchers("/api/cards/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
+                        .requestMatchers("/api/cards/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS", "ROLE_CUSTOMER", "STATUS_ACTIVE")
                         .requestMatchers("/api/card-lists/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS")
                         .requestMatchers("/api/card-types/**").hasAnyAuthority("ROLE_USER", "MODULE_WALLETS", "ROLE_CUSTOMER", "STATUS_ACTIVE")
                         .requestMatchers("/api/wallets/**")
