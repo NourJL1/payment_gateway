@@ -1,23 +1,23 @@
-2025-10-28T20:16:18.650+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : Starting PaymentGatewayApplication using Java 17.0.9 with PID 27980 (C:\Users\nourj\OneDrive\Documents\Payment_Gateway\target\classes started by nourj in C:\Users\nourj\OneDrive\Documents\Payment_Gateway)
-2025-10-28T20:16:18.685+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : No active profile set, falling back to 1 default profile: "default"
-2025-10-28T20:16:19.000+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-10-28T20:16:19.008+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-10-28T20:16:29.311+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-10-28T20:16:30.942+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1552 ms. Found 40 JPA repository interfaces.
-2025-10-28T20:16:34.399+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (https)
-2025-10-28T20:16:34.461+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-10-28T20:16:34.463+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
-2025-10-28T20:16:34.696+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-10-28T20:16:34.698+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 15684 ms
-2025-10-28T20:16:36.300+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-10-28T20:16:36.692+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
-2025-10-28T20:16:36.910+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-10-28T20:16:38.589+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-10-28T20:16:38.731+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-10-28T20:16:39.623+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@10fa5418
-2025-10-28T20:16:39.633+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-10-28T20:16:40.035+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-10-28T20:16:40.187+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2025-12-11T09:54:52.585+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : Starting PaymentGatewayApplication using Java 17.0.9 with PID 9772 (C:\Users\nourj\OneDrive\Documents\Payment_Gateway\target\classes started by nourj in C:\Users\nourj\OneDrive\Documents\Payment_Gateway)
+2025-12-11T09:54:52.612+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : No active profile set, falling back to 1 default profile: "default"
+2025-12-11T09:54:52.795+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-12-11T09:54:52.798+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-12-11T09:55:03.423+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-11T09:55:05.019+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1558 ms. Found 40 JPA repository interfaces.
+2025-12-11T09:55:15.301+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (https)
+2025-12-11T09:55:15.377+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-11T09:55:15.384+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-12-11T09:55:15.548+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-12-11T09:55:15.551+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 22749 ms
+2025-12-11T09:55:16.818+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-11T09:55:17.261+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-12-11T09:55:17.581+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-12-11T09:55:19.529+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-11T09:55:19.898+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-12-11T09:55:21.089+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@342a09ea
+2025-12-11T09:55:21.097+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-12-11T09:55:21.424+01:00  WARN 9772 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-11T09:55:21.524+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 17.4
@@ -25,473 +25,58 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2025-10-28T20:16:46.350+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-10-28T20:16:46.816+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2025-10-28T20:16:46.819+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukmwsdr660o016h6m45eygu6q1q" of relation "customer_identity" does not exist, skipping
-2025-10-28T20:16:46.906+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2025-10-28T20:16:46.907+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukobrvlidjmclgkcqqs8bh8caij" of relation "customers" does not exist, skipping
-2025-10-28T20:16:46.925+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2025-10-28T20:16:46.926+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukpf61clwmpq7dx5q472t15nv4m" of relation "customers" does not exist, skipping
-2025-10-28T20:16:51.995+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-10-28T20:16:53.128+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-10-28T20:16:57.301+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-10-28T20:16:57.500+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Found 2 UserDetailsService beans, with names [authServiceImp, userDetailsService]. Global Authentication Manager will not use a UserDetailsService for username/password login. Consider publishing a single UserDetailsService bean.
-2025-10-28T20:17:04.724+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
-2025-10-28T20:17:05.292+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
-2025-10-28T20:17:06.334+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/Payment_Gateway'
-2025-10-28T20:17:06.645+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2025-10-28T20:17:07.528+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8080], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [C:\Users\nourj\.keystore] using alias [1] with trust store [null]
-2025-10-28T20:17:07.666+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (https) with context path '/'
-2025-10-28T20:17:07.732+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : Started PaymentGatewayApplication in 51.668 seconds (process running for 55.653)
-2025-10-28T20:19:25.156+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-10-28T20:19:25.198+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-10-28T20:19:25.670+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 466 ms
-2025-10-28T20:19:29.613+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-8] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [152] milliseconds.
-2025-10-28T20:19:30.382+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T20:19:30.395+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-10] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T20:19:30.393+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
-2025-10-28T20:19:30.398+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-10] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
-2025-10-28T20:19:30.434+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-3] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T20:19:30.475+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-3] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
-2025-10-28T20:19:30.610+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-6] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T20:19:30.630+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-8] com.servicesImp.WalletServiceImpl        : countActiveWallets: Returned count = 8
-2025-10-28T20:19:30.630+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-6] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
-2025-10-28T20:19:30.686+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-9] com.servicesImp.WalletServiceImpl        : countPendingWallets: Returned count = 1
-2025-10-28T20:19:30.724+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T20:19:30.766+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
-2025-10-28T20:19:30.984+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-4] com.servicesImp.WalletServiceImpl        : Retrieved wallet counts for 4 categories
-2025-10-28T20:20:07.474+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-12] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T20:20:08.520+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-4] com.servicesImp.WalletServiceImpl        : Retrieved wallet counts for 4 categories
-2025-10-28T20:20:08.522+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-11] com.servicesImp.WalletServiceImpl        : countPendingWallets: Returned count = 1
-2025-10-28T20:20:08.526+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-12] com.servicesImp.WalletServiceImpl        : countActiveWallets: Returned count = 8
-2025-10-28T20:20:08.781+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-10] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T20:20:09.532+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-9] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T20:20:10.558+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-12] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T20:20:11.622+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-11] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T20:20:12.383+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-8] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T20:20:12.884+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-5] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T20:20:13.392+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-7] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T20:21:46.472+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-5] com.servicesImp.WalletServiceImpl        : Wallet created with walCode: 7
-2025-10-28T20:23:00.465+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-1] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T20:23:00.972+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-7] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T20:23:33.542+01:00 ERROR 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.dao.DataIntegrityViolationException: not-null property references a null or transient value: com.model.OPERATION_TYPE.feeSchema] with root cause
-
-org.hibernate.PropertyValueException: not-null property references a null or transient value: com.model.OPERATION_TYPE.feeSchema
-	at org.hibernate.engine.internal.Nullability.checkNullability(Nullability.java:112) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.engine.internal.Nullability.checkNullability(Nullability.java:57) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.action.internal.AbstractEntityInsertAction.nullifyTransientReferencesIfNotAlready(AbstractEntityInsertAction.java:126) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:73) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:682) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:293) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:274) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:324) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:394) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:308) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:224) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:136) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:177) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.event.internal.DefaultPersistEventListener.persist(DefaultPersistEventListener.java:95) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:79) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:55) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:127) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:761) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:745) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.orm.jpa.ExtendedEntityManagerCreator$ExtendedEntityManagerInvocationHandler.invoke(ExtendedEntityManagerCreator.java:364) ~[spring-orm-6.2.9.jar:6.2.9]
-	at jdk.proxy4/jdk.proxy4.$Proxy164.persist(Unknown Source) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:320) ~[spring-orm-6.2.9.jar:6.2.9]
-	at jdk.proxy4/jdk.proxy4.$Proxy164.persist(Unknown Source) ~[na:na]
-	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.save(SimpleJpaRepository.java:636) ~[spring-data-jpa-3.4.8.jar:3.4.8]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360) ~[spring-aop-6.2.9.jar:6.2.9]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:277) ~[spring-data-commons-3.4.8.jar:3.4.8]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:170) ~[spring-data-commons-3.4.8.jar:3.4.8]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158) ~[spring-data-commons-3.4.8.jar:3.4.8]
-	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:515) ~[spring-data-commons-3.4.8.jar:3.4.8]
-	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:284) ~[spring-data-commons-3.4.8.jar:3.4.8]
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:731) ~[spring-data-commons-3.4.8.jar:3.4.8]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.9.jar:6.2.9]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:174) ~[spring-data-commons-3.4.8.jar:3.4.8]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:149) ~[spring-data-commons-3.4.8.jar:3.4.8]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.9.jar:6.2.9]
-	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:69) ~[spring-data-commons-3.4.8.jar:3.4.8]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.9.jar:6.2.9]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380) ~[spring-tx-6.2.9.jar:6.2.9]
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.2.9.jar:6.2.9]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.9.jar:6.2.9]
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138) ~[spring-tx-6.2.9.jar:6.2.9]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.9.jar:6.2.9]
-	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:165) ~[spring-data-jpa-3.4.8.jar:3.4.8]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.9.jar:6.2.9]
-	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:223) ~[spring-aop-6.2.9.jar:6.2.9]
-	at jdk.proxy4/jdk.proxy4.$Proxy203.save(Unknown Source) ~[na:na]
-	at com.servicesImp.OperationTypeServiceImp.createOperationType(OperationTypeServiceImp.java:66) ~[classes/:na]
-	at com.controller.OperationTypeController.createOperationType(OperationTypeController.java:33) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.2.9.jar:6.2.9]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991) ~[spring-webmvc-6.2.9.jar:6.2.9]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896) ~[spring-webmvc-6.2.9.jar:6.2.9]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.2.9.jar:6.2.9]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.2.9.jar:6.2.9]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.2.9.jar:6.2.9]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.2.9.jar:6.2.9]
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.2.9.jar:6.2.9]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.43.jar:6.0]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.2.9.jar:6.2.9]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.43.jar:6.0]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.43.jar:10.1.43]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$FilterObservation$SimpleFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:479) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:340) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator.lambda$wrapSecured$0(ObservationFilterChainDecorator.java:82) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:128) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.session.ConcurrentSessionFilter.doFilter(ConcurrentSessionFilter.java:151) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.session.ConcurrentSessionFilter.doFilter(ConcurrentSessionFilter.java:129) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at com.security.SecurityConfig.lambda$3(SecurityConfig.java:55) ~[classes/:na]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$0(ObservationFilterChainDecorator.java:323) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:224) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267) ~[spring-webmvc-6.2.9.jar:6.2.9]
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238) ~[spring-security-config-6.4.8.jar:6.4.8]
-	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:110) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1769) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
-
-2025-10-28T20:23:37.977+01:00 ERROR 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.dao.DataIntegrityViolationException: not-null property references a null or transient value: com.model.OPERATION_TYPE.feeSchema] with root cause
-
-org.hibernate.PropertyValueException: not-null property references a null or transient value: com.model.OPERATION_TYPE.feeSchema
-	at org.hibernate.engine.internal.Nullability.checkNullability(Nullability.java:112) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.engine.internal.Nullability.checkNullability(Nullability.java:57) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.action.internal.AbstractEntityInsertAction.nullifyTransientReferencesIfNotAlready(AbstractEntityInsertAction.java:126) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:73) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:682) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:293) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:274) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:324) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:394) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:308) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:224) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:136) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:177) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.event.internal.DefaultPersistEventListener.persist(DefaultPersistEventListener.java:95) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:79) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:55) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:127) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:761) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:745) ~[hibernate-core-6.6.22.Final.jar:6.6.22.Final]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.orm.jpa.ExtendedEntityManagerCreator$ExtendedEntityManagerInvocationHandler.invoke(ExtendedEntityManagerCreator.java:364) ~[spring-orm-6.2.9.jar:6.2.9]
-	at jdk.proxy4/jdk.proxy4.$Proxy164.persist(Unknown Source) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:320) ~[spring-orm-6.2.9.jar:6.2.9]
-	at jdk.proxy4/jdk.proxy4.$Proxy164.persist(Unknown Source) ~[na:na]
-	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.save(SimpleJpaRepository.java:636) ~[spring-data-jpa-3.4.8.jar:3.4.8]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360) ~[spring-aop-6.2.9.jar:6.2.9]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:277) ~[spring-data-commons-3.4.8.jar:3.4.8]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:170) ~[spring-data-commons-3.4.8.jar:3.4.8]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158) ~[spring-data-commons-3.4.8.jar:3.4.8]
-	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:515) ~[spring-data-commons-3.4.8.jar:3.4.8]
-	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:284) ~[spring-data-commons-3.4.8.jar:3.4.8]
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:731) ~[spring-data-commons-3.4.8.jar:3.4.8]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.9.jar:6.2.9]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:174) ~[spring-data-commons-3.4.8.jar:3.4.8]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:149) ~[spring-data-commons-3.4.8.jar:3.4.8]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.9.jar:6.2.9]
-	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:69) ~[spring-data-commons-3.4.8.jar:3.4.8]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.9.jar:6.2.9]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380) ~[spring-tx-6.2.9.jar:6.2.9]
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.2.9.jar:6.2.9]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.9.jar:6.2.9]
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138) ~[spring-tx-6.2.9.jar:6.2.9]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.9.jar:6.2.9]
-	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:165) ~[spring-data-jpa-3.4.8.jar:3.4.8]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.9.jar:6.2.9]
-	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:223) ~[spring-aop-6.2.9.jar:6.2.9]
-	at jdk.proxy4/jdk.proxy4.$Proxy203.save(Unknown Source) ~[na:na]
-	at com.servicesImp.OperationTypeServiceImp.createOperationType(OperationTypeServiceImp.java:66) ~[classes/:na]
-	at com.controller.OperationTypeController.createOperationType(OperationTypeController.java:33) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.2.9.jar:6.2.9]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991) ~[spring-webmvc-6.2.9.jar:6.2.9]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896) ~[spring-webmvc-6.2.9.jar:6.2.9]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.2.9.jar:6.2.9]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.2.9.jar:6.2.9]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.2.9.jar:6.2.9]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.2.9.jar:6.2.9]
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.2.9.jar:6.2.9]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.43.jar:6.0]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.2.9.jar:6.2.9]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.43.jar:6.0]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.43.jar:10.1.43]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$FilterObservation$SimpleFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:479) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:340) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator.lambda$wrapSecured$0(ObservationFilterChainDecorator.java:82) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:128) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.session.ConcurrentSessionFilter.doFilter(ConcurrentSessionFilter.java:151) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.session.ConcurrentSessionFilter.doFilter(ConcurrentSessionFilter.java:129) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at com.security.SecurityConfig.lambda$3(SecurityConfig.java:55) ~[classes/:na]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$0(ObservationFilterChainDecorator.java:323) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:224) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.4.8.jar:6.4.8]
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267) ~[spring-webmvc-6.2.9.jar:6.2.9]
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238) ~[spring-security-config-6.4.8.jar:6.4.8]
-	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:110) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.9.jar:6.2.9]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1769) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
-	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
-
-2025-10-28T20:31:09.445+01:00  INFO 27980 --- [Payment_Gateway] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
-2025-10-28T20:31:09.821+01:00  INFO 27980 --- [Payment_Gateway] [Thread-5] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-10-28T20:31:11.036+01:00  INFO 27980 --- [Payment_Gateway] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-10-28T20:31:11.362+01:00  INFO 27980 --- [Payment_Gateway] [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-10-28T20:31:11.674+01:00  INFO 27980 --- [Payment_Gateway] [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-10-28T20:31:11.908+01:00  INFO 27980 --- [Payment_Gateway] [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2025-10-28T20:31:13.473+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : Starting PaymentGatewayApplication using Java 17.0.9 with PID 27980 (C:\Users\nourj\OneDrive\Documents\Payment_Gateway\target\classes started by nourj in C:\Users\nourj\OneDrive\Documents\Payment_Gateway)
-2025-10-28T20:31:13.474+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : No active profile set, falling back to 1 default profile: "default"
-2025-10-28T20:31:18.516+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-10-28T20:31:19.746+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1223 ms. Found 40 JPA repository interfaces.
-2025-10-28T20:31:20.272+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (https)
-2025-10-28T20:31:20.275+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-10-28T20:31:20.276+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
-2025-10-28T20:31:20.508+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-10-28T20:31:20.509+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 7019 ms
-2025-10-28T20:31:20.979+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Cannot deserialize session attribute [SPRING_SECURITY_CONTEXT] for session [048442C1F3CC31706FE9A3B79C0377CF]
-2025-10-28T20:31:21.280+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-10-28T20:31:21.373+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-10-28T20:31:22.390+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-10-28T20:31:22.396+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
-2025-10-28T20:31:22.794+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@3fd7765f
-2025-10-28T20:31:22.796+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
-2025-10-28T20:31:22.826+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-10-28T20:31:22.833+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2025-12-11T09:55:32.502+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-11T09:55:32.973+01:00  WARN 9772 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-12-11T09:55:32.974+01:00  WARN 9772 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukmwsdr660o016h6m45eygu6q1q" of relation "customer_identity" does not exist, skipping
+2025-12-11T09:55:33.057+01:00  WARN 9772 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-12-11T09:55:33.058+01:00  WARN 9772 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukobrvlidjmclgkcqqs8bh8caij" of relation "customers" does not exist, skipping
+2025-12-11T09:55:33.109+01:00  WARN 9772 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-12-11T09:55:33.110+01:00  WARN 9772 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukpf61clwmpq7dx5q472t15nv4m" of relation "customers" does not exist, skipping
+2025-12-11T09:55:39.927+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-11T09:55:41.714+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-12-11T09:55:45.561+01:00  WARN 9772 --- [Payment_Gateway] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-11T09:55:45.666+01:00  WARN 9772 --- [Payment_Gateway] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Found 2 UserDetailsService beans, with names [authServiceImp, userDetailsService]. Global Authentication Manager will not use a UserDetailsService for username/password login. Consider publishing a single UserDetailsService bean.
+2025-12-11T09:55:55.060+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-12-11T09:55:55.515+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-12-11T09:55:56.677+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/Payment_Gateway'
+2025-12-11T09:55:56.962+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-12-11T09:55:57.918+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8080], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [C:\Users\nourj\.keystore] using alias [1] with trust store [null]
+2025-12-11T09:55:58.025+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (https) with context path '/'
+2025-12-11T09:55:58.112+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : Started PaymentGatewayApplication in 67.899 seconds (process running for 74.394)
+2025-12-11T10:16:12.482+01:00  INFO 9772 --- [Payment_Gateway] [https-jsse-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-11T10:16:12.520+01:00  INFO 9772 --- [Payment_Gateway] [https-jsse-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-12-11T10:16:12.758+01:00  INFO 9772 --- [Payment_Gateway] [https-jsse-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 233 ms
+2025-12-11T10:16:16.468+01:00  WARN 9772 --- [Payment_Gateway] [https-jsse-nio-8080-exec-10] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [144] milliseconds.
+2025-12-11T10:16:17.254+01:00  WARN 9772 --- [Payment_Gateway] [https-jsse-nio-8080-exec-9] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
+2025-12-11T10:16:17.254+01:00  WARN 9772 --- [Payment_Gateway] [https-jsse-nio-8080-exec-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
+2025-12-11T10:16:17.255+01:00  WARN 9772 --- [Payment_Gateway] [https-jsse-nio-8080-exec-9] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
+2025-12-11T10:16:17.255+01:00  WARN 9772 --- [Payment_Gateway] [https-jsse-nio-8080-exec-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
+2025-12-11T10:16:17.543+01:00  WARN 9772 --- [Payment_Gateway] [https-jsse-nio-8080-exec-3] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
+2025-12-11T10:16:17.545+01:00  WARN 9772 --- [Payment_Gateway] [https-jsse-nio-8080-exec-3] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
+2025-12-11T10:24:53.791+01:00  INFO 9772 --- [Payment_Gateway] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-12-11T10:24:53.858+01:00  INFO 9772 --- [Payment_Gateway] [Thread-5] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-11T10:24:54.412+01:00  INFO 9772 --- [Payment_Gateway] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-12-11T10:24:54.502+01:00  INFO 9772 --- [Payment_Gateway] [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-12-11T10:24:54.540+01:00  INFO 9772 --- [Payment_Gateway] [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-12-11T10:24:54.556+01:00  INFO 9772 --- [Payment_Gateway] [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-12-11T10:24:57.804+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : Starting PaymentGatewayApplication using Java 17.0.9 with PID 9772 (C:\Users\nourj\OneDrive\Documents\Payment_Gateway\target\classes started by nourj in C:\Users\nourj\OneDrive\Documents\Payment_Gateway)
+2025-12-11T10:24:57.806+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : No active profile set, falling back to 1 default profile: "default"
+2025-12-11T10:25:01.602+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-11T10:25:03.353+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1735 ms. Found 40 JPA repository interfaces.
+2025-12-11T10:25:03.969+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (https)
+2025-12-11T10:25:03.973+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-11T10:25:03.974+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-12-11T10:25:04.064+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-12-11T10:25:04.065+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6241 ms
+2025-12-11T10:25:04.280+01:00  WARN 9772 --- [Payment_Gateway] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Cannot deserialize session attribute [SPRING_SECURITY_CONTEXT] for session [3A68022CBA34D3EDFD2A00B90C89D8DC]
+2025-12-11T10:25:04.378+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-11T10:25:04.385+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-12-11T10:25:04.457+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-11T10:25:04.461+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2025-12-11T10:25:04.628+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@207c6374
+2025-12-11T10:25:04.630+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2025-12-11T10:25:04.669+01:00  WARN 9772 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-11T10:25:04.675+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-2)']
 	Database driver: undefined/unknown
 	Database version: 17.4
@@ -499,461 +84,34 @@ org.hibernate.PropertyValueException: not-null property references a null or tra
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2025-10-28T20:31:24.683+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-10-28T20:31:24.849+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2025-10-28T20:31:24.850+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukmwsdr660o016h6m45eygu6q1q" of relation "customer_identity" does not exist, skipping
-2025-10-28T20:31:24.918+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2025-10-28T20:31:24.919+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukobrvlidjmclgkcqqs8bh8caij" of relation "customers" does not exist, skipping
-2025-10-28T20:31:24.937+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2025-10-28T20:31:24.938+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukpf61clwmpq7dx5q472t15nv4m" of relation "customers" does not exist, skipping
-2025-10-28T20:31:30.158+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-10-28T20:31:31.666+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-10-28T20:31:31.690+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Found 2 UserDetailsService beans, with names [authServiceImp, userDetailsService]. Global Authentication Manager will not use a UserDetailsService for username/password login. Consider publishing a single UserDetailsService bean.
-2025-10-28T20:31:33.273+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
-2025-10-28T20:31:33.545+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
-2025-10-28T20:31:33.749+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/Payment_Gateway'
-2025-10-28T20:31:33.780+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2025-10-28T20:31:33.914+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8080], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [C:\Users\nourj\.keystore] using alias [1] with trust store [null]
-2025-10-28T20:31:33.970+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (https) with context path '/'
-2025-10-28T20:31:34.040+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : Started PaymentGatewayApplication in 20.791 seconds (process running for 921.963)
-2025-10-28T20:31:34.073+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
-2025-10-28T20:31:57.754+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-10-28T20:31:57.756+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-10-28T20:31:57.763+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
-2025-10-28T20:32:51.597+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-9] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T20:32:51.625+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-9] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
-2025-10-28T20:32:51.664+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T20:32:51.676+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
-2025-10-28T20:32:51.678+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-7] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T20:32:51.678+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-4] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T20:32:51.698+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-7] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
-2025-10-28T20:32:51.703+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-4] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
-2025-10-28T20:32:51.707+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-5] com.servicesImp.WalletServiceImpl        : countPendingWallets: Returned count = 1
-2025-10-28T20:32:51.779+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-2] com.servicesImp.WalletServiceImpl        : Retrieved wallet counts for 4 categories
-2025-10-28T20:32:51.782+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-10] com.servicesImp.WalletServiceImpl        : countActiveWallets: Returned count = 8
-2025-10-28T20:32:51.810+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-6] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T20:32:51.828+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-6] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
-2025-10-28T20:32:56.384+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-7] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T20:32:57.168+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-1] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T20:32:58.321+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-4] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T20:32:59.104+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-2] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T20:32:59.914+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-8] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T20:33:00.419+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-4] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T20:33:06.963+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `java.lang.Integer` from Object value (token `JsonToken.START_OBJECT`)]
-2025-10-28T20:33:10.832+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `java.lang.Integer` from Object value (token `JsonToken.START_OBJECT`)]
-2025-10-28T20:39:14.213+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `java.lang.Integer` from Object value (token `JsonToken.START_OBJECT`)]
-2025-10-28T20:46:14.197+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-5] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T20:49:04.960+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `java.lang.String` from Object value (token `JsonToken.START_OBJECT`)]
-2025-10-28T20:49:16.013+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-12] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `java.lang.String` from Object value (token `JsonToken.START_OBJECT`)]
-2025-10-28T20:56:27.863+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-11] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `java.lang.String` from Object value (token `JsonToken.START_OBJECT`)]
-2025-10-28T20:56:31.081+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `java.lang.String` from Object value (token `JsonToken.START_OBJECT`)]
-2025-10-28T20:56:39.483+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-3] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T20:57:30.286+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-11] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `java.lang.String` from Object value (token `JsonToken.START_OBJECT`)]
-2025-10-28T21:01:57.704+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-10] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T21:01:57.720+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-10] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
-2025-10-28T21:07:10.786+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T21:07:10.786+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-4] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T21:07:10.786+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-8] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T21:07:10.786+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-3] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T21:07:10.786+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-5] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T21:07:10.842+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-4] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
-2025-10-28T21:07:10.840+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
-2025-10-28T21:07:10.842+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-3] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
-2025-10-28T21:07:10.842+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-8] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
-2025-10-28T21:07:10.842+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-5] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
-2025-10-28T21:07:11.502+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-2] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T21:13:46.328+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-8] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T21:13:48.728+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-10] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T21:15:17.730+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'cusCode': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Integer'; For input string: "NaN"]
-2025-10-28T21:15:17.814+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-12] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'cusCode': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Integer'; For input string: "NaN"]
-2025-10-28T21:16:19.843+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-2] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T21:16:20.215+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-7] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T21:16:33.562+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-3] com.servicesImp.WalletServiceImpl        : countActiveWallets: Returned count = 8
-2025-10-28T21:16:33.574+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-4] com.servicesImp.WalletServiceImpl        : Retrieved wallet counts for 4 categories
-2025-10-28T21:16:33.583+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-11] com.servicesImp.WalletServiceImpl        : countPendingWallets: Returned count = 1
-2025-10-28T21:16:35.971+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-10] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T21:16:36.366+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-9] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T21:18:37.263+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-2] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T21:18:37.626+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-3] com.servicesImp.WalletServiceImpl        : Retrieved 9 wallets
-2025-10-28T21:23:30.592+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'cusCode': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Integer'; For input string: "NaN"]
-2025-10-28T21:23:30.659+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'cusCode': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Integer'; For input string: "NaN"]
-2025-10-28T21:23:59.199+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-12] com.servicesImp.WalletServiceImpl        : countActiveWallets: Returned count = 8
-2025-10-28T21:23:59.204+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-7] com.servicesImp.WalletServiceImpl        : countPendingWallets: Returned count = 1
-2025-10-28T21:23:59.210+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-11] com.servicesImp.WalletServiceImpl        : Retrieved wallet counts for 4 categories
-2025-10-28T21:24:01.350+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-10] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'cusCode': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Integer'; For input string: "NaN"]
-2025-10-28T21:24:01.412+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'cusCode': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Integer'; For input string: "NaN"]
-2025-10-28T21:27:20.905+01:00  INFO 27980 --- [Payment_Gateway] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
-2025-10-28T21:27:21.049+01:00  INFO 27980 --- [Payment_Gateway] [Thread-7] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-10-28T21:27:21.772+01:00  INFO 27980 --- [Payment_Gateway] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-10-28T21:27:21.882+01:00  INFO 27980 --- [Payment_Gateway] [Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-10-28T21:27:21.927+01:00  INFO 27980 --- [Payment_Gateway] [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
-2025-10-28T21:27:21.955+01:00  INFO 27980 --- [Payment_Gateway] [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
-2025-10-28T21:27:23.860+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : Starting PaymentGatewayApplication using Java 17.0.9 with PID 27980 (C:\Users\nourj\OneDrive\Documents\Payment_Gateway\target\classes started by nourj in C:\Users\nourj\OneDrive\Documents\Payment_Gateway)
-2025-10-28T21:27:23.861+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : No active profile set, falling back to 1 default profile: "default"
-2025-10-28T21:27:32.435+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-10-28T21:27:34.014+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1567 ms. Found 40 JPA repository interfaces.
-2025-10-28T21:27:34.961+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (https)
-2025-10-28T21:27:34.965+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-10-28T21:27:34.966+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
-2025-10-28T21:27:35.277+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-10-28T21:27:35.281+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 11408 ms
-2025-10-28T21:27:35.514+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Cannot deserialize session attribute [SPRING_SECURITY_CONTEXT] for session [369674DF59548EB04D79457C67BD0485]
-2025-10-28T21:27:35.749+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-10-28T21:27:35.774+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-10-28T21:27:35.972+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-10-28T21:27:35.980+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
-2025-10-28T21:27:36.280+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection org.postgresql.jdbc.PgConnection@13b9fad2
-2025-10-28T21:27:36.282+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
-2025-10-28T21:27:36.358+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-10-28T21:27:36.364+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-3)']
-	Database driver: undefined/unknown
-	Database version: 17.4
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-10-28T21:27:38.831+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-10-28T21:27:39.175+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2025-10-28T21:27:39.176+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukmwsdr660o016h6m45eygu6q1q" of relation "customer_identity" does not exist, skipping
-2025-10-28T21:27:39.252+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2025-10-28T21:27:39.253+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukobrvlidjmclgkcqqs8bh8caij" of relation "customers" does not exist, skipping
-2025-10-28T21:27:39.272+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2025-10-28T21:27:39.275+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukpf61clwmpq7dx5q472t15nv4m" of relation "customers" does not exist, skipping
-2025-10-28T21:27:43.279+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-10-28T21:27:43.610+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-10-28T21:27:43.623+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Found 2 UserDetailsService beans, with names [authServiceImp, userDetailsService]. Global Authentication Manager will not use a UserDetailsService for username/password login. Consider publishing a single UserDetailsService bean.
-2025-10-28T21:27:44.433+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
-2025-10-28T21:27:44.451+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Unsatisfied dependency expressed through method 'setFilterChains' parameter 0: Error creating bean with name 'securityFilterChain' defined in class path resource [com/security/SecurityConfig.class]: Failed to instantiate [org.springframework.security.web.SecurityFilterChain]: Factory method 'securityFilterChain' threw exception with message: Unresolved compilation problems: 
-	Syntax error, insert ")" to complete MethodInvocation
-	Syntax error, insert ";" to complete BlockStatements
-
-2025-10-28T21:27:44.453+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-10-28T21:27:44.457+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
-2025-10-28T21:27:44.462+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
-2025-10-28T21:27:44.465+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2025-10-28T21:27:44.500+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2025-10-28T21:27:44.591+01:00 ERROR 27980 --- [Payment_Gateway] [restartedMain] o.s.boot.SpringApplication               : Application run failed
-
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Unsatisfied dependency expressed through method 'setFilterChains' parameter 0: Error creating bean with name 'securityFilterChain' defined in class path resource [com/security/SecurityConfig.class]: Failed to instantiate [org.springframework.security.web.SecurityFilterChain]: Factory method 'securityFilterChain' threw exception with message: Unresolved compilation problems: 
-	Syntax error, insert ")" to complete MethodInvocation
-	Syntax error, insert ";" to complete BlockStatements
-
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.resolveMethodArguments(AutowiredAnnotationBeanPostProcessor.java:896) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:849) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1459) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:606) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1222) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1188) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1123) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987) ~[spring-context-6.2.9.jar:6.2.9]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.9.jar:6.2.9]
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.4.8.jar:3.4.8]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.4.8.jar:3.4.8]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.4.8.jar:3.4.8]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.4.8.jar:3.4.8]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.4.8.jar:3.4.8]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.4.8.jar:3.4.8]
-	at com.PaymentGatewayApplication.main(PaymentGatewayApplication.java:8) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.4.8.jar:3.4.8]
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'securityFilterChain' defined in class path resource [com/security/SecurityConfig.class]: Failed to instantiate [org.springframework.security.web.SecurityFilterChain]: Factory method 'securityFilterChain' threw exception with message: Unresolved compilation problems: 
-	Syntax error, insert ")" to complete MethodInvocation
-	Syntax error, insert ";" to complete BlockStatements
-
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:657) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:645) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1375) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1205) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.addCandidateEntry(DefaultListableBeanFactory.java:1996) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1960) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveMultipleBeanCollection(DefaultListableBeanFactory.java:1850) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveMultipleBeans(DefaultListableBeanFactory.java:1818) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1694) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1628) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.resolveMethodArguments(AutowiredAnnotationBeanPostProcessor.java:888) ~[spring-beans-6.2.9.jar:6.2.9]
-	... 27 common frames omitted
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.security.web.SecurityFilterChain]: Factory method 'securityFilterChain' threw exception with message: Unresolved compilation problems: 
-	Syntax error, insert ")" to complete MethodInvocation
-	Syntax error, insert ";" to complete BlockStatements
-
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:200) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:89) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:169) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653) ~[spring-beans-6.2.9.jar:6.2.9]
-	... 44 common frames omitted
-Caused by: java.lang.Error: Unresolved compilation problems: 
-	Syntax error, insert ")" to complete MethodInvocation
-	Syntax error, insert ";" to complete BlockStatements
-
-	at com.security.SecurityConfig.securityFilterChain(SecurityConfig.java:117) ~[classes/:na]
-	at com.security.SecurityConfig$$SpringCGLIB$$0.CGLIB$securityFilterChain$0(<generated>) ~[classes/:na]
-	at com.security.SecurityConfig$$SpringCGLIB$$FastClass$$1.invoke(<generated>) ~[classes/:na]
-	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258) ~[spring-core-6.2.9.jar:6.2.9]
-	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:400) ~[spring-context-6.2.9.jar:6.2.9]
-	at com.security.SecurityConfig$$SpringCGLIB$$0.securityFilterChain(<generated>) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:172) ~[spring-beans-6.2.9.jar:6.2.9]
-	... 47 common frames omitted
-
-2025-10-28T21:27:46.231+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : Starting PaymentGatewayApplication using Java 17.0.9 with PID 27980 (C:\Users\nourj\OneDrive\Documents\Payment_Gateway\target\classes started by nourj in C:\Users\nourj\OneDrive\Documents\Payment_Gateway)
-2025-10-28T21:27:46.232+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : No active profile set, falling back to 1 default profile: "default"
-2025-10-28T21:27:47.617+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-10-28T21:27:48.014+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 394 ms. Found 40 JPA repository interfaces.
-2025-10-28T21:27:48.324+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (https)
-2025-10-28T21:27:48.329+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-10-28T21:27:48.330+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
-2025-10-28T21:27:48.403+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
-2025-10-28T21:27:48.403+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2164 ms
-2025-10-28T21:27:48.641+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-10-28T21:27:48.653+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-10-28T21:27:48.728+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-10-28T21:27:48.735+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
-2025-10-28T21:27:48.891+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-4 - Added connection org.postgresql.jdbc.PgConnection@6e55f7d5
-2025-10-28T21:27:48.892+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
-2025-10-28T21:27:48.908+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-10-28T21:27:48.911+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-4)']
-	Database driver: undefined/unknown
-	Database version: 17.4
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-10-28T21:27:50.224+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-10-28T21:27:50.493+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2025-10-28T21:27:50.493+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukmwsdr660o016h6m45eygu6q1q" of relation "customer_identity" does not exist, skipping
-2025-10-28T21:27:50.523+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2025-10-28T21:27:50.528+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukobrvlidjmclgkcqqs8bh8caij" of relation "customers" does not exist, skipping
-2025-10-28T21:27:50.543+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2025-10-28T21:27:50.544+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukpf61clwmpq7dx5q472t15nv4m" of relation "customers" does not exist, skipping
-2025-10-28T21:27:53.846+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-10-28T21:27:54.353+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-10-28T21:27:54.378+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Found 2 UserDetailsService beans, with names [authServiceImp, userDetailsService]. Global Authentication Manager will not use a UserDetailsService for username/password login. Consider publishing a single UserDetailsService bean.
-2025-10-28T21:27:58.991+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
-2025-10-28T21:27:59.242+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
-2025-10-28T21:27:59.405+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/Payment_Gateway'
-2025-10-28T21:27:59.428+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2025-10-28T21:27:59.532+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8080], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [C:\Users\nourj\.keystore] using alias [1] with trust store [null]
-2025-10-28T21:27:59.552+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (https) with context path '/'
-2025-10-28T21:27:59.564+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : Started PaymentGatewayApplication in 13.392 seconds (process running for 4307.485)
-2025-10-28T21:27:59.581+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
-2025-10-28T21:31:33.297+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-5] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-10-28T21:31:33.313+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-10-28T21:31:33.325+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
-2025-10-28T21:38:35.609+01:00  INFO 27980 --- [Payment_Gateway] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
-2025-10-28T21:38:35.723+01:00  INFO 27980 --- [Payment_Gateway] [Thread-11] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-10-28T21:38:36.942+01:00  INFO 27980 --- [Payment_Gateway] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-10-28T21:38:37.114+01:00  INFO 27980 --- [Payment_Gateway] [Thread-11] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-10-28T21:38:37.271+01:00  INFO 27980 --- [Payment_Gateway] [Thread-11] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown initiated...
-2025-10-28T21:38:37.329+01:00  INFO 27980 --- [Payment_Gateway] [Thread-11] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown completed.
-2025-10-28T21:38:40.978+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : Starting PaymentGatewayApplication using Java 17.0.9 with PID 27980 (C:\Users\nourj\OneDrive\Documents\Payment_Gateway\target\classes started by nourj in C:\Users\nourj\OneDrive\Documents\Payment_Gateway)
-2025-10-28T21:38:40.980+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : No active profile set, falling back to 1 default profile: "default"
-2025-10-28T21:38:46.480+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-10-28T21:38:47.361+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 873 ms. Found 40 JPA repository interfaces.
-2025-10-28T21:38:47.703+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (https)
-2025-10-28T21:38:47.705+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-10-28T21:38:47.705+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
-2025-10-28T21:38:47.802+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
-2025-10-28T21:38:47.802+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6784 ms
-2025-10-28T21:38:48.000+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-10-28T21:38:48.006+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-10-28T21:38:48.100+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-10-28T21:38:48.103+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
-2025-10-28T21:38:48.345+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-5 - Added connection org.postgresql.jdbc.PgConnection@1da133f1
-2025-10-28T21:38:48.346+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
-2025-10-28T21:38:48.400+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-10-28T21:38:48.410+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-5)']
-	Database driver: undefined/unknown
-	Database version: 17.4
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-10-28T21:38:49.537+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-10-28T21:38:49.704+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2025-10-28T21:38:49.705+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukmwsdr660o016h6m45eygu6q1q" of relation "customer_identity" does not exist, skipping
-2025-10-28T21:38:49.773+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2025-10-28T21:38:49.774+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukobrvlidjmclgkcqqs8bh8caij" of relation "customers" does not exist, skipping
-2025-10-28T21:38:49.787+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2025-10-28T21:38:49.788+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukpf61clwmpq7dx5q472t15nv4m" of relation "customers" does not exist, skipping
-2025-10-28T21:38:53.612+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-10-28T21:38:54.074+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-10-28T21:38:54.096+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Found 2 UserDetailsService beans, with names [authServiceImp, userDetailsService]. Global Authentication Manager will not use a UserDetailsService for username/password login. Consider publishing a single UserDetailsService bean.
-2025-10-28T21:38:55.200+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
-2025-10-28T21:38:55.340+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
-2025-10-28T21:38:55.469+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/Payment_Gateway'
-2025-10-28T21:38:55.490+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2025-10-28T21:38:55.594+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8080], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [C:\Users\nourj\.keystore] using alias [1] with trust store [null]
-2025-10-28T21:38:55.618+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (https) with context path '/'
-2025-10-28T21:38:55.633+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : Started PaymentGatewayApplication in 14.988 seconds (process running for 4963.555)
-2025-10-28T21:38:55.638+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
-2025-10-28T21:40:51.033+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-6] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-10-28T21:40:51.041+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-10-28T21:40:51.052+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
-2025-10-28T21:40:52.206+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-4] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T21:40:52.208+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-4] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
-2025-10-28T21:40:52.565+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-10] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T21:40:52.567+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-10] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
-2025-10-28T21:43:16.795+01:00  INFO 27980 --- [Payment_Gateway] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
-2025-10-28T21:43:16.811+01:00  INFO 27980 --- [Payment_Gateway] [Thread-18] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-10-28T21:43:17.558+01:00  INFO 27980 --- [Payment_Gateway] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-10-28T21:43:17.594+01:00  INFO 27980 --- [Payment_Gateway] [Thread-18] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-10-28T21:43:17.604+01:00  INFO 27980 --- [Payment_Gateway] [Thread-18] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown initiated...
-2025-10-28T21:43:17.634+01:00  INFO 27980 --- [Payment_Gateway] [Thread-18] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown completed.
-2025-10-28T21:43:18.135+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : Starting PaymentGatewayApplication using Java 17.0.9 with PID 27980 (C:\Users\nourj\OneDrive\Documents\Payment_Gateway\target\classes started by nourj in C:\Users\nourj\OneDrive\Documents\Payment_Gateway)
-2025-10-28T21:43:18.135+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : No active profile set, falling back to 1 default profile: "default"
-2025-10-28T21:43:21.181+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-10-28T21:43:21.960+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 773 ms. Found 40 JPA repository interfaces.
-2025-10-28T21:43:22.275+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (https)
-2025-10-28T21:43:22.276+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-10-28T21:43:22.277+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
-2025-10-28T21:43:22.355+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
-2025-10-28T21:43:22.357+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4218 ms
-2025-10-28T21:43:22.488+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Cannot deserialize session attribute [SPRING_SECURITY_CONTEXT] for session [369674DF59548EB04D79457C67BD0485]
-2025-10-28T21:43:22.616+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-10-28T21:43:22.627+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-10-28T21:43:22.709+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-10-28T21:43:22.711+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Starting...
-2025-10-28T21:43:22.903+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-6 - Added connection org.postgresql.jdbc.PgConnection@1f648847
-2025-10-28T21:43:22.904+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Start completed.
-2025-10-28T21:43:22.926+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-10-28T21:43:22.929+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-6)']
-	Database driver: undefined/unknown
-	Database version: 17.4
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-10-28T21:43:24.043+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-10-28T21:43:24.210+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2025-10-28T21:43:24.214+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukmwsdr660o016h6m45eygu6q1q" of relation "customer_identity" does not exist, skipping
-2025-10-28T21:43:24.333+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2025-10-28T21:43:24.335+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukobrvlidjmclgkcqqs8bh8caij" of relation "customers" does not exist, skipping
-2025-10-28T21:43:24.358+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2025-10-28T21:43:24.358+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukpf61clwmpq7dx5q472t15nv4m" of relation "customers" does not exist, skipping
-2025-10-28T21:43:28.716+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-10-28T21:43:29.149+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-10-28T21:43:29.167+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Found 2 UserDetailsService beans, with names [authServiceImp, userDetailsService]. Global Authentication Manager will not use a UserDetailsService for username/password login. Consider publishing a single UserDetailsService bean.
-2025-10-28T21:43:30.399+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
-2025-10-28T21:43:30.672+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
-2025-10-28T21:43:30.893+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/Payment_Gateway'
-2025-10-28T21:43:30.916+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2025-10-28T21:43:31.008+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8080], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [C:\Users\nourj\.keystore] using alias [1] with trust store [null]
-2025-10-28T21:43:31.019+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (https) with context path '/'
-2025-10-28T21:43:31.034+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : Started PaymentGatewayApplication in 12.984 seconds (process running for 5238.956)
-2025-10-28T21:43:31.039+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
-2025-10-28T21:44:07.740+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-5] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-10-28T21:44:07.740+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-10-28T21:44:07.745+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
-2025-10-28T21:45:18.969+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-5] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T21:45:18.987+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-5] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
-2025-10-28T21:45:18.988+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-7] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T21:45:18.989+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-7] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
-2025-10-28T21:49:38.405+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-3] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T21:49:58.595+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-3] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
-2025-10-28T21:53:29.433+01:00  INFO 27980 --- [Payment_Gateway] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
-2025-10-28T21:53:29.468+01:00  INFO 27980 --- [Payment_Gateway] [Thread-22] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-10-28T21:53:30.141+01:00  INFO 27980 --- [Payment_Gateway] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-10-28T21:53:30.170+01:00  INFO 27980 --- [Payment_Gateway] [Thread-22] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-10-28T21:53:30.183+01:00  INFO 27980 --- [Payment_Gateway] [Thread-22] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown initiated...
-2025-10-28T21:53:30.206+01:00  INFO 27980 --- [Payment_Gateway] [Thread-22] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown completed.
-2025-10-28T21:53:31.546+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : Starting PaymentGatewayApplication using Java 17.0.9 with PID 27980 (C:\Users\nourj\OneDrive\Documents\Payment_Gateway\target\classes started by nourj in C:\Users\nourj\OneDrive\Documents\Payment_Gateway)
-2025-10-28T21:53:31.550+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : No active profile set, falling back to 1 default profile: "default"
-2025-10-28T21:53:36.605+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-10-28T21:53:37.284+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 677 ms. Found 40 JPA repository interfaces.
-2025-10-28T21:53:37.693+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (https)
-2025-10-28T21:53:37.696+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-10-28T21:53:37.697+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
-2025-10-28T21:53:37.788+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
-2025-10-28T21:53:37.789+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6220 ms
-2025-10-28T21:53:37.913+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Cannot deserialize session attribute [SPRING_SECURITY_CONTEXT] for session [45A1C5C79E5ED235F5B28645BC936A52]
-2025-10-28T21:53:38.207+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-10-28T21:53:38.228+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-10-28T21:53:38.570+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-10-28T21:53:38.579+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Starting...
-2025-10-28T21:53:39.143+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-7 - Added connection org.postgresql.jdbc.PgConnection@4ea37eab
-2025-10-28T21:53:39.145+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Start completed.
-2025-10-28T21:53:39.269+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-10-28T21:53:39.274+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-7)']
-	Database driver: undefined/unknown
-	Database version: 17.4
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-10-28T21:53:40.497+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-10-28T21:53:40.763+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2025-10-28T21:53:40.765+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukmwsdr660o016h6m45eygu6q1q" of relation "customer_identity" does not exist, skipping
-2025-10-28T21:53:40.854+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2025-10-28T21:53:40.856+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukobrvlidjmclgkcqqs8bh8caij" of relation "customers" does not exist, skipping
-2025-10-28T21:53:40.873+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2025-10-28T21:53:40.874+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukpf61clwmpq7dx5q472t15nv4m" of relation "customers" does not exist, skipping
-2025-10-28T21:53:48.885+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-10-28T21:53:49.291+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-10-28T21:53:49.322+01:00  WARN 27980 --- [Payment_Gateway] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Found 2 UserDetailsService beans, with names [authServiceImp, userDetailsService]. Global Authentication Manager will not use a UserDetailsService for username/password login. Consider publishing a single UserDetailsService bean.
-2025-10-28T21:53:50.512+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
-2025-10-28T21:53:50.682+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
-2025-10-28T21:53:50.831+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/Payment_Gateway'
-2025-10-28T21:53:50.849+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2025-10-28T21:53:50.920+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8080], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [C:\Users\nourj\.keystore] using alias [1] with trust store [null]
-2025-10-28T21:53:50.934+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (https) with context path '/'
-2025-10-28T21:53:50.959+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : Started PaymentGatewayApplication in 19.811 seconds (process running for 5858.882)
-2025-10-28T21:53:50.966+01:00  INFO 27980 --- [Payment_Gateway] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
-2025-10-28T21:53:52.126+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-4] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-10-28T21:53:52.127+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-10-28T21:53:52.129+01:00  INFO 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2025-10-28T21:54:05.342+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-6] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T21:54:05.342+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T21:54:05.346+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-6] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
-2025-10-28T21:54:05.347+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
-2025-10-28T21:54:05.664+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T21:54:05.665+01:00  WARN 27980 --- [Payment_Gateway] [https-jsse-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
-2025-10-28T21:57:41.486+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : Starting PaymentGatewayApplication using Java 17.0.9 with PID 7756 (C:\Users\nourj\OneDrive\Documents\Payment_Gateway\target\classes started by nourj in C:\Users\nourj\OneDrive\Documents\Payment_Gateway)
-2025-10-28T21:57:41.493+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : No active profile set, falling back to 1 default profile: "default"
-2025-10-28T21:57:41.659+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-10-28T21:57:41.661+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-10-28T21:57:47.767+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-10-28T21:57:48.624+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 833 ms. Found 40 JPA repository interfaces.
-2025-10-28T21:57:50.830+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (https)
-2025-10-28T21:57:50.875+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-10-28T21:57:50.876+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
-2025-10-28T21:57:51.006+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-10-28T21:57:51.010+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 9346 ms
-2025-10-28T21:57:51.809+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-10-28T21:57:52.039+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
-2025-10-28T21:57:52.170+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-10-28T21:57:53.197+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-10-28T21:57:53.303+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-10-28T21:57:53.822+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@548c75f1
-2025-10-28T21:57:53.826+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-10-28T21:57:53.928+01:00  WARN 7756 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-10-28T21:57:53.993+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2025-12-11T10:25:06.158+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-11T10:25:06.411+01:00  WARN 9772 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-12-11T10:25:06.413+01:00  WARN 9772 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukmwsdr660o016h6m45eygu6q1q" of relation "customer_identity" does not exist, skipping
+2025-12-11T10:25:06.490+01:00  WARN 9772 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-12-11T10:25:06.493+01:00  WARN 9772 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukobrvlidjmclgkcqqs8bh8caij" of relation "customers" does not exist, skipping
+2025-12-11T10:25:06.511+01:00  WARN 9772 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-12-11T10:25:06.514+01:00  WARN 9772 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukpf61clwmpq7dx5q472t15nv4m" of relation "customers" does not exist, skipping
+2025-12-11T10:25:15.127+01:00  INFO 9772 --- [Payment_Gateway] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-11T10:25:22.178+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : Starting PaymentGatewayApplication using Java 17.0.9 with PID 15116 (C:\Users\nourj\OneDrive\Documents\Payment_Gateway\target\classes started by nourj in C:\Users\nourj\OneDrive\Documents\Payment_Gateway)
+2025-12-11T10:25:22.221+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : No active profile set, falling back to 1 default profile: "default"
+2025-12-11T10:25:22.573+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-12-11T10:25:22.577+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-12-11T10:25:30.041+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-11T10:25:31.923+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1839 ms. Found 40 JPA repository interfaces.
+2025-12-11T10:25:35.404+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (https)
+2025-12-11T10:25:35.450+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-11T10:25:35.451+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-12-11T10:25:35.609+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-12-11T10:25:35.611+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 13029 ms
+2025-12-11T10:25:39.291+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-11T10:25:39.550+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-12-11T10:25:39.875+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-12-11T10:25:40.971+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-11T10:25:41.086+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-12-11T10:25:41.590+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6a83efc7
+2025-12-11T10:25:41.596+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-12-11T10:25:41.703+01:00  WARN 15116 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-11T10:25:41.766+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 17.4
@@ -961,31 +119,31 @@ Caused by: java.lang.Error: Unresolved compilation problems:
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2025-10-28T21:57:59.379+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-10-28T21:57:59.710+01:00  WARN 7756 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2025-10-28T21:57:59.713+01:00  WARN 7756 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukmwsdr660o016h6m45eygu6q1q" of relation "customer_identity" does not exist, skipping
-2025-10-28T21:57:59.795+01:00  WARN 7756 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2025-10-28T21:57:59.797+01:00  WARN 7756 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukobrvlidjmclgkcqqs8bh8caij" of relation "customers" does not exist, skipping
-2025-10-28T21:57:59.815+01:00  WARN 7756 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2025-10-28T21:57:59.817+01:00  WARN 7756 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukpf61clwmpq7dx5q472t15nv4m" of relation "customers" does not exist, skipping
-2025-10-28T21:58:03.010+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-10-28T21:58:03.924+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-10-28T21:58:07.562+01:00  WARN 7756 --- [Payment_Gateway] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-10-28T21:58:07.666+01:00  WARN 7756 --- [Payment_Gateway] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Found 2 UserDetailsService beans, with names [authServiceImp, userDetailsService]. Global Authentication Manager will not use a UserDetailsService for username/password login. Consider publishing a single UserDetailsService bean.
-2025-10-28T21:58:12.048+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
-2025-10-28T21:58:12.563+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
-2025-10-28T21:58:13.417+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/Payment_Gateway'
-2025-10-28T21:58:13.624+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2025-10-28T21:58:13.825+01:00  INFO 7756 --- [Payment_Gateway] [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-10-28T21:58:13.826+01:00  INFO 7756 --- [Payment_Gateway] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-10-28T21:58:13.830+01:00  INFO 7756 --- [Payment_Gateway] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
-2025-10-28T21:58:14.294+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8080], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [C:\Users\nourj\.keystore] using alias [1] with trust store [null]
-2025-10-28T21:58:14.392+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (https) with context path '/'
-2025-10-28T21:58:14.416+01:00  INFO 7756 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : Started PaymentGatewayApplication in 33.988 seconds (process running for 36.529)
-2025-10-28T22:00:08.233+01:00  WARN 7756 --- [Payment_Gateway] [https-jsse-nio-8080-exec-10] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [1,715] milliseconds.
-2025-10-28T22:00:08.876+01:00  WARN 7756 --- [Payment_Gateway] [https-jsse-nio-8080-exec-5] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T22:00:08.877+01:00  WARN 7756 --- [Payment_Gateway] [https-jsse-nio-8080-exec-9] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T22:00:08.880+01:00  WARN 7756 --- [Payment_Gateway] [https-jsse-nio-8080-exec-5] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
-2025-10-28T22:00:08.880+01:00  WARN 7756 --- [Payment_Gateway] [https-jsse-nio-8080-exec-9] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
-2025-10-28T22:00:09.102+01:00  WARN 7756 --- [Payment_Gateway] [https-jsse-nio-8080-exec-10] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
-2025-10-28T22:00:09.105+01:00  WARN 7756 --- [Payment_Gateway] [https-jsse-nio-8080-exec-10] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
+2025-12-11T10:25:46.576+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-11T10:25:46.843+01:00  WARN 15116 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-12-11T10:25:46.845+01:00  WARN 15116 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukmwsdr660o016h6m45eygu6q1q" of relation "customer_identity" does not exist, skipping
+2025-12-11T10:25:46.883+01:00  WARN 15116 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-12-11T10:25:46.884+01:00  WARN 15116 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukobrvlidjmclgkcqqs8bh8caij" of relation "customers" does not exist, skipping
+2025-12-11T10:25:46.898+01:00  WARN 15116 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-12-11T10:25:46.899+01:00  WARN 15116 --- [Payment_Gateway] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukpf61clwmpq7dx5q472t15nv4m" of relation "customers" does not exist, skipping
+2025-12-11T10:25:51.894+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-11T10:25:53.038+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-12-11T10:25:56.473+01:00  WARN 15116 --- [Payment_Gateway] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-11T10:25:57.080+01:00  WARN 15116 --- [Payment_Gateway] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Found 2 UserDetailsService beans, with names [authServiceImp, userDetailsService]. Global Authentication Manager will not use a UserDetailsService for username/password login. Consider publishing a single UserDetailsService bean.
+2025-12-11T10:26:06.462+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-12-11T10:26:07.125+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-12-11T10:26:07.846+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/Payment_Gateway'
+2025-12-11T10:26:08.046+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-12-11T10:26:08.626+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8080], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [C:\Users\nourj\.keystore] using alias [1] with trust store [null]
+2025-12-11T10:26:08.691+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (https) with context path '/'
+2025-12-11T10:26:08.732+01:00  INFO 15116 --- [Payment_Gateway] [restartedMain] com.PaymentGatewayApplication            : Started PaymentGatewayApplication in 48.334 seconds (process running for 51.321)
+2025-12-11T10:27:45.667+01:00  INFO 15116 --- [Payment_Gateway] [https-jsse-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-11T10:27:45.719+01:00  INFO 15116 --- [Payment_Gateway] [https-jsse-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-12-11T10:27:45.898+01:00  INFO 15116 --- [Payment_Gateway] [https-jsse-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 172 ms
+2025-12-11T10:27:49.109+01:00  WARN 15116 --- [Payment_Gateway] [https-jsse-nio-8080-exec-6] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [126] milliseconds.
+2025-12-11T10:27:49.786+01:00  WARN 15116 --- [Payment_Gateway] [https-jsse-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
+2025-12-11T10:27:49.790+01:00  WARN 15116 --- [Payment_Gateway] [https-jsse-nio-8080-exec-9] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
+2025-12-11T10:27:49.792+01:00  WARN 15116 --- [Payment_Gateway] [https-jsse-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
+2025-12-11T10:27:49.796+01:00  WARN 15116 --- [Payment_Gateway] [https-jsse-nio-8080-exec-9] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
+2025-12-11T10:27:50.125+01:00  WARN 15116 --- [Payment_Gateway] [https-jsse-nio-8080-exec-8] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 01000
+2025-12-11T10:27:50.141+01:00  WARN 15116 --- [Payment_Gateway] [https-jsse-nio-8080-exec-8] o.h.engine.jdbc.spi.SqlExceptionHelper   : database "Payment_Gateway" has a collation version mismatch
